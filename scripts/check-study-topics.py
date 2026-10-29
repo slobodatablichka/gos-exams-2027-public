@@ -104,6 +104,90 @@ def check():
         if f'url=q05-{level}.html' not in duplicate or '<blockquote class="exam-official">' in duplicate:
             errors.append(f"q14/{level}: missing redirect or duplicate full answer")
 
+    # Contract for published legacy URLs: preserve each old path, redirect to the
+    # matching canonical level without JavaScript, and provide an ordinary link.
+    manifest = read_csv("scripts/legacy-urls.csv")
+    required = {
+        ("sessions/02/q14-l3.md", "sessions/02/q05-l3.md"),
+        ("sessions/02/q14-l2.md", "sessions/02/q05-l2.md"),
+        ("sessions/02/q14-l1.md", "sessions/02/q05-l1.md"),
+    }
+    mapped = [(entry["old_path"], entry["canonical_path"]) for entry in manifest]
+    if len(set(mapped)) != len(mapped):
+        errors.append("Legacy URL manifest contains duplicate mappings")
+    if not required.issubset(set(mapped)):
+        errors.append("Missing one or more existing q14 legacy URLs")
+    old_paths = {old for old, _ in mapped}
+    for old_path, canonical_path in mapped:
+        if old_path == canonical_path or canonical_path in old_paths:
+            errors.append(f"Invalid or chained legacy redirect: {old_path}")
+            continue
+        if not old_path.startswith("sessions/") or not canonical_path.startswith("sessions/"):
+            errors.append(f"Legacy redirect outside sessions: {old_path}")
+            continue
+        if not (old_path.endswith(".md") and canonical_path.endswith(".md")):
+            errors.append(f"Legacy redirect paths must refer to Jekyll pages: {old_path}")
+            continue
+        try:
+            legacy = read(old_path)
+            canonical = read(canonical_path)
+        except FileNotFoundError:
+            errors.append(f"Legacy or canonical page missing: {old_path} -> {canonical_path}")
+            continue
+        target_url = canonical_path.rsplit("/", 1)[-1].replace(".md", ".html")
+        if old_path.rsplit("/", 1)[0] != canonical_path.rsplit("/", 1)[0]:
+            errors.append(f"Cross-directory redirects require a reviewed relative URL: {old_path}")
+        meta = re.search(
+            r'<meta\s+http-equiv="refresh"\s+content="0;\s*url=([^"]+)"\s*/?>',
+            legacy, flags=re.I
+        )
+        if not meta or meta.group(1) != target_url:
+            errors.append(f"Missing/incorrect HTML meta refresh: {old_path}")
+        if f'href="{target_url}"' not in legacy:
+            errors.append(f"Missing plain fallback link: {old_path}")
+        if '<blockquote class="exam-official">' in legacy:
+            errors.append(f"Duplicate answer is present at old URL: {old_path}")
+        if '<blockquote class="exam-official">' not in canonical:
+            errors.append(f"Canonical destination missing official question: {canonical_path}")
+        old_level = re.search(r'-(l[123])\.md
+    if "totalQuestions !== 147" not in js:
+        errors.append("Mobile schedule still assumes 150 topic cards")
+
+    for error in errors:
+        print("ERROR:", error)
+    if errors:
+        raise SystemExit(1)
+    print("PASS: 23 dates; 147 distinct study topics; 150 official numbers")
+    print("PASS: 3 explicit topic aliases; 147 valid pairs in each group 5/6/7")
+    print(f"PASS: 6 session-02 articles/cards; {len(mapped)} legacy redirects with fallback links; mobile guard 147")
+
+
+if __name__ == "__main__":
+    check()
+, old_path)
+        new_level = re.search(r'-(l[123])\.md
+    if "totalQuestions !== 147" not in js:
+        errors.append("Mobile schedule still assumes 150 topic cards")
+
+    for error in errors:
+        print("ERROR:", error)
+    if errors:
+        raise SystemExit(1)
+    print("PASS: 23 dates; 147 distinct study topics; 150 official numbers")
+    print("PASS: 3 explicit topic aliases; 147 valid pairs in each group 5/6/7")
+    print("PASS: 6 session-02 articles/cards; 3 legacy redirects; mobile guard 147")
+
+
+if __name__ == "__main__":
+    check()
+, canonical_path)
+        if not old_level or not new_level or old_level.group(1) != new_level.group(1):
+            errors.append(f"Legacy URL changes requested study level: {old_path}")
+    for path in ("sessions/02/index.md", "sessions/02/l3-complete.md", "schedule.md", "assignments.md"):
+        content = read(path)
+        if re.search(r'(?:href="|\]\()(?:(?:sessions/02/)?q14-l[123]\.html)', content):
+            errors.append(f"Active navigation links to an alias instead of its canonical page: {path}")
+
     js = read("assets/js/schedule-mobile.js")
     if "totalQuestions !== 147" not in js:
         errors.append("Mobile schedule still assumes 150 topic cards")
