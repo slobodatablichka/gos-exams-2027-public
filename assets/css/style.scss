@@ -45,3 +45,36 @@
   .exam-prevnext a { padding:.55rem; font-size:.79rem; }
   .exam-prevnext a strong { font-size:.82rem; }
 }
+
+/* Мобильное расписание: данные читаются из существующих таблиц через JS. */
+.mobile-schedule { display: none !important; }
+@media (max-width: 720px) {
+  .main-content .schedule-desktop-only { display: none !important; }
+  .main-content .mobile-schedule.is-ready { display: block !important; max-width: 100%; }
+  .mobile-schedule-help { margin: .5rem 0 1rem; color: #566472; font-size: .91rem; }
+  .mobile-schedule-jump { margin: 1rem 0 1.15rem; }
+  .mobile-schedule-jump label { display: block; font-size: .85rem; font-weight: 650; color: #465867; margin-bottom: .4rem; }
+  .mobile-schedule-jump select { display: block; width: 100%; box-sizing: border-box; font: inherit; font-size: 1rem; padding: .65rem; border: 1px solid #aab8c4; border-radius: 7px; color: #253744; background: #fff; }
+  .mobile-schedule-meeting { max-width: 100%; margin: .65rem 0; border: 1px solid #d5dfe7; border-radius: 8px; background: #fff; scroll-margin-top: 1rem; }
+  .mobile-schedule-meeting[open] { border-color: #a4b7c6; }
+  .mobile-schedule-summary { display: flex; flex-direction: column; position: relative; gap: .2rem; padding: .85rem 2rem .85rem .85rem; cursor: pointer; list-style: none; }
+  .mobile-schedule-summary::-webkit-details-marker { display: none; }
+  .mobile-schedule-summary::after { content: '⌄'; position: absolute; right: .75rem; top: .8rem; font-size: 1.4rem; color: #566d80; line-height: 1; }
+  .mobile-schedule-meeting[open] > .mobile-schedule-summary::after { content: '⌃'; }
+  .mobile-schedule-summary:focus-visible { outline: 2px solid #3978a1; outline-offset: 2px; }
+  .mobile-schedule-summary strong { color: #2e4354; font-size: 1.01rem; }
+  .mobile-schedule-date { font-size: .89rem; color: #425565; }
+  .mobile-schedule-subjects { font-size: .82rem; color: #677684; overflow-wrap: anywhere; }
+  .mobile-schedule-body { border-top: 1px solid #e1e8ed; padding: .75rem .7rem 1rem; }
+  .mobile-schedule-leader { font-size: .88rem; color: #526370; margin: .1rem 0 .75rem; }
+  .mobile-schedule-card { padding: .85rem; margin: .7rem 0; border: 1px solid #dce5ec; border-radius: 7px; max-width: 100%; box-sizing: border-box; overflow-wrap: anywhere; }
+  .mobile-schedule-question-label { margin: 0 0 .55rem; font-size: .88rem; font-weight: 700; color: #365b75; }
+  .mobile-schedule-question-text { margin: 0 0 .85rem; color: #27343d; line-height: 1.57; font-size: .94rem; }
+  .mobile-schedule-roles { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem .5rem; margin: 0; }
+  .mobile-schedule-role { min-width: 0; }
+  .mobile-schedule-role:last-child { grid-column: 1 / -1; }
+  .mobile-schedule-role dt { margin: 0 0 .18rem; font-size: .78rem; color: #647483; }
+  .mobile-schedule-role dd { margin: 0; font-size: .9rem; color: #2e3c47; font-weight: 600; overflow-wrap: anywhere; }
+  .mobile-schedule-materials { display: inline-block; margin-top: .85rem; font-size: .89rem; font-weight: 600; }
+  .mobile-schedule-collapse { display: block; width: 100%; margin-top: .85rem; padding: .7rem; border: 1px solid #cbd7df; background: #f4f7f9; color: #2e6689; border-radius: 7px; font: inherit; font-size: .9rem; cursor: pointer; }
+}
