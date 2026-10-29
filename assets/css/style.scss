@@ -3,3 +3,4 @@
 @import "{{ site.theme }}";
 .site-footer { display: none !important; }
 .page-header .btn { display: none !important; }
+@media (max-width: 640px) { .main-content { padding: 1rem !important; } .main-content table { display:block; overflow-x:auto; } }
