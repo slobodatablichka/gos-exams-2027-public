@@ -157,6 +157,36 @@ def check():
         if re.search(r'(?:href="|\]\()(?:sessions/02/)?q14-l[123]\.html', read(path)):
             errors.append(f"Active navigation uses duplicate content URL: {path}")
 
+    # Published working materials for session 03: all levels and exact routing.
+    s3_ids = ("09", "01", "07", "13", "23", "25", "24")
+    s3_index = read("sessions/03/index.md")
+    s3_reader = read("sessions/03/l3-complete.md")
+    if s3_index.count('class="lesson-card"') != 7:
+        errors.append("Session 03: expected exactly 7 cards")
+    if s3_reader.count('<blockquote class="exam-official">') != 7:
+        errors.append("Session 03: expected exactly 7 L3 articles")
+    if "НЕ ПРОЙДЕН" not in s3_index and "не пройден" not in s3_index:
+        errors.append("Session 03: working status is not explicit")
+    for id_ in s3_ids:
+        for level in LEVELS:
+            path = f"sessions/03/q{id_}-{level}.md"
+            page = read(path)
+            if page.count('<blockquote class="exam-official">') != 1:
+                errors.append(f"Session 03: missing or duplicated wording in {path}")
+            if 'class="exam-levels"' not in page or 'class="exam-questions"' not in page or 'class="exam-prevnext"' not in page:
+                errors.append(f"Session 03: navigation missing in {path}")
+            for check_level in LEVELS:
+                if f'q{id_}-{check_level}.html' not in page:
+                    errors.append(f"Session 03: {path} cannot reach {check_level}")
+        if f'sessions/03/q{id_}-l3.html' not in schedule:
+            errors.append(f"Session 03: schedule does not link q{id_}")
+    for path in ("index.md", "materials/index.md", "sessions/03/index.md", "sessions/03/l3-complete.md"):
+        if "sessions/03/" not in read(path) and path in ("index.md", "materials/index.md"):
+            errors.append(f"Session 03: no entry at {path}")
+    for id_ in ("13", "23", "24"):
+        if f"q{id_}-l3.html" not in read("sessions/03/source-status.md"):
+            errors.append(f"Session 03: no research limitation for q{id_}")
+
     js = read("assets/js/schedule-mobile.js")
     if "totalQuestions !== 147" not in js:
         errors.append("Mobile schedule still assumes 150 topic cards")
