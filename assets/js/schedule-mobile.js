@@ -57,7 +57,7 @@
   }
 
   // Do not hide any original content unless the complete schedule was parsed.
-  if (meetings.length !== 23 || totalQuestions !== 150) return;
+  if (meetings.length !== 23 || totalQuestions !== 147) return;
 
   const make = (tag, className, value) => {
     const el = document.createElement(tag);
@@ -77,7 +77,7 @@
   const mobile = make("section", "mobile-schedule", undefined);
   mobile.id = "mobile-schedule-top";
   mobile.setAttribute("aria-label", "Мобильное расписание первого круга");
-  mobile.append(make("p", "mobile-schedule-help", "Выберите занятие, чтобы увидеть вопросы и распределение докладов."));
+  mobile.append(make("p", "mobile-schedule-help", "Выберите занятие, чтобы увидеть учебные темы и распределение докладчиков. Совпадающие номера обозначены вместе."));
 
   const jumpWrap = make("div", "mobile-schedule-jump");
   const jumpLabel = make("label", "", "Быстрый переход к занятию");
@@ -97,7 +97,7 @@
     summary.append(make("span", "mobile-schedule-date", meeting.date));
     const subjects = [...new Set(meeting.questions.map((q) => label(q.subject)))];
     summary.append(make("span", "mobile-schedule-subjects",
-      subjects.join(" · ") + " · " + meeting.questions.length + " вопросов"));
+      subjects.join(" · ") + " · " + meeting.questions.length + " тем"));
     box.append(summary);
 
     const body = make("div", "mobile-schedule-body");

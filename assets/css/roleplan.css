@@ -30,3 +30,5 @@
   .roleplan-table th:first-child,.roleplan-table td:first-child { width:29%; }
   .roleplan-toolbar { padding:.7rem; }
 }
+
+.roleplan-alias { display:block; font-size:.79rem; line-height:1.45; color:#596b7b; margin-top:.25rem; }
