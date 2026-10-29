@@ -142,7 +142,7 @@ def check():
         )
         if not meta or meta.group(1) != target_url:
             errors.append(f"Invalid HTML redirect at {old_path}")
-        if f'href="{target_url}"' not in legacy:
+        if f'href="{target_url}"' not in legacy and f']({target_url})' not in legacy:
             errors.append(f"No accessible fallback link at {old_path}")
         if '<blockquote class="exam-official">' in legacy:
             errors.append(f"Duplicate full answer at {old_path}")
