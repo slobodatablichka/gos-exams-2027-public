@@ -3,6 +3,8 @@ layout: default
 title: "Докладчики по занятиям · группы 5, 6 и 7"
 ---
 
+<link rel="stylesheet" href="assets/css/roleplan.css">
+
 [Главная](index.html) › [Расписание и вопросы](schedule.html) › **Докладчики**
 
 # План докладчиков первого круга
