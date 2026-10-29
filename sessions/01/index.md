@@ -3,7 +3,7 @@ layout: default
 title: "Занятие №1 — Новый Завет, 4 ноября 2026"
 ---
 
-[Главная](../../index.html) · [Расписание первого круга](../../schedule.html)
+[Главная](../../index.html) › [Материалы](../../materials/index.html) › **Занятие №1**
 
 # Занятие №1. Евангелия: начало служения Христа
 
@@ -23,15 +23,43 @@ title: "Занятие №1 — Новый Завет, 4 ноября 2026"
 
 ## Все семь вопросов
 
-| Экзаменационный вопрос | L3 · статья | L2 · устный ответ | L1 · тезисы |
-|:--|:--:|:--:|:--:|
-| **[НЗ №12](q12-l3.html)** — Четыре Евангелия и синоптическая проблема | [Читать](q12-l3.html) | [Повторить](q12-l2.html) | [План](q12-l1.html) |
-| **[НЗ №11](q11-l3.html)** — Благовещение, Рождество Христово, Пролог Иоанна | [Читать](q11-l3.html) | [Повторить](q11-l2.html) | [План](q11-l1.html) |
-| **[НЗ №18](q18-l3.html)** — Проповедь Предтечи и Крещение Господне | [Читать](q18-l3.html) | [Повторить](q18-l2.html) | [План](q18-l1.html) |
-| **[НЗ №19](q19-l3.html)** — Искушения Спасителя в пустыне | [Читать](q19-l3.html) | [Повторить](q19-l2.html) | [План](q19-l1.html) |
-| **[НЗ №1](q01-l3.html)** — Нагорная проповедь и полнота Закона | [Читать](q01-l3.html) | [Повторить](q01-l2.html) | [План](q01-l1.html) |
-| **[НЗ №2](q02-l3.html)** — Исповедание Петра и Страждущий Мессия | [Читать](q02-l3.html) | [Повторить](q02-l2.html) | [План](q02-l1.html) |
-| **[НЗ №4](q04-l3.html)** — Преображение Господне и слава Царства | [Читать](q04-l3.html) | [Повторить](q04-l2.html) | [План](q04-l1.html) |
+<div class="lesson-cards">
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 1 из 7 · НЗ №12</p>
+<h3>Четыре Евангелия</h3>
+<div class="lesson-actions"><a href="q12-l3.html">L3 · Статья</a><a href="q12-l2.html">L2 · Ответ</a><a href="q12-l1.html">L1 · План</a></div>
+</article>
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 2 из 7 · НЗ №11</p>
+<h3>Благовещение и Рождество</h3>
+<div class="lesson-actions"><a href="q11-l3.html">L3 · Статья</a><a href="q11-l2.html">L2 · Ответ</a><a href="q11-l1.html">L1 · План</a></div>
+</article>
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 3 из 7 · НЗ №18</p>
+<h3>Крещение Господне</h3>
+<div class="lesson-actions"><a href="q18-l3.html">L3 · Статья</a><a href="q18-l2.html">L2 · Ответ</a><a href="q18-l1.html">L1 · План</a></div>
+</article>
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 4 из 7 · НЗ №19</p>
+<h3>Искушения в пустыне</h3>
+<div class="lesson-actions"><a href="q19-l3.html">L3 · Статья</a><a href="q19-l2.html">L2 · Ответ</a><a href="q19-l1.html">L1 · План</a></div>
+</article>
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 5 из 7 · НЗ №1</p>
+<h3>Нагорная проповедь</h3>
+<div class="lesson-actions"><a href="q01-l3.html">L3 · Статья</a><a href="q01-l2.html">L2 · Ответ</a><a href="q01-l1.html">L1 · План</a></div>
+</article>
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 6 из 7 · НЗ №2</p>
+<h3>Исповедание Петра</h3>
+<div class="lesson-actions"><a href="q02-l3.html">L3 · Статья</a><a href="q02-l2.html">L2 · Ответ</a><a href="q02-l1.html">L1 · План</a></div>
+</article>
+<article class="lesson-card">
+<p class="lesson-number">Вопрос 7 из 7 · НЗ №4</p>
+<h3>Преображение</h3>
+<div class="lesson-actions"><a href="q04-l3.html">L3 · Статья</a><a href="q04-l2.html">L2 · Ответ</a><a href="q04-l1.html">L1 · План</a></div>
+</article>
+</div>
 
 ### Основной учебник
 
