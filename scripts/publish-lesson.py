@@ -99,6 +99,8 @@ def name_and_body(raw, level):
     main = Q_RE.sub("", main, count=1).strip()
     # Authoring metadata is private; public pages already link all three levels.
     main = re.sub(r"(?m)^\*(?:Основа ответа:|Составлено по)[^\n]*\*\s*$", "", main).strip()
+    # Strip internal supplied-DOCX alignment notes from the PUBLIC reading copy.
+    main = re.sub(r"\s*(?:Исходный ориентировочный ответ:|Ориентировочный исходный ответ:)[^\n]*", "", main).strip()
     if level != "l3":
         main = re.sub(r"^\*[^*\n]+\*\s*(?:\n+|$)", "", main)
     main = re.sub(r"\]\(\.\./l3/q(\d+)\.md\)", r"](q\1-l3.html)", main)
@@ -202,12 +204,12 @@ title: "Занятие №{number} — {subject}, {m["date"]}"
 def render_reader(number, rows, titles, formulas, bodies):
     m = meeting(number)
     toc = "\n".join(
-        f'- [{r["subject"]} №{int(r["question"])}. {titles[i]}](#n{code(r)}) · '
+        f'- [{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}](#n{code(r)}) · '
         + " · ".join(f'[{l.upper()}](q{code(r)}-{l}.html)' for l in LEVELS)
         for i, r in enumerate(rows))
     sections = []
     for i, r in enumerate(rows):
-        heading = f'{r["subject"]} №{int(r["question"])}. {titles[i]}'
+        heading = f'{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}'
         body = re.sub(r"(?m)^(#{2,3}) ", lambda x: "#" + x.group(1) + " ", bodies[(i, "l3")])
         sections.append(f'''---
 
@@ -215,12 +217,12 @@ def render_reader(number, rows, titles, formulas, bodies):
 
 ## {heading}
 
-<h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №{int(r["question"])}</h4>
+<h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}</h4>
 <blockquote class="exam-official"><p>{html.escape(formulas[i], quote=False)}</p></blockquote>
 
-{body}
+{(f'<p class="exam-alias-note">Эта же формулировка встречается под официальным №{r["aliases"]}. Ответ один.</p>\n\n' if r["aliases"] else "")}{body}
 
-[К ответу L3 / L2 / L1](q{code(r)}-l3.html)
+[К ответам L3 / L2 / L1](q{code(r)}-l3.html)
 ''')
     return f'''---
 layout: default
