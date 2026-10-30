@@ -23,11 +23,15 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / path, target)
     module.ROOT = dst
-    module.validate()  # All four pre-existing published lessons.
+    module.validate()  # Existing published lessons remain valid.
+    published = {int(r['session']) for r in module.csv_rows(module.LEDGER)}
+    session = next((n for n in range(1, 24) if n not in published), None)
+    if session is None:
+        raise AssertionError('No unpublished lesson available for regression test')
     original_schedule = module.read("schedule.md")
     original_legacy = {p.relative_to(dst): p.read_bytes()
                        for p in (dst / "sessions").rglob("*.md")}
-    rows = module.topics(5)
+    rows = module.topics(session)
     (private / "planning").mkdir(parents=True)
     progress = private / "planning/lesson-progress.csv"
     with progress.open("w", encoding="utf-8", newline="") as f:
@@ -35,27 +39,28 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                              "sources", "l3", "l2", "l1", "quality"))
         writer.writeheader()
         for row in rows:
-            writer.writerow({"meeting": 5, "subject": row["subject"], "question": row["question"],
+            writer.writerow({"meeting": session, "subject": row["subject"], "question": row["question"],
                              "sources": "done", "l3": "done", "l2": "done", "l1": "done",
                              "quality": "approved"})
-    start, end = module.schedule_section(original_schedule, 5)
+    start, end = module.schedule_section(original_schedule, session)
     section = original_schedule[start:end]
     for row in rows:
         _, cells = module.schedule_row(section, row)
         question = cells[1]
         pathcode = module.code(row)
         for level in module.LEVELS:
-            path = private / "materials" / "dogmatics" / level / f"q{pathcode}.md"
+            subject_dir = module.SUBJECTS[row["subject"]][0]
+            path = private / "materials" / subject_dir / level / f"q{pathcode}.md"
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(
-                f"# ДБ №{row['question']}. Учебный пример\n\n"
+                f"# {row['subject']} №{row['question']}. Учебный пример\n\n"
                 f"> **Официальный экзаменационный вопрос.** {question}\n\n"
                 "Полностью искусственный тестовый абзац; тест не публикуется.\n",
                 encoding="utf-8")
-    planned = module.assemble(5, private)
+    planned = module.assemble(session, private)
     assert len(planned) == len(rows) * 3 + 2
-    assert not (dst / "sessions/05").exists(), "Dry-run touched public files"
-    module.add_navigation(5, planned)
+    assert not (dst / f"sessions/{session:02d}").exists(), "Dry-run touched public files"
+    module.add_navigation(session, planned)
     assert (dst / "schedule.md").read_text(encoding="utf-8") == original_schedule
     assert len(planned) == len(rows) * 3 + 6  # content + schedule, catalog, home, ledger.
     for path, data in planned.items():
@@ -63,13 +68,13 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(data, encoding="utf-8")
     module.validate()
-    assert module.read("_data/published_sessions.csv").count("5,") == 1
-    assert "sessions/05/q01-l3.html" in module.read("schedule.md")
-    assert "sessions/05/index.html" in module.read("index.md")
+    assert sum(r.startswith(f"{session},") for r in module.read("_data/published_sessions.csv").splitlines()) == 1
+    assert f"sessions/{session:02d}/q{module.code(rows[0])}-l3.html" in module.read("schedule.md")
+    assert f"sessions/{session:02d}/index.html" in module.read("index.md")
     for path, data in original_legacy.items():
         assert (dst / path).read_bytes() == data, f"Existing URL modified: {path}"
     try:
-        module.assemble(5, private)
+        module.assemble(session, private)
     except ValueError as exc:
         assert "Existing URL cannot be overwritten" in str(exc)
     else:
@@ -81,11 +86,11 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                              "sources", "l3", "l2", "l1", "quality"))
         writer.writeheader()
         for row in rows:
-            writer.writerow({"meeting": 5, "subject": row["subject"], "question": row["question"],
+            writer.writerow({"meeting": session, "subject": row["subject"], "question": row["question"],
                              "sources": "done", "l3": "done", "l2": "done", "l1": "done",
                              "quality": "review_pending"})
     try:
-        module.quality_gate(private, 5, rows)
+        module.quality_gate(private, session, rows)
     except ValueError as exc:
         assert "Quality gate" in str(exc)
     else:
