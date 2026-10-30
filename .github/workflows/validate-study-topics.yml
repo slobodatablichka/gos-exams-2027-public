@@ -17,3 +17,5 @@ jobs:
           python-version: "3.11"
       - name: Check unique study topics and aliases
         run: python scripts/check-study-topics.py
+      - name: Validate published session routes and link registry
+        run: python scripts/publish-lesson.py check
