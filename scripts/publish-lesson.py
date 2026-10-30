@@ -29,7 +29,7 @@ SUBJECTS = {
     "ДБ": ("dogmatics", "Догматическое богословие"),
     "Л": ("liturgics", "Литургика"),
 }
-Q_RE = re.compile(r"^> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\* (.+)$", re.M)
+Q_RE = re.compile(r"^(?:> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\*|\*\*Официальная формулировка:\*\*) (.+)$", re.M)
 
 
 def read(path):
@@ -107,6 +107,7 @@ def name_and_body(raw, level):
     main = re.sub(r"(?m)^\*\*Статус:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*\*Открыто:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*\*Открытая проверка:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?s)\n---\n\n\*\*(?:Проверенн(?:ый|ые) учебник(?:и)?|Исходный ориентир|Основа):\*\*.*$", "", main).strip()
     main = re.sub(r"(?m)^\*\*Источниковое разграничение:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*Основа:[^\n]*\n?", "", main).strip()
 
@@ -127,7 +128,7 @@ def topic_title(raw):
     if not h:
         raise ValueError("Title missing from L3 manuscript")
     title = h.group(1)
-    return re.sub(r"^.+?№\d+(?:\s+и\s+№\d+)?\.\s*", "", title).strip()
+    return re.sub(r"^.+?№\d+(?:\s+и\s+№\d+)?\.\s*", "", title).strip() if not title.endswith(". L3") else canonical_formula(raw).split(".")[0][:100].strip()
 
 
 def render_page(number, rows, index, row, level, formulas, bodies, titles):
