@@ -187,6 +187,46 @@ def check():
         if f"q{id_}-l3.html" not in read("sessions/03/source-status.md"):
             errors.append(f"Session 03: no research limitation for q{id_}")
 
+
+    # Session 04: all levels, exact official questions, navigation, reader.
+    s4_ids = ("01", "02", "03", "21", "06", "04")
+    s4_index = read("sessions/04/index.md")
+    s4_reader = read("sessions/04/l3-complete.md")
+    if s4_index.count('class="lesson-card"') != 6:
+        errors.append("Session 04: six topic cards required")
+    if s4_reader.count('<blockquote class="exam-official">') != 6:
+        errors.append("Session 04: six L3 articles required")
+    for id_ in s4_ids:
+        label = f'| [История Русской Православной Церкви, № {int(id_)}](sessions/04/q{id_}-l3.html) |'
+        line = next((s for s in schedule.splitlines() if s.startswith(label)), None)
+        if line is None:
+            errors.append(f"Session 04: no schedule link for {id_}")
+            continue
+        expected = line.split(" | ")[1]
+        for level in LEVELS:
+            path = f"sessions/04/q{id_}-{level}.md"
+            page = read(path)
+            marker = re.search(r'<blockquote class="exam-official"><p>(.*?)</p></blockquote>', page)
+            if not marker or marker.group(1) != expected:
+                errors.append(f"Session 04: official question mismatch at {path}")
+            if page.count('<blockquote class="exam-official">') != 1:
+                errors.append(f"Session 04: duplicate wording {path}")
+            if 'class="exam-levels"' not in page or 'class="exam-questions"' not in page or 'class="exam-prevnext"' not in page:
+                errors.append(f"Session 04: incomplete navigation {path}")
+            if f'q{id_}-{level}.html" aria-current="page"' not in page:
+                errors.append(f"Session 04: wrong active level {path}")
+            if "l3-complete.html" not in page or "../../schedule.html" not in page:
+                errors.append(f"Session 04: missing route to reader or schedule {path}")
+            for other in LEVELS:
+                if f'q{id_}-{other}.html' not in page:
+                    errors.append(f"Session 04: missing switch {other} at {path}")
+            if "../l3/q" in page or re.search(r'\]\([^)]*\.md\)', page):
+                errors.append(f"Session 04: private manuscript link at {path}")
+            if f'q{id_}-{level}.html' not in s4_index or f'q{id_}-{level}.html' not in s4_reader:
+                errors.append(f"Session 04: missing index or reader link {path}")
+    if "sessions/04/index.html" not in read("materials/index.md") or "sessions/04/index.html" not in read("index.md"):
+        errors.append("Session 04: no catalog link")
+
     js = read("assets/js/schedule-mobile.js")
     if "totalQuestions !== 147" not in js:
         errors.append("Mobile schedule still assumes 150 topic cards")
