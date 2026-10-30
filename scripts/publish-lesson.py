@@ -104,11 +104,11 @@ def name_and_body(raw, level):
     main = Q_RE.sub("", main, count=1).strip()
     # Editorial source-review notes are tracked in the private repository,
     # never published as if they were part of the study response.
-    main = re.sub(r"(?m)^\\*\\*Статус:\\*\\*[^\\n]*\\n?", "", main).strip()
-    main = re.sub(r"(?m)^\\*\\*Открыто:\\*\\*[^\\n]*\\n?", "", main).strip()
-    main = re.sub(r"(?m)^\\*\\*Открытая проверка:\\*\\*[^\\n]*\\n?", "", main).strip()
-    main = re.sub(r"(?m)^\\*\\*Источниковое разграничение:\\*\\*[^\\n]*\\n?", "", main).strip()
-    main = re.sub(r"(?m)^\\*Основа:[^\\n]*\\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Статус:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Открыто:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Открытая проверка:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Источниковое разграничение:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*Основа:[^\n]*\n?", "", main).strip()
 
     # Authoring metadata is private; public pages already link all three levels.
     main = re.sub(r"(?m)^\*(?:Основа ответа:|Составлено по)[^\n]*\*\s*$", "", main).strip()
