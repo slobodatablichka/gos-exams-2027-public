@@ -19,7 +19,7 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LEDGER = Path("scripts/published-sessions.csv")
+LEDGER = Path("_data/published_sessions.csv")
 LEVELS = ("l3", "l2", "l1")
 SUBJECTS = {
     "НЗ": ("nt", "Священное Писание Нового Завета"),

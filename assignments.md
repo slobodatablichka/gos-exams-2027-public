@@ -35,6 +35,8 @@ title: "Докладчики по занятиям · группы 5, 6 и 7"
   <p class="roleplan-help">Нажмите на занятие, чтобы развернуть вопросы и пары докладчиков. Полные официальные формулировки приведены в <a href="schedule.html">общем расписании</a>. Для готовых занятий доступны ссылки на учебные материалы. Если формулировка встречается под другим номером, это указано при объявлении темы.</p>
 
   {% for day in site.data.meetings %}
+  {% assign session_published = site.data.published_sessions | where: "session", day.meeting | first %}
+  {% assign session_path = day.meeting | prepend: "0" | slice: -2, 2 %}
   <details class="roleplan-meeting" id="role-meeting-{{ day.meeting }}" {% if forloop.first %}open{% endif %}>
     <summary>
       <strong>Занятие №{{ day.meeting }}</strong>
@@ -52,8 +54,8 @@ title: "Докладчики по занятиям · группы 5, 6 и 7"
             <td>
             {% assign number_padded = item.question | prepend: "0" | slice: -2, 2 %}
             {% capture display_numbers %}{{ item.question }}{% if item.aliases != "" %}/{{ item.aliases }}{% endif %}{% endcapture %}
-            {% if day.meeting == "1" or day.meeting == "2" %}
-              <a href="sessions/{% if day.meeting == '1' %}01{% else %}02{% endif %}/q{{ number_padded }}-l3.html">{{ item.subject }} №{{ display_numbers }}</a>
+            {% if session_published %}
+              <a href="sessions/{{ session_path }}/q{{ number_padded }}-l3.html">{{ item.subject }} №{{ display_numbers }}</a>
             {% else %}
               {{ item.subject }} №{{ display_numbers }}
             {% endif %}
@@ -66,7 +68,7 @@ title: "Докладчики по занятиям · группы 5, 6 и 7"
         </tbody>
       </table>
       {% endfor %}
-      <p class="roleplan-meeting-links"><a href="schedule.html">Полные формулировки вопросов</a>{% if day.meeting == "1" %} · <a href="sessions/01/index.html">Материалы занятия №1 (L3/L2/L1)</a>{% endif %}{% if day.meeting == "2" %} · <a href="sessions/02/index.html">Материалы занятия №2 (L3/L2/L1)</a>{% endif %}</p>
+      <p class="roleplan-meeting-links"><a href="schedule.html">Полные формулировки вопросов</a>{% if session_published %} · <a href="sessions/{{ session_path }}/index.html">Материалы занятия №{{ day.meeting }} (L3/L2/L1)</a>{% endif %}</p>
     </div>
   </details>
   {% endfor %}
