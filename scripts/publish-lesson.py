@@ -29,7 +29,7 @@ SUBJECTS = {
     "ДБ": ("dogmatics", "Догматическое богословие"),
     "Л": ("liturgics", "Литургика"),
 }
-Q_RE = re.compile(r"^> \*\*Официальный экзаменационный вопрос\.\*\* (.+)$", re.M)
+Q_RE = re.compile(r"^> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\* (.+)$", re.M)
 
 
 def read(path):
@@ -97,6 +97,8 @@ def name_and_body(raw, level):
         raise ValueError("L3/L2/L1 manuscript needs its own heading")
     main = raw.replace(h.group(0), "", 1)
     main = Q_RE.sub("", main, count=1).strip()
+    # Authoring metadata is private; public pages already link all three levels.
+    main = re.sub(r"(?m)^\*(?:Основа ответа:|Составлено по)[^\n]*\*\s*$", "", main).strip()
     if level != "l3":
         main = re.sub(r"^\*[^*\n]+\*\s*(?:\n+|$)", "", main)
     main = re.sub(r"\]\(\.\./l3/q(\d+)\.md\)", r"](q\1-l3.html)", main)
@@ -110,7 +112,7 @@ def topic_title(raw):
     if not h:
         raise ValueError("Title missing from L3 manuscript")
     title = h.group(1)
-    return re.sub(r"^.+?№\d+\.\s*", "", title).strip()
+    return re.sub(r"^.+?№\d+(?:\s+и\s+№\d+)?\.\s*", "", title).strip()
 
 
 def render_page(number, rows, index, row, level, formulas, bodies, titles):
