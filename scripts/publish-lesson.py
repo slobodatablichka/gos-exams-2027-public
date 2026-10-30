@@ -106,7 +106,8 @@ def name_and_body(raw, level):
     # never published as if they were part of the study response.
     main = re.sub(r"(?m)^\*\*Статус:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*\*Открыто:\*\*[^\n]*\n?", "", main).strip()
-    main = re.sub(r"(?m)^\*\*Открытая проверка:\*\*[^\n]*\n?", "", main).strip()\n    main = re.sub(r"(?s)\n---\n\n\*\*(?:Проверенн(?:ый|ые) учебник(?:и)?|Исходный ориентир|Основа):\*\*.*$", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Открытая проверка:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?s)\n---\n\n\*\*(?:Проверенн(?:ый|ые) учебник(?:и)?|Исходный ориентир|Основа):\*\*.*$", "", main).strip()
     main = re.sub(r"(?m)^\*\*Источниковое разграничение:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*Основа:[^\n]*\n?", "", main).strip()
 
