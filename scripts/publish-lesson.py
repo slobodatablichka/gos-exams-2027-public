@@ -29,7 +29,7 @@ SUBJECTS = {
     "ДБ": ("dogmatics", "Догматическое богословие"),
     "Л": ("liturgics", "Литургика"),
 }
-Q_RE = re.compile(r"^> \*\*Официальный экзаменационный вопрос\.\*\* (.+)$", re.M)
+Q_RE = re.compile(r"^> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\* (.+)$", re.M)
 
 
 def read(path):
@@ -97,6 +97,10 @@ def name_and_body(raw, level):
         raise ValueError("L3/L2/L1 manuscript needs its own heading")
     main = raw.replace(h.group(0), "", 1)
     main = Q_RE.sub("", main, count=1).strip()
+    # Authoring metadata is private; public pages already link all three levels.
+    main = re.sub(r"(?m)^\*(?:Основа ответа:|Составлено по)[^\n]*\*\s*$", "", main).strip()
+    # Strip internal supplied-DOCX alignment notes from the PUBLIC reading copy.
+    main = re.sub(r"\s*(?:Исходный ориентировочный ответ:|Ориентировочный исходный ответ:)[^\n]*", "", main).strip()
     if level != "l3":
         main = re.sub(r"^\*[^*\n]+\*\s*(?:\n+|$)", "", main)
     main = re.sub(r"\]\(\.\./l3/q(\d+)\.md\)", r"](q\1-l3.html)", main)
@@ -110,7 +114,7 @@ def topic_title(raw):
     if not h:
         raise ValueError("Title missing from L3 manuscript")
     title = h.group(1)
-    return re.sub(r"^.+?№\d+\.\s*", "", title).strip()
+    return re.sub(r"^.+?№\d+(?:\s+и\s+№\d+)?\.\s*", "", title).strip()
 
 
 def render_page(number, rows, index, row, level, formulas, bodies, titles):
@@ -200,25 +204,26 @@ title: "Занятие №{number} — {subject}, {m["date"]}"
 def render_reader(number, rows, titles, formulas, bodies):
     m = meeting(number)
     toc = "\n".join(
-        f'- [{r["subject"]} №{int(r["question"])}. {titles[i]}](#n{code(r)}) · '
+        f'- [{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}](#n{code(r)}) · '
         + " · ".join(f'[{l.upper()}](q{code(r)}-{l}.html)' for l in LEVELS)
         for i, r in enumerate(rows))
     sections = []
     for i, r in enumerate(rows):
-        heading = f'{r["subject"]} №{int(r["question"])}. {titles[i]}'
+        heading = f'{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}'
         body = re.sub(r"(?m)^(#{2,3}) ", lambda x: "#" + x.group(1) + " ", bodies[(i, "l3")])
+        alias_note = (f'<p class="exam-alias-note">Эта же формулировка встречается под официальным №{r["aliases"]}. Ответ один.</p>\n\n' if r["aliases"] else "")
         sections.append(f'''---
 
 <a id="n{code(r)}"></a>
 
 ## {heading}
 
-<h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №{int(r["question"])}</h4>
+<h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}</h4>
 <blockquote class="exam-official"><p>{html.escape(formulas[i], quote=False)}</p></blockquote>
 
-{body}
+{alias_note}{body}
 
-[К ответу L3 / L2 / L1](q{code(r)}-l3.html)
+[К ответам L3 / L2 / L1](q{code(r)}-l3.html)
 ''')
     return f'''---
 layout: default

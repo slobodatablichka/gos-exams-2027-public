@@ -1,4 +1,4 @@
-[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html)
+[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html)
 
 ## Подготовка к государственным экзаменам — 2027
 
@@ -15,6 +15,8 @@
 **[Занятие №3 — Общецерковная история, 11 ноября 2026](sessions/03/index.html):** семь комплектов L3/L2/L1 и [сборник семи статей](sessions/03/l3-complete.html). Опубликована **рабочая редакция**: по ОИ №13, №23 и №24 [остаются пробелы источниковой проверки](sessions/03/source-status.html).
 
 **[Занятие №4 — История Русской Православной Церкви, 15 ноября 2026](sessions/04/index.html):** шесть комплектов L3/L2/L1 и [сборник шести статей](sessions/04/l3-complete.html).
+
+**[Занятие №5 — Догматическое богословие, 18 ноября 2026 года](sessions/05/index.html):** 5 комплектов L3/L2/L1; [сборник L3](sessions/05/l3-complete.html).
 
 ## Докладчики по группам
 
