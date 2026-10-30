@@ -211,6 +211,7 @@ def render_reader(number, rows, titles, formulas, bodies):
     for i, r in enumerate(rows):
         heading = f'{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}'
         body = re.sub(r"(?m)^(#{2,3}) ", lambda x: "#" + x.group(1) + " ", bodies[(i, "l3")])
+        alias_note = (f'<p class="exam-alias-note">Эта же формулировка встречается под официальным №{r["aliases"]}. Ответ один.</p>\n\n' if r["aliases"] else "")
         sections.append(f'''---
 
 <a id="n{code(r)}"></a>
@@ -220,7 +221,7 @@ def render_reader(number, rows, titles, formulas, bodies):
 <h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}</h4>
 <blockquote class="exam-official"><p>{html.escape(formulas[i], quote=False)}</p></blockquote>
 
-{(f'<p class="exam-alias-note">Эта же формулировка встречается под официальным №{r["aliases"]}. Ответ один.</p>\n\n' if r["aliases"] else "")}{body}
+{alias_note}{body}
 
 [К ответам L3 / L2 / L1](q{code(r)}-l3.html)
 ''')
