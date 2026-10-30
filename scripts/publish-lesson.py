@@ -85,9 +85,14 @@ def canonical_formula(markdown):
 
 def manuscript(private_root, row, level):
     directory = SUBJECTS[row["subject"]][0]
-    path = private_root / "materials" / directory / level / f'q{code(row)}.md'
+    folder = private_root / "materials" / directory / level
+    canonical = folder / f'q{code(row)}.md'
+    legacy = folder / f'l-{code(row)}.md'
+    # Keep previously published subjects unchanged while accepting the
+    # existing manuscript convention used for Liturgics session 06.
+    path = canonical if canonical.is_file() else legacy
     if not path.is_file():
-        raise ValueError(f"Required private manuscript missing: {path}")
+        raise ValueError(f"Required private manuscript missing: {canonical} or {legacy}")
     return path.read_text(encoding="utf-8")
 
 
@@ -97,6 +102,14 @@ def name_and_body(raw, level):
         raise ValueError("L3/L2/L1 manuscript needs its own heading")
     main = raw.replace(h.group(0), "", 1)
     main = Q_RE.sub("", main, count=1).strip()
+    # Editorial source-review notes are tracked in the private repository,
+    # never published as if they were part of the study response.
+    main = re.sub(r"(?m)^\*\*Статус:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Открыто:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Открытая проверка:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*\*Источниковое разграничение:\*\*[^\n]*\n?", "", main).strip()
+    main = re.sub(r"(?m)^\*Основа:[^\n]*\n?", "", main).strip()
+
     # Authoring metadata is private; public pages already link all three levels.
     main = re.sub(r"(?m)^\*(?:Основа ответа:|Составлено по)[^\n]*\*\s*$", "", main).strip()
     # Strip internal supplied-DOCX alignment notes from the PUBLIC reading copy.
