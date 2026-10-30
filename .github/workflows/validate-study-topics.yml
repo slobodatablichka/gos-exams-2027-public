@@ -19,3 +19,5 @@ jobs:
         run: python scripts/check-study-topics.py
       - name: Validate published session routes and link registry
         run: python scripts/publish-lesson.py check
+      - name: Test future publication in disposable sandbox
+        run: python scripts/test-publish-lesson.py

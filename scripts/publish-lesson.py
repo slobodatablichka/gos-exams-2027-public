@@ -98,7 +98,7 @@ def name_and_body(raw, level):
     main = raw.replace(h.group(0), "", 1)
     main = Q_RE.sub("", main, count=1).strip()
     if level != "l3":
-        main = re.sub(r"^\*[^*\n]+\*\.\s*", "", main)
+        main = re.sub(r"^\*[^*\n]+\*\s*(?:\n+|$)", "", main)
     main = re.sub(r"\]\(\.\./l3/q(\d+)\.md\)", r"](q\1-l3.html)", main)
     if re.search(r"\]\([^)]*\.md\)", main):
         raise ValueError("Unresolved private Markdown link inside manuscript")
@@ -206,13 +206,6 @@ def render_reader(number, rows, titles, formulas, bodies):
     sections = []
     for i, r in enumerate(rows):
         heading = f'{r["subject"]} №{int(r["question"])}. {titles[i]}'
-        body = re.sub(r"^## ", "### ", bodies[(i, "l3")], flags=re.M)
-        body = re.sub(r"^### ", "#### ", body, flags=re.M)
-        # The heading transformation above must not compound levels.
-        body = bodies[(i, "l3")].replace("\n## ", "\n### ").replace("\n### ", "\n#### ")
-        body = re.sub(r"(?m)^## ", "### ", bodies[(i, "l3")])
-        body = re.sub(r"(?m)^### ", "#### ", body)  # Avoid changing H3 twice below.
-        # Rebuild headings in one pass from the unmodified body.
         body = re.sub(r"(?m)^(#{2,3}) ", lambda x: "#" + x.group(1) + " ", bodies[(i, "l3")])
         sections.append(f'''---
 
