@@ -1,4 +1,4 @@
-[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html)
+[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html) · [Занятие №10](sessions/10/index.html)
 
 ## Подготовка к государственным экзаменам — 2027
 
@@ -25,6 +25,8 @@
 **[Занятие №8 — Ветхий Завет, 29 ноября 2026 года](sessions/08/index.html):** 5 комплектов L3/L2/L1; [сборник L3](sessions/08/l3-complete.html).
 
 **[Занятие №9 — Общецерковная история, 2 декабря 2026 года](sessions/09/index.html):** 6 комплектов L3/L2/L1; [сборник L3](sessions/09/l3-complete.html).
+
+**[Занятие №10 — История Русской Православной Церкви, 6 декабря 2026 года](sessions/10/index.html):** 6 комплектов L3/L2/L1; [сборник L3](sessions/10/l3-complete.html).
 
 ## Докладчики по группам
 
