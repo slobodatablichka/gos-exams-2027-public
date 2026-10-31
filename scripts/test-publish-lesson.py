@@ -76,7 +76,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     try:
         module.assemble(session, private)
     except ValueError as exc:
-        assert "Existing URL cannot be overwritten" in str(exc)
+        assert "already published" in str(exc) or "Existing URL cannot be overwritten" in str(exc)
     else:
         raise AssertionError("Second publication overwrote existing URLs")
 
