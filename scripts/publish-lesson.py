@@ -418,8 +418,8 @@ def validate():
                             raise ValueError(f"Broken level switch {page} → {another}")
             if f'sessions/{n:02d}/index.html' not in homepage:
                 raise ValueError(f"Missing homepage entry for session {n}")
-            announcement = re.compile(r"(?m)^\\*\\*\\[Занятие №" + str(n) + r"\\s+—")
-            if len(announcement.findall(homepage)) != 1:
+            announcement_count = sum(line.startswith(f"**[Занятие №{n} —") for line in homepage.splitlines())
+            if announcement_count != 1:
                 raise ValueError(f"Missing or duplicated homepage announcement for session {n}")
             if f'../sessions/{n:02d}/index.html' not in catalog:
                 raise ValueError(f"Missing materials catalog entry for session {n}")
