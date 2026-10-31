@@ -3,6 +3,7 @@
 import csv
 import importlib.util
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 
@@ -63,10 +64,14 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     module.add_navigation(session, planned)
     assert (dst / "schedule.md").read_text(encoding="utf-8") == original_schedule
     assert len(planned) == len(rows) * 3 + 6  # content + schedule, catalog, home, ledger.
-    for path, data in planned.items():
-        target = dst / path
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(data, encoding="utf-8")
+    # Exercise the real --apply path, including isolated full-site prevalidation.
+    original_argv = sys.argv[:]
+    try:
+        sys.argv = ["publish-lesson.py", "build", str(session), "--private-root",
+                    str(private), "--apply"]
+        module.main()
+    finally:
+        sys.argv = original_argv
     module.validate()
     assert sum(r.startswith(f"{session},") for r in module.read("_data/published_sessions.csv").splitlines()) == 1
     assert f"sessions/{session:02d}/q{module.code(rows[0])}-l3.html" in module.read("schedule.md")
