@@ -15,6 +15,8 @@ import csv
 import html
 import io
 import re
+import shutil
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -444,12 +446,29 @@ def main():
     if not args.apply:
         print("DRY RUN: no files changed. Add --apply only after verification.")
         return
+    # Validate the entire prospective site in an isolated copy before touching the
+    # working tree. This keeps a failed publication from leaving partial pages.
+    global ROOT
+    actual_root = ROOT
+    with tempfile.TemporaryDirectory(prefix="lesson-publication-") as tmp:
+        sandbox = Path(tmp) / "site"
+        shutil.copytree(actual_root, sandbox, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+        for path, content in output.items():
+            dest = sandbox / path
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_text(content, encoding="utf-8")
+        ROOT = sandbox
+        try:
+            validate()
+        finally:
+            ROOT = actual_root
+    # No validation error: apply the complete, prevalidated batch.
     for path, content in output.items():
         dest = ROOT / path
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(content, encoding="utf-8")
     validate()
-    print("APPLIED: review git diff; commit only after content and navigation review")
+    print("APPLIED: complete validated batch; review git diff before committing")
 
 
 if __name__ == "__main__":
