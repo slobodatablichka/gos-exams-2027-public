@@ -1,4 +1,4 @@
-[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html)
+[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html)
 
 ## Подготовка к государственным экзаменам — 2027
 
@@ -21,6 +21,8 @@
 **[Занятие №6 — Литургика, 22 ноября 2026 года](sessions/06/index.html):** шесть комплектов L3/L2/L1 и [сборник L3](sessions/06/l3-complete.html).
 
 **[Занятие №7 — Новый Завет, 25 ноября 2026 года](sessions/07/index.html):** 7 комплектов L3/L2/L1; [сборник L3](sessions/07/l3-complete.html).
+
+**[Занятие №9 — Общецерковная история, 2 декабря 2026 года](sessions/09/index.html):** 6 комплектов L3/L2/L1; [сборник L3](sessions/09/l3-complete.html).
 
 ## Докладчики по группам
 
