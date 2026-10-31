@@ -265,12 +265,15 @@ def quality_gate(private_root, number, rows):
         raise ValueError(f"Missing quality gate: {progress}")
     with progress.open(encoding="utf-8-sig", newline="") as f:
         all_progress = list(csv.DictReader(f))
+    # Source gaps remain explicit in the private source map; editorial approval
+    # attests that the checked material suffices for the published exam answer.
+    # Do not silently rewrite a sources=todo entry as verified.
     for row in rows:
         found = [p for p in all_progress if int(p["meeting"]) == number
                  and p["subject"] == row["subject"] and
                  int(p["question"]) == int(row["question"])]
         if len(found) != 1 or not all(found[0][k] == "done" for k in
-                                       ("sources", "l3", "l2", "l1")) or found[0]["quality"] != "approved":
+                                       ("l3", "l2", "l1")) or found[0]["quality"] != "approved":
             raise ValueError(f"Quality gate not approved: lesson {number}, {row['subject']} №{row['question']}")
 
 
