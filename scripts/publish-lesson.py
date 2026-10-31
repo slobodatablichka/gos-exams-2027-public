@@ -275,6 +275,9 @@ def quality_gate(private_root, number, rows):
 
 
 def assemble(number, private_root):
+    # Reject published lessons before reading any private files: old URLs stay immutable.
+    if any(int(item["session"]) == number for item in csv_rows(LEDGER)):
+        raise ValueError(f"Lesson {number} is already published; existing URLs are immutable")
     rows = topics(number)
     quality_gate(private_root, number, rows)
     formulas, bodies, titles = [], {}, []
