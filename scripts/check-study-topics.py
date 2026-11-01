@@ -157,7 +157,7 @@ def check():
         if re.search(r'(?:href="|\]\()(?:sessions/02/)?q14-l[123]\.html', read(path)):
             errors.append(f"Active navigation uses duplicate content URL: {path}")
 
-    # Published working materials for session 03: all levels and exact routing.
+    # Session 03: all levels, routing, and explicitly stated approval status.
     s3_ids = ("09", "01", "07", "13", "23", "25", "24")
     s3_index = read("sessions/03/index.md")
     s3_reader = read("sessions/03/l3-complete.md")
@@ -165,8 +165,8 @@ def check():
         errors.append("Session 03: expected exactly 7 cards")
     if s3_reader.count('<blockquote class="exam-official">') != 7:
         errors.append("Session 03: expected exactly 7 L3 articles")
-    if "НЕ ПРОЙДЕН" not in s3_index and "не пройден" not in s3_index:
-        errors.append("Session 03: working status is not explicit")
+    if not any(v in s3_index.lower() for v in ("не пройден", "допущено для семинарской экзаменационной подготовки")):
+        errors.append("Session 03: approval status is not explicit")
     for id_ in s3_ids:
         for level in LEVELS:
             path = f"sessions/03/q{id_}-{level}.md"
