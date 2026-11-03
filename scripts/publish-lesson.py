@@ -133,6 +133,21 @@ def topic_title(raw):
     return re.sub(r"^.+?№\d+(?:\s+и\s+№\d+)?\.\s*", "", title).strip() if not title.endswith(". L3") else canonical_formula(raw).split(".")[0][:100].strip()
 
 
+def working_notice(number, question=None):
+    """Visible warning for an explicitly documented incomplete working edition."""
+    if number != 13:
+        return ""
+    if question is not None and int(question) not in (9, 22):
+        return ""
+    detail = ("НЗ №9 и №22 ещё не получили содержательного допуска."
+              if question is None else
+              "Не раскрыты четыре группы текста славянских рукописей."
+              if int(question) == 9 else
+              "Не раскрыты все обязательные разделы текстологии.")
+    return ('<p><strong>Рабочая редакция.</strong> ' + detail +
+            ' <a href="source-status.html">Что требует дополнения</a>.</p>')
+
+
 def render_page(number, rows, index, row, level, formulas, bodies, titles):
     ident = code(row)
     sub = row["subject"]
@@ -172,7 +187,7 @@ title: "{html.escape(label)}. {html.escape(title)} · {level.upper()}"
 
 {('<p class="exam-alias-note">Повтор официальной формулировки под №' + row["aliases"] + '. Изучаем одну тему и используем один комплект ответов.</p>') if row["aliases"] else ''}
 
-<nav class="exam-levels" aria-label="Три уровня этого вопроса">{switch}</nav>
+{working_notice(number, row["question"])}<nav class="exam-levels" aria-label="Три уровня этого вопроса">{switch}</nav>
 <details class="exam-questions"><summary>Другие темы занятия · {level.upper()}</summary><ol>{others}</ol></details>
 
 {b}
@@ -207,6 +222,7 @@ title: "Занятие №{number} — {subject}, {m["date"]}"
 
 [Общий сборник статей L3](l3-complete.html) · [План докладчиков](../../assignments.html)
 
+{working_notice(number)}
 **L3** — объясняющая статья; **L2** — устный экзаменационный ответ; **L1** — содержательный тезисный план.
 
 <div class="lesson-cards">
@@ -237,7 +253,7 @@ def render_reader(number, rows, titles, formulas, bodies):
 <h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}</h4>
 <blockquote class="exam-official"><p>{html.escape(formulas[i], quote=False)}</p></blockquote>
 
-{alias_note}{body}
+{alias_note}{working_notice(number, r["question"])}{body}
 
 [К ответам L3 / L2 / L1](q{code(r)}-l3.html)
 ''')
@@ -251,6 +267,8 @@ title: "Сборник L3 занятия №{number} — {display_subject(rows)}
 # {display_subject(rows)} — сборник L3
 
 **{len(rows)} объясняющих статей · {date_human(m["date"])}, {m["start_time"]}.**
+
+{working_notice(number)}
 
 ## Содержание
 
@@ -268,12 +286,19 @@ def quality_gate(private_root, number, rows):
     # Narrow editorial exception: only explicitly documented minor source gaps.
     # See private research/sessions/session-10-source-map.md and final-check.md.
     permitted_minor_gaps = {(10, "ИРПЦ", "23"), (10, "ИРПЦ", "12")}
+    # Only these two central gaps may appear in a publicly labelled working edition.
+    # They retain TODO, and are NEVER treated as quality-approved.
+    working_gaps = {(13, "НЗ", "9"), (13, "НЗ", "22")}
     for row in rows:
         found = [p for p in all_progress if int(p["meeting"]) == number
                  and p["subject"] == row["subject"] and
                  int(p["question"]) == int(row["question"])]
         source_ok = (len(found) == 1 and (found[0]["sources"] == "done" or
                      (number, row["subject"], str(int(row["question"]))) in permitted_minor_gaps))
+        is_working = (number, row["subject"], str(int(row["question"]))) in working_gaps
+        if is_working and len(found) == 1 and all(found[0][k] == "todo" for k in
+                                                  ("sources", "l3", "l2", "l1", "quality")):
+            continue
         if not source_ok or not all(found[0][k] == "done" for k in
                                     ("l3", "l2", "l1")) or found[0]["quality"] != "approved":
             raise ValueError(f"Quality gate not approved: lesson {number}, {row['subject']} №{row['question']}")
@@ -309,6 +334,24 @@ def assemble(number, private_root):
         if (ROOT / path).exists():
             raise ValueError(f"Existing URL cannot be overwritten: {path}")
         results[path] = output
+    if number == 13:
+        results[dest / "source-status.md"] = """---
+layout: default
+title: "Занятие №13 — состояние источниковой проверки"
+---
+
+# Занятие №13 — рабочая редакция
+
+Шесть вопросов (НЗ №5, 13, 17, 20, 21, 25) содержательно допущены.
+
+**НЗ №9:** необходимо дополнить историю четырёх групп текста славянских рукописей.
+
+**НЗ №22:** необходимо дополнить классификацию разночтений, критические и дипломатические издания и «Текст большинства».
+
+Поиск профильных православных учебников и исправление ответов внесены в отдельную задачу закрытого проекта №14. Эти два вопроса пока не получили содержательного допуска.
+
+[Все вопросы занятия](index.html) · [Сборник L3](l3-complete.html)
+"""
     return results
 
 
@@ -401,6 +444,8 @@ def validate():
             if entry["topics"].split(";") != expected:
                 raise ValueError(f"Wrong registered topic order in session {n}")
             prefix = Path(f"sessions/{n:02d}")
+            if n == 13 and not (ROOT / prefix / "source-status.md").is_file():
+                raise ValueError("Missing source-status page for working session 13")
             for name in ("index.md", "l3-complete.md"):
                 if not (ROOT / prefix / name).exists():
                     raise ValueError(f"Missing published page: {prefix/name}")
