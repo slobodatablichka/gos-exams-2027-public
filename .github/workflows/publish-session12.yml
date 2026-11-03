@@ -1,0 +1,35 @@
+name: Complete session 12 navigation in publication branch
+on:
+  push:
+    branches: ["publish/session-12"]
+permissions:
+  contents: write
+jobs:
+  publish-navigation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Apply established publishing navigation and validate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import runpy
+          ns = runpy.run_path("scripts/publish-lesson.py")
+          updates = {}
+          ns["add_navigation"](12, updates)
+          for path, content in updates.items():
+              Path(path).write_text(content, encoding="utf-8")
+          ns["validate"]()
+          print("PASS: 12 published sessions including 6 approved session 12 topics")
+          PY
+      - name: Remove one-time publisher and obsolete PowerShell script
+        run: |
+          git rm -f .github/workflows/publish-session12.yml scripts/publish-session12.ps1
+          git add index.md materials/index.md schedule.md _data/published_sessions.csv
+          git -c user.name='Session Publication Bot' -c user.email='actions@users.noreply.github.com' commit -m 'Complete session 12 registry and navigation'
+          git push origin HEAD:publish/session-12
