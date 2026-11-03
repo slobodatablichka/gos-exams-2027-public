@@ -112,6 +112,7 @@ def name_and_body(raw, level):
     main = re.sub(r"(?s)\n---\n\n\*\*(?:Проверенн(?:ый|ые) учебник(?:и)?|Исходный ориентир|Основа):\*\*.*$", "", main).strip()
     main = re.sub(r"(?m)^\*\*Источниковое разграничение:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*Основа:[^\n]*\n?", "", main).strip()
+    # Published pages use the common library footer; remove private source metadata and local .md links.\n    main = re.sub(r"(?m)^\*\*(?:Основа|Учебник|Учебники):\*\*[^\n]*\n?", "", main).strip()\n    main = re.sub(r"(?m)^\*Последняя содержательная и языковая редакция:[^\n]*\n?", "", main).strip()\n
 
     # Authoring metadata is private; public pages already link all three levels.
     main = re.sub(r"(?m)^\*(?:Основа ответа:|Составлено по)[^\n]*\*\s*$", "", main).strip()
