@@ -1,4 +1,4 @@
-[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html) · [Занятие №10](sessions/10/index.html) · [Занятие №11](sessions/11/index.html) · [Занятие №12](sessions/12/index.html)
+[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html) · [Занятие №10](sessions/10/index.html) · [Занятие №11](sessions/11/index.html) · [Занятие №12](sessions/12/index.html) · [Занятие №13](sessions/13/index.html)
 
 ## Подготовка к государственным экзаменам — 2027
 
@@ -31,6 +31,8 @@
 **[Занятие №11 — Догматическое богословие, 9 декабря 2026](sessions/11/index.html):** семь комплектов L3/L2/L1; [сборник L3](sessions/11/l3-complete.html).
 
 **[Занятие №12 — Литургика, 13 декабря 2026 года](sessions/12/index.html):** 6 комплектов L3/L2/L1; [сборник L3](sessions/12/l3-complete.html).
+
+**[Занятие №13 — Новый Завет, 16 декабря 2026 года](sessions/13/index.html):** восемь комплектов L3/L2/L1; [сборник L3](sessions/13/l3-complete.html). **Рабочая редакция:** №9 и №22 [ожидают источниковой доработки](sessions/13/source-status.html).
 
 ## Докладчики по группам
 
