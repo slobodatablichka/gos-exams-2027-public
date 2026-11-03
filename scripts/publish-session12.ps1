@@ -12,7 +12,8 @@ function Git-Checked {
 }
 function Python-Checked {
     param([string[]]$Arguments)
-    & $script:PythonExe @($script:PythonArgs) @Arguments
+    $cmdArgs = @($script:PythonArgs) + @($Arguments)
+    & $script:PythonExe @cmdArgs
     if ($LASTEXITCODE -ne 0) { throw "Python failed: $($Arguments -join ' ')" }
 }
 
@@ -79,11 +80,11 @@ p.write_text(code, encoding="utf-8")
 print("PATCHED: source formula and private editorial notes")
 '@ | Set-Content -LiteralPath $patchPath -Encoding UTF8
 
-Python-Checked @($patchPath, $generator)
-Python-Checked @("-m", "py_compile", $generator)
-Python-Checked @($generator, "check")
-Python-Checked @($generator, "build", "12", "--private-root", $privateRoot)
-Python-Checked @($generator, "build", "12", "--private-root", $privateRoot, "--apply")
+Python-Checked -Arguments @($patchPath, $generator)
+Python-Checked -Arguments @("-m", "py_compile", $generator)
+Python-Checked -Arguments @($generator, "check")
+Python-Checked -Arguments @($generator, "build", "12", "--private-root", $privateRoot)
+Python-Checked -Arguments @($generator, "build", "12", "--private-root", $privateRoot, "--apply")
 Git-Checked diff --check
 Git-Checked restore -- scripts/publish-lesson.py
 
