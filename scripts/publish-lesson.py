@@ -112,8 +112,8 @@ def name_and_body(raw, level):
     main = re.sub(r"(?s)\n---\n\n\*\*(?:Проверенн(?:ый|ые) учебник(?:и)?|Исходный ориентир|Основа):\*\*.*$", "", main).strip()
     main = re.sub(r"(?m)^\*\*Источниковое разграничение:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*Основа:[^\n]*\n?", "", main).strip()
-    # Remove private bibliographic markers and links to closed manuscripts.
-    main = re.sub(r"(?m)^\*\*(?:Основа|Учебник|Учебники):\*\*[^\n]*\n?", "", main).strip()
+    # Remove private cross-level manuscript links; retain named textbook citations in L3.
+    main = re.sub(r"(?m)^\*\*Основа:\*\*[^\n]*\n?", "", main).strip()
     main = re.sub(r"(?m)^\*Последняя содержательная и языковая редакция:[^\n]*\n?", "", main).strip()
 
 
