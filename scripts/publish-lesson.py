@@ -86,7 +86,8 @@ def canonical_formula(markdown):
 
 
 def manuscript(private_root, row, level):
-    directory = SUBJECTS[row["subject"]][0]
+    directory = ("irpc" if int(row["meeting"]) == 16 and row["subject"] == "ИРПЦ"
+                 else SUBJECTS[row["subject"]][0])
     folder = private_root / "materials" / directory / level
     canonical = folder / f'q{code(row)}.md'
     legacy = folder / f'l-{code(row)}.md'
@@ -139,6 +140,14 @@ def topic_title(raw):
 
 def working_notice(number, question=None):
     """Visible warning for an explicitly documented incomplete working edition."""
+    if number == 16:
+        if question is not None and int(question) != 24:
+            return ""
+        detail = ("ИРПЦ №24 допущен условно: сведения о взглядах Павла I, положении духовенства и его отношениях с иерархией требуют дополнения."
+                  if question is None else
+                  "Вопрос №24 допущен условно: пока недостаточно сведений о религиозных взглядах Павла I, церковной политике, положении духовенства и отношениях с архиереями.")
+        return ('<p class="exam-source-warning"><strong>Условный допуск — открытая источниковая лакуна.</strong> '
+                + detail + ' <a href="source-status.html">Что требует дополнения</a>.</p>')
     if number != 13:
         return ""
     if question is not None and int(question) not in (9, 22):
@@ -289,7 +298,9 @@ def quality_gate(private_root, number, rows):
         all_progress = list(csv.DictReader(f))
     # Narrow editorial exception: only explicitly documented minor source gaps.
     # See private research/sessions/session-10-source-map.md and final-check.md.
-    permitted_minor_gaps = {(10, "ИРПЦ", "23"), (10, "ИРПЦ", "12")}
+    permitted_minor_gaps = {(10, "ИРПЦ", "23"), (10, "ИРПЦ", "12"),
+                            # Explicit user exception: central gaps remain disclosed and deferred.
+                            (16, "ИРПЦ", "24")}
     # Only these two central gaps may appear in a publicly labelled working edition.
     # They retain TODO, and are NEVER treated as quality-approved.
     working_gaps = {(13, "НЗ", "9"), (13, "НЗ", "22")}
@@ -338,6 +349,24 @@ def assemble(number, private_root):
         if (ROOT / path).exists():
             raise ValueError(f"Existing URL cannot be overwritten: {path}")
         results[path] = output
+    if number == 16:
+        results[dest / "source-status.md"] = """---
+layout: default
+title: "Занятие №16 — условный допуск и источниковая доработка"
+---
+
+# Занятие №16 — условный допуск вопроса №24
+
+**ИРПЦ №24 — Павел I (1796–1801):** вопрос допущен к учебному использованию **условно, по специальному разрешению**, а не потому, что раскрыт полностью.
+
+**Что подтверждено:** существование единоверческих приходов до Павла I; в 1800 году утверждены подготовленные митрополитом Платоном (Левшиным) «Правила единоверия».
+
+**Что требуется дополнить по православному учебнику БПДС:** личность и религиозные воззрения Павла I; конкретная церковная политика; положение приходского духовенства; отношения с иерархией и Синодом, в том числе документальная проверка формулы «глава Церкви».
+
+Отложенное пополнение зарегистрировано в закрытом проекте (Issue №18). Неподтверждённые сведения не добавляются в ответ как факты. Этот статус относится **только к №24**; другие пять тем занятия содержательно допущены на общих основаниях.
+
+[Вопрос №24 — L3](q24-l3.html) · [Все вопросы](index.html) · [Сборник L3](l3-complete.html)
+"""
     if number == 13:
         results[dest / "source-status.md"] = """---
 layout: default
@@ -410,6 +439,8 @@ def add_navigation(number, generated):
                f'**{date_human(m["date"])}, {m["start_time"]}.** '
                f'{len(rows)} самостоятельных тем; {len(rows)*3} материалов L3/L2/L1.\n\n'
                f'[Все вопросы](../{path}/index.html) · [Сборник L3](../{path}/l3-complete.html)\n\n')
+    if number == 16:
+        section += '**ИРПЦ №24 — условный допуск:** [подробности об открытой источниковой лакуне](../sessions/16/source-status.html).\n\n'
     generated[Path("materials/index.md")] = cat.replace(marker, section + marker)
 
     homepage = read("index.md")
@@ -422,6 +453,8 @@ def add_navigation(number, generated):
     first, sep, tail = homepage.partition("\n")
     if f'[Занятие №{number}]({path}/index.html)' not in first:
         first += f' · [Занятие №{number}]({path}/index.html)'
+    if number == 16:
+        note += 'ИРПЦ №24 **допущен условно**; [нехватка источников](sessions/16/source-status.html).\n'
     generated[Path("index.md")] = first + sep + tail.replace(anchor, note + anchor, 1)
 
     ledger = read(LEDGER)
@@ -448,8 +481,15 @@ def validate():
             if entry["topics"].split(";") != expected:
                 raise ValueError(f"Wrong registered topic order in session {n}")
             prefix = Path(f"sessions/{n:02d}")
-            if n == 13 and not (ROOT / prefix / "source-status.md").is_file():
-                raise ValueError("Missing source-status page for working session 13")
+            if n in (13, 16) and not (ROOT / prefix / "source-status.md").is_file():
+                raise ValueError(f"Missing source-status page for conditional session {n}")
+            if n == 16:
+                for name in ("index.md", "l3-complete.md", "q24-l3.md", "q24-l2.md", "q24-l1.md"):
+                    body = read(prefix / name)
+                    if "Условный допуск" not in body and "условн" not in body.lower():
+                        raise ValueError(f"Missing visible conditional approval warning: {prefix / name}")
+                    if "source-status.html" not in body:
+                        raise ValueError(f"Missing source status link: {prefix / name}")
             for name in ("index.md", "l3-complete.md"):
                 if not (ROOT / prefix / name).exists():
                     raise ValueError(f"Missing published page: {prefix/name}")

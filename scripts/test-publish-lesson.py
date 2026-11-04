@@ -65,7 +65,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
         question = cells[1]
         pathcode = module.code(row)
         for level in module.LEVELS:
-            subject_dir = module.SUBJECTS[row["subject"]][0]
+            subject_dir = ("irpc" if session == 16 and row["subject"] == "ИРПЦ" else module.SUBJECTS[row["subject"]][0])
             path = private / "materials" / subject_dir / level / f"q{pathcode}.md"
             path.parent.mkdir(parents=True, exist_ok=True)
             private_meta = (f"**Основа:** [L3](../l3/q{pathcode}.md)\n" if level != "l3" else "")
@@ -75,7 +75,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                 "Полностью искусственный тестовый абзац; тест не публикуется.\n" + private_meta,
                 encoding="utf-8")
     planned = module.assemble(session, private)
-    assert len(planned) == len(rows) * 3 + 2
+    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16) else 2)
     for row in rows:
         for level in ("l2", "l1"):
             page = planned[Path(f"sessions/{session:02d}/q{module.code(row)}-{level}.md")]
@@ -83,7 +83,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     assert not (dst / f"sessions/{session:02d}").exists(), "Dry-run touched public files"
     module.add_navigation(session, planned)
     assert (dst / "schedule.md").read_text(encoding="utf-8") == original_schedule
-    assert len(planned) == len(rows) * 3 + 6  # content + schedule, catalog, home, ledger.
+    assert len(planned) == len(rows) * 3 + (7 if session in (13, 16) else 6)  # content + nav + optional status page.
     # Exercise the real --apply path, including isolated full-site prevalidation.
     original_argv = sys.argv[:]
     try:
