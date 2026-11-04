@@ -31,7 +31,7 @@ SUBJECTS = {
     "ДБ": ("dogmatics", "Догматическое богословие"),
     "Л": ("liturgics", "Литургика"),
 }
-Q_RE = re.compile(r"^(?:> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\*|\*\*Официальная формулировка:\*\*) (.+)$", re.M)
+Q_RE = re.compile(r"^(?:> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\*|\*\*Официальная формулировка:\*\*|\*\*Официальный вопрос:\*\*) (.+)$", re.M)
 
 
 def read(path):
@@ -123,7 +123,7 @@ def name_and_body(raw, level):
     main = re.sub(r"\s*(?:Исходный ориентировочный ответ:|Ориентировочный исходный ответ:)[^\n]*", "", main).strip()
     if level != "l3":
         main = re.sub(r"^\*[^*\n]+\*\s*(?:\n+|$)", "", main)
-    main = re.sub(r"\]\(\.\./l3/q(\d+)\.md\)", r"](q\1-l3.html)", main)
+    main = re.sub(r"\]\(\.\./(l3|l2|l1)/q(\d+)\.md\)", r"](q\2-\1.html)", main)
     if re.search(r"\]\([^)]*\.md\)", main):
         raise ValueError("Unresolved private Markdown link inside manuscript")
     return h.group(1), main
