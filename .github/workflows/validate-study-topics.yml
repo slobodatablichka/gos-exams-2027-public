@@ -21,3 +21,5 @@ jobs:
         run: python scripts/publish-lesson.py check
       - name: Test future publication in disposable sandbox
         run: python scripts/test-publish-lesson.py
+      - name: Compact final audit for published lesson 15
+        run: python scripts/check-publication-final.py 15
