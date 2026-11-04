@@ -1,0 +1,108 @@
+name: Prepare approved lesson publication PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      lesson:
+        description: "Lesson number (1-23), already approved in the private repository"
+        required: true
+        type: string
+      source_ref:
+        description: "Approved private source ref (main or an exact SHA)"
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-lesson-${{ inputs.lesson }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    name: Generate and propose complete lesson
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check publication credential and lesson number
+        env:
+          PUBLICATION_PR_TOKEN: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          PUBLICATION_SOURCE_TOKEN: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          LESSON: ${{ inputs.lesson }}
+        shell: bash
+        run: |
+          test -n "$PUBLICATION_SOURCE_TOKEN" || { echo "::error::Missing PUBLICATION_SOURCE_TOKEN"; exit 1; }
+          test -n "$PUBLICATION_PR_TOKEN" || { echo "::error::Missing PUBLICATION_PR_TOKEN"; exit 1; }
+          [[ "$LESSON" =~ ^([1-9]|1[0-9]|2[0-3])$ ]] || { echo "::error::Lesson must be 1..23"; exit 1; }
+      - name: Check out public site
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          persist-credentials: false
+          path: public
+      - name: Check out private approved manuscripts
+        uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: ${{ inputs.source_ref }}
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          persist-credentials: false
+          path: private
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run public generator tests and regression checks
+        working-directory: public
+        shell: bash
+        run: |
+          python -m py_compile scripts/publish-lesson.py scripts/test-publish-lesson.py
+          python scripts/publish-lesson.py check
+          python scripts/test-publish-lesson.py
+      - name: Quality gate and dry run using approved private manuscripts
+        working-directory: public
+        env:
+          LESSON: ${{ inputs.lesson }}
+        shell: bash
+        run: |
+          python scripts/publish-lesson.py build "$LESSON" --private-root ../private
+      - name: Generate and validate full public batch
+        working-directory: public
+        env:
+          LESSON: ${{ inputs.lesson }}
+        shell: bash
+        run: |
+          python scripts/publish-lesson.py build "$LESSON" --private-root ../private --apply
+          python scripts/publish-lesson.py check
+      - name: Record verified source provenance
+        working-directory: public
+        env:
+          LESSON: ${{ inputs.lesson }}
+        shell: bash
+        run: |
+          echo "Private repository commit: $(git -C ../private rev-parse HEAD)"
+          echo "Public base commit: $(git rev-parse HEAD)"
+          git diff --check
+          git status --short
+      - name: Open or refresh publication PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          path: public
+          branch: automation/publish-lesson-${{ inputs.lesson }}
+          base: main
+          delete-branch: false
+          title: "Публикация занятия №${{ inputs.lesson }} — подготовленный комплект"
+          commit-message: "Публикация занятия №${{ inputs.lesson }}: сгенерированные страницы и ссылки"
+          body: |
+            Сформировано штатным `scripts/publish-lesson.py` из допущенных материалов
+            закрытого `slobodatablichka/gos-exams-2027`.
+            Источник: `${{ inputs.source_ref }}`; фактический commit источника — в логе workflow.
+            Проверены quality gate, dry-run, полная сборка и контроль старых URL.
+            После успешного CI требуется отдельное объединение PR; только потом — Pages и этап 8.
+          add-paths: |
+            sessions/
+            schedule.md
+            index.md
+            materials/index.md
+            _data/published_sessions.csv

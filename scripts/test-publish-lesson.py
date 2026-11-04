@@ -12,6 +12,21 @@ spec = importlib.util.spec_from_file_location("publication", ROOT / "scripts/pub
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
+# Regression: current canonical private wording and links to both other levels.
+formula = "**Официальный вопрос:** Имп. Юстиниан, его церковная политика и теория двух властей."
+assert module.canonical_formula("# Пример\\n\\n".replace("\\n", "\n") + formula + "\n") == (
+    "Имп. Юстиниан, его церковная политика и теория двух властей.")
+for level in ("l2", "l1"):
+    sample = ("# Общецерковная история №8 — " + level.upper() + "\n\n"
+              + formula + "\n\n"
+              + "Связное изложение. [Полный ответ](../l3/q08.md) "
+              + "и [Устный ответ](../l2/q08.md).\n")
+    _, body = module.name_and_body(sample, level)
+    assert "Официальный вопрос" not in body
+    assert "[Полный ответ](q08-l3.html)" in body
+    assert "[Устный ответ](q08-l2.html)" in body
+    assert "../l3/" not in body and "../l2/" not in body
+
 with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     dst = Path(temp) / "public"
     private = Path(temp) / "private"
