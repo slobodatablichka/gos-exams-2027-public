@@ -23,3 +23,5 @@ jobs:
         run: python scripts/test-publish-lesson.py
       - name: Compact final audit for published lesson 15
         run: python scripts/check-publication-final.py 15
+      - name: Final stage-8 audit for published lesson 16
+        run: python scripts/check-publication-final.py 16 --pr-run 41889848876 --main-run 41889990466 --pages-run 41889988853 --http

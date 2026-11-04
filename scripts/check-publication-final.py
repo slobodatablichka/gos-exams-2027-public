@@ -78,6 +78,15 @@ def structural_check(session):
         for row in rows:
             if f'id="n{mod.code(row)}"' not in body:
                 errors.append(f"Collection lacks anchor n{mod.code(row)}")
+    if session == 16:
+        # Explicit conditional approval: warning and explanation must stay public.
+        for name in ("index.md", "l3-complete.md", "q24-l3.md",
+                     "q24-l2.md", "q24-l1.md"):
+            text = (folder / name).read_text(encoding="utf-8")
+            if "source-status.html" not in text or "условн" not in text.lower():
+                errors.append(f"{name}: missing explicit q24 conditional-approval notice")
+        if not (folder / "source-status.md").is_file():
+            errors.append("missing source-status.md for lesson 16")
     if errors:
         raise ValueError("; ".join(errors[:12]))
     return len(rows), len(rows) * 3
@@ -94,6 +103,15 @@ def private_quality(root, session, numbers):
         raise ValueError("Private journal has incorrect lesson topics")
     accepted = sum(all(r[k] == "done" for k in ("sources", "l3", "l2", "l1"))
                    and r["quality"] == "approved" for r in rows)
+    if session == 16:
+        # Five fully sourced topics and one user-approved conditional exception.
+        q24 = next((r for r in rows if int(r["question"]) == 24), None)
+        if (len(rows) != 6 or accepted != 5 or q24 is None
+                or q24["sources"] != "todo"
+                or q24["quality"] != "approved"
+                or any(q24[level] != "done" for level in ("l3", "l2", "l1"))):
+            raise ValueError("Session 16 special source gap not documented correctly")
+        return "5/6 fully sourced; q24 conditionally approved with sources=todo"
     if accepted != len(rows) and session != 13:
         raise ValueError("Private quality gate no longer approved")
     return f"{accepted}/{len(rows)} approved" + (
