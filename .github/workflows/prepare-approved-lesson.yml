@@ -27,16 +27,18 @@ jobs:
     steps:
       - name: Check publication credential and lesson number
         env:
-          PUBLICATION_TOKEN: ${{ secrets.PUBLICATION_TOKEN }}
+          PUBLICATION_PR_TOKEN: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          PUBLICATION_SOURCE_TOKEN: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
           LESSON: ${{ inputs.lesson }}
         shell: bash
         run: |
-          test -n "$PUBLICATION_TOKEN" || { echo "::error::Missing PUBLICATION_TOKEN (private read, public contents and PR write)"; exit 1; }
+          test -n "$PUBLICATION_SOURCE_TOKEN" || { echo "::error::Missing PUBLICATION_SOURCE_TOKEN"; exit 1; }
+          test -n "$PUBLICATION_PR_TOKEN" || { echo "::error::Missing PUBLICATION_PR_TOKEN"; exit 1; }
           [[ "$LESSON" =~ ^([1-9]|1[0-9]|2[0-3])$ ]] || { echo "::error::Lesson must be 1..23"; exit 1; }
       - name: Check out public site
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PUBLICATION_TOKEN }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
           persist-credentials: false
           path: public
       - name: Check out private approved manuscripts
@@ -44,7 +46,7 @@ jobs:
         with:
           repository: slobodatablichka/gos-exams-2027
           ref: ${{ inputs.source_ref }}
-          token: ${{ secrets.PUBLICATION_TOKEN }}
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
           persist-credentials: false
           path: private
       - uses: actions/setup-python@v5
@@ -85,7 +87,7 @@ jobs:
       - name: Open or refresh publication PR
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.PUBLICATION_TOKEN }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
           path: public
           branch: automation/publish-lesson-${{ inputs.lesson }}
           base: main
