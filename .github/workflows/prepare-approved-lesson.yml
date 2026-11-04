@@ -14,7 +14,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: publish-lesson-${{ inputs.lesson }}
@@ -88,6 +88,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          branch-token: ${{ github.token }}
           path: public
           branch: automation/publish-lesson-${{ inputs.lesson }}
           base: main
