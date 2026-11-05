@@ -76,11 +76,14 @@ def structural_check(session):
     if reader.exists():
         body = reader.read_text(encoding="utf-8")
         for row in rows:
+            # Existing lessons used nNN; newer generated pages use nqNN.
+            # For duplicate official numbers, retain the subject-qualified route.
+            canonical = f'n{mod.page_code(row, rows)}'
+            legacy = f'n{mod.code(row)}'
             mixed_numbers = len({mod.code(x) for x in rows}) != len(rows)
-            anchor = (f'n{mod.page_code(row, rows)}' if mixed_numbers
-                      else f'n{mod.code(row)}')
-            if f'id="{anchor}"' not in body:
-                errors.append(f"Collection lacks anchor {anchor}")
+            candidates = (canonical,) if mixed_numbers else (canonical, legacy)
+            if not any(f'id="{anchor}"' in body for anchor in candidates):
+                errors.append(f"Collection lacks anchor {' or '.join(candidates)}")
     if session == 16:
         # Explicit conditional approval: warning and explanation must stay public.
         for name in ("index.md", "l3-complete.md", "q24-l3.md",
