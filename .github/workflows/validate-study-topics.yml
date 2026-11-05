@@ -6,6 +6,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
   validate:
     name: Verify published schedule and materials
@@ -27,3 +31,7 @@ jobs:
         run: python scripts/check-publication-final.py 16 --pr-run 41889848876 --main-run 41889990466 --pages-run 41889988853 --http
       - name: Final stage-8 audit for published lesson 20
         run: python scripts/check-publication-final.py 20 --pr-run 42093465158 --main-run 42093598529 --pages-run 42093598245 --http
+      - name: Final stage-8 audit for published lesson 21
+        run: python scripts/check-publication-final.py 21 --pr-run 42107807617 --main-run 42107991385 --pages-run 42107991273 --http
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
