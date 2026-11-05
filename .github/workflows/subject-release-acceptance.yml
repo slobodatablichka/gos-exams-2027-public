@@ -63,7 +63,7 @@ jobs:
           source: ./release-candidate
           destination: ./jekyll-preview
       - name: Verify compiled page navigation and all 216 article targets
-        run: python public/scripts/check-subject-rendered.py jekyll-preview
+        run: python public/scripts/check-subject-rendered.py jekyll-preview --private-root private
       - name: Render nine complete PDF books and sample article pages
         run: |
           mkdir -p acceptance-renders
