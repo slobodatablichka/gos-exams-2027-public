@@ -77,6 +77,16 @@ except Exception as error:
 
 
 
+# Full canonical stage-8 audit on GitHub Actions, with recorded PR/main/Pages IDs.
+original_argv = sys.argv[:]
+try:
+    sys.argv = ["check-publication-final.py", "19",
+                "--pr-run", "42036660725", "--main-run", "42036781840",
+                "--pages-run", "42036781642", "--http"]
+    assert final_audit.main() == 0
+finally:
+    sys.argv = original_argv
+
 with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     dst = Path(temp) / "public"
     private = Path(temp) / "private"
