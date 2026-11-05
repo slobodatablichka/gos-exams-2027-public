@@ -211,6 +211,10 @@ def page_markdown(model, routes):
             + js + '\n')
 
 
+def numbers_markdown(model, routes):
+    return page_markdown(model, routes)
+
+
 def catalog(ready):
     lines = ['---', 'layout: default', 'title: Подготовка по предметам', '---', '', '<!-- subject-generator: managed -->',
              '[Главная](../index.html) › **Предметы**', '', '# Подготовка по предметам', '',
