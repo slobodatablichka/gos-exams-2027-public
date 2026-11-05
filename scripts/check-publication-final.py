@@ -47,7 +47,7 @@ def structural_check(session):
         raise ValueError("Published topic numbers or order differ")
     folder = ROOT / f"sessions/{session:02d}"
     names = ["index.md", "l3-complete.md"]
-    names += [f'q{mod.code(row)}-{level}.md'
+    names += [f'{mod.page_code(row, rows)}-{level}.md'
               for row in rows for level in mod.LEVELS]
     errors = []
     for name in names:
@@ -76,8 +76,11 @@ def structural_check(session):
     if reader.exists():
         body = reader.read_text(encoding="utf-8")
         for row in rows:
-            if f'id="n{mod.code(row)}"' not in body:
-                errors.append(f"Collection lacks anchor n{mod.code(row)}")
+            mixed_numbers = len({mod.code(x) for x in rows}) != len(rows)
+            anchor = (f'n{mod.page_code(row, rows)}' if mixed_numbers
+                      else f'n{mod.code(row)}')
+            if f'id="{anchor}"' not in body:
+                errors.append(f"Collection lacks anchor {anchor}")
     if session == 16:
         # Explicit conditional approval: warning and explanation must stay public.
         for name in ("index.md", "l3-complete.md", "q24-l3.md",
@@ -98,8 +101,10 @@ def private_quality(root, session, numbers):
     with (root / "planning/lesson-progress.csv").open(
             encoding="utf-8-sig", newline="") as f:
         rows = [r for r in csv.DictReader(f) if int(r["meeting"]) == session]
-    wanted = {int(x) for x in numbers}
-    if {int(r["question"]) for r in rows} != wanted or len(rows) != len(wanted):
+    public_rows = load_publisher().topics(session)
+    wanted = {(r["subject"], int(r["question"])) for r in public_rows}
+    actual = {(r["subject"], int(r["question"])) for r in rows}
+    if actual != wanted or len(rows) != len(public_rows):
         raise ValueError("Private journal has incorrect lesson topics")
     accepted = sum(all(r[k] == "done" for k in ("sources", "l3", "l2", "l1"))
                    and r["quality"] == "approved" for r in rows)
