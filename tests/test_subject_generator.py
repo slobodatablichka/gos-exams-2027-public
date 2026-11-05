@@ -75,6 +75,16 @@ class SubjectGeneratorTests(unittest.TestCase):
         self.assertIn("pdf/q07-l3.pdf", html)
         self.assertIn("subject-generator: managed", html)
         self.assertIn("25 официальных номеров", html)
+        self.assertIn('id="meaning-q01"', html)
+        self.assertIn('id="number-q25"', html)
+        self.assertIn('href="#meaning-q02"', html)
+        self.assertIn('href="../../sessions/19/index.html"', html)
+        self.assertIn('href="numbers.html"', html)
+        number_page = builder.numbers_markdown(model, urls)
+        self.assertIn('id="number-q01"', number_page)
+        self.assertIn('id="number-q25"', number_page)
+        self.assertNotIn('data-sort-panel', number_page)
+
 
     def test_no_unapproved_or_missing_source(self):
         self.topics[0]["quality"] = "todo"
@@ -91,6 +101,7 @@ class SubjectGeneratorTests(unittest.TestCase):
         builder.build(self.private, self.public, self.out, ["dogmatics"], True)
         folder = self.out / "subjects" / "dogmatics"
         self.assertTrue((folder / "index.md").is_file())
+        self.assertTrue((folder / "numbers.md").is_file())
         self.assertTrue((self.out / "subjects" / "index.md").is_file())
         for level in builder.LEVELS:
             whole = (folder / "pdf" / (level + ".pdf"))
