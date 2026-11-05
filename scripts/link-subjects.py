@@ -135,8 +135,6 @@ def subject_patch(public, models):
                 snippet = subject_block(model, rows, i, row, level, route_for, aliases)
                 updated = replace_managed(
                     original, BEGIN, END, snippet, marker='<nav class="exam-levels"')
-                if updated == original:
-                    raise ValueError("No navigation inserted: " + str(file))
                 if file in modified:
                     raise ValueError("Shared session article between subject catalogs")
                 modified[file] = updated
