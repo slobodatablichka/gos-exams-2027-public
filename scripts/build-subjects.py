@@ -193,7 +193,8 @@ def page_markdown(model, routes):
    panels.forEach(function(p){p.hidden=p.dataset.sortPanel!==mode;});
  }
  buttons.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.sortButton);});});
- set("meaning");
+ window.addEventListener("hashchange",function(){set(location.hash.indexOf("#number-q")===0?"number":"meaning");});
+ set(location.hash.indexOf("#number-q")===0?"number":"meaning");
 }());
 </script>"""
     pdfs = " ".join('<a href="pdf/%s.pdf" download>Весь %s (PDF)</a>' % (x, x.upper()) for x in LEVELS)
