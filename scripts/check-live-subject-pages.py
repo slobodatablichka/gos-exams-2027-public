@@ -23,7 +23,7 @@ HTML = {
     "sessions/19/q23-nt-l3.html": ("exam-subject-nav", "subjects/nt/index.html"),
     "sessions/19/q23-dogmatics-l3.html": ("exam-subject-nav", "subjects/dogmatics/index.html"),
     "sessions/14/index.html": ("Священное Писание Ветхого Завета",),
-    "sessions/01/l3-complete.html": ("Новый Завет",),
+    "sessions/01/l3-complete.html": ("Сборник",),
 }
 PDFS = [
     "subjects/nt/pdf/l3.pdf",
