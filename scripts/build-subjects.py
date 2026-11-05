@@ -343,6 +343,8 @@ def main():
     with tempfile.TemporaryDirectory(prefix="subject-build-") as folder:
         staged = Path(folder)
         build(private, public, staged, slugs, not args.no_pdf)
+        already_ready = {slug for slug in SUBJECTS if (public / "subjects" / slug / "index.md").is_file()}
+        (staged / "subjects" / "index.md").write_text(catalog(already_ready | set(slugs)), encoding="utf-8")
         count = sum(p.is_file() for p in staged.rglob("*"))
         print("PASS: built %d staged files" % count)
         if args.apply:
