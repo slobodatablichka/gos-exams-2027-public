@@ -1,6 +1,18 @@
 ---
 ---
 @import "{{ site.theme }}";
+/* subject-navigation:begin */
+.exam-subject-nav {margin:1rem 0 1.15rem;padding:.8rem 1rem;border:1px solid #d1dce3;border-radius:6px;background:#f6f9fb}
+.exam-subject-title {margin:0 0 .45rem;font-size:.94rem;line-height:1.55}
+.exam-subject-links {display:flex;gap:.45rem .9rem;flex-wrap:wrap;line-height:1.7}
+.exam-subject-links a {display:inline-block}
+.exam-subject-neighbors {margin-top:.5rem;padding-top:.45rem;border-top:1px solid #dbe3e9;font-size:.92rem}
+@media(max-width:600px) {
+ .exam-subject-nav {padding:.7rem}
+ .exam-subject-links a {padding:.25rem .15rem}
+}
+/* subject-navigation:end */
+
 .site-footer { display: none !important; }
 .page-header .btn { display: none !important; }
 
