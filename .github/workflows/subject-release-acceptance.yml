@@ -1,0 +1,97 @@
+name: Subject release stage 5 acceptance
+
+on:
+  pull_request:
+    paths:
+      - scripts/check-subject-release.py
+      - tests/test_subject_release.py
+      - .github/workflows/subject-release-acceptance.yml
+      - scripts/check-subject-rendered.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  accept:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF and rendering dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Verify generator unit tests and syntax
+        run: |
+          python -m compileall -q public/scripts
+          python -m unittest discover -s public/tests -p test_subject_generator.py -v
+          python -m unittest discover -s public/tests -p test_subject_navigation.py -v
+          python -m unittest discover -s public/tests -p test_subject_release.py -v
+      - name: Check authoritative subject source models
+        run: python public/scripts/build-subjects.py check --private-root private --public-root public --subjects nt ot dogmatics
+      - name: Build complete original manuscripts and PDF package
+        run: |
+          echo "SUBJECT_SOURCE_SHA=$(git -C private rev-parse HEAD)" >> "$GITHUB_ENV"
+          python public/scripts/build-subjects.py build --private-root private --public-root public --subjects nt ot dogmatics --preview-dir staged-subjects
+      - name: Validate all PDF manifests and generated PDF references
+        run: python public/scripts/check-subject-pdfs.py staged-subjects --subjects nt ot dogmatics
+      - name: Build 216 reverse links and entry-page changes
+        run: python public/scripts/link-subjects.py --private-root private --public-root public --output-root staged-navigation
+      - name: Check all staged back-links and old routes
+        run: python public/scripts/check-subject-navigation.py --private-root private --public-root public --staged-root staged-navigation
+      - name: Assemble isolated complete release candidate
+        run: |
+          mkdir -p release-candidate
+          rsync -a --exclude='.git' --exclude='_site' public/ release-candidate/
+          mkdir -p release-candidate/subjects
+          rsync -a staged-subjects/ release-candidate/subjects/
+          rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ release-candidate/
+      - name: Full combined acceptance of three subjects and legacy routes
+        run: python public/scripts/check-subject-release.py --stage release-candidate --original public --private private --report acceptance-report.json
+      - name: Build full staged HTML with GitHub Pages Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./release-candidate
+          destination: ./jekyll-preview
+      - name: Verify compiled page navigation and all 216 article targets
+        run: python public/scripts/check-subject-rendered.py jekyll-preview --private-root private
+      - name: Render nine complete PDF books and sample article pages
+        run: |
+          mkdir -p acceptance-renders
+          for subject in nt ot dogmatics; do
+            for level in l3 l2 l1; do
+              pdftoppm -f 1 -l 1 -scale-to 1200 -singlefile -png "release-candidate/subjects/$subject/pdf/$level.pdf" "acceptance-renders/$subject-$level-front"
+              pdftoppm -f 4 -l 4 -scale-to 1200 -singlefile -png "release-candidate/subjects/$subject/pdf/$level.pdf" "acceptance-renders/$subject-$level-body"
+            done
+          done
+          python public/scripts/check-pdf-acceptance-renders.py acceptance-renders
+      - name: Re-check public site's existing publication invariants
+        working-directory: public
+        run: python scripts/publish-lesson.py check
+      - name: Preserve technical acceptance report
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-release-stage5-report
+          path: |
+            acceptance-report.json
+            acceptance-renders/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Preserve complete verified release candidate without publishing
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-release-stage5-candidate
+          path: |
+            staged-subjects/
+            staged-navigation/
+          if-no-files-found: error
+          retention-days: 90
