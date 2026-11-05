@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate actual Jekyll HTML of the staged subject release, not just Markdown."""
 import argparse
+import json
 import posixpath
 import re
 import sys
@@ -29,7 +30,15 @@ class Page(HTMLParser):
             self.buttons += 1
 
 
-def check(root):
+def check(root, private):
+    expected = set()
+    for slug in SUBJECTS:
+        data = json.loads((private / 'planning' / ('subject-order-' + slug + '.json')).read_text(encoding='utf-8'))
+        for row in data['topics']:
+            expected.update(row['level_urls'].values())
+    if len(expected) != 216:
+        raise ValueError('Source catalog should contain 216 unique article routes')
+
     def read(name):
         file = root / name
         if not file.is_file():
@@ -81,9 +90,10 @@ def check(root):
             pdf = root / "subjects" / slug / "pdf" / (level + ".pdf")
             if not pdf.is_file():
                 raise ValueError("Full PDF absent after Jekyll build: " + str(pdf))
-    if len(matched) != 216:
-        raise ValueError("Rendered subject links cover only %d / 216 original articles" % len(matched))
-    for file in matched:
+    missing = expected - matched
+    if missing:
+        raise ValueError("Compiled site lost article routes: " + ", ".join(sorted(missing)[:10]))
+    for file in expected:
         page = read(file)
         if not any("subjects/" in url and "#meaning-q" in url for url in page.links):
             raise ValueError("Rendered article missing semantic backlink " + file)
@@ -96,9 +106,10 @@ def check(root):
 if __name__ == "__main__":
     a = argparse.ArgumentParser()
     a.add_argument("root", type=Path)
+    a.add_argument("--private-root", required=True, type=Path)
     args = a.parse_args()
     try:
-        check(args.root)
+        check(args.root, args.private_root)
     except (ValueError, OSError) as error:
         print("ERROR:", error, file=sys.stderr)
         sys.exit(1)
