@@ -6,6 +6,7 @@ on:
       - scripts/check-subject-release.py
       - tests/test_subject_release.py
       - .github/workflows/subject-release-acceptance.yml
+      - scripts/check-subject-rendered.py
   workflow_dispatch:
 
 permissions:
@@ -56,6 +57,13 @@ jobs:
           rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ release-candidate/
       - name: Full combined acceptance of three subjects and legacy routes
         run: python public/scripts/check-subject-release.py --stage release-candidate --original public --private private --report acceptance-report.json
+      - name: Build full staged HTML with GitHub Pages Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./release-candidate
+          destination: ./jekyll-preview
+      - name: Verify compiled page navigation and all 216 article targets
+        run: python public/scripts/check-subject-rendered.py jekyll-preview
       - name: Render nine complete PDF books and sample article pages
         run: |
           mkdir -p acceptance-renders
