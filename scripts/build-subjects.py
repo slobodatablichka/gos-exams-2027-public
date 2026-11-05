@@ -145,6 +145,11 @@ def html_entry(row, paths, order="meaning", previous=None, following=None):
             (order, n, n, h(row["official_question"]), alias, notice, " · ".join(links), " · ".join(adjacent)))
 
 
+def jump_links(order):
+    return '<nav class="subject-jump" aria-label="Номер билета">' + " ".join(
+        '<a href="#%s-q%02d">%d</a>' % (order, n, n) for n in range(1, 26)) + '</nav>'
+
+
 def page_markdown(model, routes):
     title = model["title"]
     parts = []
