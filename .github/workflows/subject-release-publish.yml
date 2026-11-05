@@ -1,0 +1,105 @@
+name: Publish approved subject release (three disciplines)
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/subject-release-publish.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage6-subject-release
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout release branch with write credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          path: public
+      - name: Checkout exact current private manuscripts
+        uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: main
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF and HTML verification tools
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Gate before any public changes
+        run: |
+          python public/scripts/build-subjects.py check --private-root private --public-root public --subjects nt ot dogmatics
+          python public/scripts/publish-lesson.py check
+          echo "SUBJECT_SOURCE_SHA=$(git -C private rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Build all 225 PDF files and subject pages in staging
+        run: python public/scripts/build-subjects.py build --private-root private --public-root public --subjects nt ot dogmatics --preview-dir staged-subjects
+      - name: Audit PDF manifests and all 75 official numbers
+        run: python public/scripts/check-subject-pdfs.py staged-subjects --subjects nt ot dogmatics
+      - name: Stage 216 backlinks and three entry/style files
+        run: |
+          python public/scripts/link-subjects.py --private-root private --public-root public --output-root staged-navigation
+          python public/scripts/check-subject-navigation.py --private-root private --public-root public --staged-root staged-navigation
+      - name: Combine release candidate without touching old URLs
+        run: |
+          mkdir -p release-candidate
+          rsync -a --exclude='.git' --exclude='_site' public/ release-candidate/
+          mkdir -p release-candidate/subjects
+          rsync -a staged-subjects/ release-candidate/subjects/
+          rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ release-candidate/
+          python public/scripts/check-subject-release.py --stage release-candidate --original public --private private --report acceptance-report.json
+      - name: Build HTML with actual GitHub Pages Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./release-candidate
+          destination: ./site-preview
+      - name: Confirm all routes on compiled site
+        run: python public/scripts/check-subject-rendered.py site-preview --private-root private
+      - name: Validate print layout for all nine collection PDFs
+        run: |
+          mkdir -p print-proofs
+          for subject in nt ot dogmatics; do
+            for level in l3 l2 l1; do
+              pdftoppm -f 1 -l 1 -scale-to 1200 -singlefile -png "staged-subjects/$subject/pdf/$level.pdf" "print-proofs/$subject-$level-front"
+              pdftoppm -f 4 -l 4 -scale-to 1200 -singlefile -png "staged-subjects/$subject/pdf/$level.pdf" "print-proofs/$subject-$level-body"
+            done
+          done
+          python public/scripts/check-pdf-acceptance-renders.py print-proofs
+      - name: Apply exact verified staged site files
+        run: |
+          mkdir -p public/subjects
+          rsync -a staged-subjects/ public/subjects/
+          rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ public/
+          cp staged-navigation/subject-navigation-manifest.json public/subjects/navigation-manifest.json
+          python public/scripts/check-subject-pdfs.py public/subjects --subjects nt ot dogmatics
+          python public/scripts/publish-lesson.py check
+          git -C public diff --check
+          test "$(find public/subjects -type f -name '*.pdf' | wc -l)" -eq 225
+      - name: Commit and push one complete release to PR branch
+        working-directory: public
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/ sessions/ index.md materials/index.md assets/css/style.scss
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Единый выпуск НЗ, ВЗ и ДБ: 225 PDF, 216 обратных ссылок и предметные разделы"
+          git push origin HEAD:subject-release-stage6
+          git rev-parse HEAD
+      - name: Preserve release acceptance evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage6-publication-evidence
+          path: |
+            acceptance-report.json
+            print-proofs/
+          retention-days: 90
