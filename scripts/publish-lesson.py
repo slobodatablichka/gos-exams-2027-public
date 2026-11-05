@@ -65,6 +65,14 @@ def code(row):
     return f'{int(row["question"]):02d}'
 
 
+def page_code(row, rows):
+    """Preserve previous qNN routes; qualify duplicate numbers by subject."""
+    ident = code(row)
+    if sum(code(r) == ident for r in rows) > 1:
+        return f'q{ident}-{SUBJECTS[row["subject"]][0]}'
+    return f'q{ident}'
+
+
 def display_subject(rows):
     types = {r["subject"] for r in rows}
     return SUBJECTS[next(iter(types))][1] if len(types) == 1 else "Несколько дисциплин"
@@ -180,20 +188,20 @@ def render_page(number, rows, index, row, level, formulas, bodies, titles):
     kind = {"l3": "Статья", "l2": "Устный ответ", "l1": "План"}
     b = bodies[(index, level)]
     switch = "".join(
-        f'<a href="q{ident}-{l}.html"' + (' aria-current="page"' if l == level else "") +
+        f'<a href="{page_code(row, rows)}-{l}.html"' + (' aria-current="page"' if l == level else "") +
         f'><strong>{l.upper()}</strong><span>{kind[l]}</span></a>' for l in LEVELS
     )
     others = "\n".join(
         (f"<li><strong>{r['subject']} №{int(r['question'])}. {titles[j]} — здесь</strong></li>"
          if j == index else
-         f'<li><a href="q{code(r)}-{level}.html">{r["subject"]} №{int(r["question"])}. {titles[j]}</a></li>')
+         f'<li><a href="{page_code(r, rows)}-{level}.html">{r["subject"]} №{int(r["question"])}. {titles[j]}</a></li>')
         for j, r in enumerate(rows)
     )
     prev = rows[index - 1] if index > 0 else None
     next_ = rows[index + 1] if index + 1 < len(rows) else None
-    previous = (f'<a class="prev" href="q{code(prev)}-{level}.html">← Предыдущая тема'
+    previous = (f'<a class="prev" href="{page_code(prev, rows)}-{level}.html">← Предыдущая тема'
                 f'<strong>{titles[index - 1]}</strong></a>') if prev else "<span></span>"
-    following = (f'<a class="next" href="q{code(next_)}-{level}.html">Следующая тема →'
+    following = (f'<a class="next" href="{page_code(next_, rows)}-{level}.html">Следующая тема →'
                  f'<strong>{titles[index + 1]}</strong></a>') if next_ else "<span></span>"
     label = f'{sub} №{int(row["question"])}'
     if row["aliases"]:
@@ -230,7 +238,7 @@ def render_index(number, rows, titles):
         f'<article class="lesson-card"><p class="lesson-number">Вопрос {i + 1} из {len(rows)} · '
         f'{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}</p>'
         f'<h3>{html.escape(titles[i])}</h3><div class="lesson-actions">'
-        + "".join(f'<a href="q{code(r)}-{l}.html">{l.upper()} · {label}</a>' for l, label in
+        + "".join(f'<a href="{page_code(r, rows)}-{l}.html">{l.upper()} · {label}</a>' for l, label in
                   (("l3", "Статья"), ("l2", "Ответ"), ("l1", "План"))) + '</div></article>'
         for i, r in enumerate(rows)
     )
@@ -261,8 +269,8 @@ title: "Занятие №{number} — {subject}, {m["date"]}"
 def render_reader(number, rows, titles, formulas, bodies):
     m = meeting(number)
     toc = "\n".join(
-        f'- [{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}](#n{code(r)}) · '
-        + " · ".join(f'[{l.upper()}](q{code(r)}-{l}.html)' for l in LEVELS)
+        f'- [{r["subject"]} №{int(r["question"])}{("/" + r["aliases"]) if r["aliases"] else ""}. {titles[i]}](#n{page_code(r, rows)}) · '
+        + " · ".join(f'[{l.upper()}]({page_code(r, rows)}-{l}.html)' for l in LEVELS)
         for i, r in enumerate(rows))
     sections = []
     for i, r in enumerate(rows):
@@ -271,7 +279,7 @@ def render_reader(number, rows, titles, formulas, bodies):
         alias_note = (f'<p class="exam-alias-note">Эта же формулировка встречается под официальным №{r["aliases"]}. Ответ один.</p>\n\n' if r["aliases"] else "")
         sections.append(f'''---
 
-<a id="n{code(r)}"></a>
+<a id="n{page_code(r, rows)}"></a>
 
 ## {heading}
 
@@ -280,7 +288,7 @@ def render_reader(number, rows, titles, formulas, bodies):
 
 {alias_note}{working_notice(number, r["question"])}{body}
 
-[К ответам L3 / L2 / L1](q{code(r)}-l3.html)
+[К ответам L3 / L2 / L1]({page_code(r, rows)}-l3.html)
 ''')
     return f'''---
 layout: default
@@ -357,7 +365,7 @@ def assemble(number, private_root):
     dest = Path(f"sessions/{number:02d}")
     for i, row in enumerate(rows):
         for level in LEVELS:
-            path = dest / f'q{code(row)}-{level}.md'
+            path = dest / f'{page_code(row, rows)}-{level}.md'
             if (ROOT / path).exists():
                 raise ValueError(f"Existing URL cannot be overwritten: {path}")
             results[path] = render_page(number, rows, i, row, level, formulas, bodies, titles)
@@ -459,7 +467,7 @@ def add_navigation(number, generated):
     section = site_schedule[start:end]
     for row in rows:
         old, cells = schedule_row(section, row)
-        target = f'sessions/{number:02d}/q{code(row)}-l3.html'
+        target = f'sessions/{number:02d}/{page_code(row, rows)}-l3.html'
         if target in cells[0]:
             raise ValueError(f"Schedule URL already exists: {target}")
         cells[0] = f'[{cells[0]}]({target})'
@@ -545,18 +553,18 @@ def validate():
             for row in topics(n):
                 ident = code(row)
                 _, cells = schedule_row(part, row)
-                route = f'sessions/{n:02d}/q{ident}-l3.html'
+                route = f'sessions/{n:02d}/{page_code(row, topics(n))}-l3.html'
                 if route not in cells[0]:
                     raise ValueError(f"Schedule lacks canonical link {route}")
                 for level in LEVELS:
-                    page = prefix / f'q{ident}-{level}.md'
+                    page = prefix / f'{page_code(row, topics(n))}-{level}.md'
                     if not (ROOT / page).exists():
                         raise ValueError(f"Missing published level {page}")
                     text = read(page)
                     if text.count('<blockquote class="exam-official">') != 1:
                         raise ValueError(f"Official question absent or duplicated: {page}")
                     for another in LEVELS:
-                        if f'q{ident}-{another}.html' not in text:
+                        if f'{page_code(row, topics(n))}-{another}.html' not in text:
                             raise ValueError(f"Broken level switch {page} → {another}")
             if f'sessions/{n:02d}/index.html' not in homepage:
                 raise ValueError(f"Missing homepage entry for session {n}")
