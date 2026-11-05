@@ -368,9 +368,12 @@ def main():
     parser.add_argument("--subjects", nargs="+", required=True, choices=tuple(SUBJECTS))
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--no-pdf", action="store_true", help="diagnostic only")
+    parser.add_argument("--preview-dir", type=Path, help="save HTML drafts outside the public site")
     args = parser.parse_args()
     private, public = args.private_root.resolve(), args.public_root.resolve()
     slugs = list(dict.fromkeys(args.subjects))
+    if args.preview_dir and (args.command != "build" or not args.no_pdf or args.apply):
+        parser.error("--preview-dir is only for build --no-pdf without --apply")
     if args.apply and (args.command != "build" or args.no_pdf):
         parser.error("--apply requires build with PDF")
     for slug in slugs:
@@ -386,6 +389,12 @@ def main():
         (staged / "subjects" / "index.md").write_text(catalog(already_ready | set(slugs)), encoding="utf-8")
         count = sum(p.is_file() for p in staged.rglob("*"))
         print("PASS: built %d staged files" % count)
+        if args.preview_dir:
+            preview = args.preview_dir.resolve()
+            if preview.exists():
+                abort("Refusing to overwrite existing preview: " + str(preview))
+            shutil.copytree(staged / "subjects", preview)
+            print("PREVIEW: subject pages saved to " + str(preview))
         if args.apply:
             # Protect hand-written content, but permit reproducible updates to managed pages/PDF.
             marker = "subject-generator: managed"
