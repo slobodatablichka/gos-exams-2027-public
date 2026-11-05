@@ -44,6 +44,38 @@ assert final_audit.structural_check(19) == (7, 21)
 # HTTP is recorded separately: network failure does not mislabel successful local CI.
 print("SESSION19_HTTP:", final_audit.external_http(19, "08", True), flush=True)
 
+# Two independent subjects share official number 23; check both live routes.
+from urllib.request import Request, urlopen
+import json
+for topic in ("q23-nt", "q23-dogmatics"):
+    url = f"{final_audit.SITE}/sessions/19/{topic}-l3.html"
+    try:
+        with urlopen(Request(url, headers={"User-Agent": "PublicationAudit/1.0"}), timeout=10) as response:
+            print("SESSION19_DUPLICATE_URL:", topic, response.status, flush=True)
+    except Exception as error:
+        print("SESSION19_DUPLICATE_URL: NOT_VERIFIED", topic, type(error).__name__, flush=True)
+
+# Repository CI and Pages run IDs are recorded rather than inferred from a PR result.
+try:
+    endpoint = (f"https://api.github.com/repos/{final_audit.REPO}/actions/runs?per_page=100")
+    with urlopen(Request(endpoint, headers={"User-Agent": "PublicationAudit/1.0",
+                                          "Accept": "application/vnd.github+json"}), timeout=10) as response:
+        workflow_data = json.load(response)
+    target_head = "f4f2e56fc12aa19da38afaf8eba1cf24087d5622"
+    relevant = [
+        {"id": item.get("id"), "name": item.get("name"),
+         "status": item.get("status"), "conclusion": item.get("conclusion"),
+         "event": item.get("event"), "head": item.get("head_sha")}
+        for item in workflow_data.get("workflow_runs", [])
+        if item.get("head_sha") == target_head
+        or ("pages" in (item.get("name") or "").lower()
+            and item.get("created_at", "") >= "2026-11-05")
+    ]
+    print("SESSION19_DEPLOYMENT_RUNS:", json.dumps(relevant[:12]), flush=True)
+except Exception as error:
+    print("SESSION19_DEPLOYMENT_RUNS: NOT_VERIFIED", type(error).__name__, flush=True)
+
+
 
 with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     dst = Path(temp) / "public"
