@@ -1,0 +1,42 @@
+name: Verify subject-to-lesson navigation
+
+on:
+  pull_request:
+    paths:
+      - scripts/link-subjects.py
+      - tests/test_subject_navigation.py
+      - .github/workflows/subject-navigation.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Public site checkout
+        uses: actions/checkout@v4
+        with:
+          path: public
+      - name: Private source checkout
+        uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Syntax and regression tests
+        run: |
+          python -m compileall -q public/scripts/link-subjects.py public/tests/test_subject_navigation.py
+          python -m unittest discover -s public/tests -p test_subject_navigation.py -v
+      - name: Stage complete backlink graph from real approved catalogs
+        run: python public/scripts/link-subjects.py --private-root private --public-root public --output-root staged-navigation
+      - name: Validate staged link graph and untouched legacy routes
+        run: python public/scripts/check-subject-navigation.py --private-root private --public-root public --staged-root staged-navigation
+      - name: Retain nonpublic navigation patch for later unified release
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-navigation-stage4
+          path: staged-navigation/
+          if-no-files-found: error
+          retention-days: 90
