@@ -117,7 +117,7 @@ def check(stage, original, private, output=None):
         topics = model["topics"]
         if len(topics) != 25 or sorted(row["official_number"] for row in topics) != list(range(1, 26)):
             fail("Incomplete official question numbering: " + slug)
-        if len({row["canonical_question"] for row in topics}) != CANONICAL[slug]:
+        if len({row.get("canonical_question", row["official_number"]) for row in topics}) != CANONICAL[slug]:
             fail("Incorrect number of original manuscripts: " + slug)
         folder = stage / "subjects" / slug
         for page in ("index.md", "numbers.md"):
