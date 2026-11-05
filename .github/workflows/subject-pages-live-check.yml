@@ -1,6 +1,10 @@
 name: Verify public GitHub Pages subjects over HTTPS
 
 on:
+  pull_request:
+    paths:
+      - .github/workflows/subject-pages-live-check.yml
+      - scripts/check-live-subject-pages.py
   push:
     branches:
       - main
