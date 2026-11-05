@@ -53,9 +53,19 @@ title: "Докладчики по занятиям · группы 5, 6 и 7"
           <tr>
             <td>
             {% assign number_padded = item.question | prepend: "0" | slice: -2, 2 %}
+            {% assign topic_route = number_padded %}
+            {% assign meeting_str = day.meeting | append: "" %}
+            {% assign question_str = item.question | append: "" %}
+            {% if meeting_str == "19" and question_str == "23" %}
+              {% if item.subject == "НЗ" %}
+                {% assign topic_route = "23-nt" %}
+              {% elsif item.subject == "ДБ" %}
+                {% assign topic_route = "23-dogmatics" %}
+              {% endif %}
+            {% endif %}
             {% capture display_numbers %}{{ item.question }}{% if item.aliases != "" %}/{{ item.aliases }}{% endif %}{% endcapture %}
             {% if session_published %}
-              <a href="sessions/{{ session_path }}/q{{ number_padded }}-l3.html">{{ item.subject }} №{{ display_numbers }}</a>
+              <a href="sessions/{{ session_path }}/q{{ topic_route }}-l3.html">{{ item.subject }} №{{ display_numbers }}</a>
             {% else %}
               {{ item.subject }} №{{ display_numbers }}
             {% endif %}

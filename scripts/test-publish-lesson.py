@@ -12,6 +12,14 @@ spec = importlib.util.spec_from_file_location("publication", ROOT / "scripts/pub
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
+# Session 19 intentionally contains two different subjects with official number 23.
+rows19 = module.topics(19)
+nt23 = next(r for r in rows19 if r["subject"] == "НЗ" and int(r["question"]) == 23)
+db23 = next(r for r in rows19 if r["subject"] == "ДБ" and int(r["question"]) == 23)
+assert module.page_code(nt23, rows19) == "q23-nt"
+assert module.page_code(db23, rows19) == "q23-dogmatics"
+assert module.page_code(rows19[0], rows19) == "q08"
+
 # Regression: current canonical private wording and links to both other levels.
 formula = "**Официальный вопрос:** Имп. Юстиниан, его церковная политика и теория двух властей."
 assert module.canonical_formula("# Пример\\n\\n".replace("\\n", "\n") + formula + "\n") == (
