@@ -45,7 +45,7 @@ def fail(msg):
 
 
 def md_for_url(root, route):
-    if not route.endswith(".html") or not route.startswith(("sessions/", "subjects/", "materials/")):
+    if not route.endswith(".html") or not (route == "index.html" or route.startswith(("sessions/", "subjects/", "materials/"))):
         fail("Invalid internal route: " + route)
     md = root / route[:-5] / "index.md" if route.endswith("/index.html") else root / (route[:-5] + ".md")
     if route.endswith("/index.html"):
@@ -163,7 +163,7 @@ def check(stage, original, private, output=None):
             fail("Unlisted PDFs " + slug)
         total_pdf += expected_pdf
         for row in topics:
-            canon = row["canonical_question"]
+            canon = row.get("canonical_question", row["official_number"])
             for level in LEVELS:
                 manuscript = private / "materials" / slug / level / ("q%02d.md" % canon)
                 if not manuscript.is_file() or not manuscript.read_text(encoding="utf-8").strip():
