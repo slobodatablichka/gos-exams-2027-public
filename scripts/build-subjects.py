@@ -150,6 +150,17 @@ def jump_links(order):
         '<a href="#%s-q%02d">%d</a>' % (order, n, n) for n in range(1, 26)) + '</nav>'
 
 
+def order_list(rows, all_rows, routes, order):
+    positions = {r["official_number"]: i for i, r in enumerate(all_rows)}
+    content = []
+    for row in rows:
+        i = positions[row["official_number"]]
+        prev = all_rows[i-1]["official_number"] if i else None
+        nxt = all_rows[i+1]["official_number"] if i+1 < len(all_rows) else None
+        content.append(html_entry(row, routes[row["official_number"]], order, prev, nxt))
+    return "".join(content)
+
+
 def page_markdown(model, routes):
     title = model["title"]
     parts = []
