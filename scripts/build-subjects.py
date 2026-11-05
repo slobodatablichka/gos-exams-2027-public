@@ -11,6 +11,8 @@ Dependencies for PDF: reportlab, a Cyrillic DejaVu Sans TTF family.
 """
 import argparse
 import html
+import os
+import json
 import json
 import re
 import shutil
@@ -133,7 +135,7 @@ def html_entry(row, paths, order="meaning", previous=None, following=None):
         links.append('<a href="../../%s">%s — %s</a>' % (
             h(paths[level]), level.upper(), h(LABELS[level])))
         links.append('<a href="pdf/q%02d-%s.pdf" download>PDF %s</a>' %
-                     (n, level, level.upper()))
+                     (row["canonical_question"], level, level.upper()))
     adjacent = []
     if previous is not None:
         adjacent.append('<a href="#%s-q%02d">← №%d</a>' % (order, previous, previous))
@@ -236,109 +238,14 @@ def catalog(ready):
     return "\n".join(lines) + "\n"
 
 
-def pdf_tools():
-    try:
-        from reportlab.lib.pagesizes import A4
-        from reportlab.lib.styles import ParagraphStyle
-        from reportlab.pdfbase import pdfmetrics
-        from reportlab.pdfbase.ttfonts import TTFont
-        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
-    except ImportError:
-        abort("PDF dependency missing: pip install reportlab")
-    regular = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
-    bold = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
-    if not regular.is_file() or not bold.is_file():
-        abort("Cyrillic DejaVuSans fonts missing; cannot create readable PDF")
-    if "SubjectFont" not in pdfmetrics.getRegisteredFontNames():
-        pdfmetrics.registerFont(TTFont("SubjectFont", str(regular)))
-        pdfmetrics.registerFont(TTFont("SubjectBold", str(bold)))
-        pdfmetrics.registerFontFamily("SubjectFont", normal="SubjectFont", bold="SubjectBold")
-    styles = {
-        "title": ParagraphStyle("S-Title", fontName="SubjectBold", fontSize=15, leading=21, spaceAfter=15),
-        "chapter": ParagraphStyle("S-Chapter", fontName="SubjectBold", fontSize=12, leading=17, spaceBefore=11, spaceAfter=8),
-        "heading": ParagraphStyle("S-Heading", fontName="SubjectBold", fontSize=10.7, leading=15, spaceBefore=9, spaceAfter=5),
-        "body": ParagraphStyle("S-Body", fontName="SubjectFont", fontSize=10.3, leading=16, spaceAfter=7),
-        "quote": ParagraphStyle("S-Quote", fontName="SubjectFont", fontSize=10, leading=15, leftIndent=14, spaceAfter=9),
-    }
-    return A4, SimpleDocTemplate, Paragraph, Spacer, PageBreak, styles
-
-
-def inline(value):
-    # Safe plain-text Markdown conversion; tags and links from private source are not executed.
-    value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value)
-    value = re.sub(r"<[^>]*>", "", value)
-    value = h(value)
-    value = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", value)
-    value = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<i>\1</i>", value)
-    return value
-
-
-def article_story(source, tools):
-    A4, Doc, P, Spacer, Break, st = tools
-    story = []
-    text = []
-    def flush():
-        if text:
-            story.append(P(inline(" ".join(text)), st["body"]))
-            text.clear()
-    body = FRONT.sub("", source).replace("\r\n", "\n")
-    for raw in body.splitlines():
-        line = raw.strip()
-        if not line:
-            flush()
-        elif re.match(r"^#{1,6} ", line):
-            flush()
-            story.append(P(inline(re.sub(r"^#+\s*", "", line)), st["heading"]))
-        elif line.startswith(">"):
-            flush()
-            story.append(P(inline(line.lstrip("> ")), st["quote"]))
-        elif re.match(r"^(?:[-*] |\d+\. )", line):
-            flush()
-            story.append(P("• " + inline(re.sub(r"^(?:[-*] |\d+\. )", "", line)), st["body"]))
-        elif line.startswith("|"):
-            flush()
-            if not re.fullmatch(r"[\s|:-]+", line):
-                story.append(P(inline(" · ".join(x.strip() for x in line.strip("|").split("|"))), st["body"]))
-        else:
-            text.append(line)
-    flush()
-    return story
-
-
-def create_pdf(path, model, rows, private, slug, level, tools):
-    A4, Doc, P, Spacer, Break, st = tools
-    path.parent.mkdir(parents=True, exist_ok=True)
-    def footer(canvas, document):
-        canvas.saveState()
-        canvas.setFont("SubjectFont", 8)
-        canvas.drawRightString(A4[0] - 48, 24, str(document.page))
-        canvas.restoreState()
-    doc = Doc(str(path), pagesize=A4, leftMargin=48, rightMargin=48,
-              topMargin=48, bottomMargin=48, title=model["title"] + " — " + level.upper())
-    story = [P(h(model["title"]), st["title"]),
-             P(level.upper() + " — Госэкзамены 2027", st["body"])]
-    if len(rows) > 1:
-        story.append(P("Оглавление", st["heading"]))
-        for row in rows:
-            story.append(P("№%d — %s" % (row["official_number"], h(row["official_question"])), st["body"]))
-        story.append(Break())
-    for i, row in enumerate(rows):
-        if i:
-            story.append(Break())
-        story.append(P("Вопрос №%d" % row["official_number"], st["chapter"]))
-        story.append(P("<b>Официальная формулировка.</b> " + h(row["official_question"]), st["quote"]))
-        if row.get("quality") != "approved":
-            story.append(P("<b>РАБОЧАЯ РЕДАКЦИЯ.</b> " +
-                           h(row.get("working_note", "Есть незакрытые источниковые замечания.")), st["quote"]))
-        source = source_path(private, slug, row, level).read_text(encoding="utf-8")
-        story.extend(article_story(source, tools))
-    doc.build(story, onFirstPage=footer, onLaterPages=footer)
-    if path.stat().st_size < 900:
-        abort("Invalid PDF: " + str(path))
-
-
 def build(private, public, dest, slugs, with_pdf):
-    pdf_lib = pdf_tools() if with_pdf else None
+    if with_pdf:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("subject_pdf", Path(__file__).with_name("subject_pdf.py"))
+        pdf_lib = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(pdf_lib)
+    else:
+        pdf_lib = None
     for slug in slugs:
         model, routes = read_model(private, public, slug)
         base = dest / "subjects" / slug
@@ -347,16 +254,37 @@ def build(private, public, dest, slugs, with_pdf):
         (base / "numbers.md").write_text(numbers_markdown(model, routes), encoding="utf-8")
         if with_pdf:
             seen = set()
-            canon = []
+            canonical = []
             for row in model["topics"]:
                 if row["canonical_question"] not in seen:
-                    canon.append(row)
+                    canonical.append(row)
                     seen.add(row["canonical_question"])
+            source_ref = os.environ.get("SUBJECT_SOURCE_SHA", "")
+            pdf_records = []
             for level in LEVELS:
-                create_pdf(base / "pdf" / (level + ".pdf"), model, canon, private, slug, level, pdf_lib)
-                for row in model["topics"]:
-                    create_pdf(base / "pdf" / ("q%02d-%s.pdf" % (row["official_number"], level)),
-                               model, [row], private, slug, level, pdf_lib)
+                full = base / "pdf" / (level + ".pdf")
+                pdf_lib.build_pdf(full, model, canonical, private, slug, level,
+                                  source_ref=source_ref, include_index=True)
+                meta = pdf_lib.check_pdf(full, full=True, expected_numbers=range(1, 26),
+                                         expected_title=model["title"])
+                pdf_records.append({"file": str(full.relative_to(base)), "level": level,
+                                    "kind": "subject", **meta})
+                for row in canonical:
+                    individual = base / "pdf" / ("q%02d-%s.pdf" % (row["canonical_question"], level))
+                    pdf_lib.build_pdf(individual, model, [row], private, slug, level,
+                                      source_ref=source_ref, include_index=False)
+                    info = pdf_lib.check_pdf(individual, expected_title=model["title"])
+                    pdf_records.append({"file": str(individual.relative_to(base)),
+                                        "level": level, "kind": "question",
+                                        "canonical_question": row["canonical_question"], **info})
+            expected = (len(canonical) + 1) * len(LEVELS)
+            if len(pdf_records) != expected:
+                abort("PDF count mismatch for " + slug)
+            (base / "pdf-manifest.json").write_text(
+                json.dumps({"subject": slug, "canonical_count": len(canonical),
+                            "official_numbers": 25, "source_ref": source_ref,
+                            "pdf_count": expected, "files": pdf_records},
+                           ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (dest / "subjects" / "index.md").write_text(catalog(slugs), encoding="utf-8")
 
 
@@ -372,8 +300,8 @@ def main():
     args = parser.parse_args()
     private, public = args.private_root.resolve(), args.public_root.resolve()
     slugs = list(dict.fromkeys(args.subjects))
-    if args.preview_dir and (args.command != "build" or not args.no_pdf or args.apply):
-        parser.error("--preview-dir is only for build --no-pdf without --apply")
+    if args.preview_dir and (args.command != "build" or args.apply):
+        parser.error("--preview-dir requires build without --apply")
     if args.apply and (args.command != "build" or args.no_pdf):
         parser.error("--apply requires build with PDF")
     for slug in slugs:

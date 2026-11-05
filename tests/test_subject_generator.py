@@ -72,7 +72,7 @@ class SubjectGeneratorTests(unittest.TestCase):
         html = builder.page_markdown(model, urls)
         self.assertIn('data-sort-panel="meaning"', html)
         self.assertIn('data-sort-panel="number"', html)
-        self.assertIn("pdf/q07-l3.pdf", html)
+        self.assertIn("pdf/q01-l3.pdf", html)
         self.assertIn("subject-generator: managed", html)
         self.assertIn("25 официальных номеров", html)
         self.assertIn('id="meaning-q01"', html)
@@ -102,6 +102,12 @@ class SubjectGeneratorTests(unittest.TestCase):
         folder = self.out / "subjects" / "dogmatics"
         self.assertTrue((folder / "index.md").is_file())
         self.assertTrue((folder / "numbers.md").is_file())
+        import json
+        manifest = json.loads((folder / "pdf-manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(23, manifest["canonical_count"])
+        self.assertEqual(72, manifest["pdf_count"])
+        self.assertFalse((folder / "pdf" / "q07-l3.pdf").exists())
+        self.assertFalse((folder / "pdf" / "q16-l2.pdf").exists())
         self.assertTrue((self.out / "subjects" / "index.md").is_file())
         for level in builder.LEVELS:
             whole = (folder / "pdf" / (level + ".pdf"))
@@ -109,6 +115,12 @@ class SubjectGeneratorTests(unittest.TestCase):
             self.assertGreater(whole.stat().st_size, 1000)
             self.assertTrue(whole.read_bytes().startswith(b"%PDF"))
             self.assertTrue((folder / "pdf" / ("q23-" + level + ".pdf")).is_file())
+            from pypdf import PdfReader
+            reader = PdfReader(str(whole))
+            combined = " ".join((p.extract_text() or "") for p in reader.pages[:4])
+            self.assertIn("Указатель официальных номеров", combined)
+            self.assertIn("Оглавление", combined)
+            self.assertGreater(len(reader.outline), 2)
 
 
 if __name__ == "__main__":
