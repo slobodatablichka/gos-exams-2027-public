@@ -1,0 +1,45 @@
+name: Real PDF subject build
+
+on:
+  pull_request:
+    paths:
+      - scripts/build-subjects.py
+      - scripts/subject_pdf.py
+      - tests/test_subject_generator.py
+      - .github/workflows/subject-pdfs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Verify sources and links
+        run: python public/scripts/build-subjects.py check --private-root private --public-root public --subjects nt ot dogmatics
+      - name: Generate actual PDF sets
+        run: python public/scripts/build-subjects.py build --private-root private --public-root public --subjects nt ot dogmatics --preview-dir stage3-subjects
+      - name: Verify 225 PDF files and links
+        run: python public/scripts/check-subject-pdfs.py stage3-subjects --subjects nt ot dogmatics
+      - name: Retain complete print-ready subject bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-pdfs-stage3
+          path: stage3-subjects/
+          if-no-files-found: error
+          retention-days: 90
