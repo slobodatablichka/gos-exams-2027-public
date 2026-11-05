@@ -75,7 +75,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                 "Полностью искусственный тестовый абзац; тест не публикуется.\n" + private_meta,
                 encoding="utf-8")
     planned = module.assemble(session, private)
-    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16) else 2)
+    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16, 18) else 2)
     for row in rows:
         for level in ("l2", "l1"):
             page = planned[Path(f"sessions/{session:02d}/q{module.code(row)}-{level}.md")]
@@ -83,7 +83,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     assert not (dst / f"sessions/{session:02d}").exists(), "Dry-run touched public files"
     module.add_navigation(session, planned)
     assert (dst / "schedule.md").read_text(encoding="utf-8") == original_schedule
-    assert len(planned) == len(rows) * 3 + (7 if session in (13, 16) else 6)  # content + nav + optional status page.
+    assert len(planned) == len(rows) * 3 + (7 if session in (13, 16, 18) else 6)  # content + nav + optional status page.
     # Exercise the real --apply path, including isolated full-site prevalidation.
     original_argv = sys.argv[:]
     try:

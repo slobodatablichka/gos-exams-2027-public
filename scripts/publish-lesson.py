@@ -31,7 +31,7 @@ SUBJECTS = {
     "ДБ": ("dogmatics", "Догматическое богословие"),
     "Л": ("liturgics", "Литургика"),
 }
-Q_RE = re.compile(r"^(?:> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\*|\*\*Официальная формулировка:\*\*|\*\*Официальный вопрос:\*\*) (.+)$", re.M)
+Q_RE = re.compile(r"^(?:> \*\*Официальный (?:экзаменационный )?вопрос(?: \([^)]*\))?\.\*\*|\*\*Официальная формулировка:\*\*|\*\*Официальный вопрос:\*\*|>) (.+)$", re.M)
 
 
 def read(path):
@@ -135,6 +135,8 @@ def topic_title(raw):
     if not h:
         raise ValueError("Title missing from L3 manuscript")
     title = h.group(1)
+    if re.match(r"^Литургика\. Вопрос №\d+$", title):
+        return canonical_formula(raw).split(".")[0][:100].strip()
     return re.sub(r"^.+?№\d+(?:\s+и\s+№\d+)?\.\s*", "", title).strip() if not title.endswith(". L3") else canonical_formula(raw).split(".")[0][:100].strip()
 
 
@@ -147,6 +149,16 @@ def working_notice(number, question=None):
                   if question is None else
                   "Вопрос №24 допущен условно: пока недостаточно сведений о религиозных взглядах Павла I, церковной политике, положении духовенства и отношениях с архиереями.")
         return ('<p class="exam-source-warning"><strong>Условный допуск — открытая источниковая лакуна.</strong> '
+                + detail + ' <a href="source-status.html">Что требует дополнения</a>.</p>')
+    if number == 18:
+        if question is not None and int(question) not in (18, 13, 14):
+            return ""
+        gaps = {18: "История Студийского и Иерусалимского уставов и отдельные главы Типикона.",
+                13: "Требуется точный обзор приложений Октоиха.",
+                14: "Требуется полный разбор глав 1–5 Типикона."}
+        detail = ("Вопросы Л №18, 13 и 14 содержат обозначенные пробелы для последующего пополнения."
+                  if question is None else gaps[int(question)])
+        return ('<p class="exam-source-warning"><strong>Рабочая редакция — требуется пополнение.</strong> '
                 + detail + ' <a href="source-status.html">Что требует дополнения</a>.</p>')
     if number != 13:
         return ""
@@ -303,7 +315,8 @@ def quality_gate(private_root, number, rows):
                             (16, "ИРПЦ", "24")}
     # Only these two central gaps may appear in a publicly labelled working edition.
     # They retain TODO, and are NEVER treated as quality-approved.
-    working_gaps = {(13, "НЗ", "9"), (13, "НЗ", "22")}
+    working_gaps = {(13, "НЗ", "9"), (13, "НЗ", "22"),
+                    (18, "Л", "18"), (18, "Л", "13"), (18, "Л", "14")}
     for row in rows:
         found = [p for p in all_progress if int(p["meeting"]) == number
                  and p["subject"] == row["subject"] and
@@ -311,9 +324,14 @@ def quality_gate(private_root, number, rows):
         source_ok = (len(found) == 1 and (found[0]["sources"] == "done" or
                      (number, row["subject"], str(int(row["question"]))) in permitted_minor_gaps))
         is_working = (number, row["subject"], str(int(row["question"]))) in working_gaps
-        if is_working and len(found) == 1 and all(found[0][k] == "todo" for k in
-                                                  ("sources", "l3", "l2", "l1", "quality")):
-            continue
+        if is_working and len(found) == 1:
+            entry = found[0]
+            if (number == 18 and entry["sources"] == "todo" and entry["quality"] == "todo"
+                    and all(entry[k] == "done" for k in ("l3", "l2", "l1"))):
+                continue
+            if (number == 13 and all(entry[k] == "todo" for k in
+                                     ("sources", "l3", "l2", "l1", "quality"))):
+                continue
         if not source_ok or not all(found[0][k] == "done" for k in
                                     ("l3", "l2", "l1")) or found[0]["quality"] != "approved":
             raise ValueError(f"Quality gate not approved: lesson {number}, {row['subject']} №{row['question']}")
@@ -385,6 +403,26 @@ title: "Занятие №13 — состояние источниковой п�
 
 [Все вопросы занятия](index.html) · [Сборник L3](l3-complete.html)
 """
+    if number == 18:
+        results[dest / "source-status.md"] = """---
+layout: default
+title: "Занятие №18 — источниковые дополнения"
+---
+
+# Занятие №18 — рабочая редакция трёх вопросов
+
+По решению от 5 ноября 2026 года материалы занятия опубликованы с открыто обозначенными недостатками. Четыре темы — **Литургика №12, 15, 16, 17** — содержательно допущены.
+
+**№18:** дополнить историю Студийского и Иерусалимского уставов, их различий и распространения, а также точное расположение монастырских, храмовых и молитвословных глав Типикона.
+
+**№13:** дополнить точное содержание и назначение приложений Октоиха по полному православному изданию.
+
+**№14:** сверить с полным Типиконом заглавия и отдельное содержание глав 1–5, прежде всего 3–5.
+
+Эти три вопроса — **рабочая редакция**. Отсутствующие сведения не объявлены проверенными; дальнейшее пополнение проводится по православным учебникам библиотеки БПДС.
+
+[Все вопросы занятия](index.html) · [Сборник L3](l3-complete.html)
+"""
     return results
 
 
@@ -439,6 +477,8 @@ def add_navigation(number, generated):
                f'**{date_human(m["date"])}, {m["start_time"]}.** '
                f'{len(rows)} самостоятельных тем; {len(rows)*3} материалов L3/L2/L1.\n\n'
                f'[Все вопросы](../{path}/index.html) · [Сборник L3](../{path}/l3-complete.html)\n\n')
+    if number == 18:
+        section += '**Литургика №18, 13, 14 — рабочая редакция:** [отложенные дополнения](../sessions/18/source-status.html).\n\n'
     if number == 16:
         section += '**ИРПЦ №24 — условный допуск:** [подробности об открытой источниковой лакуне](../sessions/16/source-status.html).\n\n'
     generated[Path("materials/index.md")] = cat.replace(marker, section + marker)
@@ -453,6 +493,8 @@ def add_navigation(number, generated):
     first, sep, tail = homepage.partition("\n")
     if f'[Занятие №{number}]({path}/index.html)' not in first:
         first += f' · [Занятие №{number}]({path}/index.html)'
+    if number == 18:
+        note += 'Литургика №18, 13 и 14 — **рабочая редакция**; [отложенные дополнения](sessions/18/source-status.html).\n'
     if number == 16:
         note += 'ИРПЦ №24 **допущен условно**; [нехватка источников](sessions/16/source-status.html).\n'
     generated[Path("index.md")] = first + sep + tail.replace(anchor, note + anchor, 1)
@@ -481,7 +523,7 @@ def validate():
             if entry["topics"].split(";") != expected:
                 raise ValueError(f"Wrong registered topic order in session {n}")
             prefix = Path(f"sessions/{n:02d}")
-            if n in (13, 16) and not (ROOT / prefix / "source-status.md").is_file():
+            if n in (13, 16, 18) and not (ROOT / prefix / "source-status.md").is_file():
                 raise ValueError(f"Missing source-status page for conditional session {n}")
             if n == 16:
                 for name in ("index.md", "l3-complete.md", "q24-l3.md", "q24-l2.md", "q24-l1.md"):
@@ -490,6 +532,12 @@ def validate():
                         raise ValueError(f"Missing visible conditional approval warning: {prefix / name}")
                     if "source-status.html" not in body:
                         raise ValueError(f"Missing source status link: {prefix / name}")
+            if n == 18:
+                for name in ("index.md", "l3-complete.md", *[f"q{q:02d}-{level}.md"
+                            for q in (18, 13, 14) for level in LEVELS]):
+                    body = read(prefix / name)
+                    if "Рабочая редакция" not in body or "source-status.html" not in body:
+                        raise ValueError(f"Missing working edition warning: {prefix / name}")
             for name in ("index.md", "l3-complete.md"):
                 if not (ROOT / prefix / name).exists():
                     raise ValueError(f"Missing published page: {prefix/name}")

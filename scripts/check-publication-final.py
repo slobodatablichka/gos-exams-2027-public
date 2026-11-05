@@ -112,6 +112,15 @@ def private_quality(root, session, numbers):
                 or any(q24[level] != "done" for level in ("l3", "l2", "l1"))):
             raise ValueError("Session 16 special source gap not documented correctly")
         return "5/6 fully sourced; q24 conditionally approved with sources=todo"
+    if session == 18:
+        if len(rows) != 7 or accepted != 4:
+            raise ValueError("Session 18 must have four approved and three working topics")
+        for q in (18, 13, 14):
+            x = next((r for r in rows if int(r["question"]) == q), None)
+            if (x is None or x["sources"] != "todo" or x["quality"] != "todo"
+                    or any(x[level] != "done" for level in ("l3", "l2", "l1"))):
+                raise ValueError(f"Session 18 q{q} working gap status is invalid")
+        return "4/7 approved; q18, q13, q14 working editions with source gaps"
     if accepted != len(rows) and session != 13:
         raise ValueError("Private quality gate no longer approved")
     return f"{accepted}/{len(rows)} approved" + (
