@@ -1,0 +1,36 @@
+name: Subject generator verification
+
+on:
+  push:
+    paths:
+      - 'scripts/build-subjects.py'
+      - 'tests/test_subject_generator.py'
+      - '.github/workflows/subject-generator.yml'
+  pull_request:
+    paths:
+      - 'scripts/build-subjects.py'
+      - 'tests/test_subject_generator.py'
+      - '.github/workflows/subject-generator.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install PDF dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install reportlab
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core
+      - name: Compile generator and tests
+        run: python -m compileall -q scripts/build-subjects.py tests/test_subject_generator.py
+      - name: Run tests (including real PDF production)
+        run: python -m unittest discover -s tests -p test_subject_generator.py -v
