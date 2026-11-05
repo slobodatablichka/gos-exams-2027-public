@@ -164,12 +164,13 @@ def order_list(rows, all_rows, routes, order):
 def page_markdown(model, routes):
     title = model["title"]
     parts = []
+    semantic = model["topics"]
+    numerical = sorted(semantic, key=lambda row: row["official_number"])
     for section in model["sections"]:
         rows = [r for r in model["topics"] if r["section_id"] == section["id"]]
         parts.append('<section><h2>%s</h2><ol class="subject-list">%s</ol></section>' %
-                     (h(section["title"]), "".join(html_entry(r, routes[r["official_number"]]) for r in rows)))
-    numeric = "".join(html_entry(row, routes[row["official_number"]])
-                      for row in sorted(model["topics"], key=lambda r: r["official_number"]))
+                     (h(section["title"]), order_list(rows, semantic, routes, "meaning")))
+    numeric = order_list(numerical, numerical, routes, "number")
     css = """<style>
 .subject-choice {display:flex;gap:.65rem;flex-wrap:wrap;margin:1rem 0}
 .subject-choice button {padding:.65rem .9rem;border:1px solid #90a4b4;border-radius:6px;background:white;cursor:pointer}
