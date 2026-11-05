@@ -1,0 +1,654 @@
+{
+  "subject": "dogmatics",
+  "canonical_count": 23,
+  "official_numbers": 25,
+  "source_ref": "7001a612f131d2ad72b8c63c3989a19dc90086e5",
+  "pdf_count": 72,
+  "files": [
+    {
+      "file": "pdf/l3.pdf",
+      "level": "l3",
+      "kind": "subject",
+      "pages": 79,
+      "bytes": 367303,
+      "sha256": "a628f97848349590af11bca346ed0dde20892bb8e6abdae02354c47e6b7efd01"
+    },
+    {
+      "file": "pdf/q06-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 6,
+      "pages": 4,
+      "bytes": 65156,
+      "sha256": "384fa5af28b5360dce922dcf74c89dc5f8f3d98053cf98ad519b6c8746a0808a"
+    },
+    {
+      "file": "pdf/q01-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 1,
+      "pages": 3,
+      "bytes": 64019,
+      "sha256": "2b30c8afad4956bb3f392819931954c0455c519d5a2a46591317bf8ebd9da5cc"
+    },
+    {
+      "file": "pdf/q02-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 2,
+      "pages": 3,
+      "bytes": 66322,
+      "sha256": "8ce72b1c9ba88200afdf00dd99d08268da3ab5dab58617bce0ec41616d0a7b18"
+    },
+    {
+      "file": "pdf/q12-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 12,
+      "pages": 3,
+      "bytes": 61858,
+      "sha256": "cf7edeccc0a8fa63d497dc240d1585ce85376878c61fc2afce578313544655e5"
+    },
+    {
+      "file": "pdf/q20-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 20,
+      "pages": 4,
+      "bytes": 63541,
+      "sha256": "d2a9763c93e90ab3b51d2e5aeb546dc542f7a38ca3c82349de2b2a08b9c2df59"
+    },
+    {
+      "file": "pdf/q14-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 14,
+      "pages": 4,
+      "bytes": 69127,
+      "sha256": "0be85eb4ecd1800bb8a8ccb9dec66a9e189f41ad60b6aef907e4795962fc729d"
+    },
+    {
+      "file": "pdf/q08-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 8,
+      "pages": 4,
+      "bytes": 67761,
+      "sha256": "e77eae4bd51da15b3339a2ebbd8daa262ca60caf63cbf77f940dfb11b7b93c58"
+    },
+    {
+      "file": "pdf/q11-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 11,
+      "pages": 3,
+      "bytes": 62412,
+      "sha256": "85a98fff1300250b96808288cfb02d4a6c70227585a1c755a149219fe98f5556"
+    },
+    {
+      "file": "pdf/q13-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 13,
+      "pages": 3,
+      "bytes": 61918,
+      "sha256": "0840558ead4bad5313564a07b32334fb2ab8254d400d54106b6efba690a3498c"
+    },
+    {
+      "file": "pdf/q19-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 19,
+      "pages": 3,
+      "bytes": 61813,
+      "sha256": "b37d923134171ddfe4b58b6668ec355906d17baadf08f99ae8261b4e5c51f681"
+    },
+    {
+      "file": "pdf/q21-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 21,
+      "pages": 4,
+      "bytes": 63109,
+      "sha256": "f1d895a0bed6a3c41ac1f18086a8f38fabfca2c823d4d8072d8ae76760a81036"
+    },
+    {
+      "file": "pdf/q17-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 17,
+      "pages": 3,
+      "bytes": 61675,
+      "sha256": "bfa9512098d2fd40a31f2830bb6661e4ad966e9bcf05f42b751d0a4bd6177788"
+    },
+    {
+      "file": "pdf/q03-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 3,
+      "pages": 4,
+      "bytes": 65825,
+      "sha256": "b0e72017dd98dd6f5798df6147eaf5f185ba5b8443b79a2ae43407ef64a108aa"
+    },
+    {
+      "file": "pdf/q05-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 5,
+      "pages": 4,
+      "bytes": 65369,
+      "sha256": "12f385b3937d6c2ccd99843a16cc5ef39201cf9c82f996dc2f0f74cb6930c381"
+    },
+    {
+      "file": "pdf/q09-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 9,
+      "pages": 3,
+      "bytes": 63271,
+      "sha256": "56ebb8f85f3be5c6aff1374791ffcbc753b12f82e5b915211cb5645a3af43606"
+    },
+    {
+      "file": "pdf/q18-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 18,
+      "pages": 4,
+      "bytes": 64721,
+      "sha256": "f4924f7c482524da171813f76efb18a7426a5ebe96222c942e5ee1ed07134dc5"
+    },
+    {
+      "file": "pdf/q04-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 4,
+      "pages": 3,
+      "bytes": 62806,
+      "sha256": "bceed0ed496e156e06e66cf5ac2a22553e205a66ff1c786a4c80d9e16ee23f23"
+    },
+    {
+      "file": "pdf/q22-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 22,
+      "pages": 3,
+      "bytes": 62654,
+      "sha256": "e7df85c3ebfcbc2a77e0b2f96645e99dad47237d9b1661df119951113b9b143a"
+    },
+    {
+      "file": "pdf/q15-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 15,
+      "pages": 3,
+      "bytes": 62610,
+      "sha256": "f9397c0fb515ab526badb25c52cf39a3cc006da790f2a2a705e06eff5e73e77e"
+    },
+    {
+      "file": "pdf/q10-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 10,
+      "pages": 3,
+      "bytes": 63206,
+      "sha256": "a0ae2e5fbdcfb04d9b13b4b97ca4e3b35fcdf2065c0a158153adbcd587a832d6"
+    },
+    {
+      "file": "pdf/q23-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 23,
+      "pages": 4,
+      "bytes": 65787,
+      "sha256": "d048208db6a0a097029b4cb0755937cc5593a86dbb6f6e99320424bc1d2b76cb"
+    },
+    {
+      "file": "pdf/q24-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 24,
+      "pages": 4,
+      "bytes": 65128,
+      "sha256": "18f76f60314ed0efff865dca5dfd3337fc3611ea1347d808d090f4d818624b72"
+    },
+    {
+      "file": "pdf/q25-l3.pdf",
+      "level": "l3",
+      "kind": "question",
+      "canonical_question": 25,
+      "pages": 4,
+      "bytes": 66397,
+      "sha256": "02197dd592825b263e8ae5d43c428f7043b96fd98518379cb20aa65a64c460ff"
+    },
+    {
+      "file": "pdf/l2.pdf",
+      "level": "l2",
+      "kind": "subject",
+      "pages": 38,
+      "bytes": 195592,
+      "sha256": "8a6f0abd9f42d03a177bfad2690878da28ff06377e2e03985e8144c04e995564"
+    },
+    {
+      "file": "pdf/q06-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 6,
+      "pages": 2,
+      "bytes": 56412,
+      "sha256": "86f3fba4982697eb174b4f21cee1d5eec6ef86d9f054b7eb43e02818f4ad0979"
+    },
+    {
+      "file": "pdf/q01-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 1,
+      "pages": 2,
+      "bytes": 56468,
+      "sha256": "ace7ff86ae95d23667b51bbf427c61f6d0150aece2bc50eebe702a45ba1186a7"
+    },
+    {
+      "file": "pdf/q02-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 2,
+      "pages": 2,
+      "bytes": 57066,
+      "sha256": "4cbafa300d8be2a6d56b854c405f497af7e04880acbedd90f255098f3997c759"
+    },
+    {
+      "file": "pdf/q12-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 12,
+      "pages": 1,
+      "bytes": 53494,
+      "sha256": "e437892c8a8be7b7355d5b76a8e38b57fd7d13cce3e85bb6f90719e26f3467c3"
+    },
+    {
+      "file": "pdf/q20-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 20,
+      "pages": 1,
+      "bytes": 52598,
+      "sha256": "d15a345710c8304c4233fae856154004757c71285c933128e935f759e05bc783"
+    },
+    {
+      "file": "pdf/q14-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 14,
+      "pages": 2,
+      "bytes": 58479,
+      "sha256": "2ab025292d1125f037fcaf2655a944be178e389c369baeac3c29edef851693b7"
+    },
+    {
+      "file": "pdf/q08-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 8,
+      "pages": 2,
+      "bytes": 57313,
+      "sha256": "3868d044205fed23534ee18274cd87c746eaa09b746138e91d18d46cfd6c26c1"
+    },
+    {
+      "file": "pdf/q11-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 11,
+      "pages": 1,
+      "bytes": 54437,
+      "sha256": "07501b92c8424ba2827292a07443b20eccbd9ed950da0f9e21374abd67dd5de7"
+    },
+    {
+      "file": "pdf/q13-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 13,
+      "pages": 1,
+      "bytes": 52974,
+      "sha256": "d366375dd30a34815b5e1a378b922592f50d466a19af4347319861bb09516f83"
+    },
+    {
+      "file": "pdf/q19-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 19,
+      "pages": 1,
+      "bytes": 53186,
+      "sha256": "a4081280041e09cc66501e5a13b842eba86632e612ff2dc4012f94467c796179"
+    },
+    {
+      "file": "pdf/q21-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 21,
+      "pages": 1,
+      "bytes": 53632,
+      "sha256": "0b9006f388a04fd6644429ba7c2fe789f9a4e657c62b95b997a60bb3c7366f7b"
+    },
+    {
+      "file": "pdf/q17-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 17,
+      "pages": 1,
+      "bytes": 53766,
+      "sha256": "5de0a036db4819a661abbc225560f14f54b149bbb75bcaa9b720fb8a6e6f921a"
+    },
+    {
+      "file": "pdf/q03-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 3,
+      "pages": 2,
+      "bytes": 55833,
+      "sha256": "d83ad5672e28f83f0e4ef11084a345e472ae42e1d861e95b0f2926288d636ed6"
+    },
+    {
+      "file": "pdf/q05-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 5,
+      "pages": 2,
+      "bytes": 56483,
+      "sha256": "5035552a091a90e0f52fcb23b91f22d6ad5370e8d74e115cceba47e73a645f3c"
+    },
+    {
+      "file": "pdf/q09-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 9,
+      "pages": 2,
+      "bytes": 57131,
+      "sha256": "38132cecdc9c9316694138ed9c8c60e3313ca45214823742403ffc7f86340439"
+    },
+    {
+      "file": "pdf/q18-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 18,
+      "pages": 2,
+      "bytes": 55232,
+      "sha256": "23c78b00b4eaf875bd799a15c5daae39ff690a151353b48ae97ae37474280ac7"
+    },
+    {
+      "file": "pdf/q04-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 4,
+      "pages": 2,
+      "bytes": 55950,
+      "sha256": "c8adb083baec384f0979e9081fc7ceec91d30428760e79a0a673ec070f302e18"
+    },
+    {
+      "file": "pdf/q22-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 22,
+      "pages": 2,
+      "bytes": 56180,
+      "sha256": "92e73a5fda528e2a7ffa800d5f8b24b6825cd7c52ca62186696484503a233cd7"
+    },
+    {
+      "file": "pdf/q15-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 15,
+      "pages": 2,
+      "bytes": 56377,
+      "sha256": "f1c4e6e36c8f1734ff9398550c90d54a1dec72004b009dce2ea0604be85e178f"
+    },
+    {
+      "file": "pdf/q10-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 10,
+      "pages": 2,
+      "bytes": 57493,
+      "sha256": "f8288cdcc4eedeecaf04f4b4a9bef67f1a99b5ec6ab7cfa0a3f2cbfddf0da2dc"
+    },
+    {
+      "file": "pdf/q23-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 23,
+      "pages": 2,
+      "bytes": 56197,
+      "sha256": "a76cc6787f5df7797beba90f2a0fd11d84a7c252e24bced082f360afc491cac2"
+    },
+    {
+      "file": "pdf/q24-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 24,
+      "pages": 2,
+      "bytes": 57539,
+      "sha256": "fe9450b81120464bd5835a8c928dcd1775e6a4b6ef7f77c7d7368f27c70bd3c3"
+    },
+    {
+      "file": "pdf/q25-l2.pdf",
+      "level": "l2",
+      "kind": "question",
+      "canonical_question": 25,
+      "pages": 2,
+      "bytes": 58503,
+      "sha256": "5548f6596d1e220df779adda9e5b5aa13ccb77de5b9f84f8762f93ac17a4b9ac"
+    },
+    {
+      "file": "pdf/l1.pdf",
+      "level": "l1",
+      "kind": "subject",
+      "pages": 26,
+      "bytes": 155964,
+      "sha256": "2be0d0a4db0f81b0ebde7bb75082977b1f8af0343ebae954186e46fa19e38c8f"
+    },
+    {
+      "file": "pdf/q06-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 6,
+      "pages": 1,
+      "bytes": 53712,
+      "sha256": "43a48ac8b80293c1fd0230e72ce6f3d898f917aa7c2e7c22a27d9424e695fa4e"
+    },
+    {
+      "file": "pdf/q01-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 1,
+      "pages": 1,
+      "bytes": 54184,
+      "sha256": "7480a0af7a28fb468c4f110acc716ba9ac1dd78bfabb0624998edc97fe3d7a03"
+    },
+    {
+      "file": "pdf/q02-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 2,
+      "pages": 1,
+      "bytes": 54027,
+      "sha256": "083fbb1768ee0f856013d617900179209c7bb83465bb7dbf519c9cedbb86bd56"
+    },
+    {
+      "file": "pdf/q12-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 12,
+      "pages": 1,
+      "bytes": 52115,
+      "sha256": "8820b24ceee34ef8ff2eeaa1ebef0cb6728d6d69769f56aeae9e0943ff2c6a1c"
+    },
+    {
+      "file": "pdf/q20-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 20,
+      "pages": 1,
+      "bytes": 51914,
+      "sha256": "e437692ff4411d3a7e36c3190795a2a31512f4299e4b287cc1d05422b6f1bc6a"
+    },
+    {
+      "file": "pdf/q14-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 14,
+      "pages": 2,
+      "bytes": 56132,
+      "sha256": "2af7e6f761dc8dfc5554fba340095bdf222b911f359000c11e3901351dac5039"
+    },
+    {
+      "file": "pdf/q08-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 8,
+      "pages": 1,
+      "bytes": 54792,
+      "sha256": "ae2fea5fd7fd170e0b680e90c47ef4da2d4242686ed75d5cb2e2951ab083fee1"
+    },
+    {
+      "file": "pdf/q11-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 11,
+      "pages": 1,
+      "bytes": 53246,
+      "sha256": "ee42eb73106433d4c2538b418c2f942cae7100f47298cc283d9af1591d52a5bb"
+    },
+    {
+      "file": "pdf/q13-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 13,
+      "pages": 1,
+      "bytes": 52342,
+      "sha256": "a2adfdbff130b107ccfccfd51a9b13297a6bac39375924e6b46d43cf8c9376e5"
+    },
+    {
+      "file": "pdf/q19-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 19,
+      "pages": 1,
+      "bytes": 52120,
+      "sha256": "4dcf797bf8425420c5da0c482f19e5c61e4ea5af961a3f0a147be64968e0f904"
+    },
+    {
+      "file": "pdf/q21-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 21,
+      "pages": 1,
+      "bytes": 52554,
+      "sha256": "0926c454dfd1f5d40ab9166dd370330776894218c18b82bebd944c39d7f5f5e7"
+    },
+    {
+      "file": "pdf/q17-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 17,
+      "pages": 1,
+      "bytes": 52176,
+      "sha256": "cd9bc1985d774d6a16c838fcf9d1f04fb2ef12f79c221fb45236ece3a225e2f1"
+    },
+    {
+      "file": "pdf/q03-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 3,
+      "pages": 1,
+      "bytes": 54149,
+      "sha256": "2e0ae2b0720845dcff7058a3cfdec3e125f33d88b915f1ebf20e0ff83d4f6646"
+    },
+    {
+      "file": "pdf/q05-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 5,
+      "pages": 1,
+      "bytes": 53727,
+      "sha256": "26f3e3a5d0c436c5c20aa1a9e9ae65fe2e9d8a183d93756ca1abe079dc965c4c"
+    },
+    {
+      "file": "pdf/q09-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 9,
+      "pages": 1,
+      "bytes": 53571,
+      "sha256": "706d80f664d4e020cb86b072cc3f54ea7b2a354169190bbba8f7e71615c1c7df"
+    },
+    {
+      "file": "pdf/q18-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 18,
+      "pages": 1,
+      "bytes": 52785,
+      "sha256": "ede35094a0facfc2aee2c4274185f728d81c06f79f27bf24ed81621931d92b3c"
+    },
+    {
+      "file": "pdf/q04-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 4,
+      "pages": 1,
+      "bytes": 53129,
+      "sha256": "62147b69dfa4aee2c06f5ed891dea2cdfc637ff85012c81876d4ac34c6dc72af"
+    },
+    {
+      "file": "pdf/q22-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 22,
+      "pages": 1,
+      "bytes": 53028,
+      "sha256": "58f2ab125336f46b27d4b75bc2b45ecadb702c92d3ba15368f489dfa19b0f4ed"
+    },
+    {
+      "file": "pdf/q15-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 15,
+      "pages": 1,
+      "bytes": 53955,
+      "sha256": "650471f10882ff9eb400c43a51e9ccb3dc0dd9d308c8fb725ff5758f901e9260"
+    },
+    {
+      "file": "pdf/q10-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 10,
+      "pages": 1,
+      "bytes": 53788,
+      "sha256": "de89c1b8139ad97f9bd8e3e5e70633cbccb392c5cd512d7123004d1de5ebd706"
+    },
+    {
+      "file": "pdf/q23-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 23,
+      "pages": 1,
+      "bytes": 53967,
+      "sha256": "a6506b6aaaa1e3f73c4e2988cc010c9d566ce906155742f7cbb31991188f98fb"
+    },
+    {
+      "file": "pdf/q24-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 24,
+      "pages": 1,
+      "bytes": 53795,
+      "sha256": "ea6343d7a744528e1f4a622562e0f78818cf232f99c9709fb1af1add78e0e12e"
+    },
+    {
+      "file": "pdf/q25-l1.pdf",
+      "level": "l1",
+      "kind": "question",
+      "canonical_question": 25,
+      "pages": 2,
+      "bytes": 55012,
+      "sha256": "e92643d1328a0cf5f3afa5c6cddcd81876d71a203db7bd40501c65a0b5441bd7"
+    }
+  ]
+}

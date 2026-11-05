@@ -10,6 +10,21 @@ title: "ДБ №23. Таинство Евхаристии: преложение 
 <h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №23</h4>
 <blockquote class="exam-official"><p>Таинство Евхаристии. Установление таинства Евхаристии. Преложение хлеба и вина в таинстве Евхаристии. Преложение и пресуществление. Образ пребывания Господа Иисуса Христа в Святых Дарах. Отношение Евхаристии к Голгофской Жертве. Евхаристия как Жертва. Необходимость и спасительность причащения Святых Тайн.</p></blockquote>
 
+<!-- subject-navigation:begin -->
+<nav class="exam-subject-nav" aria-label="Навигация по предмету">
+<p class="exam-subject-title">По предмету: <strong>Догматическое богословие</strong> · вопрос №23</p>
+<div class="exam-subject-links">
+<a href="../../subjects/dogmatics/index.html#meaning-q23">По учебнику</a>
+<a href="../../subjects/dogmatics/index.html#number-q23">По номеру билета</a>
+<a href="../../subjects/dogmatics/numbers.html#number-q23">Все 25 номеров</a>
+<a href="../../subjects/index.html">Все предметы</a>
+</div>
+<div class="exam-subject-neighbors">
+<span>Следовать по учебнику:</span> <a href="../../sessions/17/q10-l1.html">← №10</a> · <a href="../../sessions/17/q24-l1.html">№24 →</a>
+</div>
+</nav>
+<!-- subject-navigation:end -->
+
 <nav class="exam-levels" aria-label="Три уровня этого вопроса"><a href="q23-dogmatics-l3.html"><strong>L3</strong><span>Статья</span></a><a href="q23-dogmatics-l2.html"><strong>L2</strong><span>Устный ответ</span></a><a href="q23-dogmatics-l1.html" aria-current="page"><strong>L1</strong><span>План</span></a></nav>
 <details class="exam-questions"><summary>Другие темы занятия · L1</summary><ol><li><a href="q08-l1.html">НЗ №8. Сотериология Послания к Римлянам: от искупления до усыновления</a></li>
 <li><a href="q23-nt-l1.html">НЗ №23. Христианская свобода и проблемы коринфской общины</a></li>

@@ -10,6 +10,21 @@ title: "НЗ №23. Христианская свобода и проблемы 
 <h4 class="exam-section-label">Официальная формулировка экзаменационного вопроса №23</h4>
 <blockquote class="exam-official"><p>Основные принципы христианской свободы на примере 1 послания к Коринфянам: проблемы коринфской общины.</p></blockquote>
 
+<!-- subject-navigation:begin -->
+<nav class="exam-subject-nav" aria-label="Навигация по предмету">
+<p class="exam-subject-title">По предмету: <strong>Священное Писание Нового Завета</strong> · вопрос №23</p>
+<div class="exam-subject-links">
+<a href="../../subjects/nt/index.html#meaning-q23">По учебнику</a>
+<a href="../../subjects/nt/index.html#number-q23">По номеру билета</a>
+<a href="../../subjects/nt/numbers.html#number-q23">Все 25 номеров</a>
+<a href="../../subjects/index.html">Все предметы</a>
+</div>
+<div class="exam-subject-neighbors">
+<span>Следовать по учебнику:</span> <a href="../../sessions/19/q08-l2.html">← №8</a> · <a href="../../sessions/19/q24-l2.html">№24 →</a>
+</div>
+</nav>
+<!-- subject-navigation:end -->
+
 <nav class="exam-levels" aria-label="Три уровня этого вопроса"><a href="q23-nt-l3.html"><strong>L3</strong><span>Статья</span></a><a href="q23-nt-l2.html" aria-current="page"><strong>L2</strong><span>Устный ответ</span></a><a href="q23-nt-l1.html"><strong>L1</strong><span>План</span></a></nav>
 <details class="exam-questions"><summary>Другие темы занятия · L2</summary><ol><li><a href="q08-l2.html">НЗ №8. Сотериология Послания к Римлянам: от искупления до усыновления</a></li>
 <li><strong>НЗ №23. Христианская свобода и проблемы коринфской общины — здесь</strong></li>
