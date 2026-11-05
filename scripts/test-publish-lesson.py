@@ -75,7 +75,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                 "Полностью искусственный тестовый абзац; тест не публикуется.\n" + private_meta,
                 encoding="utf-8")
     planned = module.assemble(session, private)
-    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16, 18) else 2)
+    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16, 18) else 2), (session, len(rows), len(planned))
     for row in rows:
         for level in ("l2", "l1"):
             page = planned[Path(f"sessions/{session:02d}/q{module.code(row)}-{level}.md")]
