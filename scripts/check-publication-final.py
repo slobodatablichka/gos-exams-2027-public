@@ -76,9 +76,9 @@ def structural_check(session):
     if reader.exists():
         body = reader.read_text(encoding="utf-8")
         for row in rows:
-            mixed_numbers = len({mod.code(x) for x in rows}) != len(rows)
-            anchor = (f'n{mod.page_code(row, rows)}' if mixed_numbers
-                      else f'n{mod.code(row)}')
+            # Publisher always prefixes question routes with q, including
+            # single-subject lessons; mixed topics add the subject suffix.
+            anchor = f'n{mod.page_code(row, rows)}'
             if f'id="{anchor}"' not in body:
                 errors.append(f"Collection lacks anchor {anchor}")
     if session == 16:
