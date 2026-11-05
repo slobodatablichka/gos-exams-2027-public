@@ -118,7 +118,7 @@ def h(value):
     return html.escape(str(value), quote=True)
 
 
-def html_entry(row, paths):
+def html_entry(row, paths, order="meaning", previous=None, following=None):
     n = row["official_number"]
     alias = ""
     if row["canonical_question"] != n:
@@ -134,9 +134,15 @@ def html_entry(row, paths):
             h(paths[level]), level.upper(), h(LABELS[level])))
         links.append('<a href="pdf/q%02d-%s.pdf" download>PDF %s</a>' %
                      (n, level, level.upper()))
-    return ('<li class="subject-question"><p><b>№%d.</b> %s</p>%s%s'
-            '<div class="subject-links">%s</div></li>' %
-            (n, h(row["official_question"]), alias, notice, " · ".join(links)))
+    adjacent = []
+    if previous is not None:
+        adjacent.append('<a href="#%s-q%02d">← №%d</a>' % (order, previous, previous))
+    if following is not None:
+        adjacent.append('<a href="#%s-q%02d">№%d →</a>' % (order, following, following))
+    adjacent.append('<a href="../../sessions/%02d/index.html">Занятие №%d</a>' % (row["session"], row["session"]))
+    return ('<li class="subject-question" id="%s-q%02d"><p><b>№%d.</b> %s</p>%s%s'
+            '<div class="subject-links">%s</div><nav class="subject-neighbors">%s</nav></li>' %
+            (order, n, n, h(row["official_question"]), alias, notice, " · ".join(links), " · ".join(adjacent)))
 
 
 def page_markdown(model, routes):
