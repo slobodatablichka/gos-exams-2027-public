@@ -118,7 +118,7 @@ def h(value):
     return html.escape(str(value), quote=True)
 
 
-def html_entry(row, paths):
+def html_entry(row, paths, order="meaning", previous=None, following=None):
     n = row["official_number"]
     alias = ""
     if row["canonical_question"] != n:
@@ -134,20 +134,43 @@ def html_entry(row, paths):
             h(paths[level]), level.upper(), h(LABELS[level])))
         links.append('<a href="pdf/q%02d-%s.pdf" download>PDF %s</a>' %
                      (n, level, level.upper()))
-    return ('<li class="subject-question"><p><b>№%d.</b> %s</p>%s%s'
-            '<div class="subject-links">%s</div></li>' %
-            (n, h(row["official_question"]), alias, notice, " · ".join(links)))
+    adjacent = []
+    if previous is not None:
+        adjacent.append('<a href="#%s-q%02d">← №%d</a>' % (order, previous, previous))
+    if following is not None:
+        adjacent.append('<a href="#%s-q%02d">№%d →</a>' % (order, following, following))
+    adjacent.append('<a href="../../sessions/%02d/index.html">Занятие №%d</a>' % (row["session"], row["session"]))
+    return ('<li class="subject-question" id="%s-q%02d"><p><b>№%d.</b> %s</p>%s%s'
+            '<div class="subject-links">%s</div><nav class="subject-neighbors">%s</nav></li>' %
+            (order, n, n, h(row["official_question"]), alias, notice, " · ".join(links), " · ".join(adjacent)))
+
+
+def jump_links(order):
+    return '<nav class="subject-jump" aria-label="Номер билета">' + " ".join(
+        '<a href="#%s-q%02d">%d</a>' % (order, n, n) for n in range(1, 26)) + '</nav>'
+
+
+def order_list(rows, all_rows, routes, order):
+    positions = {r["official_number"]: i for i, r in enumerate(all_rows)}
+    content = []
+    for row in rows:
+        i = positions[row["official_number"]]
+        prev = all_rows[i-1]["official_number"] if i else None
+        nxt = all_rows[i+1]["official_number"] if i+1 < len(all_rows) else None
+        content.append(html_entry(row, routes[row["official_number"]], order, prev, nxt))
+    return "".join(content)
 
 
 def page_markdown(model, routes):
     title = model["title"]
     parts = []
+    semantic = model["topics"]
+    numerical = sorted(semantic, key=lambda row: row["official_number"])
     for section in model["sections"]:
         rows = [r for r in model["topics"] if r["section_id"] == section["id"]]
         parts.append('<section><h2>%s</h2><ol class="subject-list">%s</ol></section>' %
-                     (h(section["title"]), "".join(html_entry(r, routes[r["official_number"]]) for r in rows)))
-    numeric = "".join(html_entry(row, routes[row["official_number"]])
-                      for row in sorted(model["topics"], key=lambda r: r["official_number"]))
+                     (h(section["title"]), order_list(rows, semantic, routes, "meaning")))
+    numeric = order_list(numerical, numerical, routes, "number")
     css = """<style>
 .subject-choice {display:flex;gap:.65rem;flex-wrap:wrap;margin:1rem 0}
 .subject-choice button {padding:.65rem .9rem;border:1px solid #90a4b4;border-radius:6px;background:white;cursor:pointer}
@@ -158,6 +181,10 @@ def page_markdown(model, routes):
 .subject-links {font-size:.88rem;line-height:1.8}
 .subject-notice {color:#78371f}
 .subject-alias {color:#526573;font-size:.9rem}
+.subject-neighbors {border-top:1px solid #d9e0e5;margin-top:.45rem;padding-top:.45rem;font-size:.9rem}
+.subject-question {scroll-margin-top:1rem}
+.subject-jump {line-height:2.4;margin:.7rem 0;padding:.6rem;border:1px solid #d9e0e5;border-radius:6px}
+.subject-jump a {display:inline-block;min-width:1.8rem;text-align:center}
 .subject-downloads {display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
 [hidden] {display:none!important}
 </style>"""
@@ -169,23 +196,34 @@ def page_markdown(model, routes):
    buttons.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.sortButton===mode));});
    panels.forEach(function(p){p.hidden=p.dataset.sortPanel!==mode;});
  }
- buttons.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.sortButton);});});
- set("meaning");
+ buttons.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.sortButton);location.hash=b.dataset.sortButton+"-q01";});});
+ window.addEventListener("hashchange",function(){set(location.hash.indexOf("#number-q")===0?"number":"meaning");});
+ set(location.hash.indexOf("#number-q")===0?"number":"meaning");
 }());
 </script>"""
     pdfs = " ".join('<a href="pdf/%s.pdf" download>Весь %s (PDF)</a>' % (x, x.upper()) for x in LEVELS)
     return ('---\nlayout: default\ntitle: "%s — подготовка по предмету"\n---\n\n<!-- subject-generator: managed -->\n' % title
-            + '[Главная](../../index.html) › [Предметы](../index.html) › **%s**\n\n# %s\n\n' % (title, title)
+            + '[Главная](../../index.html) › [Материалы](../../materials/index.html) › [Предметы](../index.html) › **%s**\n\n# %s\n\n' % (title, title)
             + 'Все 25 официальных номеров. Смысловой порядок основан на православных учебниках БПДС.\n\n'
-            + css + '<div class="subject-downloads">' + pdfs + '</div>'
+            + css + '<p><a href="../index.html">Все предметы</a> · <a href="../../materials/index.html">По занятиям</a> · <a href="numbers.html">По номерам без JavaScript</a></p><div class="subject-downloads">' + pdfs + '</div>'
             + '<div class="subject-choice" role="group" aria-label="Порядок вопросов">'
             + '<button type="button" data-sort-button="meaning" aria-pressed="true">Смысловой порядок</button>'
             + '<button type="button" data-sort-button="number" aria-pressed="false">По номерам</button></div>'
-            + '<div data-sort-panel="meaning">' + "".join(parts) + '</div>'
-            + '<div data-sort-panel="number" hidden><h2>Номера 1–25</h2><ol class="subject-list">'
-            + numeric + '</ol></div>'
-            + '<noscript><p>Без JavaScript доступен смысловой перечень со всеми 25 номерами.</p></noscript>'
+            + '<div data-sort-panel="meaning">' + jump_links("meaning") + "".join(parts) + '</div>'
+            + '<div data-sort-panel="number" hidden><h2>Номера 1–25</h2>'
+            + jump_links('number') + '<ol class="subject-list">' + numeric + '</ol></div>'
+            + '<noscript><p>Без JavaScript доступен смысловой порядок и отдельный числовой список: <a href="numbers.html">№1–25</a>.</p></noscript>'
             + js + '\n')
+
+
+def numbers_markdown(model, routes):
+    rows = sorted(model['topics'], key=lambda row: row['official_number'])
+    return ('---\nlayout: default\ntitle: Билеты по номерам\n---\n\n'
+            '<!-- subject-generator: managed -->\n'
+            '[Все предметы](../index.html) · [К смысловому порядку](index.html)\n\n'
+            '# %s — билеты №1–25\n\n' % model['title']
+            + jump_links('number')
+            + '<ol class="subject-list">' + order_list(rows, rows, routes, 'number') + '</ol>')
 
 
 def catalog(ready):
@@ -306,6 +344,7 @@ def build(private, public, dest, slugs, with_pdf):
         base = dest / "subjects" / slug
         base.mkdir(parents=True, exist_ok=True)
         (base / "index.md").write_text(page_markdown(model, routes), encoding="utf-8")
+        (base / "numbers.md").write_text(numbers_markdown(model, routes), encoding="utf-8")
         if with_pdf:
             seen = set()
             canon = []
@@ -329,9 +368,12 @@ def main():
     parser.add_argument("--subjects", nargs="+", required=True, choices=tuple(SUBJECTS))
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--no-pdf", action="store_true", help="diagnostic only")
+    parser.add_argument("--preview-dir", type=Path, help="save HTML drafts outside the public site")
     args = parser.parse_args()
     private, public = args.private_root.resolve(), args.public_root.resolve()
     slugs = list(dict.fromkeys(args.subjects))
+    if args.preview_dir and (args.command != "build" or not args.no_pdf or args.apply):
+        parser.error("--preview-dir is only for build --no-pdf without --apply")
     if args.apply and (args.command != "build" or args.no_pdf):
         parser.error("--apply requires build with PDF")
     for slug in slugs:
@@ -347,6 +389,12 @@ def main():
         (staged / "subjects" / "index.md").write_text(catalog(already_ready | set(slugs)), encoding="utf-8")
         count = sum(p.is_file() for p in staged.rglob("*"))
         print("PASS: built %d staged files" % count)
+        if args.preview_dir:
+            preview = args.preview_dir.resolve()
+            if preview.exists():
+                abort("Refusing to overwrite existing preview: " + str(preview))
+            shutil.copytree(staged / "subjects", preview)
+            print("PREVIEW: subject pages saved to " + str(preview))
         if args.apply:
             # Protect hand-written content, but permit reproducible updates to managed pages/PDF.
             marker = "subject-generator: managed"
