@@ -53,7 +53,7 @@ def check(private, public, staged):
         for row in rows:
             for url in row["level_urls"].values():
                 valid_routes.add(url)
-                if row["session"] == 19 and row["canonical_question"] == 23:
+                if row["session"] == 19 and row.get("canonical_question", row["official_number"]) == 23:
                     valid_routes.add("sessions/19/q23-%s-%s.html" % (slug, url[-7:-5]))
     for relative in sorted(page_files):
         counts[relative.rsplit("-", 1)[-1]] += 1
