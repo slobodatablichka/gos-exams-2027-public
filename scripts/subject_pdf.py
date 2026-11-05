@@ -265,7 +265,7 @@ def build_pdf(path, model, rows, private_root, slug, level, *, source_ref="", in
     title = model["title"]
     story = [
         Paragraph(html.escape(title), styles["title"]),
-        Paragraph("%s · Госэкзамены — 2027 · 05.11.2026" % level.upper(), styles["intro"]),
+        Paragraph("%s · Госэкзамены — 2027 · %s" % (level.upper(), datetime.now(timezone.utc).strftime("%d.%m.%Y")), styles["intro"]),
         Paragraph("Ответы подготовлены по православным учебникам библиотеки БПДС. "
                   "Официальные номера билетов сохранены.", styles["intro"]),
     ]
