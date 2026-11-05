@@ -196,7 +196,7 @@ def page_markdown(model, routes):
    buttons.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.sortButton===mode));});
    panels.forEach(function(p){p.hidden=p.dataset.sortPanel!==mode;});
  }
- buttons.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.sortButton);});});
+ buttons.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.sortButton);location.hash=b.dataset.sortButton+"-q01";});});
  window.addEventListener("hashchange",function(){set(location.hash.indexOf("#number-q")===0?"number":"meaning");});
  set(location.hash.indexOf("#number-q")===0?"number":"meaning");
 }());
