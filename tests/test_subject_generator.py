@@ -73,6 +73,7 @@ class SubjectGeneratorTests(unittest.TestCase):
         self.assertIn('data-sort-panel="meaning"', html)
         self.assertIn('data-sort-panel="number"', html)
         self.assertIn("pdf/q07-l3.pdf", html)
+        self.assertIn("subject-generator: managed", html)
         self.assertIn("25 официальных номеров", html)
 
     def test_no_unapproved_or_missing_source(self):
