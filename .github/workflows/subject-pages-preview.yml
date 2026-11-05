@@ -1,0 +1,37 @@
+name: Preview real subject pages
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-subjects.py'
+      - 'tests/test_subject_generator.py'
+      - '.github/workflows/subject-pages-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public site
+        uses: actions/checkout@v4
+        with:
+          path: public
+      - name: Checkout approved private source
+        uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Validate three complete subjects
+        run: python public/scripts/build-subjects.py check --public-root public --private-root private --subjects nt ot dogmatics
+      - name: Render seven real Markdown pages (draft, no PDF)
+        run: python public/scripts/build-subjects.py build --public-root public --private-root private --subjects nt ot dogmatics --no-pdf --preview-dir subject-preview
+      - name: Publish preview artifact only
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-pages-preview
+          path: subject-preview/
+          if-no-files-found: error
