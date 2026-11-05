@@ -1,0 +1,23 @@
+name: Verify public GitHub Pages subjects over HTTPS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/subject-pages-live-check.yml
+      - scripts/check-live-subject-pages.py
+      - subjects/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check deployed pages, original links and PDF downloads
+        run: python scripts/check-live-subject-pages.py --attempts 12 --retry-seconds 12
