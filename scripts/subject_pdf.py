@@ -23,8 +23,8 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (BaseDocTemplate, Frame, PageBreak, PageTemplate,
-                                Paragraph, Spacer, TableOfContents)
-from reportlab.platypus.tableofcontents import TableOfContents as _TOC
+                                Paragraph, Spacer)
+from reportlab.platypus.tableofcontents import TableOfContents, TableOfContents as _TOC
 
 
 LEVEL_NAMES = {"l3": "Полный ответ", "l2": "Устный ответ", "l1": "Тезисный план"}
@@ -53,7 +53,7 @@ def _fonts():
 def _styles():
     _fonts()
     def p(name, size, lead, **kw):
-        return ParagraphStyle(name, fontName="GosSans", fontSize=size, leading=lead, **kw)
+        return ParagraphStyle(name, **dict({"fontName":"GosSans","fontSize":size,"leading":lead}, **kw))
     return {
         "title": p("GosTitle", 18, 25, fontName="GosSansBold", spaceAfter=14),
         "intro": p("GosIntro", 10, 15, spaceAfter=9, textColor=colors.HexColor("#485664")),
