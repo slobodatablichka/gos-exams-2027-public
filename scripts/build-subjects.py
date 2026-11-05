@@ -181,7 +181,11 @@ def page_markdown(model, routes):
 .subject-links {font-size:.88rem;line-height:1.8}
 .subject-notice {color:#78371f}
 .subject-alias {color:#526573;font-size:.9rem}
-.subject-neighbors {border-top:1px solid #d9e0e5;margin-top:.45rem;padding-top:.45rem;font-size:.9rem}\n.subject-question {scroll-margin-top:1rem}\n.subject-jump {line-height:2.4;margin:.7rem 0;padding:.6rem;border:1px solid #d9e0e5;border-radius:6px}\n.subject-jump a {display:inline-block;min-width:1.8rem;text-align:center}\n.subject-downloads {display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
+.subject-neighbors {border-top:1px solid #d9e0e5;margin-top:.45rem;padding-top:.45rem;font-size:.9rem}
+.subject-question {scroll-margin-top:1rem}
+.subject-jump {line-height:2.4;margin:.7rem 0;padding:.6rem;border:1px solid #d9e0e5;border-radius:6px}
+.subject-jump a {display:inline-block;min-width:1.8rem;text-align:center}
+.subject-downloads {display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
 [hidden] {display:none!important}
 </style>"""
     js = """<script>
@@ -206,8 +210,8 @@ def page_markdown(model, routes):
             + '<button type="button" data-sort-button="meaning" aria-pressed="true">Смысловой порядок</button>'
             + '<button type="button" data-sort-button="number" aria-pressed="false">По номерам</button></div>'
             + '<div data-sort-panel="meaning">' + jump_links("meaning") + "".join(parts) + '</div>'
-            + '<div data-sort-panel="number" hidden><h2>Номера 1–25</h2><ol class="subject-list">'
-            + jump_links('number') + numeric + '</ol></div>'
+            + '<div data-sort-panel="number" hidden><h2>Номера 1–25</h2>'
+            + jump_links('number') + '<ol class="subject-list">' + numeric + '</ol></div>'
             + '<noscript><p>Без JavaScript доступен смысловой порядок и отдельный числовой список: <a href="numbers.html">№1–25</a>.</p></noscript>'
             + js + '\n')
 
