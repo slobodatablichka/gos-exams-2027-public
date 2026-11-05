@@ -41,7 +41,12 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     module.ROOT = dst
     module.validate()  # Existing published lessons remain valid.
     published = {int(r['session']) for r in module.csv_rows(module.LEDGER)}
-    session = next((n for n in range(1, 24) if n not in published), None)
+    # The regression fixture uses the next lesson with distinct numeric filenames.
+    # Session 19 mixes disciplines and repeats question 23, requiring a separate
+    # future filename-collision migration; do not let it invalidate session 18.
+    session = next((n for n in range(1, 24) if n not in published
+                    and len({module.code(r) for r in module.topics(n)})
+                    == len(module.topics(n))), None)
     if session is None:
         raise AssertionError('No unpublished lesson available for regression test')
     original_schedule = module.read("schedule.md")
