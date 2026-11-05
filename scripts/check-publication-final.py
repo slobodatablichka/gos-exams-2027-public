@@ -76,7 +76,9 @@ def structural_check(session):
     if reader.exists():
         body = reader.read_text(encoding="utf-8")
         for row in rows:
-            anchor = f'n{mod.page_code(row, rows)}'
+            mixed_numbers = len({mod.code(x) for x in rows}) != len(rows)
+            anchor = (f'n{mod.page_code(row, rows)}' if mixed_numbers
+                      else f'n{mod.code(row)}')
             if f'id="{anchor}"' not in body:
                 errors.append(f"Collection lacks anchor {anchor}")
     if session == 16:

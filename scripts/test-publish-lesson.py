@@ -41,6 +41,9 @@ final_spec = importlib.util.spec_from_file_location(
 final_audit = importlib.util.module_from_spec(final_spec)
 final_spec.loader.exec_module(final_audit)
 assert final_audit.structural_check(19) == (7, 21)
+# HTTP is recorded separately: network failure does not mislabel successful local CI.
+print("SESSION19_HTTP:", final_audit.external_http(19, "08", True), flush=True)
+
 
 with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     dst = Path(temp) / "public"
