@@ -212,7 +212,13 @@ def page_markdown(model, routes):
 
 
 def numbers_markdown(model, routes):
-    return page_markdown(model, routes)
+    rows = sorted(model['topics'], key=lambda row: row['official_number'])
+    return ('---\nlayout: default\ntitle: Билеты по номерам\n---\n\n'
+            '<!-- subject-generator: managed -->\n'
+            '[Все предметы](../index.html) · [К смысловому порядку](index.html)\n\n'
+            '# %s — билеты №1–25\n\n' % model['title']
+            + jump_links('number')
+            + '<ol class="subject-list">' + order_list(rows, rows, routes, 'number') + '</ol>')
 
 
 def catalog(ready):
