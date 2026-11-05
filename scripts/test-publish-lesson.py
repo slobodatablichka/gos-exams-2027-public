@@ -35,6 +35,13 @@ for level in ("l2", "l1"):
     assert "[Устный ответ](q08-l2.html)" in body
     assert "../l3/" not in body and "../l2/" not in body
 
+# Stage-8 structural checker must also understand mixed-subject session 19.
+final_spec = importlib.util.spec_from_file_location(
+    "final_audit", ROOT / "scripts/check-publication-final.py")
+final_audit = importlib.util.module_from_spec(final_spec)
+final_spec.loader.exec_module(final_audit)
+assert final_audit.structural_check(19) == (7, 21)
+
 with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     dst = Path(temp) / "public"
     private = Path(temp) / "private"
