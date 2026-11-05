@@ -181,7 +181,7 @@ def page_markdown(model, routes):
 .subject-links {font-size:.88rem;line-height:1.8}
 .subject-notice {color:#78371f}
 .subject-alias {color:#526573;font-size:.9rem}
-.subject-downloads {display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
+.subject-neighbors {border-top:1px solid #d9e0e5;margin-top:.45rem;padding-top:.45rem;font-size:.9rem}\n.subject-question {scroll-margin-top:1rem}\n.subject-jump {line-height:2.4;margin:.7rem 0;padding:.6rem;border:1px solid #d9e0e5;border-radius:6px}\n.subject-jump a {display:inline-block;min-width:1.8rem;text-align:center}\n.subject-downloads {display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
 [hidden] {display:none!important}
 </style>"""
     js = """<script>
@@ -198,16 +198,16 @@ def page_markdown(model, routes):
 </script>"""
     pdfs = " ".join('<a href="pdf/%s.pdf" download>Весь %s (PDF)</a>' % (x, x.upper()) for x in LEVELS)
     return ('---\nlayout: default\ntitle: "%s — подготовка по предмету"\n---\n\n<!-- subject-generator: managed -->\n' % title
-            + '[Главная](../../index.html) › [Предметы](../index.html) › **%s**\n\n# %s\n\n' % (title, title)
+            + '[Главная](../../index.html) › [Материалы](../../materials/index.html) › [Предметы](../index.html) › **%s**\n\n# %s\n\n' % (title, title)
             + 'Все 25 официальных номеров. Смысловой порядок основан на православных учебниках БПДС.\n\n'
-            + css + '<div class="subject-downloads">' + pdfs + '</div>'
+            + css + '<p><a href="../index.html">Все предметы</a> · <a href="../../materials/index.html">По занятиям</a> · <a href="numbers.html">По номерам без JavaScript</a></p><div class="subject-downloads">' + pdfs + '</div>'
             + '<div class="subject-choice" role="group" aria-label="Порядок вопросов">'
             + '<button type="button" data-sort-button="meaning" aria-pressed="true">Смысловой порядок</button>'
             + '<button type="button" data-sort-button="number" aria-pressed="false">По номерам</button></div>'
-            + '<div data-sort-panel="meaning">' + "".join(parts) + '</div>'
+            + '<div data-sort-panel="meaning">' + jump_links("meaning") + "".join(parts) + '</div>'
             + '<div data-sort-panel="number" hidden><h2>Номера 1–25</h2><ol class="subject-list">'
-            + numeric + '</ol></div>'
-            + '<noscript><p>Без JavaScript доступен смысловой перечень со всеми 25 номерами.</p></noscript>'
+            + jump_links('number') + numeric + '</ol></div>'
+            + '<noscript><p>Без JavaScript доступен смысловой порядок и отдельный числовой список: <a href="numbers.html">№1–25</a>.</p></noscript>'
             + js + '\n')
 
 
@@ -329,6 +329,7 @@ def build(private, public, dest, slugs, with_pdf):
         base = dest / "subjects" / slug
         base.mkdir(parents=True, exist_ok=True)
         (base / "index.md").write_text(page_markdown(model, routes), encoding="utf-8")
+        (base / "numbers.md").write_text(numbers_markdown(model, routes), encoding="utf-8")
         if with_pdf:
             seen = set()
             canon = []
