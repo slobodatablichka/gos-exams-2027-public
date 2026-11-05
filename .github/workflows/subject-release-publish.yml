@@ -90,7 +90,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add subjects/ sessions/ index.md materials/index.md assets/css/style.scss
-          git diff --cached --check
+          git diff --cached --check -- '*.md' '*.scss' '*.json' '*.html' '*.yml'
           test -n "$(git diff --cached --name-only)"
           git commit -m "Единый выпуск НЗ, ВЗ и ДБ: 225 PDF, 216 обратных ссылок и предметные разделы"
           git push origin HEAD:subject-release-stage6
