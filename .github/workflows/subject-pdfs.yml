@@ -32,6 +32,8 @@ jobs:
           sudo apt-get install -y fonts-dejavu-core poppler-utils
       - name: Verify sources and links
         run: python public/scripts/build-subjects.py check --private-root private --public-root public --subjects nt ot dogmatics
+      - name: Record manuscript SHA
+        run: echo "SUBJECT_SOURCE_SHA=$(git -C private rev-parse HEAD)" >> "$GITHUB_ENV"
       - name: Generate actual PDF sets
         run: python public/scripts/build-subjects.py build --private-root private --public-root public --subjects nt ot dogmatics --preview-dir stage3-subjects
       - name: Verify 225 PDF files and links
