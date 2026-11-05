@@ -174,7 +174,7 @@ def page_markdown(model, routes):
 }());
 </script>"""
     pdfs = " ".join('<a href="pdf/%s.pdf" download>Весь %s (PDF)</a>' % (x, x.upper()) for x in LEVELS)
-    return ('---\nlayout: default\ntitle: "%s — подготовка по предмету"\n---\n\n' % title
+    return ('---\nlayout: default\ntitle: "%s — подготовка по предмету"\n---\n\n<!-- subject-generator: managed -->\n' % title
             + '[Главная](../../index.html) › [Предметы](../index.html) › **%s**\n\n# %s\n\n' % (title, title)
             + 'Все 25 официальных номеров. Смысловой порядок основан на православных учебниках БПДС.\n\n'
             + css + '<div class="subject-downloads">' + pdfs + '</div>'
@@ -189,7 +189,7 @@ def page_markdown(model, routes):
 
 
 def catalog(ready):
-    lines = ['---', 'layout: default', 'title: Подготовка по предметам', '---', '',
+    lines = ['---', 'layout: default', 'title: Подготовка по предметам', '---', '', '<!-- subject-generator: managed -->',
              '[Главная](../index.html) › **Предметы**', '', '# Подготовка по предметам', '',
              'Материалы представлены также [по занятиям](../materials/index.html).', '']
     for slug, (_, name) in SUBJECTS.items():
@@ -346,15 +346,21 @@ def main():
         count = sum(p.is_file() for p in staged.rglob("*"))
         print("PASS: built %d staged files" % count)
         if args.apply:
-            for p in staged.rglob("*"):
-                if p.is_file() and (public / p.relative_to(staged)).exists():
-                    abort("Refusing to overwrite existing page/PDF: " + str(p.relative_to(staged)))
+            # Protect hand-written content, but permit reproducible updates to managed pages/PDF.
+            marker = "subject-generator: managed"
+            for slug in slugs:
+                existing = public / "subjects" / slug / "index.md"
+                if existing.exists() and marker not in existing.read_text(encoding="utf-8"):
+                    abort("Refusing to overwrite unmanaged subject: " + str(existing))
+            existing_catalog = public / "subjects" / "index.md"
+            if existing_catalog.exists() and marker not in existing_catalog.read_text(encoding="utf-8"):
+                abort("Refusing to overwrite unmanaged catalog: " + str(existing_catalog))
             for p in staged.rglob("*"):
                 if p.is_file():
                     target = public / p.relative_to(staged)
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(p, target)
-            print("APPLIED locally; Git commit, CI and GitHub Pages not yet verified")
+            print("APPLIED managed files; Git commit, CI and Pages not yet verified")
         else:
             print("DRY RUN: no public repository files changed")
 
