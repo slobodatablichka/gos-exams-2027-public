@@ -1,0 +1,76 @@
+name: Stage 5 — integrated subject navigation and Jekyll acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/link-subjects.py'
+      - 'scripts/check-subject-navigation.py'
+      - 'scripts/check-subject-rendered.py'
+      - 'scripts/check-subject-expansion.py'
+      - '.github/workflows/subject-expansion-stage5.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Compile and regression-test scripts
+        run: |
+          python -m compileall -q public/scripts public/tests
+          python -m unittest discover -s public/tests -p test_subject_generator.py -v
+          python -m unittest discover -s public/tests -p test_subject_navigation.py -v
+      - name: Build three catalogues and all real PDF files in staging
+        run: |
+          echo "SUBJECT_SOURCE_SHA=$(git -C private rev-parse HEAD)" >> "$GITHUB_ENV"
+          python public/scripts/build-subjects.py build --private-root private --public-root public --subjects oi rpc liturgics --preview-dir stage5-subjects
+          python public/scripts/check-subject-pdfs.py stage5-subjects --subjects oi rpc liturgics
+      - name: Build 225 reverse links from existing published articles
+        run: |
+          python public/scripts/link-subjects.py --private-root private --public-root public --subjects oi rpc liturgics --output-root staged-navigation
+          python public/scripts/check-subject-navigation.py --private-root private --public-root public --staged-root staged-navigation --subjects oi rpc liturgics
+      - name: Assemble candidate without altering old site
+        run: |
+          mkdir -p release-candidate/subjects
+          rsync -a --exclude='.git' --exclude='_site' public/ release-candidate/
+          rsync -a stage5-subjects/ release-candidate/subjects/
+          rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ release-candidate/
+          cp staged-navigation/subject-navigation-manifest.json release-candidate/subjects/expansion-navigation-manifest.json
+      - name: Check release candidate, 225 previous routes and working notices
+        run: |
+          python public/scripts/check-subject-expansion.py --stage release-candidate --original public --private private
+          python public/scripts/publish-lesson.py check
+      - name: Build exact Jekyll Pages preview
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./release-candidate
+          destination: ./site-preview
+      - name: Verify compiled HTML and its 225 reciprocal routes
+        run: python public/scripts/check-subject-rendered.py site-preview --private-root private --subjects oi rpc liturgics
+      - name: Verify original three subject catalogs still render
+        run: python public/scripts/check-subject-rendered.py site-preview --private-root private --subjects nt ot dogmatics
+      - name: Retain complete checked publication candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage5-subject-expansion-release-candidate
+          path: |
+            stage5-subjects/
+            staged-navigation/
+          if-no-files-found: error
+          retention-days: 90
