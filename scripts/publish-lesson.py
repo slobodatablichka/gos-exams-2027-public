@@ -94,7 +94,7 @@ def canonical_formula(markdown):
 
 
 def manuscript(private_root, row, level):
-    directory = ("irpc" if int(row["meeting"]) == 16 and row["subject"] == "ИРПЦ"
+    directory = ("irpc" if int(row["meeting"]) in (16, 22) and row["subject"] == "ИРПЦ"
                  else SUBJECTS[row["subject"]][0])
     folder = private_root / "materials" / directory / level
     canonical = folder / f'q{code(row)}.md'
@@ -168,6 +168,16 @@ def working_notice(number, question=None):
                   if question is None else gaps[int(question)])
         return ('<p class="exam-source-warning"><strong>Рабочая редакция — требуется пополнение.</strong> '
                 + detail + ' <a href="source-status.html">Что требует дополнения</a>.</p>')
+    if number == 22:
+        if question is not None and int(question) not in (17, 18):
+            return ""
+        detail = ("ИРПЦ №17 и №18 содержат обязательные разделы для дальнейшего пополнения."
+                  if question is None else
+                  "Священник Георгий Гапон и рабочее движение требуют проверки по православному учебнику."
+                  if int(question) == 17 else
+                  "Имяславческая смута требует полноценного историко-богословского разбора.")
+        return ('<p class="exam-source-warning"><strong>Рабочая редакция — нет полного допуска.</strong> '
+                + detail + ' <a href="source-status.html">Что необходимо дополнить</a>.</p>')
     if number != 13:
         return ""
     if question is not None and int(question) not in (9, 22):
@@ -324,7 +334,8 @@ def quality_gate(private_root, number, rows):
     # Only these two central gaps may appear in a publicly labelled working edition.
     # They retain TODO, and are NEVER treated as quality-approved.
     working_gaps = {(13, "НЗ", "9"), (13, "НЗ", "22"),
-                    (18, "Л", "18"), (18, "Л", "13"), (18, "Л", "14")}
+                    (18, "Л", "18"), (18, "Л", "13"), (18, "Л", "14"),
+                    (22, "ИРПЦ", "17"), (22, "ИРПЦ", "18")}
     for row in rows:
         found = [p for p in all_progress if int(p["meeting"]) == number
                  and p["subject"] == row["subject"] and
@@ -334,6 +345,9 @@ def quality_gate(private_root, number, rows):
         is_working = (number, row["subject"], str(int(row["question"]))) in working_gaps
         if is_working and len(found) == 1:
             entry = found[0]
+            if (number == 22 and entry["sources"] == "todo" and entry["quality"] == "todo"
+                    and all(entry[k] == "done" for k in ("l3", "l2", "l1"))):
+                continue
             if (number == 18 and entry["sources"] == "todo" and entry["quality"] == "todo"
                     and all(entry[k] == "done" for k in ("l3", "l2", "l1"))):
                 continue
@@ -375,6 +389,22 @@ def assemble(number, private_root):
         if (ROOT / path).exists():
             raise ValueError(f"Existing URL cannot be overwritten: {path}")
         results[path] = output
+    if number == 22:
+        results[dest / "source-status.md"] = """---
+layout: default
+title: "Занятие №22 — открытые источниковые вопросы"
+---
+
+# Занятие №22 — рабочие редакции
+
+**ИРПЦ №17:** недостаёт проверенного православного рассказа о священнике Георгии Гапоне и рабочем движении.
+
+**ИРПЦ №18:** требуется православное изложение имяславческой смуты, её истории, участников, богословского предмета спора и церковной оценки.
+
+Оба вопроса имеют незакрытые центральные замечания и пока не получили содержательного допуска; дальнейшее пополнение по библиотеке БПДС обязательно. Пять других тем допущены.
+
+[Все вопросы занятия](index.html) · [Сборник L3](l3-complete.html)
+"""
     if number == 16:
         results[dest / "source-status.md"] = """---
 layout: default
@@ -485,6 +515,8 @@ def add_navigation(number, generated):
                f'**{date_human(m["date"])}, {m["start_time"]}.** '
                f'{len(rows)} самостоятельных тем; {len(rows)*3} материалов L3/L2/L1.\n\n'
                f'[Все вопросы](../{path}/index.html) · [Сборник L3](../{path}/l3-complete.html)\n\n')
+    if number == 22:
+        section += '**ИРПЦ №17 и №18 — рабочая редакция:** [отложенные дополнения](../sessions/22/source-status.html).\\n\\n'
     if number == 18:
         section += '**Литургика №18, 13, 14 — рабочая редакция:** [отложенные дополнения](../sessions/18/source-status.html).\n\n'
     if number == 16:
@@ -501,6 +533,8 @@ def add_navigation(number, generated):
     first, sep, tail = homepage.partition("\n")
     if f'[Занятие №{number}]({path}/index.html)' not in first:
         first += f' · [Занятие №{number}]({path}/index.html)'
+    if number == 22:
+        note += 'ИРПЦ №17 и №18 — **рабочая редакция**; [недостающие источники](sessions/22/source-status.html).\\n'
     if number == 18:
         note += 'Литургика №18, 13 и 14 — **рабочая редакция**; [отложенные дополнения](sessions/18/source-status.html).\n'
     if number == 16:
@@ -531,7 +565,7 @@ def validate():
             if entry["topics"].split(";") != expected:
                 raise ValueError(f"Wrong registered topic order in session {n}")
             prefix = Path(f"sessions/{n:02d}")
-            if n in (13, 16, 18) and not (ROOT / prefix / "source-status.md").is_file():
+            if n in (13, 16, 18, 22) and not (ROOT / prefix / "source-status.md").is_file():
                 raise ValueError(f"Missing source-status page for conditional session {n}")
             if n == 16:
                 for name in ("index.md", "l3-complete.md", "q24-l3.md", "q24-l2.md", "q24-l1.md"):
@@ -540,6 +574,12 @@ def validate():
                         raise ValueError(f"Missing visible conditional approval warning: {prefix / name}")
                     if "source-status.html" not in body:
                         raise ValueError(f"Missing source status link: {prefix / name}")
+            if n == 22:
+                for name in ("index.md", "l3-complete.md", *[f"q{q:02d}-{level}.md"
+                            for q in (17, 18) for level in LEVELS]):
+                    body = read(prefix / name)
+                    if "Рабочая редакция" not in body or "source-status.html" not in body:
+                        raise ValueError(f"Missing working edition warning: {prefix / name}")
             if n == 18:
                 for name in ("index.md", "l3-complete.md", *[f"q{q:02d}-{level}.md"
                             for q in (18, 13, 14) for level in LEVELS]):
