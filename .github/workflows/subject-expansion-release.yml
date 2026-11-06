@@ -82,9 +82,12 @@ jobs:
           git -C public config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git -C public add subjects/ sessions/ index.md materials/index.md assets/css/style.scss
           git -C public diff --cached --check -- '*.md' '*.scss' '*.json' '*.html' '*.yml'
-          test -n "$(git -C public diff --cached --name-only)"
-          git -C public commit -m 'Publish OI, RPC and Liturgics catalogs: 234 PDFs and 225 reciprocal links'
-          git -C public push origin HEAD:subject-expansion-stage4
+          if git -C public diff --cached --quiet; then
+            echo "PASS: release files already committed, no duplicate publication"
+          else
+            git -C public commit -m 'Publish OI, RPC and Liturgics catalogs: 234 PDFs and 225 reciprocal links'
+            git -C public push origin HEAD:subject-expansion-stage4
+          fi
           echo "PUBLISHED_PR_HEAD=$(git -C public rev-parse HEAD)" >> "$GITHUB_ENV"
       - name: Preserve release evidence
         uses: actions/upload-artifact@v4

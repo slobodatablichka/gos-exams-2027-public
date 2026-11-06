@@ -53,9 +53,12 @@ def check(stage,original,private):
                 new=staged_md.read_text(encoding="utf-8")
                 if new.count(START)!=1 or new.count(END)!=1:
                     raise ValueError("Managed return link missing: "+url)
-                stripped=re.sub(re.escape(START)+r"\n.*?\n"+re.escape(END)+r"\n\n?", "",new,count=1,flags=re.S)
-                if stripped!=old:
-                    raise ValueError("Legacy article altered: "+url)
+                def legacy_body(txt):
+                    if START not in txt:
+                        return txt
+                    return re.sub(re.escape(START)+r"\n.*?\n"+re.escape(END)+r"\n\n?", "",txt,count=1,flags=re.S)
+                if legacy_body(new)!=legacy_body(old):
+                    raise ValueError("Legacy article altered outside managed block: "+url)
                 block=new.split(START)[1].split(END)[0]
                 for fragment in ("meaning-q%02d"%row["official_number"],"number-q%02d"%row["official_number"]):
                     if fragment not in block:
