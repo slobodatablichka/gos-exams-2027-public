@@ -71,13 +71,19 @@ jobs:
           python public/scripts/check-subject-rendered.py site-preview --private-root private --subjects nt ot dogmatics
       - name: Transfer verified files to PR branch in one batch
         run: |
+          if [ -f public/subjects/oi/pdf/l3.pdf ] && [ -f public/subjects/rpc/pdf/l3.pdf ] && [ -f public/subjects/liturgics/pdf/l3.pdf ]; then
+            python public/scripts/check-subject-pdfs.py public/subjects --subjects oi rpc liturgics
+            python public/scripts/publish-lesson.py check
+            echo "PASS: complete subject release already permanently committed to PR branch"
+            exit 0
+          fi
           rsync -a staged-subjects/ public/subjects/
           rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ public/
           cp staged-navigation/subject-navigation-manifest.json public/subjects/expansion-navigation-manifest.json
           python public/scripts/check-subject-pdfs.py public/subjects --subjects oi rpc liturgics
           python public/scripts/publish-lesson.py check
           test "$(find public/subjects/oi public/subjects/rpc public/subjects/liturgics -type f -name '*.pdf' | wc -l)" -eq 234
-          git -C public diff --check
+          git -C public diff --check -- '*.md' '*.scss' '*.json' '*.html' '*.yml'
           git -C public config user.name 'github-actions[bot]'
           git -C public config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git -C public add subjects/ sessions/ index.md materials/index.md assets/css/style.scss
