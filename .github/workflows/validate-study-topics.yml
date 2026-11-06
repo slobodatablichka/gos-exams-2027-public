@@ -35,3 +35,7 @@ jobs:
         run: python scripts/check-publication-final.py 21 --pr-run 42107807617 --main-run 42107991385 --pages-run 42107991273 --http
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Final stage-8 audit for published lesson 22
+        run: python scripts/check-publication-final.py 22 --pr-run 42250252897 --main-run 42250375307 --pages-run 42250374439 --http
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

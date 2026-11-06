@@ -93,6 +93,14 @@ def structural_check(session):
                 errors.append(f"{name}: missing explicit q24 conditional-approval notice")
         if not (folder / "source-status.md").is_file():
             errors.append("missing source-status.md for lesson 16")
+    if session == 22:
+        for name in ("index.md", "l3-complete.md", *[f"q{q:02d}-{level}.md"
+                    for q in (17, 18) for level in ("l3", "l2", "l1")]):
+            body = (folder / name).read_text(encoding="utf-8")
+            if "Рабочая редакция" not in body or "source-status.html" not in body:
+                errors.append(f"{name}: missing explicit working-edition warning")
+        if not (folder / "source-status.md").is_file():
+            errors.append("missing source-status.md for lesson 22")
     if errors:
         raise ValueError("; ".join(errors[:12]))
     return len(rows), len(rows) * 3
@@ -129,6 +137,15 @@ def private_quality(root, session, numbers):
                     or any(x[level] != "done" for level in ("l3", "l2", "l1"))):
                 raise ValueError(f"Session 18 q{q} working gap status is invalid")
         return "4/7 approved; q18, q13, q14 working editions with source gaps"
+    if session == 22:
+        if len(rows) != 7 or accepted != 5:
+            raise ValueError("Session 22 must have five approved and two working topics")
+        for q in (17, 18):
+            x = next((r for r in rows if int(r["question"]) == q), None)
+            if (x is None or x["sources"] != "todo" or x["quality"] != "todo"
+                    or any(x[level] != "done" for level in ("l3", "l2", "l1"))):
+                raise ValueError(f"Session 22 q{q} working gap status is invalid")
+        return "5/7 approved; q17 and q18 working editions with source gaps"
     if accepted != len(rows) and session != 13:
         raise ValueError("Private quality gate no longer approved")
     return f"{accepted}/{len(rows)} approved" + (
