@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 SUBJECTS = ("nt", "ot", "dogmatics")
-EXPECTED = {"nt": 25, "ot": 24, "dogmatics": 23}
+EXPECTED = {"nt": 25, "ot": 24, "dogmatics": 23, "oi":25, "rpc":25, "liturgics":25}
 LEVELS = ("l3", "l2", "l1")
 BEGIN = "<!-- subject-navigation:begin -->"
 END = "<!-- subject-navigation:end -->"
@@ -25,11 +25,12 @@ class Anchors(HTMLParser):
             self.links.extend([value for key, value in attrs if key == "href"])
 
 
-def check(private, public, staged):
+def check(private, public, staged, subjects=SUBJECTS):
     manifest_file = staged / "subject-navigation-manifest.json"
     manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
     paths = set(manifest["files"])
-    if manifest["article_count"] != 216 or manifest["files_count"] != 219 or len(paths) != 219:
+    expected_articles = 3 * sum(EXPECTED[x] for x in subjects)
+    if manifest["article_count"] != expected_articles or manifest["files_count"] != expected_articles + 3 or len(paths) != expected_articles + 3:
         raise ValueError("Incorrect staged navigation inventory")
     import hashlib
     for relative, digest in manifest["files"].items():
@@ -39,12 +40,12 @@ def check(private, public, staged):
         if hashlib.sha256((staged / p).read_bytes()).hexdigest() != digest:
             raise ValueError("Patch SHA-256 mismatch: " + str(p))
     page_files = [p for p in paths if re.fullmatch(r"sessions/\d{2}/q\d{2}(?:-[a-z]+)?-l[123]\.md", p)]
-    if len(page_files) != 216:
-        raise ValueError("Expected 216 L3/L2/L1 articles")
+    if len(page_files) != expected_articles:
+        raise ValueError("Expected %d L3/L2/L1 articles" % expected_articles)
     counts = Counter()
     valid_routes = set()
     official = {}
-    for slug in SUBJECTS:
+    for slug in subjects:
         config = json.loads((private / "planning" / ("subject-order-" + slug + ".json")).read_text(encoding="utf-8"))
         rows = config["topics"]
         if len(rows) != 25 or len(set(r["topic_id"] for r in rows)) != EXPECTED[slug]:
@@ -106,14 +107,15 @@ def check(private, public, staged):
                 raise ValueError("Unexpected backlink destination: " + url)
         if "<nav class=\"exam-levels\"" not in source or "<nav class=\"exam-levels\"" not in after:
             raise ValueError("Legacy levels lost " + relative)
-    if set(counts) != {"l1.md", "l2.md", "l3.md"} or any(v != 72 for v in counts.values()):
+    expected_per_level = sum(EXPECTED[x] for x in subjects)
+    if set(counts) != {"l1.md", "l2.md", "l3.md"} or any(v != expected_per_level for v in counts.values()):
         raise ValueError("Incomplete levels: " + str(counts))
     for relative in ("index.md", "materials/index.md"):
         contents = (staged / relative).read_text(encoding="utf-8")
-        for slug in SUBJECTS:
+        for slug in subjects:
             if ("subjects/" + slug + "/index.html") not in contents:
                 raise ValueError("Missing front-page link: " + relative + " -> " + slug)
-    print("FINAL PASS: 216 backlink blocks, 72/72/72 levels, 2 entry pages, 1 CSS; all new links structurally valid")
+    print("FINAL PASS: %d backlink blocks, %d/%d/%d levels, 2 entry pages, 1 CSS; all new links structurally valid" % (expected_articles, expected_per_level, expected_per_level, expected_per_level))
 
 
 if __name__ == "__main__":
@@ -121,8 +123,9 @@ if __name__ == "__main__":
     parser.add_argument("--private-root", type=Path, required=True)
     parser.add_argument("--public-root", type=Path, required=True)
     parser.add_argument("--staged-root", type=Path, required=True)
+    parser.add_argument("--subjects", nargs="+", choices=tuple(EXPECTED), default=list(SUBJECTS))
     args = parser.parse_args()
     try:
-        check(args.private_root, args.public_root, args.staged_root)
+        check(args.private_root, args.public_root, args.staged_root, args.subjects)
     except (ValueError, KeyError, OSError, json.JSONDecodeError) as ex:
         parser.exit(1, "ERROR: " + str(ex) + "\n")

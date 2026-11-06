@@ -10,6 +10,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 SUBJECTS = ("nt", "ot", "dogmatics")
+SUPPORTED = ("nt", "ot", "dogmatics", "oi", "rpc", "liturgics")
 LEVELS = ("l3", "l2", "l1")
 
 
@@ -30,14 +31,14 @@ class Page(HTMLParser):
             self.buttons += 1
 
 
-def check(root, private):
+def check(root, private, subjects=SUBJECTS):
     expected = set()
-    for slug in SUBJECTS:
+    for slug in subjects:
         data = json.loads((private / 'planning' / ('subject-order-' + slug + '.json')).read_text(encoding='utf-8'))
         for row in data['topics']:
             expected.update(row['level_urls'].values())
-    if len(expected) != 216:
-        raise ValueError('Source catalog should contain 216 unique article routes')
+    if len(expected) != 3 * sum(25 if k in ("nt","oi","rpc","liturgics") else (24 if k=="ot" else 23) for k in subjects):
+        raise ValueError("Source catalog unexpected number of unique article routes")
 
     def read(name):
         file = root / name
@@ -48,17 +49,17 @@ def check(root, private):
         return parser
 
     catalogue = read("subjects/index.html")
-    for slug in SUBJECTS:
+    for slug in subjects:
         if (slug + "/index.html") not in catalogue.links:
             raise ValueError("Missing subject in compiled catalog: " + slug)
     for name in ("index.html", "materials/index.html"):
         page = read(name)
-        for slug in SUBJECTS:
+        for slug in subjects:
             if not any(("subjects/" + slug + "/index.html") in url for url in page.links):
                 raise ValueError("Missing subject from " + name + ": " + slug)
     pages = 0
     matched = set()
-    for slug in SUBJECTS:
+    for slug in subjects:
         listing = read("subjects/" + slug + "/index.html")
         numeric = read("subjects/" + slug + "/numbers.html")
         if listing.buttons < 2:
@@ -99,17 +100,17 @@ def check(root, private):
             raise ValueError("Rendered article missing semantic backlink " + file)
         if not any("subjects/" in url and "#number-q" in url for url in page.links):
             raise ValueError("Rendered article missing numeric backlink " + file)
-    print("PASS JEKYLL: 3 subject pages, 3 numeric lists, all 75 dual anchors, "
-          "216 linked legacy articles and their reverse links, %d checked anchors/files" % pages)
+    print("PASS JEKYLL: %d subject pages, %d numeric lists, all %d dual anchors, %d linked legacy articles and reverse links, %d checked anchors/files" % (len(subjects),len(subjects),25*len(subjects),len(expected),pages))
 
 
 if __name__ == "__main__":
     a = argparse.ArgumentParser()
     a.add_argument("root", type=Path)
     a.add_argument("--private-root", required=True, type=Path)
+    a.add_argument("--subjects", nargs="+", default=list(SUBJECTS), choices=SUPPORTED)
     args = a.parse_args()
     try:
-        check(args.root, args.private_root)
+        check(args.root, args.private_root, args.subjects)
     except (ValueError, OSError) as error:
         print("ERROR:", error, file=sys.stderr)
         sys.exit(1)

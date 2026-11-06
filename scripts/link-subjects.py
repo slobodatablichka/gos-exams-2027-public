@@ -18,6 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECTS = ("nt", "ot", "dogmatics")
+CANONICAL = {"nt": 25, "ot": 24, "dogmatics": 23, "oi": 25, "rpc": 25, "liturgics": 25}
 LEVELS = ("l3", "l2", "l1")
 BEGIN = "<!-- subject-navigation:begin -->"
 END = "<!-- subject-navigation:end -->"
@@ -50,10 +51,10 @@ def replace_managed(text, begin, end, content, *, marker=None):
     return text.replace(marker, begin + "\n" + content + "\n" + end + "\n\n" + marker, 1)
 
 
-def build_models(private, public):
+def build_models(private, public, slugs=SUBJECTS):
     core = publisher()
     models = {}
-    for slug in SUBJECTS:
+    for slug in slugs:
         model, routes = core.read_model(private, public, slug)
         canonical = []
         seen = set()
@@ -62,7 +63,7 @@ def build_models(private, public):
             if c not in seen:
                 canonical.append(row)
                 seen.add(c)
-        if len(canonical) != {"nt": 25, "ot": 24, "dogmatics": 23}[slug]:
+        if len(canonical) != CANONICAL[slug]:
             raise ValueError("Unexpected canonical count " + slug)
         models[slug] = (model, routes, canonical)
     return models
@@ -139,8 +140,9 @@ def subject_patch(public, models):
                     raise ValueError("Shared session article between subject catalogs")
                 modified[file] = updated
                 count += 1
-    if count != 216:
-        raise ValueError("Expected 216 article backlinks, got %d" % count)
+    expected = sum(len(canonical) * len(LEVELS) for _, _, canonical in models.values())
+    if count != expected:
+        raise ValueError("Expected %d article backlinks, got %d" % (expected, count))
     return modified
 
 
@@ -157,14 +159,22 @@ MATERIALS_LINKS = ('## По предметам\n\n'
                    'Переход по предметам не заменяет прежний список занятий.')
 
 
-def catalog_patch(public):
+def catalog_patch(public, slugs=SUBJECTS):
     result = {}
+    extra = {"oi": ("Общецерковная история", "Общецерковная история"), "rpc": ("История РПЦ", "История РПЦ"), "liturgics": ("Литургика", "Литургика")}
+    home_links = HOME_LINKS
+    material_links = MATERIALS_LINKS
+    for slug in slugs:
+        if slug in extra:
+            label = extra[slug][0]
+            home_links = home_links.replace(".\n\nВсе вопросы", " · [%s](subjects/%s/index.html).\n\nВсе вопросы" % (label, slug))
+            material_links = material_links.replace(".\n\nПереход", " · [%s](../subjects/%s/index.html).\n\nПереход" % (label, slug))
     home = (public / HOME).read_text(encoding="utf-8")
     result[Path(HOME)] = replace_managed(
-        home, BEGIN, END, HOME_LINKS, marker="## Подготовка к государственным экзаменам — 2027")
+        home, BEGIN, END, home_links, marker="## Подготовка к государственным экзаменам — 2027")
     materials = (public / MATERIALS).read_text(encoding="utf-8")
     result[Path(MATERIALS)] = replace_managed(
-        materials, BEGIN, END, MATERIALS_LINKS, marker="## Первый круг")
+        materials, BEGIN, END, material_links, marker="## Первый круг")
     return result
 
 
@@ -190,16 +200,17 @@ def css_patch(public):
 
 
 def verify(original_root, patch, models):
-    expected = 216 + 2 + 1
+    articles = sum(len(canon) * len(LEVELS) for _, _, canon in models.values())
+    expected = articles + 2 + 1
     if len(patch) != expected:
-        raise ValueError("Expected 219 managed files, got %d" % len(patch))
+        raise ValueError("Expected %d managed files, got %d" % (expected, len(patch)))
     unique_urls = set()
     for slug, (model, routes, canon) in models.items():
         for row in canon:
             for level in LEVELS:
                 route = routes[row["official_number"]][level]
                 unique_urls.add(Path(route.replace(".html", ".md")))
-    if len(unique_urls) != 216:
+    if len(unique_urls) != articles:
         raise ValueError("Duplicate route in backlink graph")
     for file, content in patch.items():
         original = (original_root / file).read_text(encoding="utf-8")
@@ -225,14 +236,15 @@ def main(argv=None):
     p.add_argument("--public-root", default=ROOT, type=Path)
     p.add_argument("--output-root", type=Path)
     p.add_argument("--apply", action="store_true")
+    p.add_argument("--subjects", nargs="+", default=list(SUBJECTS), choices=tuple(CANONICAL))
     args = p.parse_args(argv)
     if bool(args.output_root) == bool(args.apply):
         p.error("Choose exactly one of --output-root or --apply")
     private, public = args.private_root.resolve(), args.public_root.resolve()
-    models = build_models(private, public)
+    models = build_models(private, public, args.subjects)
     edits = {}
     edits.update(subject_patch(public, models))
-    edits.update(catalog_patch(public))
+    edits.update(catalog_patch(public, args.subjects))
     edits.update(css_patch(public))
     verify(public, edits, models)
     if args.apply:
@@ -248,10 +260,10 @@ def main(argv=None):
         target.write_text(content, encoding="utf-8")
         hashes[str(name)] = hashlib.sha256(content.encode("utf-8")).hexdigest()
     manifest = {"source": "approved published session articles",
-                "article_count": 216, "files_count": len(edits), "files": hashes}
+                "article_count": sum(len(canon)*len(LEVELS) for _,_,canon in models.values()), "files_count": len(edits), "files": hashes}
     (out / "subject-navigation-manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("PASS: 216 lesson backlinks, 2 entry pages, 1 stylesheet; ",
+    print("PASS:", manifest["article_count"], "lesson backlinks, 2 entry pages, 1 stylesheet; ",
           "APPLIED" if args.apply else "STAGED", out)
     return 0
 
