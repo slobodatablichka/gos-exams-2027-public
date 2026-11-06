@@ -16,7 +16,7 @@ title: Учебные материалы
 <!-- subject-navigation:begin -->
 ## По предметам
 
-Быстрый доступ: **[Все предметы](../subjects/index.html)** · [Новый Завет](../subjects/nt/index.html) · [Ветхий Завет](../subjects/ot/index.html) · [Догматика](../subjects/dogmatics/index.html).
+Быстрый доступ: **[Все предметы](../subjects/index.html)** · [Новый Завет](../subjects/nt/index.html) · [Ветхий Завет](../subjects/ot/index.html) · [Догматика](../subjects/dogmatics/index.html) · [Общецерковная история](../subjects/oi/index.html) · [История РПЦ](../subjects/rpc/index.html) · [Литургика](../subjects/liturgics/index.html).
 
 Переход по предметам не заменяет прежний список занятий.
 <!-- subject-navigation:end -->
