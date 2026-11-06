@@ -1,4 +1,4 @@
-[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html) · [Занятие №10](sessions/10/index.html) · [Занятие №11](sessions/11/index.html) · [Занятие №12](sessions/12/index.html) · [Занятие №13](sessions/13/index.html) · [Занятие №14](sessions/14/index.html) · [Занятие №15](sessions/15/index.html) · [Занятие №16](sessions/16/index.html) · [Занятие №17](sessions/17/index.html) · [Занятие №18](sessions/18/index.html) · [Занятие №19](sessions/19/index.html) · [Занятие №20](sessions/20/index.html) · [Занятие №21](sessions/21/index.html)
+[**Главная**](index.html) · [Учебные материалы](materials/index.html) · [План докладчиков 5/6/7](assignments.html) · [Все вопросы и даты](schedule.html) · [Занятие №1](sessions/01/index.html) · [Занятие №2](sessions/02/index.html) · [Занятие №3](sessions/03/index.html) · [Занятие №4](sessions/04/index.html) · [Занятие №5](sessions/05/index.html) · [Занятие №6](sessions/06/index.html) · [Занятие №7](sessions/07/index.html) · [Занятие №8](sessions/08/index.html) · [Занятие №9](sessions/09/index.html) · [Занятие №10](sessions/10/index.html) · [Занятие №11](sessions/11/index.html) · [Занятие №12](sessions/12/index.html) · [Занятие №13](sessions/13/index.html) · [Занятие №14](sessions/14/index.html) · [Занятие №15](sessions/15/index.html) · [Занятие №16](sessions/16/index.html) · [Занятие №17](sessions/17/index.html) · [Занятие №18](sessions/18/index.html) · [Занятие №19](sessions/19/index.html) · [Занятие №20](sessions/20/index.html) · [Занятие №21](sessions/21/index.html) · [Занятие №22](sessions/22/index.html)
 
 <!-- subject-navigation:begin -->
 **[Учебные материалы по предметам](subjects/index.html)** — [Новый Завет](subjects/nt/index.html) · [Ветхий Завет](subjects/ot/index.html) · [Догматика](subjects/dogmatics/index.html).
@@ -56,6 +56,9 @@
 **[Занятие №20 — Священное Писание Ветхого Завета, 21 января 2027 года](sessions/20/index.html):** 7 комплектов L3/L2/L1; [сборник L3](sessions/20/l3-complete.html).
 
 **[Занятие №21 — Общецерковная история, 24 января 2027 года](sessions/21/index.html):** шесть комплектов L3/L2/L1; [полный сборник L3](sessions/21/l3-complete.html).
+
+**[Занятие №22 — История Русской Православной Церкви, 27 января 2027 года](sessions/22/index.html):** семь комплектов L3/L2/L1; [сборник L3](sessions/22/l3-complete.html).
+ИРПЦ №17 и №18 — **рабочая редакция**, [нехватка источников](sessions/22/source-status.html).
 
 ## Докладчики по группам
 
