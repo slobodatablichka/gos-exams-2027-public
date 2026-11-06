@@ -178,6 +178,12 @@ def working_notice(number, question=None):
                   "Имяславческая смута требует полноценного историко-богословского разбора.")
         return ('<p class="exam-source-warning"><strong>Рабочая редакция — нет полного допуска.</strong> '
                 + detail + ' <a href="source-status.html">Что необходимо дополнить</a>.</p>')
+    if number == 23:
+        if question is not None and int(question) != 24:
+            return ""
+        detail = "Литургика №24: обязательная 50-я глава Типикона не проверена по первоисточнику."
+        return ('<p class="exam-source-warning"><strong>Рабочая редакция — нет содержательного допуска.</strong> '
+                + detail + ' <a href="source-status.html">Что требует дополнения</a>.</p>')
     if number != 13:
         return ""
     if question is not None and int(question) not in (9, 22):
@@ -335,7 +341,8 @@ def quality_gate(private_root, number, rows):
     # They retain TODO, and are NEVER treated as quality-approved.
     working_gaps = {(13, "НЗ", "9"), (13, "НЗ", "22"),
                     (18, "Л", "18"), (18, "Л", "13"), (18, "Л", "14"),
-                    (22, "ИРПЦ", "17"), (22, "ИРПЦ", "18")}
+                    (22, "ИРПЦ", "17"), (22, "ИРПЦ", "18"),
+                    (23, "Л", "24")}
     for row in rows:
         found = [p for p in all_progress if int(p["meeting"]) == number
                  and p["subject"] == row["subject"] and
@@ -345,6 +352,9 @@ def quality_gate(private_root, number, rows):
         is_working = (number, row["subject"], str(int(row["question"]))) in working_gaps
         if is_working and len(found) == 1:
             entry = found[0]
+            if (number == 23 and entry["sources"] == "todo" and entry["quality"] == "todo"
+                    and all(entry[k] == "done" for k in ("l3", "l2", "l1"))):
+                continue
             if (number == 22 and entry["sources"] == "todo" and entry["quality"] == "todo"
                     and all(entry[k] == "done" for k in ("l3", "l2", "l1"))):
                 continue
@@ -389,6 +399,18 @@ def assemble(number, private_root):
         if (ROOT / path).exists():
             raise ValueError(f"Existing URL cannot be overwritten: {path}")
         results[path] = output
+    if number == 23:
+        results[dest / "source-status.md"] = """---
+layout: default
+title: "Занятие №23 — открытая источниковая лакуна"
+---
+
+# Литургика №24 — незакрытый обязательный раздел
+
+**50-я глава Типикона не проверена непосредственно по полному православному источнику**. Изложение Цветной Триоди по Шиманскому не заменяет этой главы. Требуется прочитать полный текст главы и согласовать L3/L2/L1; до этого вопрос имеет `sources=todo, quality=todo` и не допущен. Пять других вопросов допущены.
+
+[Все темы занятия](index.html) · [Сборник L3](l3-complete.html)
+"""
     if number == 22:
         results[dest / "source-status.md"] = """---
 layout: default
@@ -515,6 +537,8 @@ def add_navigation(number, generated):
                f'**{date_human(m["date"])}, {m["start_time"]}.** '
                f'{len(rows)} самостоятельных тем; {len(rows)*3} материалов L3/L2/L1.\n\n'
                f'[Все вопросы](../{path}/index.html) · [Сборник L3](../{path}/l3-complete.html)\n\n')
+    if number == 23:
+        section += '**Литургика №24 — рабочая редакция без допуска:** [непроверенная глава 50 Типикона](../sessions/23/source-status.html).\n\n'
     if number == 22:
         section += '**ИРПЦ №17 и №18 — рабочая редакция:** [отложенные дополнения](../sessions/22/source-status.html).\\n\\n'
     if number == 18:
@@ -533,6 +557,8 @@ def add_navigation(number, generated):
     first, sep, tail = homepage.partition("\n")
     if f'[Занятие №{number}]({path}/index.html)' not in first:
         first += f' · [Занятие №{number}]({path}/index.html)'
+    if number == 23:
+        note += 'Литургика №24 — **рабочая редакция** без допуска; [недостающий текст 50-й главы](sessions/23/source-status.html).\n'
     if number == 22:
         note += 'ИРПЦ №17 и №18 — **рабочая редакция**; [недостающие источники](sessions/22/source-status.html).\\n'
     if number == 18:
@@ -565,7 +591,7 @@ def validate():
             if entry["topics"].split(";") != expected:
                 raise ValueError(f"Wrong registered topic order in session {n}")
             prefix = Path(f"sessions/{n:02d}")
-            if n in (13, 16, 18, 22) and not (ROOT / prefix / "source-status.md").is_file():
+            if n in (13, 16, 18, 22, 23) and not (ROOT / prefix / "source-status.md").is_file():
                 raise ValueError(f"Missing source-status page for conditional session {n}")
             if n == 16:
                 for name in ("index.md", "l3-complete.md", "q24-l3.md", "q24-l2.md", "q24-l1.md"):
@@ -574,6 +600,11 @@ def validate():
                         raise ValueError(f"Missing visible conditional approval warning: {prefix / name}")
                     if "source-status.html" not in body:
                         raise ValueError(f"Missing source status link: {prefix / name}")
+            if n == 23:
+                for name in ("index.md", "l3-complete.md", *[f"q24-{level}.md" for level in LEVELS]):
+                    body = read(prefix / name)
+                    if "Рабочая редакция" not in body or "source-status.html" not in body:
+                        raise ValueError(f"Missing working-edition warning: {prefix / name}")
             if n == 22:
                 for name in ("index.md", "l3-complete.md", *[f"q{q:02d}-{level}.md"
                             for q in (17, 18) for level in LEVELS]):
