@@ -89,7 +89,7 @@ def check(private, public, staged, subjects=SUBJECTS):
                 pieces = target.split("/")
                 if target == "subjects/index.html":
                     continue
-                if len(pieces) < 3 or pieces[1] not in SUBJECTS or pieces[2] not in ("index.html", "numbers.html"):
+                if len(pieces) < 3 or pieces[1] not in subjects or pieces[2] not in ("index.html", "numbers.html"):
                     raise ValueError("Nonexistent subject target: " + url)
                 if part.fragment and not re.fullmatch(r"(meaning|number)-q\d{2}", part.fragment):
                     raise ValueError("Invalid subject anchor: " + url)
