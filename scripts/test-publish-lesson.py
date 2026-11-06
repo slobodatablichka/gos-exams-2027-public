@@ -108,7 +108,31 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                     and len({module.code(r) for r in module.topics(n)})
                     == len(module.topics(n))), None)
     if session is None:
-        raise AssertionError('No unpublished lesson available for regression test')
+        # Reopen lesson 23 only inside the disposable test copy. This keeps a
+        # real publication dry-run available after all 23 lessons are online.
+        session = 23
+        shutil.rmtree(dst / "sessions" / "23")
+        ledger = dst / "_data" / "published_sessions.csv"
+        ledger.write_text("".join(line for line in ledger.read_text(encoding="utf-8").splitlines(keepends=True)
+                                  if not line.startswith("23,")), encoding="utf-8")
+        homepage_path = dst / "index.md"
+        homepage = homepage_path.read_text(encoding="utf-8")
+        homepage = homepage.replace(" · [Занятие №23](sessions/23/index.html)", "")
+        start = homepage.index("**[Занятие №23 —")
+        end = homepage.index("## Докладчики по группам", start)
+        homepage_path.write_text(homepage[:start] + homepage[end:], encoding="utf-8")
+        catalog_path = dst / "materials" / "index.md"
+        catalog = catalog_path.read_text(encoding="utf-8")
+        start = catalog.index("### [Занятие №23.")
+        end = catalog.index("Последующие занятия будут добавляться сюда", start)
+        catalog_path.write_text(catalog[:start] + catalog[end:], encoding="utf-8")
+        schedule_path = dst / "schedule.md"
+        schedule = schedule_path.read_text(encoding="utf-8")
+        for n in (19, 20, 21, 22, 23, 24):
+            schedule = schedule.replace(f"[Литургика, № {n}](sessions/23/q{n}-l3.html)",
+                                        f"Литургика, № {n}")
+        schedule_path.write_text(schedule, encoding="utf-8")
+        module.validate()  # All 22 earlier published lessons remain intact.
     original_schedule = module.read("schedule.md")
     original_legacy = {p.relative_to(dst): p.read_bytes()
                        for p in (dst / "sessions").rglob("*.md")}
@@ -140,7 +164,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
                 "Полностью искусственный тестовый абзац; тест не публикуется.\n" + private_meta,
                 encoding="utf-8")
     planned = module.assemble(session, private)
-    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16, 18) else 2), (session, len(rows), len(planned))
+    assert len(planned) == len(rows) * 3 + (3 if session in (13, 16, 18, 23) else 2), (session, len(rows), len(planned))
     for row in rows:
         for level in ("l2", "l1"):
             page = planned[Path(f"sessions/{session:02d}/q{module.code(row)}-{level}.md")]
@@ -148,7 +172,7 @@ with tempfile.TemporaryDirectory(prefix="lesson-links-") as temp:
     assert not (dst / f"sessions/{session:02d}").exists(), "Dry-run touched public files"
     module.add_navigation(session, planned)
     assert (dst / "schedule.md").read_text(encoding="utf-8") == original_schedule
-    assert len(planned) == len(rows) * 3 + (7 if session in (13, 16, 18) else 6)  # content + nav + optional status page.
+    assert len(planned) == len(rows) * 3 + (7 if session in (13, 16, 18, 23) else 6)  # content + nav + optional status page.
     # Exercise the real --apply path, including isolated full-site prevalidation.
     original_argv = sys.argv[:]
     try:
