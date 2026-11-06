@@ -82,6 +82,8 @@ def structural_check(session):
             legacy = f'n{mod.code(row)}'
             mixed_numbers = len({mod.code(x) for x in rows}) != len(rows)
             candidates = (canonical,) if mixed_numbers else (canonical, legacy)
+            if session == 23:
+                candidates += (f'lesson23q{mod.code(row)}',)  # Existing linked TOC anchors.
             if not any(f'id="{anchor}"' in body for anchor in candidates):
                 errors.append(f"Collection lacks anchor {' or '.join(candidates)}")
     if session == 16:
@@ -101,6 +103,14 @@ def structural_check(session):
                 errors.append(f"{name}: missing explicit working-edition warning")
         if not (folder / "source-status.md").is_file():
             errors.append("missing source-status.md for lesson 22")
+    if session == 23:
+        for name in ("index.md", "l3-complete.md",
+                     *[f"q24-{level}.md" for level in ("l3", "l2", "l1")]):
+            content = (folder / name).read_text(encoding="utf-8")
+            if "Рабочая редакция" not in content or "source-status.html" not in content:
+                errors.append(f"{name}: q24 working-edition warning missing")
+        if not (folder / "source-status.md").is_file():
+            errors.append("source-status.md missing for lesson 23")
     if errors:
         raise ValueError("; ".join(errors[:12]))
     return len(rows), len(rows) * 3
@@ -146,6 +156,13 @@ def private_quality(root, session, numbers):
                     or any(x[level] != "done" for level in ("l3", "l2", "l1"))):
                 raise ValueError(f"Session 22 q{q} working gap status is invalid")
         return "5/7 approved; q17 and q18 working editions with source gaps"
+    if session == 23:
+        q24 = next((r for r in rows if int(r["question"]) == 24), None)
+        if (len(rows) != 6 or accepted != 5 or q24 is None
+                or q24["sources"] != "todo" or q24["quality"] != "todo"
+                or any(q24[level] != "done" for level in ("l3", "l2", "l1"))):
+            raise ValueError("Lesson 23 q24 working edition statuses invalid")
+        return "5/6 approved, q24 working with unverified Typikon chapter 50"
     if accepted != len(rows) and session != 13:
         raise ValueError("Private quality gate no longer approved")
     return f"{accepted}/{len(rows)} approved" + (
