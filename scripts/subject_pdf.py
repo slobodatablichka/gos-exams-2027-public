@@ -321,8 +321,9 @@ def build_pdf(path, model, rows, private_root, slug, level, *, source_ref="", in
                 url = PUBLIC_SITE + note_url
                 story.append(Paragraph('<link href="%s" color="#235B83">Сведения о недостатках источников</link>' %
                                        html.escape(url, quote=True), styles["tiny"]))
-        source_path = (Path(private_root) / "materials" / slug / level /
-                       ("q%02d.md" % row["canonical_question"]))
+        folder = row.get("source_folder", slug)
+        filename = row.get("source_file", "q%02d.md" % row["canonical_question"])
+        source_path = Path(private_root) / "materials" / folder / level / filename
         manuscript = source_path.read_text(encoding="utf-8")
         story.extend(manuscript_flowables(manuscript, styles))
 

@@ -1,0 +1,69 @@
+name: Stage 4 — build three remaining subjects and verify 234 PDFs
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-subjects.py'
+      - 'scripts/subject_pdf.py'
+      - 'scripts/check-subject-pdfs.py'
+      - 'tests/test_subject_generator.py'
+      - '.github/workflows/subject-expansion-stage4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  stage-four:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Compile and run regression tests
+        run: |
+          python -m compileall -q public/scripts/build-subjects.py public/scripts/subject_pdf.py public/scripts/check-subject-pdfs.py public/tests/test_subject_generator.py
+          python -m unittest discover -s public/tests -p test_subject_generator.py -v
+      - name: Verify all 75 existing sources, statuses, and old URLs
+        run: python public/scripts/build-subjects.py check --private-root private --public-root public --subjects oi rpc liturgics
+      - name: Set source revision
+        run: echo "SUBJECT_SOURCE_SHA=$(git -C private rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Build three subject catalogs and 234 real PDF files without publishing
+        run: python public/scripts/build-subjects.py build --private-root private --public-root public --subjects oi rpc liturgics --preview-dir stage4-subjects
+      - name: Audit all PDF files, hashes and download links
+        run: python public/scripts/check-subject-pdfs.py stage4-subjects --subjects oi rpc liturgics
+      - name: Render cover and interior pages for all nine full PDF collections
+        run: |
+          mkdir -p print-proofs
+          for subject in oi rpc liturgics; do
+            for level in l3 l2 l1; do
+              pdftoppm -f 1 -l 1 -scale-to 1100 -singlefile -png "stage4-subjects/$subject/pdf/$level.pdf" "print-proofs/$subject-$level-front"
+              pdftoppm -f 4 -l 4 -scale-to 1100 -singlefile -png "stage4-subjects/$subject/pdf/$level.pdf" "print-proofs/$subject-$level-body"
+            done
+          done
+          python public/scripts/check-pdf-acceptance-renders.py print-proofs
+      - name: Upload complete verified stage-four bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-expansion-stage4-complete
+          path: stage4-subjects/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Upload print proofs
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-expansion-stage4-print-proofs
+          path: print-proofs/
+          if-no-files-found: error
+          retention-days: 90

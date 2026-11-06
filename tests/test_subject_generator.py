@@ -123,5 +123,26 @@ class SubjectGeneratorTests(unittest.TestCase):
             self.assertGreater(len(reader.outline), 2)
 
 
+    def test_historical_source_names_and_folders(self):
+        """Old layouts remain valid; mixed RPC/Liturgics resolve explicitly."""
+        row = dict(self.topics[0])
+        row["source_folder"] = "irpc"
+        row["source_file"] = "q01.md"
+        self.assertEqual(
+            self.private / "materials" / "irpc" / "l2" / "q01.md",
+            builder.source_path(self.private, "rpc", row, "l2"))
+        row["source_folder"] = "liturgics"
+        row["source_file"] = "l-01.md"
+        self.assertEqual(
+            self.private / "materials" / "liturgics" / "l3" / "l-01.md",
+            builder.source_path(self.private, "liturgics", row, "l3"))
+        row["source_file"] = "../q01.md"
+        with self.assertRaises(ValueError):
+            builder.source_path(self.private, "liturgics", row, "l3")
+        row["source_file"] = "l-02.md"
+        with self.assertRaises(ValueError):
+            builder.source_path(self.private, "liturgics", row, "l3")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 from pypdf import PdfReader
 
-REQUIRED = {"nt": 25, "ot": 24, "dogmatics": 23}
+REQUIRED = {"nt": 25, "ot": 24, "dogmatics": 23, "oi": 25, "rpc": 25, "liturgics": 25}
 LEVELS = ("l3", "l2", "l1")
 DOWNLOAD = re.compile(r'href="(pdf/[^"]+\.pdf)"')
 
