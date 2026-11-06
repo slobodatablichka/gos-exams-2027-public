@@ -96,9 +96,14 @@ def original_unchanged(old_text, new_text, filename):
         begin, end = NAV_START, NAV_END
     if new_text.count(begin) != 1 or new_text.count(end) != 1:
         fail("Missing managed block: " + filename)
-    stripped = re.sub(re.escape(begin) + r"\n.*?\n" + re.escape(end) + r"\n\n?",
-                      "", new_text, count=1, flags=re.S)
-    if stripped != old_text:
+    def without_managed(text):
+        if begin not in text and end not in text:
+            return text
+        if text.count(begin) != 1 or text.count(end) != 1:
+            fail("Malformed original managed block: " + filename)
+        return re.sub(re.escape(begin) + r"\n.*?\n" + re.escape(end) + r"\n\n?",
+                      "", text, count=1, flags=re.S)
+    if without_managed(new_text) != without_managed(old_text):
         fail("Original site content modified outside managed block: " + filename)
 
 

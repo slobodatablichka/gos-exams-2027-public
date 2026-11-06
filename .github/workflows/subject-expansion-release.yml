@@ -1,0 +1,107 @@
+name: Publish integrated OI, RPC and Liturgics subject release candidate
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/subject-expansion-release.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: subject-expansion-release-pr53
+  cancel-in-progress: false
+
+jobs:
+  publish-candidate:
+    if: github.event.pull_request.number == 53 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout exact PR branch with write credentials
+        uses: actions/checkout@v4
+        with:
+          ref: subject-expansion-stage4
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          path: public
+      - name: Checkout source manuscripts
+        uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: main
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF and HTML verification tools
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Check generator, source models and source statuses
+        run: |
+          python -m compileall -q public/scripts
+          python -m unittest discover -s public/tests -p test_subject_generator.py -v
+          python -m unittest discover -s public/tests -p test_subject_navigation.py -v
+          python public/scripts/build-subjects.py check --private-root private --public-root public --subjects oi rpc liturgics
+          python public/scripts/publish-lesson.py check
+          echo "SUBJECT_SOURCE_SHA=$(git -C private rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Stage 234 new PDFs and subject catalogs
+        run: |
+          python public/scripts/build-subjects.py build --private-root private --public-root public --subjects oi rpc liturgics --preview-dir staged-subjects
+          python public/scripts/check-subject-pdfs.py staged-subjects --subjects oi rpc liturgics
+      - name: Stage 225 reciprocal navigation entries
+        run: |
+          python public/scripts/link-subjects.py --private-root private --public-root public --subjects oi rpc liturgics --output-root staged-navigation
+          python public/scripts/check-subject-navigation.py --private-root private --public-root public --subjects oi rpc liturgics --staged-root staged-navigation
+      - name: Build final combined candidate and verify all old URL routes
+        run: |
+          mkdir -p release-candidate/subjects
+          rsync -a --exclude='.git' --exclude='_site' public/ release-candidate/
+          rsync -a staged-subjects/ release-candidate/subjects/
+          rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ release-candidate/
+          cp staged-navigation/subject-navigation-manifest.json release-candidate/subjects/expansion-navigation-manifest.json
+          python public/scripts/check-subject-expansion.py --stage release-candidate --original public --private private
+      - name: Compile actual GitHub Pages Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./release-candidate
+          destination: ./site-preview
+      - name: Verify both new and old subject sections in compiled HTML
+        run: |
+          python public/scripts/check-subject-rendered.py site-preview --private-root private --subjects oi rpc liturgics
+          python public/scripts/check-subject-rendered.py site-preview --private-root private --subjects nt ot dogmatics
+      - name: Transfer verified files to PR branch in one batch
+        run: |
+          if [ -f public/subjects/oi/pdf/l3.pdf ] && [ -f public/subjects/rpc/pdf/l3.pdf ] && [ -f public/subjects/liturgics/pdf/l3.pdf ]; then
+            python public/scripts/check-subject-pdfs.py public/subjects --subjects oi rpc liturgics
+            python public/scripts/publish-lesson.py check
+            echo "PASS: complete subject release already permanently committed to PR branch"
+            exit 0
+          fi
+          rsync -a staged-subjects/ public/subjects/
+          rsync -a --exclude='subject-navigation-manifest.json' staged-navigation/ public/
+          cp staged-navigation/subject-navigation-manifest.json public/subjects/expansion-navigation-manifest.json
+          python public/scripts/check-subject-pdfs.py public/subjects --subjects oi rpc liturgics
+          python public/scripts/publish-lesson.py check
+          test "$(find public/subjects/oi public/subjects/rpc public/subjects/liturgics -type f -name '*.pdf' | wc -l)" -eq 234
+          git -C public diff --check -- '*.md' '*.scss' '*.json' '*.html' '*.yml'
+          git -C public config user.name 'github-actions[bot]'
+          git -C public config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C public add subjects/ sessions/ index.md materials/index.md assets/css/style.scss
+          git -C public diff --cached --check -- '*.md' '*.scss' '*.json' '*.html' '*.yml'
+          if git -C public diff --cached --quiet; then
+            echo "PASS: release files already committed, no duplicate publication"
+          else
+            git -C public commit -m 'Publish OI, RPC and Liturgics catalogs: 234 PDFs and 225 reciprocal links'
+            git -C public push origin HEAD:subject-expansion-stage4
+          fi
+          echo "PUBLISHED_PR_HEAD=$(git -C public rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Preserve release evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: subject-expansion-release-verification
+          path: |
+            public/subjects/oi/pdf-manifest.json
+            public/subjects/rpc/pdf-manifest.json
+            public/subjects/liturgics/pdf-manifest.json
+            public/subjects/expansion-navigation-manifest.json
+          if-no-files-found: error

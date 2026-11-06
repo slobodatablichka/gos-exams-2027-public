@@ -41,7 +41,17 @@ def abort(message):
 
 
 def source_path(private, slug, row, level):
-    return private / "materials" / slug / level / ("q%02d.md" % row["canonical_question"])
+    """Resolve optional historical source layout without changing old models."""
+    folder = row.get("source_folder", slug)
+    filename = row.get("source_file", "q%02d.md" % row["canonical_question"])
+    if not isinstance(folder, str) or not re.fullmatch(r"[a-z][a-z0-9-]*", folder):
+        abort("Unsafe source folder: " + str(folder))
+    if not isinstance(filename, str) or not re.fullmatch(r"(?:q[0-9]{2}|l-[0-9]{2})\.md", filename):
+        abort("Unsafe source filename: " + str(filename))
+    expected = "%02d" % row["canonical_question"]
+    if filename not in ("q" + expected + ".md", "l-" + expected + ".md"):
+        abort("Source filename/question mismatch: " + filename)
+    return private / "materials" / folder / level / filename
 
 
 def published_page(public, row, level, slug):
