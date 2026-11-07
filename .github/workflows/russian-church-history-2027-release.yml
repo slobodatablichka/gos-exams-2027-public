@@ -1,0 +1,74 @@
+name: Russian Church History 2027 subject release
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-russian-church-history-2027.py'
+      - '.github/workflows/russian-church-history-2027-release.yml'
+      - 'subjects/rpc/2027/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: russian-church-history-2027-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: 3c4a581ab3e3b75700215a3cf62873a8e66ff232
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Validate quality and titles
+        run: |
+          python -m py_compile public/scripts/build-russian-church-history-2027.py
+          python public/scripts/build-russian-church-history-2027.py --check --private-root private --source-sha "$(git -C private rev-parse HEAD)"
+      - name: Generate 75 pages and 78 actual PDF
+        run: |
+          python public/scripts/build-russian-church-history-2027.py --private-root private --source-sha "$(git -C private rev-parse HEAD)"
+      - name: Check PDFs and old pages
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=Path('public/subjects/rpc/2027')
+          j=json.loads((r/'pdf-manifest.json').read_text(encoding='utf-8'))
+          assert len(list(r.glob('q??-l?.md')))==75
+          assert len(j['pdfs'])==78
+          assert len(list((r/'pdf').glob('*.pdf')))==78
+          for item in j['pdfs']:
+              f=r/item['file']
+              assert f.read_bytes()[:5]==b'%PDF-' and f.stat().st_size==item['bytes']
+          old=Path('public/subjects/rpc/index.md').read_text(encoding='utf-8')
+          assert 'rpc-2027:entry' in old and len(old)>45000
+          print('PASS: all pages, PDFs, old catalog preserved')
+          PY
+          python public/scripts/publish-lesson.py check
+          git -C public diff --check -- '*.md' '*.json' '*.py' '*.yml'
+      - name: Commit generated pages and PDFs into PR
+        working-directory: public
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/rpc/2027 subjects/rpc/index.md subjects/index.md materials/index.md index.md
+          git diff --cached --check -- '*.md' '*.json' '*.py' '*.yml'
+          if git diff --cached --quiet; then
+            echo "Release already built"
+          else
+            git commit -m "История РПЦ 2027: 75 страниц и 78 PDF"
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          fi
