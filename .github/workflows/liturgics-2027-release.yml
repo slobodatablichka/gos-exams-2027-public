@@ -1,0 +1,73 @@
+name: Liturgics 2027 subject release
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-liturgics-2027.py'
+      - '.github/workflows/liturgics-2027-release.yml'
+      - 'subjects/liturgics/2027/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: liturgics-2027-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: main
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core
+      - name: Validate manuscript set
+        run: |
+          python -m py_compile public/scripts/build-liturgics-2027.py
+          python public/scripts/build-liturgics-2027.py --check --private-root private --source-sha "$(git -C private rev-parse HEAD)"
+      - name: Generate official 2027 pages and PDF
+        run: python public/scripts/build-liturgics-2027.py --private-root private --source-sha "$(git -C private rev-parse HEAD)"
+      - name: Verify all files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=Path("public/subjects/liturgics/2027")
+          j=json.loads((r/"pdf-manifest.json").read_text())
+          assert len(j["pdfs"])==78
+          assert len(list(r.glob("q??-l?.md")))==75
+          assert len(list((r/"practice").glob("q??.md")))==15
+          assert len(list((r/"examples").glob("q??.md")))==15
+          assert len(list((r/"examples/full").glob("q??.md")))==10
+          for item in j["pdfs"]:
+              p=r/item["file"]
+              assert p.is_file() and p.read_bytes()[:5]==b"%PDF-" and p.stat().st_size==item["bytes"]
+          print("PASS: 25 triplets, practice, exercises, 78 PDF; legacy paths untouched")
+          PY
+          python public/scripts/publish-lesson.py check
+          git -C public diff --check -- '*.md' '*.json' '*.py' '*.yml'
+      - name: Commit generated files into the same PR
+        working-directory: public
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/liturgics/2027 subjects/liturgics/index.md subjects/index.md materials/index.md
+          git diff --cached --check -- '*.md' '*.json' '*.py' '*.yml'
+          if git diff --cached --quiet; then
+            echo "Release already generated"
+          else
+            git commit -m "Литургика 2027: 75 ответов и 78 PDF"
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          fi
