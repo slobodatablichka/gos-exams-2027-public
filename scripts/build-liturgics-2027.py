@@ -106,5 +106,8 @@ def main():
     page=ROOT/"materials/index.md";text=page.read_text(encoding="utf-8")
     text=text.replace("[Литургика](../subjects/liturgics/index.html)","[Литургика 2027](../subjects/liturgics/2027/index.html) · [Литургика (архив)](../subjects/liturgics/index.html)",1)
     page.write_text(text,encoding="utf-8")
+    # Git diff --check rejects blank lines at EOF in generated Markdown.
+    for md in (ROOT/BASE).rglob("*.md"):
+        md.write_text(md.read_text(encoding="utf-8").rstrip()+"\n",encoding="utf-8")
     print("PASS: 75 new answers, 15 practice, 15 exercises, 10 full cases, 2 methodologies, 78 PDFs")
 if __name__=="__main__":main()
