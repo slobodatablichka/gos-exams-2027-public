@@ -160,6 +160,34 @@ def audit():
     print("LIVE DOGMATICS 2027 PASS: 75 article HTML, 12 practice pages, 78 PDFs, legacy URLs also tested")
 
 
+    # Separate approved official Church History 2027 release; old OI URLs remain.
+    for path, marker in [
+        ("subjects/oi/2027/index.html", "Общецерковная история"),
+        ("subjects/oi/2027/numbers.html", "Общецерковная история"),
+    ]:
+        data, _ = get(path)
+        if marker not in data.decode("utf-8", errors="replace"):
+            raise ValueError("Church History 2027 catalog missing: " + path)
+        print("LIVE OI 2027 CATALOG PASS", path, len(data))
+    for n in range(1, 26):
+        for level in ("l3", "l2", "l1"):
+            path = "subjects/oi/2027/q%02d-%s.html" % (n, level)
+            data, _ = get(path)
+            page = data.decode("utf-8", errors="replace")
+            if "Официальный вопрос." not in page or "Общецерковная история" not in page:
+                raise ValueError("Church History 2027 article missing: " + path)
+            print("LIVE OI 2027 ARTICLE PASS", path, len(data))
+    for name in ["l3.pdf", "l2.pdf", "l1.pdf"] + [
+        "q%02d-%s.pdf" % (n, level)
+        for n in range(1, 26) for level in ("l3", "l2", "l1")
+    ]:
+        path = "subjects/oi/2027/pdf/" + name
+        data, _ = get(path)
+        if not data.startswith(b"%PDF-") or len(data) < 1500:
+            raise ValueError("Invalid Church History 2027 PDF: " + path)
+        print("LIVE OI 2027 PDF PASS", path, len(data))
+    print("LIVE OI 2027 PASS: 75 article HTML, 2 catalog pages, 78 actual PDFs")
+
     print("LIVE PASS: %d actual HTML pages, %d actual downloadable PDFs" %
           (len(HTML), len(PDFS)))
 
