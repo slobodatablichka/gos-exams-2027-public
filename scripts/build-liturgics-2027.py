@@ -33,6 +33,8 @@ def write(rel,title,text,nav=""):
     dest.write_text(pre(title)+"[Литургика — экзамен 2027]("+base_link+")\n\n"+nav+convert(text,path)+"\n",encoding="utf-8")
 def main():
     import subject_pdf
+    from reportlab import rl_config
+    rl_config.invariant=1  # reproducible PDF IDs and creation metadata
     ap=argparse.ArgumentParser();ap.add_argument("--private-root",required=True);ap.add_argument("--source-sha",required=True);ap.add_argument("--check",action="store_true")
     a=ap.parse_args();private=Path(a.private_root);docs={};model={"title":"Литургика — экзамен 2027","sections":[{"id":i,"title":t,"official_numbers":list(rr)} for i,t,rr in GRPS]};rows=[]
     for n in range(1,26):

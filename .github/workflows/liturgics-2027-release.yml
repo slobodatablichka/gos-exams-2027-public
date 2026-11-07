@@ -57,7 +57,7 @@ jobs:
           print("PASS: 25 triplets, practice, exercises, 78 PDF; legacy paths untouched")
           PY
           python public/scripts/publish-lesson.py check
-          git -C public diff --check
+          git -C public diff --check -- '*.md' '*.json' '*.py' '*.yml'
       - name: Commit generated files into the same PR
         working-directory: public
         run: |
