@@ -115,6 +115,51 @@ def audit():
         print("LIVE 2027 PDF PASS", path, len(data))
     print("LIVE NEW 2027 PASS: 75 article HTML, 5 additional pages, 78 PDFs")
 
+    # New 2027 Dogmatics question bank; distinct from the legacy subject URLs.
+    dogmatics_pages = [
+        ("subjects/dogmatics/2027/index.html", "Догматическое богословие"),
+        ("subjects/dogmatics/2027/numbers.html", "Догматика"),
+        ("subjects/dogmatics/2027/source-status.html", "review_pending"),
+        ("subjects/dogmatics/2027/practice/methodology.html", "методика"),
+        ("subjects/dogmatics/2027/practice/heresy-comparison.html", "ерес"),
+        ("subjects/dogmatics/2027/practice/practicum-01.html", "Практикум"),
+        ("subjects/dogmatics/2027/practice/practicum-08.html", "сложная"),
+    ]
+    for path, marker in dogmatics_pages:
+        data, _ = get(path)
+        if marker.casefold() not in data.decode("utf-8", errors="replace").casefold():
+            raise ValueError("Dogmatics 2027 content missing: " + path)
+        print("LIVE DOGMATICS PAGE PASS", path, len(data))
+    for n in range(1, 26):
+        for level in ("l3", "l2", "l1"):
+            path = "subjects/dogmatics/2027/q%02d-%s.html" % (n, level)
+            data, _ = get(path)
+            body = data.decode("utf-8", errors="replace")
+            if "Догматика" not in body:
+                raise ValueError("Dogmatics 2027 article missing: " + path)
+            if n == 23 and "review_pending" not in body:
+                raise ValueError("Working status missing on " + path)
+            if n >= 16 and "Официальный" not in body:
+                raise ValueError("Original task missing on " + path)
+            print("LIVE DOGMATICS ARTICLE PASS", path, len(data))
+    for n in range(1, 11):
+        path = "subjects/dogmatics/2027/practice/practicum-%02d.html" % n
+        data, _ = get(path)
+        if "Вариант 3" not in data.decode("utf-8", errors="replace"):
+            raise ValueError("Practice variants missing at " + path)
+        print("LIVE DOGMATICS PRACTICE PASS", path, len(data))
+    for name in ["l3.pdf", "l2.pdf", "l1.pdf"] + [
+        "q%02d-%s.pdf" % (n, level)
+        for n in range(1, 26) for level in ("l3", "l2", "l1")
+    ]:
+        path = "subjects/dogmatics/2027/pdf/" + name
+        data, _ = get(path)
+        if not data.startswith(b"%PDF-") or len(data) < 1500:
+            raise ValueError("Invalid Dogmatics 2027 PDF: " + path)
+        print("LIVE DOGMATICS PDF PASS", path, len(data))
+    print("LIVE DOGMATICS 2027 PASS: 75 article HTML, 12 practice pages, 78 PDFs, legacy URLs also tested")
+
+
     print("LIVE PASS: %d actual HTML pages, %d actual downloadable PDFs" %
           (len(HTML), len(PDFS)))
 
