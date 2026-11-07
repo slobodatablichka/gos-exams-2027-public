@@ -64,7 +64,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add subjects/liturgics/2027 subjects/liturgics/index.md subjects/index.md materials/index.md
-          git diff --cached --check
+          git diff --cached --check -- '*.md' '*.json' '*.py' '*.yml'
           if git diff --cached --quiet; then
             echo "Release already generated"
           else
