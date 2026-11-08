@@ -7,7 +7,7 @@ title: "Общецерковная история — экзамен 2027"
 
 **25 новых официальных вопросов, L3/L2/L1 и PDF.** [Прежний вопросник и материалы](../index.html) сохранены.
 
-[По номерам](numbers.html) · [Все предметы](../../index.html) · [Библиотека БПДС](https://library.logoscosmos.org/bpds/gos-exams-2027/)
+[По номерам](numbers.html) · [Источниковые уточнения](source-status.html) · [Все предметы](../../index.html) · [Библиотека БПДС](https://library.logoscosmos.org/bpds/gos-exams-2027/)
 
 **PDF-сборники:** [L3](pdf/l3.pdf) · [L2](pdf/l2.pdf) · [L1](pdf/l1.pdf)
 
