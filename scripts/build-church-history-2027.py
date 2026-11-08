@@ -75,7 +75,7 @@ def main():
     top=("# Общецерковная история — экзамен 2027\n\n"
         "**25 новых официальных вопросов, L3/L2/L1 и PDF.** "
         "[Прежний вопросник и материалы](../index.html) сохранены.\n\n"
-        "[По номерам](numbers.html) · [Все предметы](../../index.html) · "
+        "[По номерам](numbers.html) · [Источниковые уточнения](source-status.html) · [Все предметы](../../index.html) · "
         "[Библиотека БПДС](https://library.logoscosmos.org/bpds/gos-exams-2027/)\n\n"
         "**PDF-сборники:** "+" · ".join(f"[{v.upper()}](pdf/{v}.pdf)" for v in LEVELS)+"\n\n")
     catalog=[top];numbers=["# Общецерковная история 2027 — по номерам\n\n[По разделам](index.html)\n\n"]

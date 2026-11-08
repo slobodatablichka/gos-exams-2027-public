@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: slobodatablichka/gos-exams-2027
-          ref: 9844fdd9c1a631dceb8861afb412ffb3241037a3
+          ref: 2290e293fa4caa97247502dcfd7a7094064a0758
           token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
           path: private
       - name: Install dependencies
