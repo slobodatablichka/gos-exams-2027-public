@@ -1,0 +1,473 @@
+{
+  "source_sha": "db92f5174610ecd322f70fa11ff960cb8dca97ad",
+  "pdfs": [
+    {
+      "file": "pdf/q01-l3.pdf",
+      "pages": 5,
+      "bytes": 68189,
+      "sha256": "63da63c0041c1e44983b04304c68a3e5d5d9e330ea0413b14f44bd4ac957796d"
+    },
+    {
+      "file": "pdf/q02-l3.pdf",
+      "pages": 3,
+      "bytes": 64122,
+      "sha256": "c43285094416cf4b24c4d869ba874c9576eeca0ac6b09b30d2776b13b7724759"
+    },
+    {
+      "file": "pdf/q03-l3.pdf",
+      "pages": 2,
+      "bytes": 62486,
+      "sha256": "2313d1a43a8ce3c10589f5df6b1f85894ed835fdcb87f9c6d1b11780840a784b"
+    },
+    {
+      "file": "pdf/q04-l3.pdf",
+      "pages": 3,
+      "bytes": 62188,
+      "sha256": "2c7ddbcb3f14d523658d0ac3e5c9b597c88f65c5445f52f5d904169e0513f6ae"
+    },
+    {
+      "file": "pdf/q05-l3.pdf",
+      "pages": 3,
+      "bytes": 62003,
+      "sha256": "230662c09ac014d5fb934d59466b44245be0caa76117e57c17c81cbcbfc06959"
+    },
+    {
+      "file": "pdf/q06-l3.pdf",
+      "pages": 2,
+      "bytes": 59520,
+      "sha256": "7b33eb95f4f49e74fcdfa9e10d72f26f35ffc35af479d6ca985f560bc37b8383"
+    },
+    {
+      "file": "pdf/q07-l3.pdf",
+      "pages": 3,
+      "bytes": 61932,
+      "sha256": "b11637e52e1424c87117e7b32a297bf0385b11dd0ef528f1960df043b537966a"
+    },
+    {
+      "file": "pdf/q08-l3.pdf",
+      "pages": 3,
+      "bytes": 64266,
+      "sha256": "688f91da8354985bb45c45deb0e5e9ecc8a989644ba27d37096406511ef18eaa"
+    },
+    {
+      "file": "pdf/q09-l3.pdf",
+      "pages": 2,
+      "bytes": 58767,
+      "sha256": "a76821865cca40bc551c268db7b78abee804d93acb7dd8a10cad797efe47e8fa"
+    },
+    {
+      "file": "pdf/q10-l3.pdf",
+      "pages": 4,
+      "bytes": 66354,
+      "sha256": "4c8709090db3122b02fa7595fe96989b4d678ea34cb0ab7b7e53db994a2b8137"
+    },
+    {
+      "file": "pdf/q11-l3.pdf",
+      "pages": 2,
+      "bytes": 58717,
+      "sha256": "a9f5298ed313dca221837be0078273fae8cec6f382f31a2496564039ea2d38fc"
+    },
+    {
+      "file": "pdf/q12-l3.pdf",
+      "pages": 2,
+      "bytes": 58445,
+      "sha256": "46dc28be97004937ad5245799ee221b34a61d88508b8dbaa56736a706cfadd57"
+    },
+    {
+      "file": "pdf/q13-l3.pdf",
+      "pages": 2,
+      "bytes": 58589,
+      "sha256": "7db2891d8403c11bf9178c19077dd2738dd5f14dd1bc69adc930c7bc3aa4b60f"
+    },
+    {
+      "file": "pdf/q14-l3.pdf",
+      "pages": 2,
+      "bytes": 59052,
+      "sha256": "8cea57e2d3c874898a67448aa2499f37bb4741a3f823e094c3fe30980b16bec5"
+    },
+    {
+      "file": "pdf/q15-l3.pdf",
+      "pages": 3,
+      "bytes": 60143,
+      "sha256": "62ad22d6810dbf6acbc5fa6d67f63eab2b294d75934e15c2ad9d8f43943f6b24"
+    },
+    {
+      "file": "pdf/q16-l3.pdf",
+      "pages": 2,
+      "bytes": 59675,
+      "sha256": "f6c6add2a493381c0861e263f0a4735e89d7c52c361f2b3016a03a2132cbeff3"
+    },
+    {
+      "file": "pdf/q17-l3.pdf",
+      "pages": 3,
+      "bytes": 60940,
+      "sha256": "2e986c6e8d325882fa616f3f0d936bab5d76238ddce7e8fac2a423b9f29e3edc"
+    },
+    {
+      "file": "pdf/q18-l3.pdf",
+      "pages": 2,
+      "bytes": 58014,
+      "sha256": "604d0140b0c8365fcb7ece44caa8a9ebf507a5aa150d26fc732341c9462c8f79"
+    },
+    {
+      "file": "pdf/q19-l3.pdf",
+      "pages": 2,
+      "bytes": 57973,
+      "sha256": "4926f59006ca3ef4b3ba9332211805b46a11a70106e42b0d932a67d6ba61882a"
+    },
+    {
+      "file": "pdf/q20-l3.pdf",
+      "pages": 4,
+      "bytes": 64996,
+      "sha256": "6f0182d04d107e9446086ee4afb66cf1abf34adc1aa2a86e731190768842d025"
+    },
+    {
+      "file": "pdf/q21-l3.pdf",
+      "pages": 2,
+      "bytes": 59263,
+      "sha256": "6f3ec583e7a62ffa389b870ab9a7b9e2e8940e079a7d5d4b23481dbca1265d8a"
+    },
+    {
+      "file": "pdf/q22-l3.pdf",
+      "pages": 2,
+      "bytes": 59338,
+      "sha256": "6cdd512f446ae32de46bef615fa9ed61a1de7cd4e83842e1a98df7ecf4a1cbb7"
+    },
+    {
+      "file": "pdf/q23-l3.pdf",
+      "pages": 3,
+      "bytes": 60900,
+      "sha256": "56953dcbd696be02303adfb682eb586cf108dbaf4776bc46e0ff1a7e83d1c462"
+    },
+    {
+      "file": "pdf/q24-l3.pdf",
+      "pages": 2,
+      "bytes": 58205,
+      "sha256": "34e3a3e1c35921d9d4226070204211776fd50a5537306f053b01d5882bf310d6"
+    },
+    {
+      "file": "pdf/q25-l3.pdf",
+      "pages": 3,
+      "bytes": 61633,
+      "sha256": "db2662d6f3fc16b19b195fe523650ccdfb2b9123d13e4bb8d47efc1d78ea941f"
+    },
+    {
+      "file": "pdf/l3.pdf",
+      "pages": 64,
+      "bytes": 305812,
+      "sha256": "de357d18a42e8c4f17c0dce99ed6cdde0075829b4356f521646ab8c5f88d4e8d"
+    },
+    {
+      "file": "pdf/q01-l2.pdf",
+      "pages": 2,
+      "bytes": 55527,
+      "sha256": "b160ca825c8f370e70c01d4e6cf6eadfb800f6f66049c34c247658dd3930e7d2"
+    },
+    {
+      "file": "pdf/q02-l2.pdf",
+      "pages": 2,
+      "bytes": 56211,
+      "sha256": "7f3332d54eb348870a1eef95ad3c1ce51700f3bfa8640408fa5119c47478d8b0"
+    },
+    {
+      "file": "pdf/q03-l2.pdf",
+      "pages": 1,
+      "bytes": 56189,
+      "sha256": "3fc4bcecd2c3d5a71cddab63df0a12def31af07ad71895ed29516f36d94b5147"
+    },
+    {
+      "file": "pdf/q04-l2.pdf",
+      "pages": 1,
+      "bytes": 54563,
+      "sha256": "a724ecc03549b329d84a12dc01c0552416708a9707bfb81e0b9eefcba900fed1"
+    },
+    {
+      "file": "pdf/q05-l2.pdf",
+      "pages": 1,
+      "bytes": 54292,
+      "sha256": "13736e4f12549076a73bd14d46a10005c3ae2c83aec3850daa100781afd310f3"
+    },
+    {
+      "file": "pdf/q06-l2.pdf",
+      "pages": 2,
+      "bytes": 55871,
+      "sha256": "caa09b5369aa3bf6644499f14d8d3d2a3b2448391dbb517dcf648389698e8e1c"
+    },
+    {
+      "file": "pdf/q07-l2.pdf",
+      "pages": 1,
+      "bytes": 54206,
+      "sha256": "87b5572b9bb6e154ae64ff1e5090a9e8fa0a043aeeccec13f021cc7c2aa5d925"
+    },
+    {
+      "file": "pdf/q08-l2.pdf",
+      "pages": 1,
+      "bytes": 54161,
+      "sha256": "47010d8f40538b101f95a5b3a468e6c996d012907876fdf225e156460e9252ff"
+    },
+    {
+      "file": "pdf/q09-l2.pdf",
+      "pages": 2,
+      "bytes": 54218,
+      "sha256": "59cbe8ee0d7aa0e083391cea5bf37c8e0cacb00c2059fcc81ea15c9ac27f7055"
+    },
+    {
+      "file": "pdf/q10-l2.pdf",
+      "pages": 1,
+      "bytes": 55068,
+      "sha256": "3d1f93c3f2bc10b058182874e13c1de8bec590abd6d26355b5411f3d489d2d67"
+    },
+    {
+      "file": "pdf/q11-l2.pdf",
+      "pages": 2,
+      "bytes": 55264,
+      "sha256": "507d83439dad8f9cebad50a57f10c6e251d142bdcbe5f4af2312bf17911050a7"
+    },
+    {
+      "file": "pdf/q12-l2.pdf",
+      "pages": 1,
+      "bytes": 54298,
+      "sha256": "d26c3b7db5726fd83f982f6819ef2db4d7551635f3826003c62146415e1b14a5"
+    },
+    {
+      "file": "pdf/q13-l2.pdf",
+      "pages": 1,
+      "bytes": 54008,
+      "sha256": "a3965f011ce6b79e0a3f53f9ed0cd02e81cfa9b5168b9d69a25792dfca0df78b"
+    },
+    {
+      "file": "pdf/q14-l2.pdf",
+      "pages": 1,
+      "bytes": 54471,
+      "sha256": "d2a8c90cce5dbbb1f4122320e7e71e5a9a8e8e2a3c44ecb1c43839493643ea77"
+    },
+    {
+      "file": "pdf/q15-l2.pdf",
+      "pages": 2,
+      "bytes": 55072,
+      "sha256": "e5c0d7dd1fd38af1d62a0657d2698bd21af06fb35eb68f4cd7259ec5ef85399f"
+    },
+    {
+      "file": "pdf/q16-l2.pdf",
+      "pages": 2,
+      "bytes": 55008,
+      "sha256": "65f15379b3c32813831021dadfa7da007598b8d22d9bc758b2002aed4384c04a"
+    },
+    {
+      "file": "pdf/q17-l2.pdf",
+      "pages": 2,
+      "bytes": 55049,
+      "sha256": "b96e1ca03c5f2233c80bb4c416d7b22365ce5630e5a7e5c1c96f63c45a776418"
+    },
+    {
+      "file": "pdf/q18-l2.pdf",
+      "pages": 1,
+      "bytes": 54261,
+      "sha256": "10e991f6e2b97cd62d2ce0637dbbc23addd68843c261344129df2a92cebbcc8e"
+    },
+    {
+      "file": "pdf/q19-l2.pdf",
+      "pages": 2,
+      "bytes": 54437,
+      "sha256": "68c70511d6a36bc627eac52ec7684e7386dc4bb5c2a2830230a7e0d75d1907be"
+    },
+    {
+      "file": "pdf/q20-l2.pdf",
+      "pages": 2,
+      "bytes": 55567,
+      "sha256": "aa78e9f2bad78c9a07cce80d92781c589e5dd7f9e95b1f22c3d7b037d718211b"
+    },
+    {
+      "file": "pdf/q21-l2.pdf",
+      "pages": 1,
+      "bytes": 53951,
+      "sha256": "2f9101a4ea257ece5b296612b463cb3a51521504facc01a124062225860e0dc6"
+    },
+    {
+      "file": "pdf/q22-l2.pdf",
+      "pages": 2,
+      "bytes": 54801,
+      "sha256": "d66db017c70b1a709e784a31d47208f8a3610e98e784a463f5a8a0ebb3f1a30a"
+    },
+    {
+      "file": "pdf/q23-l2.pdf",
+      "pages": 2,
+      "bytes": 54500,
+      "sha256": "14124350d1f1d074c8e3d68524703164b5880005615224de5ed73a1bfa252fae"
+    },
+    {
+      "file": "pdf/q24-l2.pdf",
+      "pages": 2,
+      "bytes": 54441,
+      "sha256": "da8da0f8d9a0f52ad5379d041f86af85e9e0aed88ed1200951c508f4292ed711"
+    },
+    {
+      "file": "pdf/q25-l2.pdf",
+      "pages": 2,
+      "bytes": 55462,
+      "sha256": "58b1c34946c9c7641f73df5486dcaf61e12a519b6f4a960cbd736fa42c7862f9"
+    },
+    {
+      "file": "pdf/l2.pdf",
+      "pages": 27,
+      "bytes": 176803,
+      "sha256": "06e3c49b142efcada1689acf580a43ab6ae84d75387467a444efe88b449e9922"
+    },
+    {
+      "file": "pdf/q01-l1.pdf",
+      "pages": 1,
+      "bytes": 53824,
+      "sha256": "2304fc82173eb2fee20c1732ee329167179ab8772e736fad1d0faa1dd8fe55b5"
+    },
+    {
+      "file": "pdf/q02-l1.pdf",
+      "pages": 1,
+      "bytes": 54220,
+      "sha256": "5f90e7c2e4ccdff5f90b8e0c2d4829f10e34f7aafbc5f3b0ae3d18b57aa03de2"
+    },
+    {
+      "file": "pdf/q03-l1.pdf",
+      "pages": 1,
+      "bytes": 56043,
+      "sha256": "4aa806c0d4d8d1ccd828ac98c4620cd43f220557c13f0ca38573dc0448c6d22a"
+    },
+    {
+      "file": "pdf/q04-l1.pdf",
+      "pages": 1,
+      "bytes": 53805,
+      "sha256": "30b303659a47946d3a25008b620e40fb324cb1a628f81f00755462515dd5f0a9"
+    },
+    {
+      "file": "pdf/q05-l1.pdf",
+      "pages": 1,
+      "bytes": 53591,
+      "sha256": "764945bc9d4448a913c163025422768caaddb674dd63612304af7755a0e1cc46"
+    },
+    {
+      "file": "pdf/q06-l1.pdf",
+      "pages": 1,
+      "bytes": 54622,
+      "sha256": "3ba8d5cda52e659ed87cf61293bd339f05fefd63e644254a3a28f32efc60af16"
+    },
+    {
+      "file": "pdf/q07-l1.pdf",
+      "pages": 1,
+      "bytes": 53127,
+      "sha256": "8bb0a965aad280643077ab8031f28e7508a07a1fff07a868096abf25a89329be"
+    },
+    {
+      "file": "pdf/q08-l1.pdf",
+      "pages": 1,
+      "bytes": 53270,
+      "sha256": "c15b3890ce5dd3d9880f6fb09853134e7a5f9fc90840cbe240c7b1028c39ecc2"
+    },
+    {
+      "file": "pdf/q09-l1.pdf",
+      "pages": 1,
+      "bytes": 52386,
+      "sha256": "d2fd1fc3de6ccc4517532239d63550cece43792fbe59644f801ae8e918691c43"
+    },
+    {
+      "file": "pdf/q10-l1.pdf",
+      "pages": 1,
+      "bytes": 54145,
+      "sha256": "1630c40c1389effa80cb29f4768b320f2a6caddac91ccda08144d907bad6ae79"
+    },
+    {
+      "file": "pdf/q11-l1.pdf",
+      "pages": 1,
+      "bytes": 54653,
+      "sha256": "d13a7cb17dabf3347bb7e7159d44d69ca36154b2baeb694635e89fb6aa70f742"
+    },
+    {
+      "file": "pdf/q12-l1.pdf",
+      "pages": 1,
+      "bytes": 53282,
+      "sha256": "3f4681adf5f7c966ca2f973919a73ae55fe64837feefa8b9c63dcbb2720a7cde"
+    },
+    {
+      "file": "pdf/q13-l1.pdf",
+      "pages": 1,
+      "bytes": 53074,
+      "sha256": "b405685d6a5c58c8ab1f57fbced500fab1fc12ccac9d50d966964dd4ba0647bc"
+    },
+    {
+      "file": "pdf/q14-l1.pdf",
+      "pages": 1,
+      "bytes": 53482,
+      "sha256": "297467ad3fcd68d2a09261112d034305c7862c636bd29aadb74ac041af8049f8"
+    },
+    {
+      "file": "pdf/q15-l1.pdf",
+      "pages": 1,
+      "bytes": 53745,
+      "sha256": "776797e3b43e08e3683e9bc2a6464957ddb8473d7641cdec3906361ed24e8cfa"
+    },
+    {
+      "file": "pdf/q16-l1.pdf",
+      "pages": 1,
+      "bytes": 53495,
+      "sha256": "b614148775acffb2023c3cc613f4073a801a718e2a8215b725cc0e62bdd421c0"
+    },
+    {
+      "file": "pdf/q17-l1.pdf",
+      "pages": 1,
+      "bytes": 53732,
+      "sha256": "3b5f0590639a4951ba1e39f663534232456aa9a5c8b468c143e6a8379deacc6d"
+    },
+    {
+      "file": "pdf/q18-l1.pdf",
+      "pages": 1,
+      "bytes": 53493,
+      "sha256": "b09ff29bce0b746859ae129454bca23227ecaa28e10878879869150fc5fc02fb"
+    },
+    {
+      "file": "pdf/q19-l1.pdf",
+      "pages": 1,
+      "bytes": 53125,
+      "sha256": "bcc779d16b24aa002ce5575f9eda4835db89c27266c0acf5434a9d2d703f10fb"
+    },
+    {
+      "file": "pdf/q20-l1.pdf",
+      "pages": 1,
+      "bytes": 53157,
+      "sha256": "bec85a3672596c1c2ffb339a679ebc1ff59a51fc281f7d7aa83d15f50b516f77"
+    },
+    {
+      "file": "pdf/q21-l1.pdf",
+      "pages": 1,
+      "bytes": 53358,
+      "sha256": "22b0275468f92455c3e37f8ca29a23fef7817c7e5828fbd5329485261ecd07af"
+    },
+    {
+      "file": "pdf/q22-l1.pdf",
+      "pages": 1,
+      "bytes": 53301,
+      "sha256": "7b64cff2420322fb55944661dd5eeafb37b3dfe165fa02353a10703a9b387914"
+    },
+    {
+      "file": "pdf/q23-l1.pdf",
+      "pages": 1,
+      "bytes": 53366,
+      "sha256": "3e5e800845c7d04f55486b888fe90477bac9bf418363b1eea9cb4afb89799325"
+    },
+    {
+      "file": "pdf/q24-l1.pdf",
+      "pages": 1,
+      "bytes": 53590,
+      "sha256": "65b358b998d8adc97abbb33e37940e68011a5dbeb96e3a251bca5f538bd14fe3"
+    },
+    {
+      "file": "pdf/q25-l1.pdf",
+      "pages": 1,
+      "bytes": 54150,
+      "sha256": "950734b6836bfc857d3669e86ac18d9c6d12bb6800fb827ce3a37e89df1d9c6d"
+    },
+    {
+      "file": "pdf/l1.pdf",
+      "pages": 27,
+      "bytes": 152160,
+      "sha256": "882d6f5f5d495e1425bb0c993fe0b29b9ebc317ae4a0154a2d170200777149f8"
+    }
+  ]
+}
