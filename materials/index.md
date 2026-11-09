@@ -16,7 +16,7 @@ title: Учебные материалы
 <!-- subject-navigation:begin -->
 ## По предметам
 
-Быстрый доступ: **[Все предметы](../subjects/index.html)** · [Новый Завет](../subjects/nt/index.html) · [Ветхий Завет](../subjects/ot/index.html) · [Догматика 2027](../subjects/dogmatics/2027/index.html) · [Догматика (архив)](../subjects/dogmatics/index.html) · [Общецерковная история 2027](../subjects/oi/2027/index.html) · [ОИ (архив)](../subjects/oi/index.html) · [История Русской Православной Церкви 2027](../subjects/rpc/2027/index.html) · [ИРПЦ (архив)](../subjects/rpc/index.html) · [Литургика 2027](../subjects/liturgics/2027/index.html) · [Литургика (архив)](../subjects/liturgics/index.html).
+Быстрый доступ: **[Все предметы](../subjects/index.html)** · [Новый Завет 2027](../subjects/nt/2027/index.html) · [Новый Завет (архив)](../subjects/nt/index.html) · [Ветхий Завет](../subjects/ot/index.html) · [Догматика 2027](../subjects/dogmatics/2027/index.html) · [Догматика (архив)](../subjects/dogmatics/index.html) · [Общецерковная история 2027](../subjects/oi/2027/index.html) · [ОИ (архив)](../subjects/oi/index.html) · [История Русской Православной Церкви 2027](../subjects/rpc/2027/index.html) · [ИРПЦ (архив)](../subjects/rpc/index.html) · [Литургика 2027](../subjects/liturgics/2027/index.html) · [Литургика (архив)](../subjects/liturgics/index.html).
 
 Переход по предметам не заменяет прежний список занятий.
 <!-- subject-navigation:end -->
