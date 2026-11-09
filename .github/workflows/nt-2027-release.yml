@@ -63,7 +63,7 @@ jobs:
                   assert (base/"pdf"/f"q{n:02d}-{level}.pdf").is_file()
           for f in (Path("public/subjects/nt/index.md"),Path("public/subjects/index.md"),
                     Path("public/index.md"),Path("public/materials/index.md")):
-              assert "nt/2027/index.html" in f.read_text(encoding="utf-8")
+              assert (("2027/index.html" if f.as_posix().endswith("subjects/nt/index.md") else "nt/2027/index.html") in f.read_text(encoding="utf-8"))
           print("PASS: 75 page sources, 78 valid PDFs, 25 official questions, old routes retained")
           PY
           python public/scripts/publish-lesson.py check
