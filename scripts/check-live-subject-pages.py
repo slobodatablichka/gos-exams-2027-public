@@ -11,7 +11,7 @@ BASE = "https://slobodatablichka.github.io/gos-exams-2027-public/"
 HTML = {
     "index.html": ("Учебные материалы по предметам",),
     "materials/index.html": ("По предметам",),
-    "subjects/index.html": ("Священное Писание Нового Завета", "Догматика — новый экзамен 2027", "Священное Писание Ветхого Завета", "Общецерковная история", "История Русской Православной Церкви", "Литургика"),
+    "subjects/index.html": ("Новый Завет — экзамен 2027", "Новый Завет — прежний вопросник", "Догматика — новый экзамен 2027", "Священное Писание Ветхого Завета", "Общецерковная история", "История Русской Православной Церкви", "Литургика"),
     "subjects/nt/index.html": ("Смысловой порядок", 'id="meaning-q12"', 'id="number-q12"'),
     "subjects/ot/index.html": ("Смысловой порядок", 'id="meaning-q05"', 'id="number-q14"'),
     "subjects/dogmatics/index.html": ("Смысловой порядок", 'id="meaning-q06"', 'id="number-q16"'),
@@ -214,6 +214,33 @@ def audit():
             raise ValueError("Invalid RPC 2027 PDF: " + path)
         print("LIVE RPC 2027 PDF PASS", path, len(data))
     print("LIVE RPC 2027 PASS: 75 article HTML, 2 catalog pages, 78 actual PDFs")
+
+    # Separate New Testament question bank approved for 2027; all legacy NT URLs remain.
+    for name in ("index.html", "numbers.html"):
+        path = "subjects/nt/2027/" + name
+        data, _ = get(path)
+        body = data.decode("utf-8", errors="replace")
+        if "Новый Завет" not in body or "2027" not in body:
+            raise ValueError("NT 2027 catalog missing: " + path)
+        print("LIVE NT 2027 CATALOG PASS", path, len(data))
+    for n in range(1, 26):
+        for level in ("l3", "l2", "l1"):
+            path = "subjects/nt/2027/q%02d-%s.html" % (n, level)
+            data, _ = get(path)
+            body = data.decode("utf-8", errors="replace")
+            if "Официальная формулировка:" not in body or "Новый Завет" not in body:
+                raise ValueError("NT 2027 article missing: " + path)
+            print("LIVE NT 2027 ARTICLE PASS", path, len(data))
+    for name in ["l3.pdf", "l2.pdf", "l1.pdf"] + [
+        "q%02d-%s.pdf" % (n, level)
+        for n in range(1, 26) for level in ("l3", "l2", "l1")
+    ]:
+        path = "subjects/nt/2027/pdf/" + name
+        data, _ = get(path)
+        if not data.startswith(b"%PDF-") or len(data) < 1500:
+            raise ValueError("Invalid NT 2027 PDF: " + path)
+        print("LIVE NT 2027 PDF PASS", path, len(data))
+    print("LIVE NT 2027 PASS: 75 article HTML, 2 catalog pages, 78 actual PDFs")
 
     print("LIVE PASS: %d actual HTML pages, %d actual downloadable PDFs" %
           (len(HTML), len(PDFS)))
