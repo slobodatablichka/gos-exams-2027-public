@@ -1,0 +1,29 @@
+name: Inventory exact library chapter headings for source repair
+on:
+  push:
+    paths: ["scripts/index-2027-library-chapters.py",".github/workflows/index-2027-library-chapters.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  toc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect live library TOCs
+        run: python3 scripts/index-2027-library-chapters.py
+      - name: Store TOC inspection data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add planning/data/site-2027-library-toc.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Inventory published BPDS book chapter anchors for source repair"
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bpds-library-toc-for-source-repair
+          path: planning/data/site-2027-library-toc.json
