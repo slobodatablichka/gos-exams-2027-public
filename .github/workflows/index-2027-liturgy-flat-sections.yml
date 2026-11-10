@@ -1,0 +1,21 @@
+name: Identify exact published liturgical chapter pages
+on:
+  push:
+    paths: ["scripts/index-2027-liturgy-flat-sections.py",".github/workflows/index-2027-liturgy-flat-sections.yml"]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/index-2027-liturgy-flat-sections.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add planning/data/site-2027-liturgy-exact-sections.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Capture actual liturgical library section URLs"
+            git push origin HEAD:main
+          fi
