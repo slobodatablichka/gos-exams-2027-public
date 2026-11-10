@@ -74,9 +74,9 @@ def navreplace(path, old, new):
     write(path, text.replace(old, new, 1))
 
 def verify_legacy():
-    old = ROOT / "subjects/nt/index.md"
+    old = ROOT / "subjects/ot/index.md"
     if not old.is_file() or "Священное Писание Ветхого Завета" not in old.read_text(encoding="utf-8"):
-        raise ValueError("Historic NT landing page missing")
+        raise ValueError("Historic OT landing page missing")
     for folder in ("subjects/dogmatics/2027", "subjects/oi/2027", "subjects/rpc/2027"):
         if not (ROOT / folder / "index.md").is_file():
             raise ValueError("Unrelated subject missing: " + folder)
