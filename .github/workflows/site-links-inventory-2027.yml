@@ -1,0 +1,22 @@
+name: Inventory current and legacy site links
+on:
+  push:
+    paths:
+      - 'scripts/audit-site-links-2027.py'
+      - '.github/workflows/site-links-inventory-2027.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory repository links and PDF signatures
+        run: python3 scripts/audit-site-links-2027.py --out site-inventory-report
+      - name: Publish inventory artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-link-inventory
+          path: site-inventory-report/
+          retention-days: 30
