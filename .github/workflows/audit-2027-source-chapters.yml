@@ -1,0 +1,32 @@
+name: Audit 2027 source chapter links
+on:
+  push:
+    paths:
+      - "scripts/audit-2027-source-chapters.py"
+      - ".github/workflows/audit-2027-source-chapters.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check 450 pages and library chapters
+        run: python3 scripts/audit-2027-source-chapters.py
+      - name: Commit machine report, not site content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add planning/data/site-2027-source-links.json planning/data/site-2027-source-links-summary.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Record site 2027 library chapter link audit"
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-2027-library-audit
+          path: planning/data/site-2027-source-links*
+          retention-days: 60
