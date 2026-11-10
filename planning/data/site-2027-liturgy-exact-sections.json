@@ -1,6 +1,6 @@
 {
   "date": "2026-11-10",
-  "source": "Live BPDS published index links, not guessed from EPUB numbering",
+  "source": "Actual public library index links, independent chapter URL HTTP test",
   "books": {
     "typikon": {
       "index_http": 200,
@@ -3397,5 +3397,133 @@
         }
       ]
     }
+  },
+  "verified_targets": {
+    "liturgics-2027-01": [
+      {
+        "book": "typikon",
+        "file": "index_split_012.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_012.xhtml",
+        "title": "Глава 11. О канонех всея седмицы Господа како поются канони Октоиха с Минеею",
+        "http_status": 200,
+        "bytes": 5782,
+        "contains_russian_church_terms": false
+      },
+      {
+        "book": "typikon",
+        "file": "index_split_013.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_013.xhtml",
+        "title": "Глава 12. О службе субботней о вечерни, о утрени и о литургии егда поем Бог Господь",
+        "http_status": 200,
+        "bytes": 11238,
+        "contains_russian_church_terms": false
+      }
+    ],
+    "liturgics-2027-02": [
+      {
+        "book": "typikon",
+        "file": "index_split_003.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_003.xhtml",
+        "title": "Глава 2. Чин великия вечерни, сиесть бдения всенощнаго, и утрени воскресныя",
+        "http_status": 200,
+        "bytes": 50891,
+        "contains_russian_church_terms": false
+      },
+      {
+        "book": "typikon",
+        "file": "index_split_004.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_004.xhtml",
+        "title": "Глава 3. О святем имущем бдение, аще прилучится в неделю",
+        "http_status": 200,
+        "bytes": 9448,
+        "contains_russian_church_terms": false
+      }
+    ],
+    "liturgics-2027-07": [
+      {
+        "book": "typikon",
+        "file": "index_split_092.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_092.xhtml",
+        "title": "О храмех. Главы 1–58",
+        "http_status": 200,
+        "bytes": 132478,
+        "contains_russian_church_terms": false
+      }
+    ],
+    "liturgics-2027-12": [
+      {
+        "book": "book-18",
+        "file": "index_split_036.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_036.xhtml",
+        "title": "Литургия Оглашенных",
+        "http_status": 200,
+        "bytes": 36196,
+        "contains_russian_church_terms": true
+      },
+      {
+        "book": "book-18",
+        "file": "index_split_045.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_045.xhtml",
+        "title": "Ектении об оглашенных",
+        "http_status": 200,
+        "bytes": 16993,
+        "contains_russian_church_terms": true
+      }
+    ],
+    "liturgics-2027-13": [
+      {
+        "book": "book-18",
+        "file": "index_split_052.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_052.xhtml",
+        "title": "Анафора",
+        "http_status": 200,
+        "bytes": 109492,
+        "contains_russian_church_terms": false
+      }
+    ],
+    "liturgics-2027-14": [
+      {
+        "book": "book-18",
+        "file": "index_split_046.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_046.xhtml",
+        "title": "Литургия Верных",
+        "http_status": 200,
+        "bytes": 16289,
+        "contains_russian_church_terms": false
+      }
+    ],
+    "liturgics-2027-23": [
+      {
+        "book": "book-18",
+        "file": "index_split_029.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_029.xhtml",
+        "title": "А. Иерусалимская группа",
+        "http_status": 200,
+        "bytes": 67205,
+        "contains_russian_church_terms": true
+      }
+    ],
+    "liturgics-2027-24": [
+      {
+        "book": "book-18",
+        "file": "index_split_030.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_030.xhtml",
+        "title": "Б. Византийская группа",
+        "http_status": 200,
+        "bytes": 28841,
+        "contains_russian_church_terms": false
+      }
+    ],
+    "liturgics-2027-25": [
+      {
+        "book": "averky-taushev",
+        "file": "index_split_003.xhtml",
+        "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_003.xhtml",
+        "title": "2. О Богослужении Происхождение богослужения Развитие православного богослужения",
+        "http_status": 200,
+        "bytes": 52652,
+        "contains_russian_church_terms": true
+      }
+    ]
   }
 }
