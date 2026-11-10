@@ -12,14 +12,14 @@ from pathlib import Path
 SUBJECTS = ("nt", "ot", "oi", "rpc", "dogmatics", "liturgics")
 LEVELS = ("l3", "l2", "l1")
 FORM = re.compile(
-    r"^\\s*(?:>\\s*)?\\*\\*(?:Официальный вопрос|Официальная формулировка)"
-    r"(?:\\.|:)\\*\\*\\s*(?:[:.]\\s*)?(.+?)\\s*$", re.M
+    r"^\s*(?:>\s*)?\*\*(?:Официальный вопрос|Официальная формулировка)"
+    r"(?:\.|:)\*\*\s*(?:[:.]\s*)?(.+?)\s*$", re.M
 )
-URL = re.compile(r"\\[([^]]+)\\]\\(([^)]+)\\)")
+URL = re.compile(r"\[([^]]+)\]\(([^)]+)\)")
 PRODUCTION = re.compile(
-    r"(?:source-texts/|\\bCURRENT-STATE\\.md\\b|"
-    r"\\b(?:planning|research)/[^\\s)]+\\.(?:md|json|csv)|"
-    r"\\bэтап[а-я]* [1-9]\\b|история редакции)",
+    r"(?:source-texts/|\bCURRENT-STATE\.md\b|"
+    r"\b(?:planning|research)/[^\s)]+\.(?:md|json|csv)|"
+    r"\bэтап[а-я]* [1-9]\b|история редакции)",
     re.IGNORECASE
 )
 
@@ -87,7 +87,7 @@ def main():
                              if FORM.search(b)]
                     if len(forms) == 3 and len(set(forms)) != 1:
                         errors.append(f"{slug} q{n:02}: official variants differ")
-                    if slug == "liturgics" and re.search(r"^\\d+\\. \\*\\*", bodies["l2"], re.M):
+                    if slug == "liturgics" and re.search(r"^\d+\. \*\*", bodies["l2"], re.M):
                         errors.append(f"Liturgics q{n:02} L2 remains a numbered plan")
                 details.append({"subject": slug, "number": n, "levels_present": len(bodies)})
         if len(details) != 150:
