@@ -1,0 +1,83 @@
+name: Old Testament 2027 subject release
+on:
+  pull_request:
+    paths:
+      - 'scripts/build-ot-2027.py'
+      - '.github/workflows/ot-2027-release.yml'
+      - 'subjects/ot/2027/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ot-2027-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          path: public
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: 1af7eca8ff69874877f3bc7e4a4566704f760edd
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          path: private
+      - name: Install PDF dependencies
+        run: |
+          python -m pip install reportlab markdown beautifulsoup4 pypdf pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-dejavu-core poppler-utils
+      - name: Validate inputs and script
+        run: |
+          python -m py_compile public/scripts/build-ot-2027.py
+          python public/scripts/build-ot-2027.py --check --private-root private --source-sha "$(git -C private rev-parse HEAD)"
+      - name: Build new pages and 78 PDFs
+        run: |
+          python public/scripts/build-ot-2027.py --private-root private --source-sha "$(git -C private rev-parse HEAD)"
+      - name: Check content, references and PDF structure
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          base=Path("public/subjects/ot/2027")
+          m=json.loads((base/"pdf-manifest.json").read_text(encoding="utf-8"))
+          assert len(m["pdfs"])==78
+          assert len(list(base.glob("q??-l?.md")))==75
+          assert (base/"numbers.md").is_file() and (base/"index.md").is_file()
+          for e in m["pdfs"]:
+              f=base/e["file"]
+              assert f.is_file() and f.stat().st_size==e["bytes"]
+              assert f.open("rb").read(5)==b"%PDF-"
+              assert len(PdfReader(f, strict=True).pages)==e["pages"]
+          for n in range(1,26):
+              for level in ("l3","l2","l1"):
+                  txt=(base/f"q{n:02d}-{level}.md").read_text(encoding="utf-8")
+                  assert "**Официальная формулировка:**" in txt
+                  assert (base/"pdf"/f"q{n:02d}-{level}.pdf").is_file()
+          for f in (Path("public/subjects/ot/index.md"),Path("public/subjects/index.md"),
+                    Path("public/index.md"),Path("public/materials/index.md")):
+              assert (("2027/index.html" if f.as_posix().endswith("subjects/ot/index.md") else "ot/2027/index.html") in f.read_text(encoding="utf-8"))
+          print("PASS: 75 page sources, 78 valid PDFs, 25 official questions, old routes retained")
+          PY
+          python public/scripts/publish-lesson.py check
+          git -C public diff --check
+      - name: Commit generated release to PR branch
+        working-directory: public
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/ot/2027 subjects/ot/index.md subjects/index.md materials/index.md index.md
+          git diff --cached --check -- '*.md' '*.json' '*.py' '*.yml'
+          if git diff --cached --quiet; then
+            echo "Release already built"
+          else
+            git commit -m "Ветхий Завет 2027: 75 ответов и 78 PDF"
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          fi
