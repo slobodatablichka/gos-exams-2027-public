@@ -15,7 +15,7 @@ FORM = re.compile(
     r"^\s*(?:>\s*)?\*\*(?:Официальный вопрос|Официальная формулировка)"
     r"(?:\.|:)\*\*\s*(?:[:.]\s*)?(.+?)\s*$", re.M
 )
-PRACTICAL_FORM = re.compile(r"^## Официальное задание\\s*\\n+(?:>\\s*)?(.+?)\\s*$", re.M)
+PRACTICAL_FORM = re.compile(r"^## Официальное задание\s*\n+(?:>\s*)?(.+?)\s*$", re.M)
 URL = re.compile(r"\[([^]]+)\]\(([^)]+)\)")
 PRODUCTION = re.compile(
     r"(?:source-texts/|\bCURRENT-STATE\.md\b|"
