@@ -1,0 +1,3401 @@
+{
+  "date": "2026-11-10",
+  "source": "Live BPDS published index links, not guessed from EPUB numbering",
+  "books": {
+    "typikon": {
+      "index_http": 200,
+      "sections": [
+        {
+          "file": "index_split_000.xhtml",
+          "title": "contents",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_000.xhtml"
+        },
+        {
+          "file": "index_split_001.xhtml",
+          "title": "Типикон",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_001.xhtml"
+        },
+        {
+          "file": "index_split_002.xhtml",
+          "title": "Глава 1. Чин малыя вечерни",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_002.xhtml"
+        },
+        {
+          "file": "index_split_003.xhtml",
+          "title": "Глава 2. Чин великия вечерни, сиесть бдения всенощнаго, и утрени воскресныя",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_003.xhtml"
+        },
+        {
+          "file": "index_split_004.xhtml",
+          "title": "Глава 3. О святем имущем бдение, аще прилучится в неделю",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_004.xhtml"
+        },
+        {
+          "file": "index_split_005.xhtml",
+          "title": "Глава 4. О святем имущем полиелей, аще прилучится в неделю",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_005.xhtml"
+        },
+        {
+          "file": "index_split_006.xhtml",
+          "title": "Глава 5. О святем поемом на 6. Аще будет в неделю, не имеяй полиелеа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_006.xhtml"
+        },
+        {
+          "file": "index_split_007.xhtml",
+          "title": "Глава 6. О бдениих всенощных, бывающих чрез все лето",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_007.xhtml"
+        },
+        {
+          "file": "index_split_008.xhtml",
+          "title": "Глава 7. Идеже всенощныя не бывают",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_008.xhtml"
+        },
+        {
+          "file": "index_split_009.xhtml",
+          "title": "Глава 8. О литургиах",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_009.xhtml"
+        },
+        {
+          "file": "index_split_010.xhtml",
+          "title": "Глава 9. Дней седмичных, и в нихже поем аллилуиа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_010.xhtml"
+        },
+        {
+          "file": "index_split_011.xhtml",
+          "title": "Глава 10. О еже како чтутся евангелиа, и того толкования",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_011.xhtml"
+        },
+        {
+          "file": "index_split_012.xhtml",
+          "title": "Глава 11. О канонех всея седмицы Господа како поются канони Октоиха с Минеею",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_012.xhtml"
+        },
+        {
+          "file": "index_split_013.xhtml",
+          "title": "Глава 12. О службе субботней о вечерни, о утрени и о литургии егда поем Бог Господь",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_013.xhtml"
+        },
+        {
+          "file": "index_split_014.xhtml",
+          "title": "Глава 13. Подобает ведати, аще прилучится в субботу пети аллилуиа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_014.xhtml"
+        },
+        {
+          "file": "index_split_015.xhtml",
+          "title": "Глава 14. Подобает ведати, о еже како бывати о усопших воследованию",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_015.xhtml"
+        },
+        {
+          "file": "index_split_016.xhtml",
+          "title": "Глава 15. О святем имущем полиелей, аще случится в субботу",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_016.xhtml"
+        },
+        {
+          "file": "index_split_017.xhtml",
+          "title": "Глава 16. О светильнах на утрени",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_017.xhtml"
+        },
+        {
+          "file": "index_split_018.xhtml",
+          "title": "Глава 17. О стихологиах",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_018.xhtml"
+        },
+        {
+          "file": "index_split_019.xhtml",
+          "title": "Глава 18. О еже когда стихословятся песни: Поем Господеви: и Господеви поем",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_019.xhtml"
+        },
+        {
+          "file": "index_split_020.xhtml",
+          "title": "Глава 19. О катавасии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_020.xhtml"
+        },
+        {
+          "file": "index_split_021.xhtml",
+          "title": "Глава 20. О еже когда поется Честнейшую, и когда не поется",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_021.xhtml"
+        },
+        {
+          "file": "index_split_022.xhtml",
+          "title": "Глава 21. О еже когда глаголются изобразительная, и когда антифоны",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_022.xhtml"
+        },
+        {
+          "file": "index_split_023.xhtml",
+          "title": "Глава 22. Подобает ведати, когда кадит иерей",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_023.xhtml"
+        },
+        {
+          "file": "index_split_024.xhtml",
+          "title": "Глава 23. О завесе святаго олтаря, когда отверзается, и когда затворяется",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_024.xhtml"
+        },
+        {
+          "file": "index_split_025.xhtml",
+          "title": "Глава 24. О вжигании свещ како подобает в церкви вжигати, в неделю, и на праздники Христовы, и Богородицы, и святых, и прочия дни",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_025.xhtml"
+        },
+        {
+          "file": "index_split_026.xhtml",
+          "title": "Глава 25. О вседневном вжигании свещ",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_026.xhtml"
+        },
+        {
+          "file": "index_split_027.xhtml",
+          "title": "Глава 26. Подобает ведати, в кое время братии в церкви не стояти с жезлами",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_027.xhtml"
+        },
+        {
+          "file": "index_split_028.xhtml",
+          "title": "Глава 27. О канонарсе",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_028.xhtml"
+        },
+        {
+          "file": "index_split_029.xhtml",
+          "title": "Глава 28. О безчинных воплех",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_029.xhtml"
+        },
+        {
+          "file": "index_split_030.xhtml",
+          "title": "Глава 29. О откровении глав",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_030.xhtml"
+        },
+        {
+          "file": "index_split_031.xhtml",
+          "title": "Глава 30. О еже не творити бесед в церкви",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_031.xhtml"
+        },
+        {
+          "file": "index_split_032.xhtml",
+          "title": "Глава 31. О еже како подобает имети будильника",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_032.xhtml"
+        },
+        {
+          "file": "index_split_033.xhtml",
+          "title": "Глава 32. О велицей четыредесятнице, яже должен всякий христианин хранити",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_033.xhtml"
+        },
+        {
+          "file": "index_split_034.xhtml",
+          "title": "Глава 33. О разрешении всего лета",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_034.xhtml"
+        },
+        {
+          "file": "index_split_035.xhtml",
+          "title": "Глава 34. О житии общежительнаго пребывания",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_035.xhtml"
+        },
+        {
+          "file": "index_split_036.xhtml",
+          "title": "Глава 35. Разсуждение о ястии и питии субботы и недели, и прочих дней седмичных, и о трапезном устроении всем",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_036.xhtml"
+        },
+        {
+          "file": "index_split_037.xhtml",
+          "title": "Глава 36. О молчании на трапезе",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_037.xhtml"
+        },
+        {
+          "file": "index_split_038.xhtml",
+          "title": "Глава 37. О пении, яко не подобает кроме собора особне пети",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_038.xhtml"
+        },
+        {
+          "file": "index_split_039.xhtml",
+          "title": "Глава 38. О еже не подобает ясти кроме общия трапезы",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_039.xhtml"
+        },
+        {
+          "file": "index_split_040.xhtml",
+          "title": "Глава 39. О одеждах и обущах, и всей телесней потребе",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_040.xhtml"
+        },
+        {
+          "file": "index_split_041.xhtml",
+          "title": "Глава 40. Егда кто хощет отлучитися братства",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_041.xhtml"
+        },
+        {
+          "file": "index_split_042.xhtml",
+          "title": "Глава 41. О служителех и прочих пребываниих братских",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_042.xhtml"
+        },
+        {
+          "file": "index_split_043.xhtml",
+          "title": "Глава 42. О службах тяжких",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_043.xhtml"
+        },
+        {
+          "file": "index_split_044.xhtml",
+          "title": "Глава 43. О дому особном",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_044.xhtml"
+        },
+        {
+          "file": "index_split_045.xhtml",
+          "title": "Глава 44. О делании во общине",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_045.xhtml"
+        },
+        {
+          "file": "index_split_046.xhtml",
+          "title": "Глава 45. О стяжании чуждих трудов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_046.xhtml"
+        },
+        {
+          "file": "index_split_047.xhtml",
+          "title": "Глава 46. О больнице и странноприимстве, и о старых и больных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_047.xhtml"
+        },
+        {
+          "file": "index_split_048.xhtml",
+          "title": "Глава 47. О знамениях Владычних, и Богородичных праздников, и святых",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_048.xhtml"
+        },
+        {
+          "file": "index_split_049.xhtml",
+          "title": "Глава 48. Месяцеслов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_049.xhtml"
+        },
+        {
+          "file": "index_split_050.xhtml",
+          "title": "Месяц септемврий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_050.xhtml"
+        },
+        {
+          "file": "index_split_051.xhtml",
+          "title": "Месяц октоврий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_051.xhtml"
+        },
+        {
+          "file": "index_split_052.xhtml",
+          "title": "Месяц ноемврий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_052.xhtml"
+        },
+        {
+          "file": "index_split_053.xhtml",
+          "title": "Месяц декемврий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_053.xhtml"
+        },
+        {
+          "file": "index_split_054.xhtml",
+          "title": "Месяц ианнуарий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_054.xhtml"
+        },
+        {
+          "file": "index_split_055.xhtml",
+          "title": "Месяц февруарий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_055.xhtml"
+        },
+        {
+          "file": "index_split_056.xhtml",
+          "title": "Месяц март",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_056.xhtml"
+        },
+        {
+          "file": "index_split_057.xhtml",
+          "title": "Месяц априлий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_057.xhtml"
+        },
+        {
+          "file": "index_split_058.xhtml",
+          "title": "Месяц маий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_058.xhtml"
+        },
+        {
+          "file": "index_split_059.xhtml",
+          "title": "Месяц иуний",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_059.xhtml"
+        },
+        {
+          "file": "index_split_060.xhtml",
+          "title": "Месяц иулий",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_060.xhtml"
+        },
+        {
+          "file": "index_split_061.xhtml",
+          "title": "Месяц август",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_061.xhtml"
+        },
+        {
+          "file": "index_split_062.xhtml",
+          "title": "Глава 49. Триодион Сиесть Трипеснец, с Богом святым, обдержай подобающее ему последование Неделя, в нюже чтется священное и святое Евангелие, притчи мытаря и фарисеа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_062.xhtml"
+        },
+        {
+          "file": "index_split_063.xhtml",
+          "title": "Неделя, в нюже чтется священное и святое Евангелие, притчи блуднаго сына",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_063.xhtml"
+        },
+        {
+          "file": "index_split_064.xhtml",
+          "title": "В субботу мясопустную память совершаем от века усопших православных христиан",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_064.xhtml"
+        },
+        {
+          "file": "index_split_065.xhtml",
+          "title": "Неделя мясопустная",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_065.xhtml"
+        },
+        {
+          "file": "index_split_066.xhtml",
+          "title": "В неделю мясопустную вечера",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_066.xhtml"
+        },
+        {
+          "file": "index_split_067.xhtml",
+          "title": "В неделю сыропустную, изгнание Адамово",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_067.xhtml"
+        },
+        {
+          "file": "index_split_068.xhtml",
+          "title": "О поклонех и молитве церковное законоположение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_068.xhtml"
+        },
+        {
+          "file": "index_split_069.xhtml",
+          "title": "В среду 1-я седмицы вечера",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_069.xhtml"
+        },
+        {
+          "file": "index_split_070.xhtml",
+          "title": "В пяток вечера во светильничное, по обычном стихословии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_070.xhtml"
+        },
+        {
+          "file": "index_split_071.xhtml",
+          "title": "В субботу 1-ю святых постов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_071.xhtml"
+        },
+        {
+          "file": "index_split_072.xhtml",
+          "title": "Неделя первая святых постов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_072.xhtml"
+        },
+        {
+          "file": "index_split_073.xhtml",
+          "title": "Неделя 2-я святых постов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_073.xhtml"
+        },
+        {
+          "file": "index_split_074.xhtml",
+          "title": "Неделя третия святых постов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_074.xhtml"
+        },
+        {
+          "file": "index_split_075.xhtml",
+          "title": "Неделя 4-я святых постов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_075.xhtml"
+        },
+        {
+          "file": "index_split_076.xhtml",
+          "title": "В неделю 5-ю святых постов",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_076.xhtml"
+        },
+        {
+          "file": "index_split_077.xhtml",
+          "title": "В субботу святаго и праведнаго Лазаря",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_077.xhtml"
+        },
+        {
+          "file": "index_split_078.xhtml",
+          "title": "Последование святых страстей Господа нашего Иисуса Христа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_078.xhtml"
+        },
+        {
+          "file": "index_split_079.xhtml",
+          "title": "Во святую и великую субботу",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_079.xhtml"
+        },
+        {
+          "file": "index_split_080.xhtml",
+          "title": "Во святую и великую субботу вечера",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_080.xhtml"
+        },
+        {
+          "file": "index_split_081.xhtml",
+          "title": "Глава 50. Начало с Богом святым, Пентикостариа, сиречь Пятьдесятницы, начинаемыя от святыя и великия недели Пасхи утра, и кончаемыя даже до недели всех святых, обдержащия неоскудно",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_081.xhtml"
+        },
+        {
+          "file": "index_split_082.xhtml",
+          "title": "Глава 51. Начало святаго поста святых славных и всехвальных апостол",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_082.xhtml"
+        },
+        {
+          "file": "index_split_083.xhtml",
+          "title": "Глава 52. О отпустительных тропарях и кондаках,",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_083.xhtml"
+        },
+        {
+          "file": "index_split_084.xhtml",
+          "title": "Глава 53. Отпустительнии тропари воскреснии осми гласов, с Богородичны их, ипакои, и кондаки. И прокимени на утрени пред Евангелием, и на литургии, и аллилуиаре",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_084.xhtml"
+        },
+        {
+          "file": "index_split_085.xhtml",
+          "title": "Глава 54. Столпи евангельстии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_085.xhtml"
+        },
+        {
+          "file": "index_split_086.xhtml",
+          "title": "Глава 55. Отпустительнии тропари, кондаки, и светильны Господа дневнии, и на литургиах, прокимени, апостоли, аллилуиаре, Евангелиа, и причастны всея седмицы",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_086.xhtml"
+        },
+        {
+          "file": "index_split_087.xhtml",
+          "title": "Глава 56. Кондаки общие святым",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_087.xhtml"
+        },
+        {
+          "file": "index_split_088.xhtml",
+          "title": "Глава 57. Богородичны и Крестобогородичны отпустительнии. На 8 гласов, поемии во все лето, в вечерни же, и на Бог Господь на утрени, и в конец утрени",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_088.xhtml"
+        },
+        {
+          "file": "index_split_089.xhtml",
+          "title": "Глава 58. Троичны песни, на 8 гласов. Кия поются во святую великую 40-цу, и в прочия посты, егда поем Аллилуиа, во глас осмогласника, со стихи его: От нощи утренюет дух мой: и проч",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_089.xhtml"
+        },
+        {
+          "file": "index_split_090.xhtml",
+          "title": "Глава 59. Прокимени, апостоли, аллилуиаре, Евангелиа, и причастни общи святых, ихже егда творим службу",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_090.xhtml"
+        },
+        {
+          "file": "index_split_091.xhtml",
+          "title": "Глава 60. Прокимени, апостоли, аллилуиаре, Евангелиа, и причастни на всяку потребу различнии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_091.xhtml"
+        },
+        {
+          "file": "index_split_092.xhtml",
+          "title": "О храмех. Главы 1–58",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_092.xhtml"
+        },
+        {
+          "file": "index_split_093.xhtml",
+          "title": "Припевы на Господския Владычни и Богородичны праздники, поемыя на 9-й песни",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_093.xhtml"
+        },
+        {
+          "file": "index_split_094.xhtml",
+          "title": "Приложение От сотворения всея твари, и первозданного человека Адама, пятнадцатое обращение индиктиона, которые длительностью 532 года каждый",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_094.xhtml"
+        },
+        {
+          "file": "index_split_095.xhtml",
+          "title": "Пасхалиа зрячая по ключевым словам.",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_095.xhtml"
+        },
+        {
+          "file": "index_split_096.xhtml",
+          "title": "Лунное течение. Каяждо луна имать дней 29, и пол дня, и пол часа, и пятую часть часа.",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/typikon/index_split_096.xhtml"
+        }
+      ]
+    },
+    "averky-taushev": {
+      "index_http": 200,
+      "sections": [
+        {
+          "file": "index_split_000.xhtml",
+          "title": "contents",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_000.xhtml"
+        },
+        {
+          "file": "index_split_001.xhtml",
+          "title": "Литургика",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_001.xhtml"
+        },
+        {
+          "file": "index_split_002.xhtml",
+          "title": "Часть 1 1. Понятие о Литургике Предварительные сведения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_002.xhtml"
+        },
+        {
+          "file": "index_split_003.xhtml",
+          "title": "2. О Богослужении Происхождение богослужения Развитие православного богослужения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_003.xhtml"
+        },
+        {
+          "file": "index_split_004.xhtml",
+          "title": "3. Происхождение христианских храмов Внутреннее расположение и устройство храма Алтарь",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_004.xhtml"
+        },
+        {
+          "file": "index_split_005.xhtml",
+          "title": "4. Лица, совершающие богослужения Священнослужители Церковнослужители",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_005.xhtml"
+        },
+        {
+          "file": "index_split_006.xhtml",
+          "title": "5. Священные одежды Значение священных одежд, их украшение и цвет",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_006.xhtml"
+        },
+        {
+          "file": "index_split_007.xhtml",
+          "title": "6. Священные действия и обряды",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_007.xhtml"
+        },
+        {
+          "file": "index_split_008.xhtml",
+          "title": "7. Богослужебные книги О простых книгах Книги для общественного богослужения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_008.xhtml"
+        },
+        {
+          "file": "index_split_009.xhtml",
+          "title": "8. Понятие о богослужебных кругах 1. Круг суточного богослужения 2. Круг седмичного богослужения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_009.xhtml"
+        },
+        {
+          "file": "index_split_010.xhtml",
+          "title": "9. Церковное пение и иконопись Вопрос о церковной живописи, или иконописи",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_010.xhtml"
+        },
+        {
+          "file": "index_split_011.xhtml",
+          "title": "Часть 2 Первая часть всенощного бдения. Всенощное бдение и его происхождение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_011.xhtml"
+        },
+        {
+          "file": "index_split_012.xhtml",
+          "title": "1. Начало всенощного бдения. Вечерня. Пение Предначинательнаго псалма Великая ектения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_012.xhtml"
+        },
+        {
+          "file": "index_split_013.xhtml",
+          "title": "2. Вторая часть Всенощнаго бдения. Утреня Шестопсалмие Великая ектения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_013.xhtml"
+        },
+        {
+          "file": "index_split_014.xhtml",
+          "title": "3. Первый Час и окончание Всенощного бдения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_014.xhtml"
+        },
+        {
+          "file": "index_split_015.xhtml",
+          "title": "4. Служба полиелейная",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_015.xhtml"
+        },
+        {
+          "file": "index_split_016.xhtml",
+          "title": "5. Служба славословная",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_016.xhtml"
+        },
+        {
+          "file": "index_split_017.xhtml",
+          "title": "6. Служба шестиричная",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_017.xhtml"
+        },
+        {
+          "file": "index_split_018.xhtml",
+          "title": "7. Пять разрядов праздников",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_018.xhtml"
+        },
+        {
+          "file": "index_split_019.xhtml",
+          "title": "8. Вседневная вечерня",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_019.xhtml"
+        },
+        {
+          "file": "index_split_020.xhtml",
+          "title": "9. Малое повечерие",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_020.xhtml"
+        },
+        {
+          "file": "index_split_021.xhtml",
+          "title": "10. Полунощница",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_021.xhtml"
+        },
+        {
+          "file": "index_split_022.xhtml",
+          "title": "11. Вседневная утреня",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_022.xhtml"
+        },
+        {
+          "file": "index_split_023.xhtml",
+          "title": "12. Часы и Изобразительные",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_023.xhtml"
+        },
+        {
+          "file": "index_split_024.xhtml",
+          "title": "13. Круг вседневного богослужения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_024.xhtml"
+        },
+        {
+          "file": "index_split_025.xhtml",
+          "title": "14. Служба субботняя",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_025.xhtml"
+        },
+        {
+          "file": "index_split_026.xhtml",
+          "title": "Часть 3 1. Божественная Литургия Предварительные сведения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_026.xhtml"
+        },
+        {
+          "file": "index_split_027.xhtml",
+          "title": "2. Литургия Св. Иоанна Златоустого Приготовление к совершению Литургии Облачение перед Литургией",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_027.xhtml"
+        },
+        {
+          "file": "index_split_028.xhtml",
+          "title": "3. Литургия Василия Великого",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_028.xhtml"
+        },
+        {
+          "file": "index_split_029.xhtml",
+          "title": "4. Литургия Апостола Иакова",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_029.xhtml"
+        },
+        {
+          "file": "index_split_030.xhtml",
+          "title": "Часть 4 1. Праздники",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_030.xhtml"
+        },
+        {
+          "file": "index_split_031.xhtml",
+          "title": "2. Богослужение неподвижных дней года Праздники малые Праздники средние",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_031.xhtml"
+        },
+        {
+          "file": "index_split_032.xhtml",
+          "title": "3. Месяцеслов Сентябрь Октябрь",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_032.xhtml"
+        },
+        {
+          "file": "index_split_033.xhtml",
+          "title": "4. Храмовые праздники",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_033.xhtml"
+        },
+        {
+          "file": "index_split_034.xhtml",
+          "title": "5. Богослужение подвижных дней года",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_034.xhtml"
+        },
+        {
+          "file": "index_split_035.xhtml",
+          "title": "6. Богослужения Постной Триоди Приготовительные Недели к Великому Посту Неделя мытаря и фарисея",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_035.xhtml"
+        },
+        {
+          "file": "index_split_036.xhtml",
+          "title": "Великая Четыредесятница",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_036.xhtml"
+        },
+        {
+          "file": "index_split_037.xhtml",
+          "title": "Особенности Великопостных Служб Полунощница Великопостная утреня",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_037.xhtml"
+        },
+        {
+          "file": "index_split_038.xhtml",
+          "title": "Литургия Преждеосвященных Даров О Преждеосвященной литургии Св. Апостола Иакова. Входные молитвы и облачение священнослужителей",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_038.xhtml"
+        },
+        {
+          "file": "index_split_039.xhtml",
+          "title": "Последование Литургии Преждеосвященных Даров",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_039.xhtml"
+        },
+        {
+          "file": "index_split_040.xhtml",
+          "title": "Особые Воспоминания в Дни Четыредесятницы Неделя Православия Вторая неделя Великого поста",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_040.xhtml"
+        },
+        {
+          "file": "index_split_041.xhtml",
+          "title": "7. Богослужения Цветной Триоди",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_041.xhtml"
+        },
+        {
+          "file": "index_split_042.xhtml",
+          "title": "Пасха Господня, или Воскресение Христово",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_042.xhtml"
+        },
+        {
+          "file": "index_split_043.xhtml",
+          "title": "Особые Воспоминания в Дни Пятидесятницы Неделя Антипасхи Неделя Жен Мироносиц",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_043.xhtml"
+        },
+        {
+          "file": "index_split_044.xhtml",
+          "title": "Вознесение Господне Неделя 7-я по Пасхе",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_044.xhtml"
+        },
+        {
+          "file": "index_split_045.xhtml",
+          "title": "Неделя Пятидесятницы. Св. Троица Неделя всех Святых",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_045.xhtml"
+        },
+        {
+          "file": "index_split_046.xhtml",
+          "title": "Часть 5 1. Частные Богослужения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_046.xhtml"
+        },
+        {
+          "file": "index_split_047.xhtml",
+          "title": "2. Требник, часть первая Молитва в первый день рождения Молитва, во еже назнаменати отроча",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_047.xhtml"
+        },
+        {
+          "file": "index_split_048.xhtml",
+          "title": "3. Крещение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_048.xhtml"
+        },
+        {
+          "file": "index_split_049.xhtml",
+          "title": "4. Миропомазание Крещение вкратце страха ради смертного О чинах присоединения к Православию",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_049.xhtml"
+        },
+        {
+          "file": "index_split_050.xhtml",
+          "title": "5. Исповедь. (Таинство покаяния)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_050.xhtml"
+        },
+        {
+          "file": "index_split_051.xhtml",
+          "title": "6. Таинство Священства Посвящение в чтеца и певца Посвящение во иподиакона",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_051.xhtml"
+        },
+        {
+          "file": "index_split_052.xhtml",
+          "title": "7. Брак Обручение Венчание",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_052.xhtml"
+        },
+        {
+          "file": "index_split_053.xhtml",
+          "title": "8. Елеосвящение или Соборование Чин причащения больного",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_053.xhtml"
+        },
+        {
+          "file": "index_split_054.xhtml",
+          "title": "9. Пострижение в Монашество",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_054.xhtml"
+        },
+        {
+          "file": "index_split_055.xhtml",
+          "title": "10. Канон на Исход Души",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_055.xhtml"
+        },
+        {
+          "file": "index_split_056.xhtml",
+          "title": "11. Погребение Омовение, одевание и положение во гроб усопшего Отпевание и погребение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_056.xhtml"
+        },
+        {
+          "file": "index_split_057.xhtml",
+          "title": "12. Освящение воды",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_057.xhtml"
+        },
+        {
+          "file": "index_split_058.xhtml",
+          "title": "13. Молитвы на разныя потребы",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_058.xhtml"
+        },
+        {
+          "file": "index_split_059.xhtml",
+          "title": "14. Требник, часть вторая (дополнительные требник)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_059.xhtml"
+        },
+        {
+          "file": "index_split_060.xhtml",
+          "title": "15. Книга молебных пений notes",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_060.xhtml"
+        },
+        {
+          "file": "index_split_061.xhtml",
+          "title": "1",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_061.xhtml"
+        },
+        {
+          "file": "index_split_062.xhtml",
+          "title": "2",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_062.xhtml"
+        },
+        {
+          "file": "index_split_063.xhtml",
+          "title": "3",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_063.xhtml"
+        },
+        {
+          "file": "index_split_064.xhtml",
+          "title": "4",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_064.xhtml"
+        },
+        {
+          "file": "index_split_065.xhtml",
+          "title": "5",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_065.xhtml"
+        },
+        {
+          "file": "index_split_066.xhtml",
+          "title": "6",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_066.xhtml"
+        },
+        {
+          "file": "index_split_067.xhtml",
+          "title": "7",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_067.xhtml"
+        },
+        {
+          "file": "index_split_068.xhtml",
+          "title": "8",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_068.xhtml"
+        },
+        {
+          "file": "index_split_069.xhtml",
+          "title": "9",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_069.xhtml"
+        },
+        {
+          "file": "index_split_070.xhtml",
+          "title": "10",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_070.xhtml"
+        },
+        {
+          "file": "index_split_071.xhtml",
+          "title": "11",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_071.xhtml"
+        },
+        {
+          "file": "index_split_072.xhtml",
+          "title": "12",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_072.xhtml"
+        },
+        {
+          "file": "index_split_073.xhtml",
+          "title": "13",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_073.xhtml"
+        },
+        {
+          "file": "index_split_074.xhtml",
+          "title": "14",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_074.xhtml"
+        },
+        {
+          "file": "index_split_075.xhtml",
+          "title": "15",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_075.xhtml"
+        },
+        {
+          "file": "index_split_076.xhtml",
+          "title": "16",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_076.xhtml"
+        },
+        {
+          "file": "index_split_077.xhtml",
+          "title": "17",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_077.xhtml"
+        },
+        {
+          "file": "index_split_078.xhtml",
+          "title": "18",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_078.xhtml"
+        },
+        {
+          "file": "index_split_079.xhtml",
+          "title": "19",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_079.xhtml"
+        },
+        {
+          "file": "index_split_080.xhtml",
+          "title": "20",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_080.xhtml"
+        },
+        {
+          "file": "index_split_081.xhtml",
+          "title": "21",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_081.xhtml"
+        },
+        {
+          "file": "index_split_082.xhtml",
+          "title": "22",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_082.xhtml"
+        },
+        {
+          "file": "index_split_083.xhtml",
+          "title": "23",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_083.xhtml"
+        },
+        {
+          "file": "index_split_084.xhtml",
+          "title": "24",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_084.xhtml"
+        },
+        {
+          "file": "index_split_085.xhtml",
+          "title": "25",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_085.xhtml"
+        },
+        {
+          "file": "index_split_086.xhtml",
+          "title": "26",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_086.xhtml"
+        },
+        {
+          "file": "index_split_087.xhtml",
+          "title": "27",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_087.xhtml"
+        },
+        {
+          "file": "index_split_088.xhtml",
+          "title": "28",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_088.xhtml"
+        },
+        {
+          "file": "index_split_089.xhtml",
+          "title": "29",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_089.xhtml"
+        },
+        {
+          "file": "index_split_090.xhtml",
+          "title": "30",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_090.xhtml"
+        },
+        {
+          "file": "index_split_091.xhtml",
+          "title": "31",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/averky-taushev/index_split_091.xhtml"
+        }
+      ]
+    },
+    "book-18": {
+      "index_http": 200,
+      "sections": [
+        {
+          "file": "index_split_000.xhtml",
+          "title": "contents",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_000.xhtml"
+        },
+        {
+          "file": "index_split_001.xhtml",
+          "title": "Евхаристия",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_001.xhtml"
+        },
+        {
+          "file": "index_split_002.xhtml",
+          "title": "Отдел первый: происхождение и история Литургии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_002.xhtml"
+        },
+        {
+          "file": "index_split_003.xhtml",
+          "title": "История Литургии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_003.xhtml"
+        },
+        {
+          "file": "index_split_004.xhtml",
+          "title": "Установление Евхаристии на Тайной Вечере",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_004.xhtml"
+        },
+        {
+          "file": "index_split_005.xhtml",
+          "title": "Вечеря",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_005.xhtml"
+        },
+        {
+          "file": "index_split_006.xhtml",
+          "title": "Евхаристия апостольского времени",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_006.xhtml"
+        },
+        {
+          "file": "index_split_007.xhtml",
+          "title": "Евхаристия послеапостольского времени",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_007.xhtml"
+        },
+        {
+          "file": "index_split_008.xhtml",
+          "title": "I. Преанафоральная часть",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_008.xhtml"
+        },
+        {
+          "file": "index_split_009.xhtml",
+          "title": "II. Анафора",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_009.xhtml"
+        },
+        {
+          "file": "index_split_010.xhtml",
+          "title": "Евхаристия и Агапы",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_010.xhtml"
+        },
+        {
+          "file": "index_split_011.xhtml",
+          "title": "III век",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_011.xhtml"
+        },
+        {
+          "file": "index_split_012.xhtml",
+          "title": "IV век",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_012.xhtml"
+        },
+        {
+          "file": "index_split_013.xhtml",
+          "title": "Литургия оглашенных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_013.xhtml"
+        },
+        {
+          "file": "index_split_014.xhtml",
+          "title": "Литургия верных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_014.xhtml"
+        },
+        {
+          "file": "index_split_015.xhtml",
+          "title": "Лобзание мира",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_015.xhtml"
+        },
+        {
+          "file": "index_split_016.xhtml",
+          "title": "Приношение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_016.xhtml"
+        },
+        {
+          "file": "index_split_017.xhtml",
+          "title": "Анафора",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_017.xhtml"
+        },
+        {
+          "file": "index_split_018.xhtml",
+          "title": "Призывание",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_018.xhtml"
+        },
+        {
+          "file": "index_split_019.xhtml",
+          "title": "Ходатайство",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_019.xhtml"
+        },
+        {
+          "file": "index_split_020.xhtml",
+          "title": "Причащение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_020.xhtml"
+        },
+        {
+          "file": "index_split_021.xhtml",
+          "title": "V-VIII ВЕКА",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_021.xhtml"
+        },
+        {
+          "file": "index_split_022.xhtml",
+          "title": "1. Сирийская литургия по произведениям писателей V-VIII веков",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_022.xhtml"
+        },
+        {
+          "file": "index_split_023.xhtml",
+          "title": "2. Евхаристическое богослужение по «Corpus Areopagiticum» («Eccles. hierar.», 3)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_023.xhtml"
+        },
+        {
+          "file": "index_split_024.xhtml",
+          "title": "Литургия верных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_024.xhtml"
+        },
+        {
+          "file": "index_split_025.xhtml",
+          "title": "Типы Литургий (Систематизация евхаристических молитв по их особенностям)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_025.xhtml"
+        },
+        {
+          "file": "index_split_026.xhtml",
+          "title": "Литургии Александрийского типа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_026.xhtml"
+        },
+        {
+          "file": "index_split_027.xhtml",
+          "title": "Литургии Месопотамского типа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_027.xhtml"
+        },
+        {
+          "file": "index_split_028.xhtml",
+          "title": "Литургии Иерусалимского и Византийского типа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_028.xhtml"
+        },
+        {
+          "file": "index_split_029.xhtml",
+          "title": "А. Иерусалимская группа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_029.xhtml"
+        },
+        {
+          "file": "index_split_030.xhtml",
+          "title": "Б. Византийская группа",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_030.xhtml"
+        },
+        {
+          "file": "index_split_031.xhtml",
+          "title": "Отдел второй: Объяснение Литургии (Практические указания и богословское истолкование)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_031.xhtml"
+        },
+        {
+          "file": "index_split_032.xhtml",
+          "title": "Составные части Литургии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_032.xhtml"
+        },
+        {
+          "file": "index_split_033.xhtml",
+          "title": "Входные молитвы",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_033.xhtml"
+        },
+        {
+          "file": "index_split_034.xhtml",
+          "title": "Облачение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_034.xhtml"
+        },
+        {
+          "file": "index_split_035.xhtml",
+          "title": "Проскомидия",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_035.xhtml"
+        },
+        {
+          "file": "index_split_036.xhtml",
+          "title": "Литургия Оглашенных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_036.xhtml"
+        },
+        {
+          "file": "index_split_037.xhtml",
+          "title": "Малый вход",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_037.xhtml"
+        },
+        {
+          "file": "index_split_038.xhtml",
+          "title": "\"Входное\"",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_038.xhtml"
+        },
+        {
+          "file": "index_split_039.xhtml",
+          "title": "Тропари и кондаки",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_039.xhtml"
+        },
+        {
+          "file": "index_split_040.xhtml",
+          "title": "Молитва Трисвятого пения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_040.xhtml"
+        },
+        {
+          "file": "index_split_041.xhtml",
+          "title": "Восхождение на горнее место",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_041.xhtml"
+        },
+        {
+          "file": "index_split_042.xhtml",
+          "title": "Чтение Священного Писания",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_042.xhtml"
+        },
+        {
+          "file": "index_split_043.xhtml",
+          "title": "Ектении после Евангелия",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_043.xhtml"
+        },
+        {
+          "file": "index_split_044.xhtml",
+          "title": "Сугубая ектения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_044.xhtml"
+        },
+        {
+          "file": "index_split_045.xhtml",
+          "title": "Ектении об оглашенных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_045.xhtml"
+        },
+        {
+          "file": "index_split_046.xhtml",
+          "title": "Литургия Верных",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_046.xhtml"
+        },
+        {
+          "file": "index_split_047.xhtml",
+          "title": "Херувимская песнь",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_047.xhtml"
+        },
+        {
+          "file": "index_split_048.xhtml",
+          "title": "Великий вход",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_048.xhtml"
+        },
+        {
+          "file": "index_split_049.xhtml",
+          "title": "Просительная ектения",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_049.xhtml"
+        },
+        {
+          "file": "index_split_050.xhtml",
+          "title": "Целование мира",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_050.xhtml"
+        },
+        {
+          "file": "index_split_051.xhtml",
+          "title": "Символ веры",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_051.xhtml"
+        },
+        {
+          "file": "index_split_052.xhtml",
+          "title": "Анафора",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_052.xhtml"
+        },
+        {
+          "file": "index_split_053.xhtml",
+          "title": "Έπίκλησις (молитва призывания Св. Духа)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_053.xhtml"
+        },
+        {
+          "file": "index_split_054.xhtml",
+          "title": "А. Учение Церкви об освящении Святых Даров",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_054.xhtml"
+        },
+        {
+          "file": "index_split_055.xhtml",
+          "title": "Б. История вопроса",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_055.xhtml"
+        },
+        {
+          "file": "index_split_056.xhtml",
+          "title": "В. Эпиклеза на Востоке и вопрос о ее древности вообще",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_056.xhtml"
+        },
+        {
+          "file": "index_split_057.xhtml",
+          "title": "Г. Эпиклеза на Западе",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_057.xhtml"
+        },
+        {
+          "file": "index_split_058.xhtml",
+          "title": "Д. Изменения, происшедшие в моменте эпиклезы",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_058.xhtml"
+        },
+        {
+          "file": "index_split_059.xhtml",
+          "title": "Ходатайственные молитвы (Intercessio)",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_059.xhtml"
+        },
+        {
+          "file": "index_split_060.xhtml",
+          "title": "Ектения после освящения Даров",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_060.xhtml"
+        },
+        {
+          "file": "index_split_061.xhtml",
+          "title": "Возношение Св. Агнца",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_061.xhtml"
+        },
+        {
+          "file": "index_split_062.xhtml",
+          "title": "Раздробление Св. Агнца",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_062.xhtml"
+        },
+        {
+          "file": "index_split_063.xhtml",
+          "title": "«Теплота»",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_063.xhtml"
+        },
+        {
+          "file": "index_split_064.xhtml",
+          "title": "Причащение священнослужителей",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_064.xhtml"
+        },
+        {
+          "file": "index_split_065.xhtml",
+          "title": "Причащение мiрян",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_065.xhtml"
+        },
+        {
+          "file": "index_split_066.xhtml",
+          "title": "Киноник",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_066.xhtml"
+        },
+        {
+          "file": "index_split_067.xhtml",
+          "title": "Перенесение Св. Даров на жертвенник",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_067.xhtml"
+        },
+        {
+          "file": "index_split_068.xhtml",
+          "title": "Заамвонная молитва",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_068.xhtml"
+        },
+        {
+          "file": "index_split_069.xhtml",
+          "title": "Потребление Св. Даров",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_069.xhtml"
+        },
+        {
+          "file": "index_split_070.xhtml",
+          "title": "Окончание Литургии",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_070.xhtml"
+        },
+        {
+          "file": "index_split_071.xhtml",
+          "title": "Заключение",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_071.xhtml"
+        },
+        {
+          "file": "index_split_072.xhtml",
+          "title": "1",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_072.xhtml"
+        },
+        {
+          "file": "index_split_073.xhtml",
+          "title": "2",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_073.xhtml"
+        },
+        {
+          "file": "index_split_074.xhtml",
+          "title": "3",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_074.xhtml"
+        },
+        {
+          "file": "index_split_075.xhtml",
+          "title": "4",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_075.xhtml"
+        },
+        {
+          "file": "index_split_076.xhtml",
+          "title": "5",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_076.xhtml"
+        },
+        {
+          "file": "index_split_077.xhtml",
+          "title": "6",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_077.xhtml"
+        },
+        {
+          "file": "index_split_078.xhtml",
+          "title": "7",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_078.xhtml"
+        },
+        {
+          "file": "index_split_079.xhtml",
+          "title": "8",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_079.xhtml"
+        },
+        {
+          "file": "index_split_080.xhtml",
+          "title": "9",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_080.xhtml"
+        },
+        {
+          "file": "index_split_081.xhtml",
+          "title": "10",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_081.xhtml"
+        },
+        {
+          "file": "index_split_082.xhtml",
+          "title": "11",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_082.xhtml"
+        },
+        {
+          "file": "index_split_083.xhtml",
+          "title": "12",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_083.xhtml"
+        },
+        {
+          "file": "index_split_084.xhtml",
+          "title": "13",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_084.xhtml"
+        },
+        {
+          "file": "index_split_085.xhtml",
+          "title": "14",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_085.xhtml"
+        },
+        {
+          "file": "index_split_086.xhtml",
+          "title": "15",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_086.xhtml"
+        },
+        {
+          "file": "index_split_087.xhtml",
+          "title": "16",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_087.xhtml"
+        },
+        {
+          "file": "index_split_088.xhtml",
+          "title": "17",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_088.xhtml"
+        },
+        {
+          "file": "index_split_089.xhtml",
+          "title": "18",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_089.xhtml"
+        },
+        {
+          "file": "index_split_090.xhtml",
+          "title": "19",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_090.xhtml"
+        },
+        {
+          "file": "index_split_091.xhtml",
+          "title": "20",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_091.xhtml"
+        },
+        {
+          "file": "index_split_092.xhtml",
+          "title": "21",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_092.xhtml"
+        },
+        {
+          "file": "index_split_093.xhtml",
+          "title": "22",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_093.xhtml"
+        },
+        {
+          "file": "index_split_094.xhtml",
+          "title": "23",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_094.xhtml"
+        },
+        {
+          "file": "index_split_095.xhtml",
+          "title": "24",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_095.xhtml"
+        },
+        {
+          "file": "index_split_096.xhtml",
+          "title": "25",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_096.xhtml"
+        },
+        {
+          "file": "index_split_097.xhtml",
+          "title": "26",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_097.xhtml"
+        },
+        {
+          "file": "index_split_098.xhtml",
+          "title": "27",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_098.xhtml"
+        },
+        {
+          "file": "index_split_099.xhtml",
+          "title": "28",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_099.xhtml"
+        },
+        {
+          "file": "index_split_100.xhtml",
+          "title": "29",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_100.xhtml"
+        },
+        {
+          "file": "index_split_101.xhtml",
+          "title": "30",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_101.xhtml"
+        },
+        {
+          "file": "index_split_102.xhtml",
+          "title": "31",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_102.xhtml"
+        },
+        {
+          "file": "index_split_103.xhtml",
+          "title": "32",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_103.xhtml"
+        },
+        {
+          "file": "index_split_104.xhtml",
+          "title": "33",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_104.xhtml"
+        },
+        {
+          "file": "index_split_105.xhtml",
+          "title": "34",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_105.xhtml"
+        },
+        {
+          "file": "index_split_106.xhtml",
+          "title": "35",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_106.xhtml"
+        },
+        {
+          "file": "index_split_107.xhtml",
+          "title": "36",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_107.xhtml"
+        },
+        {
+          "file": "index_split_108.xhtml",
+          "title": "37",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_108.xhtml"
+        },
+        {
+          "file": "index_split_109.xhtml",
+          "title": "38",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_109.xhtml"
+        },
+        {
+          "file": "index_split_110.xhtml",
+          "title": "39",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_110.xhtml"
+        },
+        {
+          "file": "index_split_111.xhtml",
+          "title": "40",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_111.xhtml"
+        },
+        {
+          "file": "index_split_112.xhtml",
+          "title": "41",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_112.xhtml"
+        },
+        {
+          "file": "index_split_113.xhtml",
+          "title": "42",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_113.xhtml"
+        },
+        {
+          "file": "index_split_114.xhtml",
+          "title": "43",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_114.xhtml"
+        },
+        {
+          "file": "index_split_115.xhtml",
+          "title": "44",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_115.xhtml"
+        },
+        {
+          "file": "index_split_116.xhtml",
+          "title": "45",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_116.xhtml"
+        },
+        {
+          "file": "index_split_117.xhtml",
+          "title": "46",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_117.xhtml"
+        },
+        {
+          "file": "index_split_118.xhtml",
+          "title": "47",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_118.xhtml"
+        },
+        {
+          "file": "index_split_119.xhtml",
+          "title": "48",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_119.xhtml"
+        },
+        {
+          "file": "index_split_120.xhtml",
+          "title": "49",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_120.xhtml"
+        },
+        {
+          "file": "index_split_121.xhtml",
+          "title": "50",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_121.xhtml"
+        },
+        {
+          "file": "index_split_122.xhtml",
+          "title": "51",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_122.xhtml"
+        },
+        {
+          "file": "index_split_123.xhtml",
+          "title": "52",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_123.xhtml"
+        },
+        {
+          "file": "index_split_124.xhtml",
+          "title": "53",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_124.xhtml"
+        },
+        {
+          "file": "index_split_125.xhtml",
+          "title": "54",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_125.xhtml"
+        },
+        {
+          "file": "index_split_126.xhtml",
+          "title": "55",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_126.xhtml"
+        },
+        {
+          "file": "index_split_127.xhtml",
+          "title": "56",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_127.xhtml"
+        },
+        {
+          "file": "index_split_128.xhtml",
+          "title": "57",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_128.xhtml"
+        },
+        {
+          "file": "index_split_129.xhtml",
+          "title": "58",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_129.xhtml"
+        },
+        {
+          "file": "index_split_130.xhtml",
+          "title": "59",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_130.xhtml"
+        },
+        {
+          "file": "index_split_131.xhtml",
+          "title": "60",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_131.xhtml"
+        },
+        {
+          "file": "index_split_132.xhtml",
+          "title": "61",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_132.xhtml"
+        },
+        {
+          "file": "index_split_133.xhtml",
+          "title": "62",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_133.xhtml"
+        },
+        {
+          "file": "index_split_134.xhtml",
+          "title": "63",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_134.xhtml"
+        },
+        {
+          "file": "index_split_135.xhtml",
+          "title": "64",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_135.xhtml"
+        },
+        {
+          "file": "index_split_136.xhtml",
+          "title": "65",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_136.xhtml"
+        },
+        {
+          "file": "index_split_137.xhtml",
+          "title": "66",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_137.xhtml"
+        },
+        {
+          "file": "index_split_138.xhtml",
+          "title": "67",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_138.xhtml"
+        },
+        {
+          "file": "index_split_139.xhtml",
+          "title": "68",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_139.xhtml"
+        },
+        {
+          "file": "index_split_140.xhtml",
+          "title": "69",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_140.xhtml"
+        },
+        {
+          "file": "index_split_141.xhtml",
+          "title": "70",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_141.xhtml"
+        },
+        {
+          "file": "index_split_142.xhtml",
+          "title": "71",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_142.xhtml"
+        },
+        {
+          "file": "index_split_143.xhtml",
+          "title": "72",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_143.xhtml"
+        },
+        {
+          "file": "index_split_144.xhtml",
+          "title": "73",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_144.xhtml"
+        },
+        {
+          "file": "index_split_145.xhtml",
+          "title": "74",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_145.xhtml"
+        },
+        {
+          "file": "index_split_146.xhtml",
+          "title": "75",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_146.xhtml"
+        },
+        {
+          "file": "index_split_147.xhtml",
+          "title": "76",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_147.xhtml"
+        },
+        {
+          "file": "index_split_148.xhtml",
+          "title": "77",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_148.xhtml"
+        },
+        {
+          "file": "index_split_149.xhtml",
+          "title": "78",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_149.xhtml"
+        },
+        {
+          "file": "index_split_150.xhtml",
+          "title": "79",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_150.xhtml"
+        },
+        {
+          "file": "index_split_151.xhtml",
+          "title": "80",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_151.xhtml"
+        },
+        {
+          "file": "index_split_152.xhtml",
+          "title": "81",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_152.xhtml"
+        },
+        {
+          "file": "index_split_153.xhtml",
+          "title": "82",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_153.xhtml"
+        },
+        {
+          "file": "index_split_154.xhtml",
+          "title": "83",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_154.xhtml"
+        },
+        {
+          "file": "index_split_155.xhtml",
+          "title": "84",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_155.xhtml"
+        },
+        {
+          "file": "index_split_156.xhtml",
+          "title": "85",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_156.xhtml"
+        },
+        {
+          "file": "index_split_157.xhtml",
+          "title": "86",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_157.xhtml"
+        },
+        {
+          "file": "index_split_158.xhtml",
+          "title": "87",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_158.xhtml"
+        },
+        {
+          "file": "index_split_159.xhtml",
+          "title": "88",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_159.xhtml"
+        },
+        {
+          "file": "index_split_160.xhtml",
+          "title": "89",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_160.xhtml"
+        },
+        {
+          "file": "index_split_161.xhtml",
+          "title": "90",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_161.xhtml"
+        },
+        {
+          "file": "index_split_162.xhtml",
+          "title": "91",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_162.xhtml"
+        },
+        {
+          "file": "index_split_163.xhtml",
+          "title": "92",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_163.xhtml"
+        },
+        {
+          "file": "index_split_164.xhtml",
+          "title": "93",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_164.xhtml"
+        },
+        {
+          "file": "index_split_165.xhtml",
+          "title": "94",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_165.xhtml"
+        },
+        {
+          "file": "index_split_166.xhtml",
+          "title": "95",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_166.xhtml"
+        },
+        {
+          "file": "index_split_167.xhtml",
+          "title": "96",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_167.xhtml"
+        },
+        {
+          "file": "index_split_168.xhtml",
+          "title": "97",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_168.xhtml"
+        },
+        {
+          "file": "index_split_169.xhtml",
+          "title": "98",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_169.xhtml"
+        },
+        {
+          "file": "index_split_170.xhtml",
+          "title": "99",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_170.xhtml"
+        },
+        {
+          "file": "index_split_171.xhtml",
+          "title": "100",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_171.xhtml"
+        },
+        {
+          "file": "index_split_172.xhtml",
+          "title": "101",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_172.xhtml"
+        },
+        {
+          "file": "index_split_173.xhtml",
+          "title": "102",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_173.xhtml"
+        },
+        {
+          "file": "index_split_174.xhtml",
+          "title": "103",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_174.xhtml"
+        },
+        {
+          "file": "index_split_175.xhtml",
+          "title": "104",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_175.xhtml"
+        },
+        {
+          "file": "index_split_176.xhtml",
+          "title": "105",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_176.xhtml"
+        },
+        {
+          "file": "index_split_177.xhtml",
+          "title": "106",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_177.xhtml"
+        },
+        {
+          "file": "index_split_178.xhtml",
+          "title": "107",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_178.xhtml"
+        },
+        {
+          "file": "index_split_179.xhtml",
+          "title": "108",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_179.xhtml"
+        },
+        {
+          "file": "index_split_180.xhtml",
+          "title": "109",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_180.xhtml"
+        },
+        {
+          "file": "index_split_181.xhtml",
+          "title": "110",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_181.xhtml"
+        },
+        {
+          "file": "index_split_182.xhtml",
+          "title": "111",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_182.xhtml"
+        },
+        {
+          "file": "index_split_183.xhtml",
+          "title": "112",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_183.xhtml"
+        },
+        {
+          "file": "index_split_184.xhtml",
+          "title": "113",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_184.xhtml"
+        },
+        {
+          "file": "index_split_185.xhtml",
+          "title": "114",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_185.xhtml"
+        },
+        {
+          "file": "index_split_186.xhtml",
+          "title": "115",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_186.xhtml"
+        },
+        {
+          "file": "index_split_187.xhtml",
+          "title": "116",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_187.xhtml"
+        },
+        {
+          "file": "index_split_188.xhtml",
+          "title": "117",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_188.xhtml"
+        },
+        {
+          "file": "index_split_189.xhtml",
+          "title": "118",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_189.xhtml"
+        },
+        {
+          "file": "index_split_190.xhtml",
+          "title": "119",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_190.xhtml"
+        },
+        {
+          "file": "index_split_191.xhtml",
+          "title": "120",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_191.xhtml"
+        },
+        {
+          "file": "index_split_192.xhtml",
+          "title": "121",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_192.xhtml"
+        },
+        {
+          "file": "index_split_193.xhtml",
+          "title": "122",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_193.xhtml"
+        },
+        {
+          "file": "index_split_194.xhtml",
+          "title": "123",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_194.xhtml"
+        },
+        {
+          "file": "index_split_195.xhtml",
+          "title": "124",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_195.xhtml"
+        },
+        {
+          "file": "index_split_196.xhtml",
+          "title": "125",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_196.xhtml"
+        },
+        {
+          "file": "index_split_197.xhtml",
+          "title": "126",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_197.xhtml"
+        },
+        {
+          "file": "index_split_198.xhtml",
+          "title": "127",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_198.xhtml"
+        },
+        {
+          "file": "index_split_199.xhtml",
+          "title": "128",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_199.xhtml"
+        },
+        {
+          "file": "index_split_200.xhtml",
+          "title": "129",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_200.xhtml"
+        },
+        {
+          "file": "index_split_201.xhtml",
+          "title": "130",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_201.xhtml"
+        },
+        {
+          "file": "index_split_202.xhtml",
+          "title": "131",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_202.xhtml"
+        },
+        {
+          "file": "index_split_203.xhtml",
+          "title": "132",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_203.xhtml"
+        },
+        {
+          "file": "index_split_204.xhtml",
+          "title": "133",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_204.xhtml"
+        },
+        {
+          "file": "index_split_205.xhtml",
+          "title": "134",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_205.xhtml"
+        },
+        {
+          "file": "index_split_206.xhtml",
+          "title": "135",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_206.xhtml"
+        },
+        {
+          "file": "index_split_207.xhtml",
+          "title": "136",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_207.xhtml"
+        },
+        {
+          "file": "index_split_208.xhtml",
+          "title": "137",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_208.xhtml"
+        },
+        {
+          "file": "index_split_209.xhtml",
+          "title": "138",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_209.xhtml"
+        },
+        {
+          "file": "index_split_210.xhtml",
+          "title": "139",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_210.xhtml"
+        },
+        {
+          "file": "index_split_211.xhtml",
+          "title": "140",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_211.xhtml"
+        },
+        {
+          "file": "index_split_212.xhtml",
+          "title": "141",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_212.xhtml"
+        },
+        {
+          "file": "index_split_213.xhtml",
+          "title": "142",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_213.xhtml"
+        },
+        {
+          "file": "index_split_214.xhtml",
+          "title": "143",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_214.xhtml"
+        },
+        {
+          "file": "index_split_215.xhtml",
+          "title": "144",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_215.xhtml"
+        },
+        {
+          "file": "index_split_216.xhtml",
+          "title": "145",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_216.xhtml"
+        },
+        {
+          "file": "index_split_217.xhtml",
+          "title": "146",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_217.xhtml"
+        },
+        {
+          "file": "index_split_218.xhtml",
+          "title": "147",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_218.xhtml"
+        },
+        {
+          "file": "index_split_219.xhtml",
+          "title": "148",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_219.xhtml"
+        },
+        {
+          "file": "index_split_220.xhtml",
+          "title": "149",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_220.xhtml"
+        },
+        {
+          "file": "index_split_221.xhtml",
+          "title": "150",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_221.xhtml"
+        },
+        {
+          "file": "index_split_222.xhtml",
+          "title": "151",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_222.xhtml"
+        },
+        {
+          "file": "index_split_223.xhtml",
+          "title": "152",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_223.xhtml"
+        },
+        {
+          "file": "index_split_224.xhtml",
+          "title": "153",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_224.xhtml"
+        },
+        {
+          "file": "index_split_225.xhtml",
+          "title": "154",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_225.xhtml"
+        },
+        {
+          "file": "index_split_226.xhtml",
+          "title": "155",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_226.xhtml"
+        },
+        {
+          "file": "index_split_227.xhtml",
+          "title": "156",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_227.xhtml"
+        },
+        {
+          "file": "index_split_228.xhtml",
+          "title": "157",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_228.xhtml"
+        },
+        {
+          "file": "index_split_229.xhtml",
+          "title": "158",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_229.xhtml"
+        },
+        {
+          "file": "index_split_230.xhtml",
+          "title": "159",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_230.xhtml"
+        },
+        {
+          "file": "index_split_231.xhtml",
+          "title": "160",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_231.xhtml"
+        },
+        {
+          "file": "index_split_232.xhtml",
+          "title": "161",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_232.xhtml"
+        },
+        {
+          "file": "index_split_233.xhtml",
+          "title": "162",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_233.xhtml"
+        },
+        {
+          "file": "index_split_234.xhtml",
+          "title": "163",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_234.xhtml"
+        },
+        {
+          "file": "index_split_235.xhtml",
+          "title": "164",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_235.xhtml"
+        },
+        {
+          "file": "index_split_236.xhtml",
+          "title": "165",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_236.xhtml"
+        },
+        {
+          "file": "index_split_237.xhtml",
+          "title": "166",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_237.xhtml"
+        },
+        {
+          "file": "index_split_238.xhtml",
+          "title": "167",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_238.xhtml"
+        },
+        {
+          "file": "index_split_239.xhtml",
+          "title": "168",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_239.xhtml"
+        },
+        {
+          "file": "index_split_240.xhtml",
+          "title": "169",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_240.xhtml"
+        },
+        {
+          "file": "index_split_241.xhtml",
+          "title": "170",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_241.xhtml"
+        },
+        {
+          "file": "index_split_242.xhtml",
+          "title": "171",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_242.xhtml"
+        },
+        {
+          "file": "index_split_243.xhtml",
+          "title": "172",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_243.xhtml"
+        },
+        {
+          "file": "index_split_244.xhtml",
+          "title": "173",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_244.xhtml"
+        },
+        {
+          "file": "index_split_245.xhtml",
+          "title": "174",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_245.xhtml"
+        },
+        {
+          "file": "index_split_246.xhtml",
+          "title": "175",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_246.xhtml"
+        },
+        {
+          "file": "index_split_247.xhtml",
+          "title": "176",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_247.xhtml"
+        },
+        {
+          "file": "index_split_248.xhtml",
+          "title": "177",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_248.xhtml"
+        },
+        {
+          "file": "index_split_249.xhtml",
+          "title": "178",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_249.xhtml"
+        },
+        {
+          "file": "index_split_250.xhtml",
+          "title": "179",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_250.xhtml"
+        },
+        {
+          "file": "index_split_251.xhtml",
+          "title": "180",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_251.xhtml"
+        },
+        {
+          "file": "index_split_252.xhtml",
+          "title": "181",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_252.xhtml"
+        },
+        {
+          "file": "index_split_253.xhtml",
+          "title": "182",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_253.xhtml"
+        },
+        {
+          "file": "index_split_254.xhtml",
+          "title": "183",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_254.xhtml"
+        },
+        {
+          "file": "index_split_255.xhtml",
+          "title": "184",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_255.xhtml"
+        },
+        {
+          "file": "index_split_256.xhtml",
+          "title": "185",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_256.xhtml"
+        },
+        {
+          "file": "index_split_257.xhtml",
+          "title": "186",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_257.xhtml"
+        },
+        {
+          "file": "index_split_258.xhtml",
+          "title": "187",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_258.xhtml"
+        },
+        {
+          "file": "index_split_259.xhtml",
+          "title": "188",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_259.xhtml"
+        },
+        {
+          "file": "index_split_260.xhtml",
+          "title": "189",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_260.xhtml"
+        },
+        {
+          "file": "index_split_261.xhtml",
+          "title": "190",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_261.xhtml"
+        },
+        {
+          "file": "index_split_262.xhtml",
+          "title": "191",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_262.xhtml"
+        },
+        {
+          "file": "index_split_263.xhtml",
+          "title": "192",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_263.xhtml"
+        },
+        {
+          "file": "index_split_264.xhtml",
+          "title": "193",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_264.xhtml"
+        },
+        {
+          "file": "index_split_265.xhtml",
+          "title": "194",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_265.xhtml"
+        },
+        {
+          "file": "index_split_266.xhtml",
+          "title": "195",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_266.xhtml"
+        },
+        {
+          "file": "index_split_267.xhtml",
+          "title": "196",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_267.xhtml"
+        },
+        {
+          "file": "index_split_268.xhtml",
+          "title": "197",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_268.xhtml"
+        },
+        {
+          "file": "index_split_269.xhtml",
+          "title": "198",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_269.xhtml"
+        },
+        {
+          "file": "index_split_270.xhtml",
+          "title": "199",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_270.xhtml"
+        },
+        {
+          "file": "index_split_271.xhtml",
+          "title": "200",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_271.xhtml"
+        },
+        {
+          "file": "index_split_272.xhtml",
+          "title": "201",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_272.xhtml"
+        },
+        {
+          "file": "index_split_273.xhtml",
+          "title": "202",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_273.xhtml"
+        },
+        {
+          "file": "index_split_274.xhtml",
+          "title": "203",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_274.xhtml"
+        },
+        {
+          "file": "index_split_275.xhtml",
+          "title": "204",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_275.xhtml"
+        },
+        {
+          "file": "index_split_276.xhtml",
+          "title": "205",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_276.xhtml"
+        },
+        {
+          "file": "index_split_277.xhtml",
+          "title": "206",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_277.xhtml"
+        },
+        {
+          "file": "index_split_278.xhtml",
+          "title": "207",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_278.xhtml"
+        },
+        {
+          "file": "index_split_279.xhtml",
+          "title": "208",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_279.xhtml"
+        },
+        {
+          "file": "index_split_280.xhtml",
+          "title": "209",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_280.xhtml"
+        },
+        {
+          "file": "index_split_281.xhtml",
+          "title": "210",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_281.xhtml"
+        },
+        {
+          "file": "index_split_282.xhtml",
+          "title": "211",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_282.xhtml"
+        },
+        {
+          "file": "index_split_283.xhtml",
+          "title": "212",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_283.xhtml"
+        },
+        {
+          "file": "index_split_284.xhtml",
+          "title": "213",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_284.xhtml"
+        },
+        {
+          "file": "index_split_285.xhtml",
+          "title": "214",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_285.xhtml"
+        },
+        {
+          "file": "index_split_286.xhtml",
+          "title": "215",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_286.xhtml"
+        },
+        {
+          "file": "index_split_287.xhtml",
+          "title": "216",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_287.xhtml"
+        },
+        {
+          "file": "index_split_288.xhtml",
+          "title": "217",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_288.xhtml"
+        },
+        {
+          "file": "index_split_289.xhtml",
+          "title": "218",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_289.xhtml"
+        },
+        {
+          "file": "index_split_290.xhtml",
+          "title": "219",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_290.xhtml"
+        },
+        {
+          "file": "index_split_291.xhtml",
+          "title": "220",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_291.xhtml"
+        },
+        {
+          "file": "index_split_292.xhtml",
+          "title": "221",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_292.xhtml"
+        },
+        {
+          "file": "index_split_293.xhtml",
+          "title": "222",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_293.xhtml"
+        },
+        {
+          "file": "index_split_294.xhtml",
+          "title": "223",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_294.xhtml"
+        },
+        {
+          "file": "index_split_295.xhtml",
+          "title": "224",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_295.xhtml"
+        },
+        {
+          "file": "index_split_296.xhtml",
+          "title": "225",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_296.xhtml"
+        },
+        {
+          "file": "index_split_297.xhtml",
+          "title": "226",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_297.xhtml"
+        },
+        {
+          "file": "index_split_298.xhtml",
+          "title": "227",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_298.xhtml"
+        },
+        {
+          "file": "index_split_299.xhtml",
+          "title": "228",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_299.xhtml"
+        },
+        {
+          "file": "index_split_300.xhtml",
+          "title": "229",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_300.xhtml"
+        },
+        {
+          "file": "index_split_301.xhtml",
+          "title": "230",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_301.xhtml"
+        },
+        {
+          "file": "index_split_302.xhtml",
+          "title": "231",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_302.xhtml"
+        },
+        {
+          "file": "index_split_303.xhtml",
+          "title": "232",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_303.xhtml"
+        },
+        {
+          "file": "index_split_304.xhtml",
+          "title": "233",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_304.xhtml"
+        },
+        {
+          "file": "index_split_305.xhtml",
+          "title": "234",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_305.xhtml"
+        },
+        {
+          "file": "index_split_306.xhtml",
+          "title": "235",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_306.xhtml"
+        },
+        {
+          "file": "index_split_307.xhtml",
+          "title": "236",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_307.xhtml"
+        },
+        {
+          "file": "index_split_308.xhtml",
+          "title": "237",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_308.xhtml"
+        },
+        {
+          "file": "index_split_309.xhtml",
+          "title": "238",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_309.xhtml"
+        },
+        {
+          "file": "index_split_310.xhtml",
+          "title": "239",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_310.xhtml"
+        },
+        {
+          "file": "index_split_311.xhtml",
+          "title": "240",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_311.xhtml"
+        },
+        {
+          "file": "index_split_312.xhtml",
+          "title": "241",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_312.xhtml"
+        },
+        {
+          "file": "index_split_313.xhtml",
+          "title": "242",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_313.xhtml"
+        },
+        {
+          "file": "index_split_314.xhtml",
+          "title": "243",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_314.xhtml"
+        },
+        {
+          "file": "index_split_315.xhtml",
+          "title": "244",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_315.xhtml"
+        },
+        {
+          "file": "index_split_316.xhtml",
+          "title": "245",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_316.xhtml"
+        },
+        {
+          "file": "index_split_317.xhtml",
+          "title": "246",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_317.xhtml"
+        },
+        {
+          "file": "index_split_318.xhtml",
+          "title": "247",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_318.xhtml"
+        },
+        {
+          "file": "index_split_319.xhtml",
+          "title": "248",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_319.xhtml"
+        },
+        {
+          "file": "index_split_320.xhtml",
+          "title": "249",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_320.xhtml"
+        },
+        {
+          "file": "index_split_321.xhtml",
+          "title": "250",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_321.xhtml"
+        },
+        {
+          "file": "index_split_322.xhtml",
+          "title": "251",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_322.xhtml"
+        },
+        {
+          "file": "index_split_323.xhtml",
+          "title": "252",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_323.xhtml"
+        },
+        {
+          "file": "index_split_324.xhtml",
+          "title": "253",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_324.xhtml"
+        },
+        {
+          "file": "index_split_325.xhtml",
+          "title": "254",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_325.xhtml"
+        },
+        {
+          "file": "index_split_326.xhtml",
+          "title": "255",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_326.xhtml"
+        },
+        {
+          "file": "index_split_327.xhtml",
+          "title": "256",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_327.xhtml"
+        },
+        {
+          "file": "index_split_328.xhtml",
+          "title": "257",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_328.xhtml"
+        },
+        {
+          "file": "index_split_329.xhtml",
+          "title": "258",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_329.xhtml"
+        },
+        {
+          "file": "index_split_330.xhtml",
+          "title": "259",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_330.xhtml"
+        },
+        {
+          "file": "index_split_331.xhtml",
+          "title": "260",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_331.xhtml"
+        },
+        {
+          "file": "index_split_332.xhtml",
+          "title": "261",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_332.xhtml"
+        },
+        {
+          "file": "index_split_333.xhtml",
+          "title": "262",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_333.xhtml"
+        },
+        {
+          "file": "index_split_334.xhtml",
+          "title": "263",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_334.xhtml"
+        },
+        {
+          "file": "index_split_335.xhtml",
+          "title": "264",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_335.xhtml"
+        },
+        {
+          "file": "index_split_336.xhtml",
+          "title": "265",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_336.xhtml"
+        },
+        {
+          "file": "index_split_337.xhtml",
+          "title": "266",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_337.xhtml"
+        },
+        {
+          "file": "index_split_338.xhtml",
+          "title": "267",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_338.xhtml"
+        },
+        {
+          "file": "index_split_339.xhtml",
+          "title": "268",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_339.xhtml"
+        },
+        {
+          "file": "index_split_340.xhtml",
+          "title": "269",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_340.xhtml"
+        },
+        {
+          "file": "index_split_341.xhtml",
+          "title": "270",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_341.xhtml"
+        },
+        {
+          "file": "index_split_342.xhtml",
+          "title": "271",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_342.xhtml"
+        },
+        {
+          "file": "index_split_343.xhtml",
+          "title": "272",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_343.xhtml"
+        },
+        {
+          "file": "index_split_344.xhtml",
+          "title": "273",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_344.xhtml"
+        },
+        {
+          "file": "index_split_345.xhtml",
+          "title": "274",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_345.xhtml"
+        },
+        {
+          "file": "index_split_346.xhtml",
+          "title": "275",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_346.xhtml"
+        },
+        {
+          "file": "index_split_347.xhtml",
+          "title": "276",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_347.xhtml"
+        },
+        {
+          "file": "index_split_348.xhtml",
+          "title": "277",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_348.xhtml"
+        },
+        {
+          "file": "index_split_349.xhtml",
+          "title": "278",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_349.xhtml"
+        },
+        {
+          "file": "index_split_350.xhtml",
+          "title": "279",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_350.xhtml"
+        },
+        {
+          "file": "index_split_351.xhtml",
+          "title": "280",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_351.xhtml"
+        },
+        {
+          "file": "index_split_352.xhtml",
+          "title": "281",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_352.xhtml"
+        },
+        {
+          "file": "index_split_353.xhtml",
+          "title": "282",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_353.xhtml"
+        },
+        {
+          "file": "index_split_354.xhtml",
+          "title": "283",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_354.xhtml"
+        },
+        {
+          "file": "index_split_355.xhtml",
+          "title": "284",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_355.xhtml"
+        },
+        {
+          "file": "index_split_356.xhtml",
+          "title": "285",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_356.xhtml"
+        },
+        {
+          "file": "index_split_357.xhtml",
+          "title": "286",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_357.xhtml"
+        },
+        {
+          "file": "index_split_358.xhtml",
+          "title": "287",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_358.xhtml"
+        },
+        {
+          "file": "index_split_359.xhtml",
+          "title": "288",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_359.xhtml"
+        },
+        {
+          "file": "index_split_360.xhtml",
+          "title": "289",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_360.xhtml"
+        },
+        {
+          "file": "index_split_361.xhtml",
+          "title": "290",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_361.xhtml"
+        },
+        {
+          "file": "index_split_362.xhtml",
+          "title": "291",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_362.xhtml"
+        },
+        {
+          "file": "index_split_363.xhtml",
+          "title": "292",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_363.xhtml"
+        },
+        {
+          "file": "index_split_364.xhtml",
+          "title": "293",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_364.xhtml"
+        },
+        {
+          "file": "index_split_365.xhtml",
+          "title": "294",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_365.xhtml"
+        },
+        {
+          "file": "index_split_366.xhtml",
+          "title": "295",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_366.xhtml"
+        },
+        {
+          "file": "index_split_367.xhtml",
+          "title": "296",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_367.xhtml"
+        },
+        {
+          "file": "index_split_368.xhtml",
+          "title": "297",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_368.xhtml"
+        },
+        {
+          "file": "index_split_369.xhtml",
+          "title": "298",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_369.xhtml"
+        },
+        {
+          "file": "index_split_370.xhtml",
+          "title": "299",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_370.xhtml"
+        },
+        {
+          "file": "index_split_371.xhtml",
+          "title": "300",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_371.xhtml"
+        },
+        {
+          "file": "index_split_372.xhtml",
+          "title": "301",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_372.xhtml"
+        },
+        {
+          "file": "index_split_373.xhtml",
+          "title": "302",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_373.xhtml"
+        },
+        {
+          "file": "index_split_374.xhtml",
+          "title": "303",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_374.xhtml"
+        },
+        {
+          "file": "index_split_375.xhtml",
+          "title": "304",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_375.xhtml"
+        },
+        {
+          "file": "index_split_376.xhtml",
+          "title": "305",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_376.xhtml"
+        },
+        {
+          "file": "index_split_377.xhtml",
+          "title": "306",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_377.xhtml"
+        },
+        {
+          "file": "index_split_378.xhtml",
+          "title": "307",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_378.xhtml"
+        },
+        {
+          "file": "index_split_379.xhtml",
+          "title": "308",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_379.xhtml"
+        },
+        {
+          "file": "index_split_380.xhtml",
+          "title": "309",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_380.xhtml"
+        },
+        {
+          "file": "index_split_381.xhtml",
+          "title": "310",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_381.xhtml"
+        },
+        {
+          "file": "index_split_382.xhtml",
+          "title": "311",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_382.xhtml"
+        },
+        {
+          "file": "index_split_383.xhtml",
+          "title": "312",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_383.xhtml"
+        },
+        {
+          "file": "index_split_384.xhtml",
+          "title": "313",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_384.xhtml"
+        },
+        {
+          "file": "index_split_385.xhtml",
+          "title": "314",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_385.xhtml"
+        },
+        {
+          "file": "index_split_386.xhtml",
+          "title": "315",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_386.xhtml"
+        },
+        {
+          "file": "index_split_387.xhtml",
+          "title": "316",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_387.xhtml"
+        },
+        {
+          "file": "index_split_388.xhtml",
+          "title": "317",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_388.xhtml"
+        },
+        {
+          "file": "index_split_389.xhtml",
+          "title": "318",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_389.xhtml"
+        },
+        {
+          "file": "index_split_390.xhtml",
+          "title": "319",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_390.xhtml"
+        },
+        {
+          "file": "index_split_391.xhtml",
+          "title": "320",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_391.xhtml"
+        },
+        {
+          "file": "index_split_392.xhtml",
+          "title": "321",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_392.xhtml"
+        },
+        {
+          "file": "index_split_393.xhtml",
+          "title": "322",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_393.xhtml"
+        },
+        {
+          "file": "index_split_394.xhtml",
+          "title": "323",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_394.xhtml"
+        },
+        {
+          "file": "index_split_395.xhtml",
+          "title": "324",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_395.xhtml"
+        },
+        {
+          "file": "index_split_396.xhtml",
+          "title": "325",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_396.xhtml"
+        },
+        {
+          "file": "index_split_397.xhtml",
+          "title": "326",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_397.xhtml"
+        },
+        {
+          "file": "index_split_398.xhtml",
+          "title": "327",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_398.xhtml"
+        },
+        {
+          "file": "index_split_399.xhtml",
+          "title": "328",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_399.xhtml"
+        },
+        {
+          "file": "index_split_400.xhtml",
+          "title": "329",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_400.xhtml"
+        },
+        {
+          "file": "index_split_401.xhtml",
+          "title": "330",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_401.xhtml"
+        },
+        {
+          "file": "index_split_402.xhtml",
+          "title": "331",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_402.xhtml"
+        },
+        {
+          "file": "index_split_403.xhtml",
+          "title": "332",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_403.xhtml"
+        },
+        {
+          "file": "index_split_404.xhtml",
+          "title": "333",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_404.xhtml"
+        },
+        {
+          "file": "index_split_405.xhtml",
+          "title": "334",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_405.xhtml"
+        },
+        {
+          "file": "index_split_406.xhtml",
+          "title": "335",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_406.xhtml"
+        },
+        {
+          "file": "index_split_407.xhtml",
+          "title": "336",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_407.xhtml"
+        },
+        {
+          "file": "index_split_408.xhtml",
+          "title": "337",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_408.xhtml"
+        },
+        {
+          "file": "index_split_409.xhtml",
+          "title": "338",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_409.xhtml"
+        },
+        {
+          "file": "index_split_410.xhtml",
+          "title": "339",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_410.xhtml"
+        },
+        {
+          "file": "index_split_411.xhtml",
+          "title": "340",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_411.xhtml"
+        },
+        {
+          "file": "index_split_412.xhtml",
+          "title": "341",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_412.xhtml"
+        },
+        {
+          "file": "index_split_413.xhtml",
+          "title": "342",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_413.xhtml"
+        },
+        {
+          "file": "index_split_414.xhtml",
+          "title": "343",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_414.xhtml"
+        },
+        {
+          "file": "index_split_415.xhtml",
+          "title": "344",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_415.xhtml"
+        },
+        {
+          "file": "index_split_416.xhtml",
+          "title": "345",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_416.xhtml"
+        },
+        {
+          "file": "index_split_417.xhtml",
+          "title": "346",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_417.xhtml"
+        },
+        {
+          "file": "index_split_418.xhtml",
+          "title": "347",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_418.xhtml"
+        },
+        {
+          "file": "index_split_419.xhtml",
+          "title": "348",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_419.xhtml"
+        },
+        {
+          "file": "index_split_420.xhtml",
+          "title": "349",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_420.xhtml"
+        },
+        {
+          "file": "index_split_421.xhtml",
+          "title": "350",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_421.xhtml"
+        },
+        {
+          "file": "index_split_422.xhtml",
+          "title": "351",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_422.xhtml"
+        },
+        {
+          "file": "index_split_423.xhtml",
+          "title": "352",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_423.xhtml"
+        },
+        {
+          "file": "index_split_424.xhtml",
+          "title": "353",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_424.xhtml"
+        },
+        {
+          "file": "index_split_425.xhtml",
+          "title": "354",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_425.xhtml"
+        },
+        {
+          "file": "index_split_426.xhtml",
+          "title": "355",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_426.xhtml"
+        },
+        {
+          "file": "index_split_427.xhtml",
+          "title": "356",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_427.xhtml"
+        },
+        {
+          "file": "index_split_428.xhtml",
+          "title": "357",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_428.xhtml"
+        },
+        {
+          "file": "index_split_429.xhtml",
+          "title": "358",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_429.xhtml"
+        },
+        {
+          "file": "index_split_430.xhtml",
+          "title": "359",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_430.xhtml"
+        },
+        {
+          "file": "index_split_431.xhtml",
+          "title": "360",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_431.xhtml"
+        },
+        {
+          "file": "index_split_432.xhtml",
+          "title": "361",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_432.xhtml"
+        },
+        {
+          "file": "index_split_433.xhtml",
+          "title": "362",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_433.xhtml"
+        },
+        {
+          "file": "index_split_434.xhtml",
+          "title": "363",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_434.xhtml"
+        },
+        {
+          "file": "index_split_435.xhtml",
+          "title": "364",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_435.xhtml"
+        },
+        {
+          "file": "index_split_436.xhtml",
+          "title": "365",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_436.xhtml"
+        },
+        {
+          "file": "index_split_437.xhtml",
+          "title": "366",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_437.xhtml"
+        },
+        {
+          "file": "index_split_438.xhtml",
+          "title": "367",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_438.xhtml"
+        },
+        {
+          "file": "index_split_439.xhtml",
+          "title": "368",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_439.xhtml"
+        },
+        {
+          "file": "index_split_440.xhtml",
+          "title": "369",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_440.xhtml"
+        },
+        {
+          "file": "index_split_441.xhtml",
+          "title": "370",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_441.xhtml"
+        },
+        {
+          "file": "index_split_442.xhtml",
+          "title": "371",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_442.xhtml"
+        },
+        {
+          "file": "index_split_443.xhtml",
+          "title": "372",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_443.xhtml"
+        },
+        {
+          "file": "index_split_444.xhtml",
+          "title": "373",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_444.xhtml"
+        },
+        {
+          "file": "index_split_445.xhtml",
+          "title": "374",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_445.xhtml"
+        },
+        {
+          "file": "index_split_446.xhtml",
+          "title": "375",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_446.xhtml"
+        },
+        {
+          "file": "index_split_447.xhtml",
+          "title": "376",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_447.xhtml"
+        },
+        {
+          "file": "index_split_448.xhtml",
+          "title": "377",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_448.xhtml"
+        },
+        {
+          "file": "index_split_449.xhtml",
+          "title": "378",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_449.xhtml"
+        },
+        {
+          "file": "index_split_450.xhtml",
+          "title": "379",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_450.xhtml"
+        },
+        {
+          "file": "index_split_451.xhtml",
+          "title": "380",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_451.xhtml"
+        },
+        {
+          "file": "index_split_452.xhtml",
+          "title": "381",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_452.xhtml"
+        },
+        {
+          "file": "index_split_453.xhtml",
+          "title": "382",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_453.xhtml"
+        },
+        {
+          "file": "index_split_454.xhtml",
+          "title": "383",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_454.xhtml"
+        },
+        {
+          "file": "index_split_455.xhtml",
+          "title": "384",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_455.xhtml"
+        },
+        {
+          "file": "index_split_456.xhtml",
+          "title": "385",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_456.xhtml"
+        },
+        {
+          "file": "index_split_457.xhtml",
+          "title": "386",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_457.xhtml"
+        },
+        {
+          "file": "index_split_458.xhtml",
+          "title": "387",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_458.xhtml"
+        },
+        {
+          "file": "index_split_459.xhtml",
+          "title": "388",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_459.xhtml"
+        },
+        {
+          "file": "index_split_460.xhtml",
+          "title": "389",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_460.xhtml"
+        },
+        {
+          "file": "index_split_461.xhtml",
+          "title": "390",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_461.xhtml"
+        },
+        {
+          "file": "index_split_462.xhtml",
+          "title": "391",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_462.xhtml"
+        },
+        {
+          "file": "index_split_463.xhtml",
+          "title": "392",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_463.xhtml"
+        },
+        {
+          "file": "index_split_464.xhtml",
+          "title": "393",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_464.xhtml"
+        },
+        {
+          "file": "index_split_465.xhtml",
+          "title": "394",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_465.xhtml"
+        },
+        {
+          "file": "index_split_466.xhtml",
+          "title": "395",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_466.xhtml"
+        },
+        {
+          "file": "index_split_467.xhtml",
+          "title": "396",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_467.xhtml"
+        },
+        {
+          "file": "index_split_468.xhtml",
+          "title": "397",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_468.xhtml"
+        },
+        {
+          "file": "index_split_469.xhtml",
+          "title": "398",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_469.xhtml"
+        },
+        {
+          "file": "index_split_470.xhtml",
+          "title": "399",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_470.xhtml"
+        },
+        {
+          "file": "index_split_471.xhtml",
+          "title": "400",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_471.xhtml"
+        },
+        {
+          "file": "index_split_472.xhtml",
+          "title": "401",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_472.xhtml"
+        },
+        {
+          "file": "index_split_473.xhtml",
+          "title": "402",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_473.xhtml"
+        },
+        {
+          "file": "index_split_474.xhtml",
+          "title": "403",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_474.xhtml"
+        },
+        {
+          "file": "index_split_475.xhtml",
+          "title": "404",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_475.xhtml"
+        },
+        {
+          "file": "index_split_476.xhtml",
+          "title": "405",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_476.xhtml"
+        },
+        {
+          "file": "index_split_477.xhtml",
+          "title": "406",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_477.xhtml"
+        },
+        {
+          "file": "index_split_478.xhtml",
+          "title": "407",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_478.xhtml"
+        },
+        {
+          "file": "index_split_479.xhtml",
+          "title": "408",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_479.xhtml"
+        },
+        {
+          "file": "index_split_480.xhtml",
+          "title": "409",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_480.xhtml"
+        },
+        {
+          "file": "index_split_481.xhtml",
+          "title": "410",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_481.xhtml"
+        },
+        {
+          "file": "index_split_482.xhtml",
+          "title": "411",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_482.xhtml"
+        },
+        {
+          "file": "index_split_483.xhtml",
+          "title": "412",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_483.xhtml"
+        },
+        {
+          "file": "index_split_484.xhtml",
+          "title": "413",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_484.xhtml"
+        },
+        {
+          "file": "index_split_485.xhtml",
+          "title": "414",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_485.xhtml"
+        },
+        {
+          "file": "index_split_486.xhtml",
+          "title": "415",
+          "url": "https://library.logoscosmos.org/bpds/gos-exams-2027/liturgics/book-18/index_split_486.xhtml"
+        }
+      ]
+    }
+  }
+}
