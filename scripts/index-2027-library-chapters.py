@@ -11,7 +11,10 @@ PATHS=[
 "ot/book-06/index.html","ot/book-07/index.html","ot/book-09/index.html","ot/book-10/index.html",
 "russian-church/book-08/index.html","russian-church/book-12/index.html",
 "liturgics/book-13/index.html","liturgics/typikon/index.html","liturgics/averky-taushev/index.html",
-"liturgics/book-14/index.html"
+"liturgics/book-14/index.html",
+"liturgics/book-18/index.html",
+"ot/lopukhin/ot/book-10/index.html","ot/lopukhin/ot/book-11/index.html","ot/lopukhin/ot/book-12/index.html",
+"ot/lopukhin/ot/book-25/index.html","ot/lopukhin/ot/book-26/index.html","ot/lopukhin/ot/book-27/index.html"
 ]
 class Toc(HTMLParser):
  def __init__(self):super().__init__();self.ids=set();self.links=[];self.active=None;self.chunks=[]
