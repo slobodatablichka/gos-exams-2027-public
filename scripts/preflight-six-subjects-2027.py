@@ -59,7 +59,8 @@ def main():
                     s = path.read_text(encoding="utf-8-sig")
                     if len(s.strip()) < 100:
                         errors.append("Empty/short source: " + name)
-                    match = FORM.search(s)
+                    is_practical = slug == "dogmatics" and n >= 16
+                    match = PRACTICAL_FORM.search(s) if is_practical else FORM.search(s)
                     if not match:
                         errors.append("Missing official question: " + name)
                     else:
@@ -84,8 +85,9 @@ def main():
                             warnings.append({"path": name, "kind": "missing_relative_markdown",
                                              "target": dest, "label": label})
                 if len(bodies) == 3:
-                    forms = [normalized(FORM.search(b).group(1)) for b in bodies.values()
-                             if FORM.search(b)]
+                    pattern = PRACTICAL_FORM if slug == "dogmatics" and n >= 16 else FORM
+                    forms = [normalized(pattern.search(b).group(1)) for b in bodies.values()
+                             if pattern.search(b)]
                     if len(forms) == 3 and len(set(forms)) != 1:
                         errors.append(f"{slug} q{n:02}: official variants differ")
                     if slug == "liturgics" and re.search(r"^\d+\. \*\*", bodies["l2"], re.M):
