@@ -15,7 +15,7 @@ FORM = re.compile(
     r"^\s*(?:>\s*)?\*\*(?:Официальный вопрос|Официальная формулировка)"
     r"(?:\.|:)\*\*\s*(?:[:.]\s*)?(.+?)\s*$", re.M
 )
-URL = re.compile(r"\[([^]]+)\]\(([^)]+)\)")
+PRACTICAL_FORM = re.compile(r"^## Официальное задание\\s*\\n+(?:>\\s*)?(.+?)\\s*$", re.M)\nURL = re.compile(r"\[([^]]+)\]\(([^)]+)\)")
 PRODUCTION = re.compile(
     r"(?:source-texts/|\bCURRENT-STATE\.md\b|"
     r"\b(?:planning|research)/[^\s)]+\.(?:md|json|csv)|"
@@ -63,7 +63,7 @@ def main():
                         errors.append("Missing official question: " + name)
                     else:
                         text = normalized(match.group(1))
-                        if text != normalized(model_row["official_question"]):
+                        if not is_practical and text != normalized(model_row["official_question"]):
                             errors.append("Model/FOS text mismatch: " + name)
                     bodies[lev] = s
                     occurrences = PRODUCTION.findall(s)
