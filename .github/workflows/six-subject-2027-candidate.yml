@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: six-subject-2027-candidate
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   candidate:
