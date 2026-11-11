@@ -46,15 +46,18 @@ def complete_pdf(folder: Path, check_only: bool) -> dict:
             "/Subject": "25 официальных вопросов: каждый №1–25, затем L3 → L2 → L1",
             "/Creator": "Госэкзамены — 2027",
         })
+        # Merge all pages before adding outline destinations: bookmarks must
+        # point to the final page objects, not unresolved forward references.
+        for _, _, src, _ in sources:
+            writer.append(src, import_outline=False)
         position = 0
         for number in range(1, 26):
             question_bookmark = writer.add_outline_item(
                 f"Вопрос №{number}", position, bold=True
             )
-            for level in LEVELS:
-                _, actual_level, src, length = sources[(number - 1) * 3 + LEVELS.index(level)]
+            for i, level in enumerate(LEVELS):
+                _, actual_level, src, length = sources[(number - 1) * 3 + i]
                 assert actual_level == level
-                writer.append(src, import_outline=False)
                 writer.add_outline_item(level.upper(), position, parent=question_bookmark)
                 position += length
         assert position == expected_pages
