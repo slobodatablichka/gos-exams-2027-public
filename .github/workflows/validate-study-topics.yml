@@ -34,8 +34,13 @@ jobs:
                   assert (root/f"subjects/{slug}/2027/pdf/{level}.pdf").is_file()
               manifest=json.loads((root/f"subjects/{slug}/2027/pdf-manifest.json").read_text())
               assert manifest["source_sha"]==source_sha
-              assert len(manifest["pdfs"])==78
+              assert len(manifest["pdfs"])==79
+              assert any(x["file"]=="pdf/full-l3-l2-l1.pdf" for x in manifest["pdfs"])
+              full = root/f"subjects/{slug}/2027/pdf/full-l3-l2-l1.pdf"
+              assert full.is_file() and full.read_bytes().startswith(b"%PDF-")
+              index = (root/f"subjects/{slug}/2027/index.md").read_text(encoding="utf-8")
+              assert index.count("pdf/full-l3-l2-l1.pdf")==1
               for old in ("index.md","numbers.md","pdf-manifest.json","pdf"):
                   assert f"  - subjects/{slug}/{old}" in config
-          print("PASS: 450 official answers, 468 PDFs, 6 synchronized manifests; archive excluded")
+          print("PASS: 450 official answers, 474 PDFs, 6 synchronized manifests; archive excluded")
           PY

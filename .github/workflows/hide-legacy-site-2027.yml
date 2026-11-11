@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/build-*-2027.py'
+      - scripts/build-combined-subject-pdfs-2027.py
       - scripts/hide-legacy-site-2027.py
       - .github/workflows/hide-legacy-site-2027.yml
   workflow_dispatch:
@@ -48,12 +49,14 @@ jobs:
           done
           python public/scripts/hide-legacy-site-2027.py --root public
           python public/scripts/hide-legacy-site-2027.py --root public --check
+          python public/scripts/build-combined-subject-pdfs-2027.py --root public
+          python public/scripts/build-combined-subject-pdfs-2027.py --root public --check
       - name: Build site with Jekyll exclusions
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./public
           destination: ./rendered
-      - name: Verify 450 current answers and 468 PDFs; all old routes absent
+      - name: Verify 450 current answers and 474 PDFs; all old routes absent
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -69,6 +72,10 @@ jobs:
                       assert "sessions/" not in page.read_text(encoding="utf-8"),f"Old link {page}"
               for level in ("l3","l2","l1"):
                   assert (root/f"subjects/{slug}/2027/pdf/{level}.pdf").is_file()
+              full = root/f"subjects/{slug}/2027/pdf/full-l3-l2-l1.pdf"
+              assert full.is_file() and full.read_bytes().startswith(b"%PDF-")
+              index = (root/f"subjects/{slug}/2027/index.html").read_text(encoding="utf-8")
+              assert "pdf/full-l3-l2-l1.pdf" in index
               for old in ("index.html","numbers.html","pdf/l1.pdf","pdf/l2.pdf","pdf/l3.pdf","pdf-manifest.json"):
                   assert not (root/f"subjects/{slug}/{old}").exists(),f"Old subject exposed {slug}/{old}"
           assert not (root/"sessions").exists(),"Old sessions exposed"
@@ -78,7 +85,7 @@ jobs:
               html=(root/p).read_text(encoding="utf-8")
               assert "sessions/" not in html, f"Old links in {p}"
               assert "архив" not in html.lower(), f"Archive menu in {p}"
-          print("PASS: only new FOS 2027; 450 HTML, 468 PDFs; 23 old sessions and legacy catalogs excluded")
+          print("PASS: only new FOS 2027; 450 HTML, 474 PDFs; 23 old sessions and legacy catalogs excluded")
           PY
       - name: Commit approved new-only output
         run: |

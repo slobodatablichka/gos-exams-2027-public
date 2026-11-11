@@ -84,6 +84,8 @@ def main():
             body = request(base + page).decode("utf-8", errors="replace")
             if "2027" not in body:
                 raise ValueError("Invalid official subject page: " + base + page)
+            if page == "index.html" and "pdf/full-l3-l2-l1.pdf" not in body:
+                raise ValueError("Missing combined PDF download on " + base + page)
             check_navigation(body, base + page, slug)
             if re.search(r"\[?Прежний вопросник|Старый перечень|sessions/", body, flags=re.I):
                 raise ValueError("Old question bank is linked from: " + base + page)
@@ -105,6 +107,10 @@ def main():
             if not request(pdf).startswith(b"%PDF-"):
                 raise ValueError("Invalid full PDF: " + pdf)
             pdf_count += 1
+        full = base + "pdf/full-l3-l2-l1.pdf"
+        if not request(full).startswith(b"%PDF-"):
+            raise ValueError("Invalid question-ordered L3+L2+L1 PDF: " + full)
+        pdf_count += 1
 
     # Exercise pages are generated separately from L1/L2/L3 answers.
     for slug, route in (("liturgics", "practice/q01.html"),
