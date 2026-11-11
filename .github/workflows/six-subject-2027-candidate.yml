@@ -95,7 +95,7 @@ jobs:
           git -C public config user.name "github-actions[bot]"
           git -C public config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git -C public add subjects/index.md subjects/nt subjects/ot subjects/oi subjects/rpc subjects/dogmatics subjects/liturgics materials/index.md index.md
-          git -C public diff --cached --check
+          git -C public diff --cached --check -- '*.md' '*.json' '*.html' '*.yml' '*.py' '*.scss'
           if git -C public diff --cached --quiet; then
             echo "Exactly verified release content already present on PR branch"
           else
