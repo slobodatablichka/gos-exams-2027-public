@@ -23,6 +23,7 @@ def clean(s: str, in_subject_root: bool) -> str:
         s = re.sub(r"(?m)[ \t]+сохранены\.(?=[ \t]*$)", "", s)
     s = OLD_SESSION_LINK.sub("", s)
     s = re.sub(r"(?m)[ \t]+·[ \t]*$", "", s)
+    s = re.sub(r"(?m)[ \t]+$", "", s)
     s = re.sub(r"\n{3,}", "\n\n", s)
     return s
 
