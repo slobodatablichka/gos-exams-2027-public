@@ -16,10 +16,16 @@ def request(path):
         "Cache-Control": "no-cache",
         "Accept": "text/html,application/pdf,*/*",
     })
-    with urlopen(req, timeout=25) as resp:
-        if resp.status != 200:
-            raise ValueError(f"{path}: unexpected HTTP {resp.status}")
-        return resp.read()
+    for attempt in range(4):
+        try:
+            with urlopen(req, timeout=25) as resp:
+                if resp.status != 200:
+                    raise ValueError(f"{path}: unexpected HTTP {resp.status}")
+                return resp.read()
+        except HTTPError as exc:
+            if exc.code not in (502, 503, 504) or attempt == 3:
+                raise
+            time.sleep(2)
 
 def check_gone(path):
     try:
