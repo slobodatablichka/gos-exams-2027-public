@@ -32,7 +32,14 @@ SUBJECTS = {
 }
 LEVELS = ("l1", "l2", "l3")
 LEVEL_NAMES = {"l1": "Тезисный план", "l2": "Устный ответ", "l3": "Полный ответ"}
-OUTPUT = "full-l1-l2-l3.docx"
+FILENAMES = {
+    "nt": "Новый_Завет_2027_L1-L2-L3.docx",
+    "ot": "Ветхий_Завет_2027_L1-L2-L3.docx",
+    "oi": "Общецерковная_история_2027_L1-L2-L3.docx",
+    "rpc": "История_Русской_Православной_Церкви_2027_L1-L2-L3.docx",
+    "dogmatics": "Догматическое_богословие_2027_L1-L2-L3.docx",
+    "liturgics": "Литургика_2027_L1-L2-L3.docx",
+}
 
 
 def add_hyperlink(paragraph, label, address=None, anchor=None):
@@ -202,7 +209,7 @@ def build_one(root, slug, check=False):
     global CURRENT_SUBJECT
     CURRENT_SUBJECT = slug
     folder = root / "subjects" / slug / "2027"
-    target = folder / "docx" / OUTPUT
+    target = folder / "docx" / FILENAMES[slug]
     if check:
         from zipfile import ZipFile
         if not target.is_file():
@@ -252,7 +259,7 @@ def main():
             index = folder / "index.md"
             old = index.read_text(encoding="utf-8")
             marker = "**Полный DOCX-сборник L1+L2+L3:**"
-            link = f"{marker} [скачать редактируемый Word: №1 (L1, L2, L3) … №25 (L1, L2, L3)](docx/{OUTPUT})"
+            link = f"{marker} [скачать редактируемый Word: №1 (L1, L2, L3) … №25 (L1, L2, L3)](docx/{FILENAMES[slug]})"
             pattern = r"(?m)^\*\*Полный DOCX-сборник L1\+L2\+L3:\*\*[^\n]*\n{0,2}"
             cleaned = re.sub(pattern, "", old)
             pdf_line = re.search(r"(?m)^\*\*Полный PDF-сборник L3\+L2\+L1:\*\*[^\n]*$", cleaned)

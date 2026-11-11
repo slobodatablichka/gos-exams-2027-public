@@ -32,13 +32,13 @@ jobs:
       - name: Verify six generated DOCX
         run: |
           python scripts/build-subject-docx-2027.py --root . --check
-          test "$(find subjects -path '*/2027/docx/full-l1-l2-l3.docx' -type f | wc -l)" -eq 6
+          test "$(find subjects -path '*/2027/docx/*_2027_L1-L2-L3.docx' -type f | wc -l)" -eq 6
           git diff --check
       - name: Commit only new DOCX and subject links
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add subjects/*/2027/docx/full-l1-l2-l3.docx subjects/*/2027/index.md
+          git add subjects/*/2027/docx/*_2027_L1-L2-L3.docx subjects/*/2027/index.md
           if ! git diff --cached --quiet; then
             git commit -m 'Publish six editable L1-L2-L3 DOCX collections with site hyperlinks'
             git push
