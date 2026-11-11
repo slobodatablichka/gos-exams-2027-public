@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/ot-2027-live.yml
       - scripts/check-ot-2027-live.py
+      - 'subjects/ot/2027/**'
   workflow_dispatch:
 permissions:
   contents: read
