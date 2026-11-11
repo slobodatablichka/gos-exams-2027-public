@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: No archive links in official subjects
         run: python scripts/hide-legacy-site-2027.py --root . --check
-      - name: 450 approved question pages and six current PDF manifests
+      - name: One numbered list per subject, 450 approved question pages and PDF manifests
         run: |
           python - <<'PY'
           from pathlib import Path
