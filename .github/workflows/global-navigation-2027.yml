@@ -1,0 +1,36 @@
+name: Verify global breadcrumbs and return links on rendered FOS-2027 pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_layouts/**'
+      - '_includes/global-navigation.html'
+      - 'assets/css/style.scss'
+      - 'scripts/check-global-navigation-2027.py'
+      - '.github/workflows/global-navigation-2027.yml'
+  pull_request:
+    paths:
+      - '_layouts/**'
+      - '_includes/global-navigation.html'
+      - 'assets/css/style.scss'
+      - 'scripts/check-global-navigation-2027.py'
+      - '.github/workflows/global-navigation-2027.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render actual GitHub Pages template with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./rendered-navigation
+      - name: Test all subject, answer and practical pages
+        run: python scripts/check-global-navigation-2027.py --built-site rendered-navigation
