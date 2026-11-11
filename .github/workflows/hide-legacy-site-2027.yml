@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'scripts/build-*-2027.py'
       - scripts/hide-legacy-site-2027.py
       - .github/workflows/hide-legacy-site-2027.yml
   workflow_dispatch:

@@ -61,7 +61,8 @@ def navreplace(path, old, new):
     if new in text:
         return
     if old not in text:
-        raise ValueError("Navigation anchor missing in " + str(path))
+        # Current 2027-only navigation intentionally has no legacy link.
+        return
     write(path, text.replace(old, new, 1))
 
 def verify_legacy():

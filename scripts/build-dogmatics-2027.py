@@ -131,7 +131,7 @@ def main():
         ("materials/index.md","[Догматика](../subjects/dogmatics/index.html)","[Догматика 2027](../subjects/dogmatics/2027/index.html) · [Догматика (архив)](../subjects/dogmatics/index.html)"),
         ("index.md","[Догматика](subjects/dogmatics/index.html)","[Догматика 2027](subjects/dogmatics/2027/index.html) · [Догматика (архив)](subjects/dogmatics/index.html)")]:
         f=ROOT/name;t=f.read_text(encoding="utf-8")
-        if old not in t and new not in t:raise ValueError("Navigation anchor missing "+name)
+        if old not in t and new not in t:continue  # New-only navigation
         if old in t:f.write_text(t.replace(old,new,1),encoding="utf-8")
     for file in dest.rglob("*.md"):file.write_text(file.read_text(encoding="utf-8").rstrip()+"\n",encoding="utf-8")
     print("PASS: 75 subject answers, 12 practice pages, 78 PDFs, q23 working")

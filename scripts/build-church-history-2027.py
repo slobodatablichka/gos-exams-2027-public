@@ -34,7 +34,7 @@ def write(rel,title,body,nav=""):
 def patch(path,old,new):
     p=ROOT/path;text=p.read_text(encoding="utf-8")
     if new in text:return
-    if old not in text:raise ValueError("No navigation anchor: "+path)
+    if old not in text:return  # New-only navigation has no archive anchor
     p.write_text(text.replace(old,new,1),encoding="utf-8")
 def main():
     import subject_pdf
