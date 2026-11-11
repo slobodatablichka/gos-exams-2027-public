@@ -468,6 +468,12 @@
       "pages": 27,
       "bytes": 148656,
       "sha256": "e21bf14bf9756e1eb408c2fe56bbe0d954d73bf289f29863faefaf14e849ec39"
+    },
+    {
+      "file": "pdf/full-l3-l2-l1.pdf",
+      "pages": 120,
+      "bytes": 4138857,
+      "sha256": "45ec58ce31d4c1a5b678707074e26dd4077723d2f80c4f735abbd0e6ca03e4d0"
     }
   ]
 }
