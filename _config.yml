@@ -1,4 +1,42 @@
 title: Госэкзамены — 2027
-description: Расписание коллективной подготовки
+description: Официальные вопросы ФОС БПДС 2027 года
 theme: jekyll-theme-cayman
 markdown: kramdown
+
+# Старые решения остаются в Git, но не входят в сборку сайта.
+exclude:
+  - sessions
+  - schedule.md
+  - assignments.md
+  - planning
+  - scripts
+  - tests
+  - subjects/navigation-manifest.json
+  - subjects/expansion-navigation-manifest.json
+  - assets/js/roleplan.js
+  - assets/js/schedule-mobile.js
+  - assets/css/roleplan.css
+  - subjects/nt/index.md
+  - subjects/nt/numbers.md
+  - subjects/nt/pdf-manifest.json
+  - subjects/nt/pdf
+  - subjects/ot/index.md
+  - subjects/ot/numbers.md
+  - subjects/ot/pdf-manifest.json
+  - subjects/ot/pdf
+  - subjects/oi/index.md
+  - subjects/oi/numbers.md
+  - subjects/oi/pdf-manifest.json
+  - subjects/oi/pdf
+  - subjects/rpc/index.md
+  - subjects/rpc/numbers.md
+  - subjects/rpc/pdf-manifest.json
+  - subjects/rpc/pdf
+  - subjects/dogmatics/index.md
+  - subjects/dogmatics/numbers.md
+  - subjects/dogmatics/pdf-manifest.json
+  - subjects/dogmatics/pdf
+  - subjects/liturgics/index.md
+  - subjects/liturgics/numbers.md
+  - subjects/liturgics/pdf-manifest.json
+  - subjects/liturgics/pdf

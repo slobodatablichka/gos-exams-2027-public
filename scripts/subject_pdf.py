@@ -250,11 +250,9 @@ def _header_for_chapter(row, canon_numbers):
 
 
 def _external_article_link(row, level, slug):
-    route = row["level_urls"][level]
-    # The source is already checked against the published layout.
-    if row["session"] == 19 and row["canonical_question"] == 23:
-        route = "sessions/19/q23-%s-%s.html" % (slug, level)
-    return PUBLIC_SITE + route
+    # The current official FOS, never an earlier session or question bank.
+    return PUBLIC_SITE + "subjects/%s/2027/q%02d-%s.html" % (
+        slug, row["canonical_question"], level)
 
 
 def build_pdf(path, model, rows, private_root, slug, level, *, source_ref="", include_index=False):
