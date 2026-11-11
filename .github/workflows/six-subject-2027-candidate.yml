@@ -1,4 +1,4 @@
-name: Six-subject FOS-2027 release candidate (no publication)
+name: Six-subject FOS-2027 synchronized release preparation
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: six-subject-2027-candidate
@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
           path: public
       - name: Checkout same private source revision for all subjects
         uses: actions/checkout@v4
@@ -80,6 +81,27 @@ jobs:
               assert (base/f"subjects/{slug}/2027/index.html").is_file()
           print("PASS: 450 compiled question routes and six subject indexes")
           PY
+      - name: Commit verified pages and PDFs to release PR branch
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          for slug in nt ot oi rpc dogmatics liturgics; do
+            rsync -a "staged-public/subjects/$slug/2027/" "public/subjects/$slug/2027/"
+            cp "staged-public/subjects/$slug/index.md" "public/subjects/$slug/index.md"
+          done
+          cp staged-public/subjects/index.md public/subjects/index.md
+          cp staged-public/materials/index.md public/materials/index.md
+          cp staged-public/index.md public/index.md
+          git -C public config user.name "github-actions[bot]"
+          git -C public config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C public add subjects/index.md subjects/nt subjects/ot subjects/oi subjects/rpc subjects/dogmatics subjects/liturgics materials/index.md index.md
+          git -C public diff --cached --check
+          if git -C public diff --cached --quiet; then
+            echo "Exactly verified release content already present on PR branch"
+          else
+            git -C public commit -m "Согласованный выпуск ФОС-2027: 450 страниц, 468 PDF, шесть дисциплин"
+            git -C public push origin "HEAD:${{ github.head_ref }}"
+          fi
       - name: Keep reports and full candidate for inspection
         if: always()
         uses: actions/upload-artifact@v4
