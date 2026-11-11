@@ -180,11 +180,18 @@ def _render_blocks(parent, styles, depth=0):
             if p:
                 result.append(p)
         elif tag == "p":
+            # The canonical official question is already printed above the manuscript.
+            if re.match(r"^Официальн(?:ый вопрос|ая формулировка)\s*[.:]",
+                        element.get_text(" ", strip=True)):
+                continue
             p = _paragraph(element, styles["body"])
             if p:
                 result.append(p)
         elif tag == "blockquote":
             for child in element.find_all("p", recursive=False):
+                if re.match(r"^Официальн(?:ый вопрос|ая формулировка)\s*[.:]",
+                            child.get_text(" ", strip=True)):
+                    continue
                 p = _paragraph(child, styles["quote"])
                 if p:
                     result.append(p)
@@ -304,7 +311,9 @@ def build_pdf(path, model, rows, private_root, slug, level, *, source_ref="", in
         chapter = Paragraph(html.escape(article_title), styles["question"])
         chapter._bookmark = "question-%02d" % row["canonical_question"]
         chapter._heading_level = 1 if include_index else 0
-        chapter._toc_title = article_title
+        # Keep TOC titles compact so the right-aligned page number never collides.
+        chapter._toc_title = (article_title if len(article_title) <= 62
+                              else article_title[:59].rsplit(" ", 1)[0] + "…")
         chapter._question_numbers = by_canonical[row["canonical_question"]]
         story.append(chapter)
         story.append(Paragraph("<b>Официальная формулировка:</b> " +
