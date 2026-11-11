@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="ru">
 <head>
@@ -30,7 +32,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 .footer{display:flex;flex-wrap:wrap;gap:7px;margin:11px 0;align-items:center;justify-content:space-between}
 .footer button{border:0;background:transparent;text-decoration:underline;color:#35657e;padding:5px;cursor:pointer;font-size:12px}
 .footer a{color:#285e80;font-size:12px}
-.kbd{font-size:11px;color:#627784;margin-top:8px;line-height:1.5}
+.exam-global-nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;padding:8px 7px;background:#e7eff3;border-bottom:1px solid #cbd9df}.exam-global-nav a{color:#1b5572;text-decoration:none;font-size:12px}.exam-global-nav a:hover{text-decoration:underline}.kbd{font-size:11px;color:#627784;margin-top:8px;line-height:1.5}
 .shade{position:fixed;inset:0;background:#122c3b88;z-index:50;display:flex;justify-content:center;align-items:center;padding:16px;animation:fade .18s ease}
 .detail{background:#fff;border-radius:12px;max-width:560px;width:100%;max-height:75dvh;overflow-y:auto;overscroll-behavior:contain;padding:19px 20px;box-shadow:0 15px 50px #001b2c55;animation:appear .2s ease;font-size:14px;line-height:1.55;outline:none}
 .detail h2{margin:0 0 10px;font-size:19px}.detail p{margin:7px 0}.detail h3{margin:15px 0 5px;font-size:14px}.detail a{color:#1e6688}.detail .muted{font-size:12px;color:#5d7582}
@@ -40,7 +42,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body><main class="wrap">
+<body>{% include global-navigation.html %}<main class="wrap">
 <header><h1>Песочница — Пирамида</h1><a href="../index.html">Литургика · 2027</a></header>
 <div class="sub">Вопрос №11 · Проскомидия · Учебная сборка по материалам БПДС. Одно касание — содержание; удержание и движение — перенос. Лишние кирпичики оставьте слева.</div>
 <div class="board">
@@ -51,7 +53,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 <div class="footer"><button type="button" id="resetBtn">Начать заново</button><span id="saveStatus" style="font-size:11px;color:#607380">Прогресс сохраняется на этом устройстве</span><a href="../examples/q11.html">Преподавательский образец</a><a href="../q11-l3.html">Ответ L3</a></div>
 <div class="kbd">На телефоне: удерживайте кирпичик около четверти секунды, затем тяните. Для прокрутки столбца проводите пальцем по свободной полосе справа от кирпичиков. Для просмотра — коротко нажмите. При открытой карточке Песочница не перемешивается. Клавиатура: Enter — просмотр; пробел — выбрать для переноса; стрелки — выбрать место; Enter — разместить; Esc — отменить.</div>
 <div id="modalHost"></div>
-</main>
+</main>{% include global-navigation.html %}
 <script>
 "use strict";
 const CASE_VERSION="lit11-study-v1";
