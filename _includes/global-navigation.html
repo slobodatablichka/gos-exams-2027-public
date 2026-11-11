@@ -1,0 +1,32 @@
+{%- assign exam_url = page.url | default: '/' -%}
+{%- assign exam_subject = '' -%}
+{%- assign exam_name = '' -%}
+{%- if exam_url contains '/subjects/nt/2027/' -%}
+  {%- assign exam_subject = 'nt' -%}
+  {%- assign exam_name = 'Новый Завет' -%}
+{%- elsif exam_url contains '/subjects/ot/2027/' -%}
+  {%- assign exam_subject = 'ot' -%}
+  {%- assign exam_name = 'Ветхий Завет' -%}
+{%- elsif exam_url contains '/subjects/oi/2027/' -%}
+  {%- assign exam_subject = 'oi' -%}
+  {%- assign exam_name = 'Общецерковная история' -%}
+{%- elsif exam_url contains '/subjects/rpc/2027/' -%}
+  {%- assign exam_subject = 'rpc' -%}
+  {%- assign exam_name = 'История РПЦ' -%}
+{%- elsif exam_url contains '/subjects/dogmatics/2027/' -%}
+  {%- assign exam_subject = 'dogmatics' -%}
+  {%- assign exam_name = 'Догматика' -%}
+{%- elsif exam_url contains '/subjects/liturgics/2027/' -%}
+  {%- assign exam_subject = 'liturgics' -%}
+  {%- assign exam_name = 'Литургика' -%}
+{%- endif -%}
+<nav class="exam-global-nav" aria-label="Переходы по учебному сайту">
+  <a class="exam-global-nav__link" href="{{ '/index.html' | relative_url }}">⌂ Главная</a>
+  <a class="exam-global-nav__link" href="{{ '/subjects/index.html' | relative_url }}">Все предметы</a>
+  {%- if exam_subject != '' %}
+    {%- capture exam_subject_route -%}/subjects/{{ exam_subject }}/2027/index.html{%- endcapture %}
+    <a class="exam-global-nav__link exam-global-nav__subject" href="{{ exam_subject_route | relative_url }}">← {{ exam_name }} · вопросы №1–25</a>
+  {%- elsif exam_url contains '/materials/' %}
+    <a class="exam-global-nav__link" href="{{ '/materials/index.html' | relative_url }}">Учебные материалы</a>
+  {%- endif %}
+</nav>
