@@ -1,0 +1,45 @@
+name: Build and publish six DOCX subject collections
+
+on:
+  push:
+    paths:
+      - 'scripts/build-subject-docx-2027.py'
+      - '.github/workflows/subject-docx-2027.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: subject-docx-2027
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install DOCX dependencies
+        run: python -m pip install python-docx markdown beautifulsoup4
+      - name: Build all six DOCX and update subject links
+        run: python scripts/build-subject-docx-2027.py --root .
+      - name: Verify six generated DOCX
+        run: |
+          python scripts/build-subject-docx-2027.py --root . --check
+          test "$(find subjects -path '*/2027/docx/full-l1-l2-l3.docx' -type f | wc -l)" -eq 6
+          git diff --check
+      - name: Commit only new DOCX and subject links
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add subjects/*/2027/docx/full-l1-l2-l3.docx subjects/*/2027/index.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish six editable L1-L2-L3 DOCX collections with site hyperlinks'
+            git push
+          fi
