@@ -9,7 +9,7 @@ title: "Литургика — новый экзамен 2027"
 
 [Методика составления служб](practice/methodology-a.html) · [Методика литургических чинов](practice/methodology-b.html)
 
-**Песочница — Пирамида (первая учебная версия):** [открыть тренажёр «Проскомидия» №11](sandbox-pyramid/index.html)
+**Песочница — Пирамида (учебные задания):** [№11 · Проскомидия](sandbox-pyramid/index.html) · [№3 · Воздвижение Креста](sandbox-pyramid/vozdvizhenie.html)
 
 **PDF-сборники:** [L3](pdf/l3.pdf) · [L2](pdf/l2.pdf) · [L1](pdf/l1.pdf)
 
@@ -33,7 +33,7 @@ title: "Литургика — новый экзамен 2027"
 
 **[№3. Богослужение двунадесятых / великих праздников: всенощное бдение и особенности Литургии (один из праздников кроме Рождества Христова, Богоявления и Благовещения, условия совершения богослужения на выбор комиссии: день недели, глас).](q03-l3.html)**
 
-[L3](q03-l3.html) · [PDF](pdf/q03-l3.pdf) · [L2](q03-l2.html) · [PDF](pdf/q03-l2.pdf) · [L1](q03-l1.html) · [PDF](pdf/q03-l1.pdf) · [Практика](practice/q03.html) · [Упражнения](examples/q03.html)
+[L3](q03-l3.html) · [PDF](pdf/q03-l3.pdf) · [L2](q03-l2.html) · [PDF](pdf/q03-l2.pdf) · [L1](q03-l1.html) · [PDF](pdf/q03-l1.pdf) · [Практика](practice/q03.html) · [Упражнения](examples/q03.html) · **[Песочница — Пирамида](sandbox-pyramid/vozdvizhenie.html)**
 
 <div id="q04"></div>
 
