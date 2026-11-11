@@ -108,8 +108,10 @@ def main():
                 raise ValueError("Invalid full PDF: " + pdf)
             pdf_count += 1
         full = base + "pdf/full-l3-l2-l1.pdf"
-        if not request(full).startswith(b"%PDF-"):
-            raise ValueError("Invalid question-ordered L3+L2+L1 PDF: " + full)
+        full_bytes = request(full)
+        if not full_bytes.startswith(b"%PDF-") or len(full_bytes) < 1000000:
+            raise ValueError("Invalid or incomplete question-ordered L3+L2+L1 PDF: " + full)
+        print("LIVE COMPLETE PDF PASS", full, len(full_bytes), flush=True)
         pdf_count += 1
 
     # Exercise pages are generated separately from L1/L2/L3 answers.
