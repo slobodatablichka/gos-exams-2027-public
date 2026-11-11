@@ -9,7 +9,7 @@ title: "Литургика — новый экзамен 2027"
 
 [Методика составления служб](practice/methodology-a.html) · [Методика литургических чинов](practice/methodology-b.html)
 
-**Песочница — Пирамида (учебные задания):** [№11 · Проскомидия](sandbox-pyramid/index.html) · [№3 · Воздвижение Креста](sandbox-pyramid/vozdvizhenie.html)
+**Песочница — Пирамида (учебные задания):** [№11 · Проскомидия](sandbox-pyramid/index.html) · [№3 · Воздвижение Креста](sandbox-pyramid/vozdvizhenie.html) · [№5 · Понедельник Великого поста](sandbox-pyramid/velikiy-post.html)
 
 **PDF-сборники:** [L3](pdf/l3.pdf) · [L2](pdf/l2.pdf) · [L1](pdf/l1.pdf)
 
@@ -45,7 +45,7 @@ title: "Литургика — новый экзамен 2027"
 
 **[№5. Богослужение седмичных и субботних дней Великого поста (вседневное, «с полиелеем») (один из дней на выбор комиссии).](q05-l3.html)**
 
-[L3](q05-l3.html) · [PDF](pdf/q05-l3.pdf) · [L2](q05-l2.html) · [PDF](pdf/q05-l2.pdf) · [L1](q05-l1.html) · [PDF](pdf/q05-l1.pdf) · [Практика](practice/q05.html) · [Упражнения](examples/q05.html)
+[L3](q05-l3.html) · [PDF](pdf/q05-l3.pdf) · [L2](q05-l2.html) · [PDF](pdf/q05-l2.pdf) · [L1](q05-l1.html) · [PDF](pdf/q05-l1.pdf) · [Практика](practice/q05.html) · [Упражнения](examples/q05.html) · **[Песочница — Пирамида](sandbox-pyramid/velikiy-post.html)**
 
 <div id="q06"></div>
 
