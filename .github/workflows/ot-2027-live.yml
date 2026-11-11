@@ -1,19 +1,16 @@
-name: Verify OT 2027 published pages and PDFs
+name: Optional full live FOS-2027 verification
+
 on:
-  push:
-    branches: [main]
-    paths:
-      - .github/workflows/ot-2027-live.yml
-      - scripts/check-ot-2027-live.py
-      - 'subjects/ot/2027/**'
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Full HTTPS audit 77 HTML 78 PDF and historic routes
-        run: python scripts/check-ot-2027-live.py
+      - name: Full FOS-2027 HTTPS audit, with old routes absent
+        run: python scripts/check-live-fos-only-2027.py --attempts 18 --retry-seconds 10

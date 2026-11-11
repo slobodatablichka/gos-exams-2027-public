@@ -1,4 +1,4 @@
-name: Validate unique study topics and assignments
+name: Validate official FOS-2027 public sources
 
 on:
   push:
@@ -8,38 +8,34 @@ on:
 
 permissions:
   contents: read
-  actions: read
 
 jobs:
   validate:
-    name: Verify published schedule and materials
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - name: Check unique study topics and aliases
-        run: python scripts/check-study-topics.py
-      - name: Validate published session routes and link registry
-        run: python scripts/publish-lesson.py check
-      - name: Test future publication in disposable sandbox
-        run: python scripts/test-publish-lesson.py
-      - name: Compact final audit for published lesson 15
-        run: python scripts/check-publication-final.py 15
-      - name: Final stage-8 audit for published lesson 16
-        run: python scripts/check-publication-final.py 16 --pr-run 41889848876 --main-run 41889990466 --pages-run 41889988853 --http
-      - name: Final stage-8 audit for published lesson 20
-        run: python scripts/check-publication-final.py 20 --pr-run 42093465158 --main-run 42093598529 --pages-run 42093598245 --http
-      - name: Final stage-8 audit for published lesson 21
-        run: python scripts/check-publication-final.py 21 --pr-run 42107807617 --main-run 42107991385 --pages-run 42107991273 --http
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Final stage-8 audit for published lesson 22
-        run: python scripts/check-publication-final.py 22 --pr-run 42250252897 --main-run 42250375307 --pages-run 42250374439 --http
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Final stage-8 audit for published lesson 23
-        run: python scripts/check-publication-final.py 23 --pr-run 42266117644 --main-run 42267908070 --pages-run 42267907538 --http
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: No archive links in official subjects
+        run: python scripts/hide-legacy-site-2027.py --root . --check
+      - name: 450 approved question pages and six current PDF manifests
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path(".")
+          config=(root/"_config.yml").read_text()
+          assert "  - sessions" in config
+          assert "  - schedule.md" in config and "  - assignments.md" in config
+          source_sha="77a84e19e0fa2c3eb500c99bd85f3cf4e598e29b"
+          for slug in ("nt","ot","oi","rpc","dogmatics","liturgics"):
+              for level in ("l3","l2","l1"):
+                  for n in range(1,26):
+                      assert (root/f"subjects/{slug}/2027/q{n:02d}-{level}.md").is_file()
+                      assert (root/f"subjects/{slug}/2027/pdf/q{n:02d}-{level}.pdf").is_file()
+                  assert (root/f"subjects/{slug}/2027/pdf/{level}.pdf").is_file()
+              manifest=json.loads((root/f"subjects/{slug}/2027/pdf-manifest.json").read_text())
+              assert manifest["source_sha"]==source_sha
+              assert len(manifest["pdfs"])==78
+              for old in ("index.md","numbers.md","pdf-manifest.json","pdf"):
+                  assert f"  - subjects/{slug}/{old}" in config
+          print("PASS: 450 official answers, 468 PDFs, 6 synchronized manifests; archive excluded")
+          PY

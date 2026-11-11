@@ -1,27 +1,25 @@
-name: Verify public GitHub Pages subjects over HTTPS
+name: Verify new-only GitHub Pages over HTTPS
 
 on:
-  pull_request:
-    paths:
-      - .github/workflows/subject-pages-live-check.yml
-      - scripts/check-live-subject-pages.py
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - .github/workflows/subject-pages-live-check.yml
-      - scripts/check-live-subject-pages.py
-      - subjects/**
+      - 'subjects/**'
+      - 'index.md'
+      - 'materials/index.md'
+      - '_config.yml'
+      - 'scripts/check-live-fos-only-2027.py'
+      - '.github/workflows/subject-pages-live-check.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  verify-live:
+  audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Check deployed pages, original links and PDF downloads
-        run: python scripts/check-live-subject-pages.py --attempts 12 --retry-seconds 12
+      - name: Verify all current answers, PDFs, and removal of old site
+        run: python scripts/check-live-fos-only-2027.py --attempts 18 --retry-seconds 10
