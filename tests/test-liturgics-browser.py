@@ -76,6 +76,7 @@ def test_mobile(context):
     assert page.locator("#pyramid .brick").count()>0, "Reset diagnostic case should restore initial erroneous Pyramid"
     page.goto(SEQ,wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
+    page.locator("#questionChoices summary").click()
     page.locator('#questionList input[value="1"]').check()
     page.locator('#questionList input[value="12"]').check()
     page.select_option("#mode12","lit12-diagnostic")
