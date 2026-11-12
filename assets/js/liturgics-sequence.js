@@ -18,6 +18,7 @@
  const one=document.getElementById("oneCase");
  const mode12=document.getElementById("mode12");
  const btnSelected=document.getElementById("startSelected");
+ const selectedCaseIds=new Map();
  const sessionNode=document.getElementById("session");
  function readJSON(key){try{const s=localStorage.getItem(key);return s?JSON.parse(s):null}catch(e){return null}}
  function pickCase(q){
@@ -30,9 +31,15 @@
  function fill(){
   questions.forEach(q=>{
    for(const c of q.cases){const option=document.createElement("option");option.value=c.case_id;option.textContent=caseLabel(q,c);one.append(option);}
-   const label=document.createElement("label");label.className="exam-question";
-   const box=document.createElement("input");box.type="checkbox";box.value=String(q.number);box.addEventListener("change",()=>{btnSelected.disabled=!choices.querySelector("input:checked")});
-   label.append(box,document.createTextNode("№"+q.number+". "+q.title));choices.append(label);
+   const row=document.createElement("div");row.className="exam-question";
+   const label=document.createElement("label");const box=document.createElement("input");box.type="checkbox";box.value=String(q.number);box.addEventListener("change",()=>{btnSelected.disabled=!choices.querySelector("input:checked")});
+   label.append(box,document.createTextNode("№"+q.number+". "+q.title));row.append(label);
+   if(q.cases.length>1){
+    const select=document.createElement("select");select.className="exam-case-choice";select.setAttribute("aria-label","Режим и вариант вопроса №"+q.number);
+    for(const c of q.cases){const option=document.createElement("option");option.value=c.case_id;option.textContent=c.label;select.append(option)}
+    select.addEventListener("change",()=>selectedCaseIds.set(q.number,select.value));row.append(select);
+   }
+   choices.append(row);
   });
   const q12=questionByNumber.get(12);
   for(const c of q12.cases){const option=document.createElement("option");option.value=c.case_id;option.textContent=c.label;mode12.append(option);}
@@ -91,7 +98,7 @@
  });
  document.getElementById("startSelected").addEventListener("click",()=>{
   const nums=[...choices.querySelectorAll("input:checked")].map(x=>Number(x.value)).sort((a,b)=>a-b);
-  launch(nums.map(n=>{const q=questionByNumber.get(n);return{q,c:pickCase(q)}}),"Выбранные вопросы");
+  launch(nums.map(n=>{const q=questionByNumber.get(n);return{q,c:q.cases.find(c=>c.case_id===selectedCaseIds.get(n))||pickCase(q)}}),"Выбранные вопросы");
  });
  document.getElementById("startAll").addEventListener("click",()=>launch(questions.map(q=>({q,c:pickCase(q)})),"Все 15 вопросов"));
  document.getElementById("end").addEventListener("click",()=>{

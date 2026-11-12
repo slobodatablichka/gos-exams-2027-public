@@ -46,8 +46,8 @@ def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
-    assert page.locator("#oneCase option").count() == 16
-    assert page.locator("#mode12 option").count() == 2
+    assert page.locator("#oneCase option").count() == 30
+    assert page.locator("#mode12 option").count() == 5
     page.select_option("#oneCase", "lit12-diagnostic")
     page.locator("#startOne").click()
     page.wait_for_url("**/sandbox-pyramid/q12-errors.html?sequence=1")

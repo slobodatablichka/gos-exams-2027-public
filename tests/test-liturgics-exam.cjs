@@ -69,8 +69,14 @@ for(const q of manifest.questions){
  }
 }
 assert.equal(allCases.filter(x=>x.mode==="assembly").length,15);
-assert.equal(allCases.filter(x=>x.mode==="diagnostic").length,1);
-assert.equal(new Set(allCases.map(x=>x.version)).size,16,"Local progress keys must be unique");
+assert.equal(allCases.filter(x=>x.mode==="diagnostic").length,15);
+assert.equal(new Set(allCases.map(x=>x.version)).size,30,"Local progress keys must be unique");
+assert.equal(manifest.variant_slots.length,45);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,14);
+assert.equal(manifest.variant_slots.filter(x=>x.status!=="published_training").length,31);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="requires_alternative_calendar_case").length,1);
+assert.equal(manifest.variant_slots.find(x=>x.id==="lit-15-C").status,"requires_alternative_calendar_case");
+assert.equal(manifest.questions.flatMap(q=>q.cases).filter(c=>c.year).length,9);
 // Verify actual engine hooks, not a second implementation of state updates.
 assert.match(engine,/markChecked\(d\.correct\)/);
 assert.ok(engine.match(/markChecked\(false\)/g).length>=3,"Changes, reset and invalid state must clear checked status");
@@ -103,8 +109,8 @@ const localStorage={getItem:k=>store.get(k)||null,setItem:(k,v)=>{store.set(k,St
 const document={getElementById:id=>fields[id],createElement:tag=>new Elem(tag),createTextNode:text=>({textContent:text})};
 const window={location:{href:"",search:""},events:{},addEventListener(name,fn){this.events[name]=fn}};
 new Function("document","window","localStorage","confirm",runner)(document,window,localStorage,()=>true);
-assert.equal(fields.oneCase.children.length,16,"Single-question list must offer both q12 modes");
-assert.equal(fields.mode12.children.length,2,"Error correction and assembly have equal presence");
+assert.equal(fields.oneCase.children.length,30,"Single-question list must offer all published variants");
+assert.equal(fields.mode12.children.length,5,"Question 12 exposes assembly, diagnostic prototype and A/B/C cases");
 assert.equal(fields.questionList.querySelectorAll("input").length,15);
 fields.oneCase.value="lit12-diagnostic";fields.startOne.dispatch("click");
 let current=JSON.parse(store.get("bpds-liturgics-sequence-v1"));
@@ -153,4 +159,4 @@ const page=read(base+"trainers/sequence.html");
 assert.match(page,/site\.data\.liturgics_trainers_2027 \| jsonify/);
 assert.match(page,/global-navigation\.html/);
 assert.match(read(base+"trainers/index.md"),/sequence\.html/);
-console.log("PASS: 16 real keys; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and source warnings.");
+console.log("PASS: 30 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and source warnings.");
