@@ -13,7 +13,9 @@
           "case_id": "lit01-octoechos-weekday",
           "mode": "assembly",
           "label": "Собери: вседневная схема (без календарной даты)",
-          "path": "sandbox-pyramid/q01-assembly.html"
+          "path": "sandbox-pyramid/q01-assembly.html",
+          "version": "lit01-octoechos-weekday-v1",
+          "data_path": "sandbox-pyramid/data/lit01-octoechos-weekday.json"
         }
       ]
     },
@@ -27,7 +29,9 @@
           "case_id": "lit02-sunday-indiction",
           "mode": "assembly",
           "label": "Собери: воскресное бдение, индикт и Симеон",
-          "path": "sandbox-pyramid/q02-assembly.html"
+          "path": "sandbox-pyramid/q02-assembly.html",
+          "version": "lit02-sunday-indiction-v1",
+          "data_path": "sandbox-pyramid/data/lit02-sunday-indiction.json"
         }
       ]
     },
@@ -41,7 +45,9 @@
           "case_id": "lit03-vozdvizhenie",
           "mode": "assembly",
           "label": "Собери: Воздвижение",
-          "path": "sandbox-pyramid/vozdvizhenie.html"
+          "path": "sandbox-pyramid/vozdvizhenie.html",
+          "version": "lit03-exaltation-study-v1",
+          "data_path": "sandbox-pyramid/data/lit03-vozdvizhenie.json"
         }
       ]
     },
@@ -55,7 +61,9 @@
           "case_id": "lit04-sozont-forefeast",
           "mode": "assembly",
           "label": "Собери: 7 сентября, Созонт",
-          "path": "sandbox-pyramid/q04-assembly.html"
+          "path": "sandbox-pyramid/q04-assembly.html",
+          "version": "lit04-sozont-forefeast-v1",
+          "data_path": "sandbox-pyramid/data/lit04-sozont-forefeast.json"
         }
       ]
     },
@@ -69,7 +77,9 @@
           "case_id": "lit05-velikiy-post",
           "mode": "assembly",
           "label": "Собери: понедельник Великого поста",
-          "path": "sandbox-pyramid/velikiy-post.html"
+          "path": "sandbox-pyramid/velikiy-post.html",
+          "version": "lit05-lenten-monday-study-v1",
+          "data_path": "sandbox-pyramid/data/lit05-velikiy-post.json"
         }
       ]
     },
@@ -83,7 +93,9 @@
           "case_id": "lit06-great-friday",
           "mode": "assembly",
           "label": "Собери: Великий пяток",
-          "path": "sandbox-pyramid/q06-assembly.html"
+          "path": "sandbox-pyramid/q06-assembly.html",
+          "version": "lit06-great-friday-v1",
+          "data_path": "sandbox-pyramid/data/lit06-great-friday.json"
         }
       ]
     },
@@ -97,7 +109,9 @@
           "case_id": "lit07-nicholas-temple",
           "mode": "assembly",
           "label": "Собери: храм святителя Николая",
-          "path": "sandbox-pyramid/q07-assembly.html"
+          "path": "sandbox-pyramid/q07-assembly.html",
+          "version": "lit07-nicholas-temple-v1",
+          "data_path": "sandbox-pyramid/data/lit07-nicholas-temple.json"
         }
       ]
     },
@@ -111,7 +125,9 @@
           "case_id": "lit08-nativity-vigil",
           "mode": "assembly",
           "label": "Собери: Рождество Христово",
-          "path": "sandbox-pyramid/q08-assembly.html"
+          "path": "sandbox-pyramid/q08-assembly.html",
+          "version": "lit08-nativity-vigil-v1",
+          "data_path": "sandbox-pyramid/data/lit08-nativity-vigil.json"
         }
       ]
     },
@@ -125,7 +141,9 @@
           "case_id": "lit09-pentecostarion-weekday",
           "mode": "assembly",
           "label": "Собери: Цветная Триодь",
-          "path": "sandbox-pyramid/q09-assembly.html"
+          "path": "sandbox-pyramid/q09-assembly.html",
+          "version": "lit09-pentecostarion-weekday-v1",
+          "data_path": "sandbox-pyramid/data/lit09-pentecostarion-weekday.json"
         }
       ]
     },
@@ -139,7 +157,9 @@
           "case_id": "lit10-trinity-saturday",
           "mode": "assembly",
           "label": "Собери: Троицкая суббота",
-          "path": "sandbox-pyramid/q10-assembly.html"
+          "path": "sandbox-pyramid/q10-assembly.html",
+          "version": "lit10-trinity-saturday-v1",
+          "data_path": "sandbox-pyramid/data/lit10-trinity-saturday.json"
         }
       ]
     },
@@ -153,7 +173,9 @@
           "case_id": "lit11-proskomedia",
           "mode": "assembly",
           "label": "Собери: Проскомидия",
-          "path": "sandbox-pyramid/index.html"
+          "path": "sandbox-pyramid/index.html",
+          "version": "lit11-study-v1",
+          "data_path": "sandbox-pyramid/data/lit11-proskomedia.json"
         }
       ]
     },
@@ -167,13 +189,17 @@
           "case_id": "lit12-assembly",
           "mode": "assembly",
           "label": "Собери последование",
-          "path": "sandbox-pyramid/q12-assembly.html"
+          "path": "sandbox-pyramid/q12-assembly.html",
+          "version": "lit12-assembly-v1",
+          "data_path": "sandbox-pyramid/data/lit12-assembly.json"
         },
         {
           "case_id": "lit12-diagnostic",
           "mode": "diagnostic",
           "label": "Найди и исправь ошибки",
-          "path": "sandbox-pyramid/q12-errors.html"
+          "path": "sandbox-pyramid/q12-errors.html",
+          "version": "lit12-diagnostic-v1",
+          "data_path": "sandbox-pyramid/data/lit12-diagnostic.json"
         }
       ]
     },
@@ -187,7 +213,9 @@
           "case_id": "lit13-anaphora",
           "mode": "assembly",
           "label": "Собери последование",
-          "path": "sandbox-pyramid/q13-assembly.html"
+          "path": "sandbox-pyramid/q13-assembly.html",
+          "version": "lit13-anaphora-v2",
+          "data_path": "sandbox-pyramid/data/lit13-anaphora.json"
         }
       ]
     },
@@ -201,7 +229,9 @@
           "case_id": "lit14-faithful",
           "mode": "assembly",
           "label": "Собери последование",
-          "path": "sandbox-pyramid/q14-assembly.html"
+          "path": "sandbox-pyramid/q14-assembly.html",
+          "version": "lit14-faithful-v2",
+          "data_path": "sandbox-pyramid/data/lit14-faithful.json"
         }
       ]
     },
@@ -215,7 +245,9 @@
           "case_id": "lit15-presanctified",
           "mode": "assembly",
           "label": "Собери последование",
-          "path": "sandbox-pyramid/q15-assembly.html"
+          "path": "sandbox-pyramid/q15-assembly.html",
+          "version": "lit15-presanctified-v2",
+          "data_path": "sandbox-pyramid/data/lit15-presanctified.json"
         }
       ]
     }
