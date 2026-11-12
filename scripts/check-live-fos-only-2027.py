@@ -63,6 +63,9 @@ def main():
                 raise ValueError("Unexpected catalog")
             if "2027" not in mainpage or "архив" in mainpage.lower():
                 raise ValueError("Current-only catalog is not deployed")
+            sequence_probe = request("subjects/liturgics/2027/trainers/sequence.html").decode("utf-8")
+            if 'id="liturgicsSequenceManifest"' not in sequence_probe:
+                raise ValueError("Sequence entry has not yet been deployed")
             break
         except (ValueError, HTTPError, URLError, TimeoutError, OSError) as exc:
             print(f"Pages deployment attempt {attempt}/{args.attempts}: {exc}", flush=True)
@@ -189,8 +192,39 @@ def main():
             if f"sandbox-pyramid/q{n:02d}-assembly.html" not in content:
                 raise ValueError("Missing main game on teacher page: " + page)
 
+    # Sequential practice reuses the actual game URLs and must come from the same case registry.
+    seq_path = "subjects/liturgics/2027/trainers/sequence.html"
+    seq_html = request(seq_path).decode("utf-8")
+    check_navigation(seq_html, seq_path, "liturgics")
+    if not all('id="' + name + '"' in seq_html for name in
+               ("startOne", "startSelected", "startAll", "oneCase", "mode12", "sessionItems", "liturgicsSequenceManifest")):
+        raise ValueError("Sequence launcher is incomplete")
+    pattern = r'<script id="liturgicsSequenceManifest" type="application/json">(.*?)</script>'
+    found = re.search(pattern, seq_html, flags=re.S)
+    if not found:
+        raise ValueError("The live sequence has no rendered manifest")
+    embedded = json.loads(found.group(1))
+    qs = embedded.get("questions", [])
+    if len(qs) != 15 or len([c for q in qs for c in q["cases"]]) != 16:
+        raise ValueError("Rendered sequence manifest has incorrect question/case count")
+    if sum(c["mode"] == "diagnostic" for q in qs for c in q["cases"]) != 1:
+        raise ValueError("Error-correction mode missing from equal-access sequence")
+    if any("version" not in c or "data_path" not in c for q in qs for c in q["cases"]):
+        raise ValueError("Cannot independently restore case progress")
+    program_js = request("assets/js/liturgics-sequence.js").decode("utf-8")
+    program_css = request("assets/css/liturgics-sequence.css").decode("utf-8")
+    if not all(token in program_js for token in ("startSelected", "startAll", "bpds-liturgics-sequence-v1", "bpds-liturgics-checked-")):
+        raise ValueError("Sequence client logic is incomplete")
+    if ".exam-options" not in program_css or "function examSequenceNavigation()" not in shared_js:
+        raise ValueError("Sequence links to games are incomplete")
+    if "sequence.html" not in practice_html:
+        raise ValueError("Exam catalog does not link to the sequence")
     practice_root = "practice/index.html"
-    check_navigation(request(practice_root).decode("utf-8"), practice_root)
+    practice_body = request(practice_root).decode("utf-8")
+    check_navigation(practice_body, practice_root)
+    if "trainers/sequence.html" not in practice_body:
+        raise ValueError("Practice landing has no exam sequence")
+    print("LIVE SEQUENCE PASS: one / selected / all 15, both modes at q12, full per-case progress versions", flush=True)
     print("LIVE TRAINERS PASS: 15 exam slots, sixteen real games (15 assembly + 1 error correction), shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
