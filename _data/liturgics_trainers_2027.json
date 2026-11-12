@@ -105,8 +105,14 @@
       "id": "12",
       "number": 12,
       "title": "Литургия оглашенных",
-      "status": "diagnostic_only",
+      "status": "main_ready",
       "cases": [
+        {
+          "case_id": "lit12-assembly",
+          "mode": "assembly",
+          "label": "Собери последование",
+          "path": "sandbox-pyramid/q12-assembly.html"
+        },
         {
           "case_id": "lit12-diagnostic",
           "mode": "diagnostic",
@@ -119,22 +125,43 @@
       "id": "13",
       "number": 13,
       "title": "Анафора",
-      "status": "planned",
-      "cases": []
+      "status": "main_ready",
+      "cases": [
+        {
+          "case_id": "lit13-anaphora",
+          "mode": "assembly",
+          "label": "Собери последование",
+          "path": "sandbox-pyramid/q13-assembly.html"
+        }
+      ]
     },
     {
       "id": "14",
       "number": 14,
       "title": "Литургия верных",
-      "status": "planned",
-      "cases": []
+      "status": "main_ready",
+      "cases": [
+        {
+          "case_id": "lit14-faithful",
+          "mode": "assembly",
+          "label": "Собери последование",
+          "path": "sandbox-pyramid/q14-assembly.html"
+        }
+      ]
     },
     {
       "id": "15",
       "number": 15,
       "title": "Литургия Преждеосвященных Даров",
-      "status": "planned",
-      "cases": []
+      "status": "main_ready",
+      "cases": [
+        {
+          "case_id": "lit15-presanctified",
+          "mode": "assembly",
+          "label": "Собери последование",
+          "path": "sandbox-pyramid/q15-assembly.html"
+        }
+      ]
     }
   ]
 }
