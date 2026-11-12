@@ -1,0 +1,32 @@
+name: Liturgics exam trainer regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_data/liturgics_trainers_2027.json'
+      - 'assets/js/liturgics-*.js'
+      - 'assets/css/liturgics-*.css'
+      - 'subjects/liturgics/2027/sandbox-pyramid/**'
+      - 'subjects/liturgics/2027/trainers/**'
+      - 'tests/test-liturgics-exam.cjs'
+      - '.github/workflows/liturgics-exam-regression.yml'
+  pull_request:
+    paths:
+      - '_data/liturgics_trainers_2027.json'
+      - 'assets/js/liturgics-*.js'
+      - 'subjects/liturgics/2027/sandbox-pyramid/**'
+      - 'subjects/liturgics/2027/trainers/**'
+      - 'tests/test-liturgics-exam.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test every case and sequence flow using the real browser scripts
+        run: node tests/test-liturgics-exam.cjs
