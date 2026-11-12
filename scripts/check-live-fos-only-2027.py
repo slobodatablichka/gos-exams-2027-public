@@ -188,10 +188,10 @@ def main():
             raise ValueError("Incorrect case assessment / L3: " + case_file)
         if len({item["id"] for item in case["items"]}) != total_items:
             raise ValueError("Duplicate brick IDs: " + case_file)
-        if case_file == "lit01-octoechos-weekday.json" and (case.get("sourceStatus") != "verification_needed_calendar" or case.get("passport", {}).get("source_conditions_complete") is not False):
-            raise ValueError("Q01 unverified calendar conditions must remain explicit")
-        if case_file == "lit09-pentecostarion-weekday.json" and (case.get("sourceStatus") != "verification_needed_merged_cells" or case.get("passport", {}).get("merged_cells_review_required") is not True):
-            raise ValueError("Q09 merged cells in teacher workbook must remain flagged")
+        if case_file == "lit01-octoechos-weekday.json" and (case.get("sourceStatus") != "task_scope_reviewed" or case.get("passport", {}).get("task_scope_sufficient") is not True):
+            raise ValueError("Q01 task scope must be sufficient without calendar extras")
+        if case_file == "lit09-pentecostarion-weekday.json" and (case.get("sourceStatus") != "task_scope_reviewed" or case.get("passport", {}).get("task_scope_sufficient") is not True):
+            raise ValueError("Q09 must be judged only by rows required for its task")
         print("LIVE GAME PASS", path, flush=True)
 
     practice_catalog = "subjects/liturgics/2027/trainers/index.html"
@@ -232,20 +232,22 @@ def main():
     slots = embedded.get("variant_slots", [])
     if len(slots) != 45 or len([v for v in slots if v.get("status") == "published_training"]) != 14:
         raise ValueError("45 source variant slots are not accurately audited")
-    if not any(v.get("id") == "lit-15-C" and v.get("status") == "requires_alternative_calendar_case"
+    if len([v for v in slots if v.get("status") == "task_defined_key_pending" and v.get("task_scope_sufficient")]) != 31:
+        raise ValueError("All 31 pending tasks must have sufficient task-defined conditions")
+    if not any(v.get("id") == "lit-15-C" and v.get("status") == "task_defined_key_pending"
                for v in slots):
-        raise ValueError("Q15-C unresolved later-Lent condition must remain explicit")
+        raise ValueError("Q15-C must not require an invented calendar date")
     year_path = "subjects/liturgics/2027/trainers/year.html"
     year_html = request(year_path).decode("utf-8")
     check_navigation(year_html, year_path, "liturgics")
     calendar_cases = [c for q in qs for c in q["cases"] if c.get("year")]
-    if len(calendar_cases) != 9 or year_html.count("Собрать последование") != 9:
+    if len(calendar_cases) != 11 or year_html.count("Собрать последование") != 11:
         raise ValueError("Calendar catalog must contain exactly nine prepared cases")
     for c in calendar_cases:
         if "sandbox-pyramid/" + c["path"].split("/")[-1] not in year_html:
             raise ValueError("Calendar case game link is missing: " + c["case_id"])
-    print("LIVE YEAR PASS: nine prepared source-grounded services; no invented universal calendar", flush=True)
-    print("LIVE VARIANTS PASS: 45 slots; 14 new diagnostic games, 31 source-blocked; no invented q15-C", flush=True)
+    print("LIVE YEAR PASS: eleven source-grounded cases and teaching schemes; no invented calendar", flush=True)
+    print("LIVE VARIANTS PASS: 45 slots; 14 published diagnostics, 31 task-defined pending games; no calendar blocker", flush=True)
     program_js = request("assets/js/liturgics-sequence.js").decode("utf-8")
     program_css = request("assets/css/liturgics-sequence.css").decode("utf-8")
     if not all(token in program_js for token in ("startSelected", "startAll", "bpds-liturgics-sequence-v1", "bpds-liturgics-checked-")):

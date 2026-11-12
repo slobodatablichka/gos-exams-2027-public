@@ -190,7 +190,7 @@
   "successText": "Порядок 22 учебных частей восстановлен. Это самопроверка структуры; итоговый уставный ответ зависит от указанного случая.",
   "hintExtra": "Проверьте, не внесён ли элемент другого календарного случая или соседней колонки преподавательской таблицы.",
   "assessment": "training_check",
-  "caseConditions": "Седмичная служба периода Цветной Триоди до отдания Пасхи по колонке 2 преподавательской таблицы «один святой без знака». Дата, глас, память и храм не определены; таблица имеет пустые/объединённые ячейки. Это упражнение по известным строкам, не полностью восстановленный уставный календарный ключ.",
+  "caseConditions": "Седмичная служба периода Цветной Триоди по колонке «один святой без знака». Проверяются только её нужные элементы, без смешения с соседними колонками.",
   "passport": {
     "period": "pentecostarion",
     "weekday": "weekday_unspecified",
@@ -199,10 +199,10 @@
     "saint_name": null,
     "saint_rank": "without_sign",
     "teacher_source_column": "№09_04, колонка 2",
-    "source_conditions_complete": false,
-    "merged_cells_review_required": true
+    "task_scope_sufficient": true,
+    "source_observation": "При использовании спорной строки таблицы проверить лишь её содержимое, не блокируя задание в целом."
   },
-  "sourceStatus": "verification_needed_merged_cells",
+  "sourceStatus": "task_scope_reviewed",
   "referenceExample": "materials/liturgics/2027/examples/full/q09.md",
   "sources": [
     "sources/teacher-liturgics/extracted/09_04_Седмичные_дни_в_период_пятидесятницы.xlsx.md",

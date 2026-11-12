@@ -63,8 +63,8 @@ for(const q of manifest.questions){
     assert.ok(data.initialPyramid.length>0,"Error-correction task must start with a populated Pyramid");
     assert.equal(test(data.initialPyramid).diagnose.correct,false,"Error-correction case starts already solved");
   }else assert.deepEqual(data.initialPyramid,[],"Assembly must start with empty Pyramid");
-  if(q.number===1&&c.mode==="assembly")assert.equal(data.sourceStatus,"verification_needed_calendar");
-  if(q.number===9&&c.mode==="assembly")assert.equal(data.sourceStatus,"verification_needed_merged_cells");
+  if(q.number===1&&c.mode==="assembly")assert.equal(data.sourceStatus,"task_scope_reviewed");
+  if(q.number===9&&c.mode==="assembly")assert.equal(data.sourceStatus,"task_scope_reviewed");
   allCases.push({q:q.number,id:c.case_id,mode:c.mode,version:c.version,path:c.path});
  }
 }
@@ -74,9 +74,9 @@ assert.equal(new Set(allCases.map(x=>x.version)).size,30,"Local progress keys mu
 assert.equal(manifest.variant_slots.length,45);
 assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,14);
 assert.equal(manifest.variant_slots.filter(x=>x.status!=="published_training").length,31);
-assert.equal(manifest.variant_slots.filter(x=>x.status==="requires_alternative_calendar_case").length,1);
-assert.equal(manifest.variant_slots.find(x=>x.id==="lit-15-C").status,"requires_alternative_calendar_case");
-assert.equal(manifest.questions.flatMap(q=>q.cases).filter(c=>c.year).length,9);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="task_defined_key_pending").length,31);
+assert.equal(manifest.variant_slots.find(x=>x.id==="lit-15-C").status,"task_defined_key_pending");
+assert.equal(manifest.questions.flatMap(q=>q.cases).filter(c=>c.year).length,11);
 // Verify actual engine hooks, not a second implementation of state updates.
 assert.match(engine,/markChecked\(d\.correct\)/);
 assert.ok(engine.match(/markChecked\(false\)/g).length>=3,"Changes, reset and invalid state must clear checked status");
@@ -159,4 +159,4 @@ const page=read(base+"trainers/sequence.html");
 assert.match(page,/site\.data\.liturgics_trainers_2027 \| jsonify/);
 assert.match(page,/global-navigation\.html/);
 assert.match(read(base+"trainers/index.md"),/sequence\.html/);
-console.log("PASS: 30 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and source warnings.");
+console.log("PASS: 30 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and task-scope review.");

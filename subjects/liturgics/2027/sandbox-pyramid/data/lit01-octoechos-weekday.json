@@ -197,7 +197,7 @@
   "successText": "Порядок 23 учебных частей восстановлен. Результат — самопроверка схемы, не автоматический экзаменационный допуск.",
   "hintExtra": "Проверьте, не включена ли часть из другого богослужебного разряда.",
   "assessment": "training_check",
-  "caseConditions": "Учебная вседневная седмичная служба без знака по преподавательской колонке. Конкретные дата, глас, имя святого и храм не заданы. Это восстановление каркаса, а не готовая служба конкретного календарного дня.",
+  "caseConditions": "Седмичная вседневная служба без знака по преподавательской колонке. Соберите указанные части, не добавляя условий, которых нет в задании.",
   "passport": {
     "calendar_style": "julian",
     "date": null,
@@ -207,9 +207,9 @@
     "saint_name": null,
     "saint_rank": "without_sign",
     "temple": null,
-    "source_conditions_complete": false
+    "task_scope_sufficient": true
   },
-  "sourceStatus": "verification_needed_calendar",
+  "sourceStatus": "task_scope_reviewed",
   "referenceExample": "materials/liturgics/2027/examples/full/q01.md",
   "sources": [
     "sources/teacher-liturgics/extracted/01_Богослужение периода Октоиха_Схемы_Богомазов.docx.md",

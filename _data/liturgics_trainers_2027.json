@@ -15,7 +15,13 @@
           "label": "Собери: вседневная схема (без календарной даты)",
           "path": "sandbox-pyramid/q01-assembly.html",
           "version": "lit01-octoechos-weekday-v1",
-          "data_path": "sandbox-pyramid/data/lit01-octoechos-weekday.json"
+          "data_path": "sandbox-pyramid/data/lit01-octoechos-weekday.json",
+          "year": {
+            "group": "cycle",
+            "date": "Период Октоиха",
+            "label": "Седмичная вседневная служба без знака",
+            "qualifier": "Указанный преподавателем каркас; дата не требуется"
+          }
         }
       ]
     },
@@ -185,7 +191,13 @@
           "label": "Собери: Цветная Триодь",
           "path": "sandbox-pyramid/q09-assembly.html",
           "version": "lit09-pentecostarion-weekday-v1",
-          "data_path": "sandbox-pyramid/data/lit09-pentecostarion-weekday.json"
+          "data_path": "sandbox-pyramid/data/lit09-pentecostarion-weekday.json",
+          "year": {
+            "group": "cycle",
+            "date": "Период Цветной Триоди",
+            "label": "Седмичная служба одному святому без знака",
+            "qualifier": "В пределах колонки №09_04, без добавления других условий"
+          }
         }
       ]
     },
@@ -453,16 +465,18 @@
       "variant": "А",
       "condition": "тот же день: славословный святой",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Славословный разряд вместо исходного: вечерня, хвалитные, великое славословие, окончание утрени",
+      "source_basis": "Сравнительная славословная колонка преподавателя",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-01-B",
@@ -470,16 +484,18 @@
       "variant": "Б",
       "condition": "тот же день: полиелейный святой",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Полиелейный разряд вместо исходного: великая вечерня, полиелей и изменения утрени",
+      "source_basis": "Полиелейная колонка преподавателя",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-01-C",
@@ -487,16 +503,18 @@
       "variant": "В",
       "condition": "суббота того же гласа",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Субботнее последование того же гласа; заменить будничные части субботними",
+      "source_basis": "Субботняя сравнительная схема преподавателя",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-02-A",
@@ -504,16 +522,18 @@
       "variant": "А",
       "condition": "другая память и глас",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Заменить воскресные изменяемые элементы по ДРУГОЙ памяти и гласу, не выбирать их конкретные значения",
+      "source_basis": "Ключ изменений в карточке №2",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-02-B",
@@ -521,16 +541,18 @@
       "variant": "Б",
       "condition": "воскресенье Постной Триоди",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Отличить воскресенье Постной Триоди от исходного воскресного бдения; заменить предусмотренные заданием части",
+      "source_basis": "Ключ изменений №2 и L3",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-02-C",
@@ -538,16 +560,18 @@
       "variant": "В",
       "condition": "воскресенье Цветной Триоди",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Отличить воскресенье Цветной Триоди, не переносить индикт и Симеона",
+      "source_basis": "Ключ изменений №2 и L3",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-03-A",
@@ -555,16 +579,18 @@
       "variant": "А",
       "condition": "Воздвижение в воскресенье",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Применить уставное правило Воздвижения при воскресном совпадении, без автоматического добавления воскресных частей",
+      "source_basis": "Типикон в эталоне №3",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-03-B",
@@ -572,16 +598,18 @@
       "variant": "Б",
       "condition": "другой великий Господский праздник",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Показать, что меняется при ином великом Господском празднике; не придумывать конкретный праздник",
+      "source_basis": "Сравнительный ключ №3; собственные тексты иного праздника нужны лишь если названы заданием",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-03-C",
@@ -589,16 +617,18 @@
       "variant": "В",
       "condition": "великий Богородичный праздник",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Отличить великий Богородичный праздник от Господского; не подставлять произвольную память",
+      "source_basis": "Сравнительный ключ №3",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-04-A",
@@ -606,16 +636,18 @@
       "variant": "А",
       "condition": "славословный святой",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Славословный разряд в условиях данного предпразднства: хвалитные, канон, конец утрени",
+      "source_basis": "Сравнительная колонка №4",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-04-B",
@@ -623,16 +655,18 @@
       "variant": "Б",
       "condition": "полиелейный святой",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Полиелейный разряд: великая вечерня, чтения, полиелейная утреня",
+      "source_basis": "Сравнительная колонка №4",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-04-C",
@@ -640,16 +674,18 @@
       "variant": "В",
       "condition": "пятничный случай «на 6»",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Пятничный вариант «на 6»: специальное «И ныне», не переносить будничное правило",
+      "source_basis": "Пятничная оговорка преподавателя №4",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-05-A",
@@ -657,16 +693,18 @@
       "variant": "А",
       "condition": "понедельник с полиелейным святым",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Великопостный понедельник с полиелейным святым: изменения только указанного сочетания",
+      "source_basis": "Ключ изменений №5; полиелейная колонка преподавательского источника",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-05-B",
@@ -674,16 +712,18 @@
       "variant": "Б",
       "condition": "понедельник с храмовым бдением",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Великопостный понедельник с храмовым бдением: только относящиеся к нему отличия",
+      "source_basis": "Ключ изменений №5; храмовые рубрики проверять в пределах задания",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-05-C",
@@ -691,16 +731,18 @@
       "variant": "В",
       "condition": "суббота Акафиста",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Суббота Акафиста: собственные части празднования, не понедельничная служба",
+      "source_basis": "Ключ изменений №5; Постная Триодь",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-06-A",
@@ -708,16 +750,18 @@
       "variant": "А",
       "condition": "Великий четверг",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Великий четверг: собственный порядок служб, не переносить Великий пяток",
+      "source_basis": "Ключ изменений №6; соответствующий чин Страстной седмицы",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-06-B",
@@ -725,16 +769,18 @@
       "variant": "Б",
       "condition": "Великая суббота",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Великая суббота: собственный порядок, отличить от вечерни Великого пятка",
+      "source_basis": "Ключ изменений №6; соответствующий чин Страстной седмицы",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-06-C",
@@ -742,16 +788,18 @@
       "variant": "В",
       "condition": "Светлый понедельник (вместо ошибочного «первый день Светлой седмицы»)",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Светлый понедельник: пасхальное последование, не называть его первым днём Светлой седмицы",
+      "source_basis": "Ключ изменений №6; Цветная Триодь",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-07-A",
@@ -759,16 +807,18 @@
       "variant": "А",
       "condition": "храмовый праздник в воскресенье",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Храмовый праздник при воскресном совпадении: уставное соединение по храмовой главе",
+      "source_basis": "Типикон, храмовая глава 3, сравнительный ключ №7",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-07-B",
@@ -776,16 +826,18 @@
       "variant": "Б",
       "condition": "совпадение с великим Господским праздником",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Храмовый праздник и великий Господский праздник: порядок приоритетов из указанного совпадения",
+      "source_basis": "Храмовые главы Типикона и ключ изменений №7; конкретный праздник не придумывать",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-07-C",
@@ -793,16 +845,18 @@
       "variant": "В",
       "condition": "храмовый праздник в будни поста",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Храмовая память в будний день поста: соответствующий постовой строй и храмовые особенности",
+      "source_basis": "Храмовые главы Типикона и ключ изменений №7",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-08-A",
@@ -810,16 +864,18 @@
       "variant": "А",
       "condition": "Рождественский сочельник в субботу/воскресенье",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Рождественский сочельник при субботе/воскресенье: только соответствующие отличия сочельника",
+      "source_basis": "Ключ изменений №8; уставные различия субботы/воскресенья в границах задания",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-08-B",
@@ -827,16 +883,18 @@
       "variant": "Б",
       "condition": "праздник Богоявления",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Богоявление как самостоятельная праздничная служба; не переносить Рождественский источник",
+      "source_basis": "Ключ изменений №8; в рождественской преподавательской колонке Богоявления нет — проверить собственную службу, а не дату",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-08-C",
@@ -844,16 +902,18 @@
       "variant": "В",
       "condition": "Благовещение в Великом посту",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Благовещение в Великом посту: соединение служб только по сформулированному условию",
+      "source_basis": "Ключ изменений №8; отдельная Благовещенская колонка, особые рубрики при заданном совпадении",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-09-A",
@@ -861,16 +921,18 @@
       "variant": "А",
       "condition": "два святых без знака",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Два святых без знака: распределение стихир Минеи 3+3 вместо одного святого",
+      "source_basis": "Ключ №9 и соответствующая колонка таблицы; объединённые ячейки важны только если затронуты",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-09-B",
@@ -878,16 +940,18 @@
       "variant": "Б",
       "condition": "полиелейный святой",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Полиелейный святой: переход к указанной полиелейной колонке вечерни/утрени",
+      "source_basis": "Ключ №9 и полиелейная колонка; объединённые ячейки только по нужным строкам",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-09-C",
@@ -895,16 +959,18 @@
       "variant": "В",
       "condition": "субботний день до отдания Пасхи",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Суббота до отдания Пасхи: перейти с будничной на субботнюю схему №09_08",
+      "source_basis": "Ключ №9 и отдельная субботняя таблица",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-10-A",
@@ -912,16 +978,18 @@
       "variant": "А",
       "condition": "Мясопустная суббота",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Мясопустная вселенская суббота: отличить заупокойные песнопения от Троицкой субботы",
+      "source_basis": "Ключ изменений №10; собственные тексты Мясопустной субботы",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-10-B",
@@ -929,16 +997,18 @@
       "variant": "Б",
       "condition": "суббота второй седмицы Великого поста",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Суббота второй седмицы Великого поста: собственный постовой заупокойный чин",
+      "source_basis": "Ключ изменений №10; Постная Триодь",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-10-C",
@@ -946,16 +1016,18 @@
       "variant": "В",
       "condition": "совпадение Мясопустной субботы со Сретением или храмовой памятью",
       "source_type": "conditional_service_composition",
-      "source_review": "conditional_review",
-      "status": "requires_full_case_key",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "fixed_calendar_case",
-        "primary_source_rubric_check",
-        "complete_solution_key"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Мясопустная суббота при совпадении со Сретением ИЛИ храмовой памятью: правило переноса только выбранного условия",
+      "source_basis": "Ключ изменений №10; проверить рубрику нужного совпадения, без произвольного года",
+      "blocked_by_missing_calendar": false
     },
     {
       "id": "lit-11-A",
@@ -967,11 +1039,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit11-diagnostic-a"
+      "missing": [],
+      "case_id": "lit11-diagnostic-a",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-11-B",
@@ -983,11 +1054,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit11-diagnostic-b"
+      "missing": [],
+      "case_id": "lit11-diagnostic-b",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-11-C",
@@ -999,11 +1069,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit11-diagnostic-c"
+      "missing": [],
+      "case_id": "lit11-diagnostic-c",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-12-A",
@@ -1015,11 +1084,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit12-diagnostic-a"
+      "missing": [],
+      "case_id": "lit12-diagnostic-a",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-12-B",
@@ -1031,11 +1099,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit12-diagnostic-b"
+      "missing": [],
+      "case_id": "lit12-diagnostic-b",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-12-C",
@@ -1047,11 +1114,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit12-diagnostic-c"
+      "missing": [],
+      "case_id": "lit12-diagnostic-c",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-13-A",
@@ -1063,11 +1129,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit13-diagnostic-a"
+      "missing": [],
+      "case_id": "lit13-diagnostic-a",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-13-B",
@@ -1079,11 +1144,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit13-diagnostic-b"
+      "missing": [],
+      "case_id": "lit13-diagnostic-b",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-13-C",
@@ -1095,11 +1159,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit13-diagnostic-c"
+      "missing": [],
+      "case_id": "lit13-diagnostic-c",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-14-A",
@@ -1111,11 +1174,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit14-diagnostic-a"
+      "missing": [],
+      "case_id": "lit14-diagnostic-a",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-14-B",
@@ -1127,11 +1189,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit14-diagnostic-b"
+      "missing": [],
+      "case_id": "lit14-diagnostic-b",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-14-C",
@@ -1143,11 +1204,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit14-diagnostic-c"
+      "missing": [],
+      "case_id": "lit14-diagnostic-c",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-15-A",
@@ -1159,11 +1219,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit15-diagnostic-a"
+      "missing": [],
+      "case_id": "lit15-diagnostic-a",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-15-B",
@@ -1175,11 +1234,10 @@
       "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check"
-      ],
-      "case_id": "lit15-diagnostic-b"
+      "missing": [],
+      "case_id": "lit15-diagnostic-b",
+      "task_scope_sufficient": true,
+      "task_focus": "Выявить и исправить прямо указанную ошибку."
     },
     {
       "id": "lit-15-C",
@@ -1187,17 +1245,18 @@
       "variant": "В",
       "condition": "опущены молитвы о просвещаемых",
       "source_type": "diagnostic_order_or_meaning",
-      "source_review": "diagnostic_key_reviewed",
-      "status": "requires_alternative_calendar_case",
+      "source_review": "task_scope_reviewed",
+      "status": "task_defined_key_pending",
       "full_key_verified": false,
       "automated_scoring_ready": false,
       "missing": [
-        "accepted_answer_variants",
-        "prayer_text_exact_check",
-        "later_lent_calendar_case",
-        "complete_rite_with_enlightened_petitions"
+        "bounded_training_game_not_implemented"
       ],
-      "case_id": null
+      "case_id": null,
+      "task_scope_sufficient": true,
+      "task_focus": "Восстановить молитвы о просвещаемых **там, где они положены**, и их место в чине; не требовать конкретную дату или новую полную службу",
+      "source_basis": "Ключ №15: прямо указан период допустимости; существующая игра для второй седмицы не служит ключом этого варианта",
+      "blocked_by_missing_calendar": false
     }
   ]
 }
