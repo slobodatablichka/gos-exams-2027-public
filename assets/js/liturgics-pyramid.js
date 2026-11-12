@@ -30,13 +30,15 @@ async function initLiturgicsTrainer(){
 const dataById=new Map(DATA.map(x=>[x.id,x]));
 const required=DATA.filter(x=>!x.extra).map(x=>x.id);
 const storageKey="bpds-sandbox-pyramid-"+CASE_VERSION;
+const checkedKey="bpds-liturgics-checked-"+game.case_id;
+function markChecked(correct){try{if(correct)localStorage.setItem(checkedKey,JSON.stringify({version:CASE_VERSION,correct:true}));else localStorage.removeItem(checkedKey)}catch(e){/* Attempt remains usable without storage. */}}
 const sandNode=document.getElementById("sand"), pyramidNode=document.getElementById("pyramid");
 const report=document.getElementById("report"), modalHost=document.getElementById("modalHost");
 let sand=[],pyramid=[],modalOpen=false,dragging=false,hintState={signature:"",level:0},keyboardPick=null,animationInProgress=false,activeTouch=false,layoutSwapped=false;
 function shuffled(values){let a=[...values];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function validSaved(s){return !!s&&Array.isArray(s.sand)&&Array.isArray(s.pyramid)&&[...s.sand,...s.pyramid].length===DATA.length&&new Set([...s.sand,...s.pyramid]).size===DATA.length&&[...s.sand,...s.pyramid].every(x=>dataById.has(x))}
 function persist(){try{localStorage.setItem(storageKey,JSON.stringify({sand,pyramid,layoutSwapped}));document.getElementById("saveStatus").textContent="Сохранено на этом устройстве"}catch(e){document.getElementById("saveStatus").textContent="Сохранение недоступно"}}
-function init(){let restored;try{restored=JSON.parse(localStorage.getItem(storageKey))}catch(e){}if(validSaved(restored)){sand=restored.sand;pyramid=restored.pyramid;layoutSwapped=restored.layoutSwapped===true}else{pyramid=isDiagnostic?[...START_PYRAMID]:[];sand=shuffled(DATA.map(x=>x.id).filter(id=>!pyramid.includes(id)));persist()}applyLayout();render()}
+function init(){let restored;try{restored=JSON.parse(localStorage.getItem(storageKey))}catch(e){}if(validSaved(restored)){sand=restored.sand;pyramid=restored.pyramid;layoutSwapped=restored.layoutSwapped===true}else{pyramid=isDiagnostic?[...START_PYRAMID]:[];sand=shuffled(DATA.map(x=>x.id).filter(id=>!pyramid.includes(id)));markChecked(false);persist()}applyLayout();render()}
 function render(keepScroll=true){const leftScroll=sandNode.scrollTop,rightScroll=pyramidNode.scrollTop;sandNode.replaceChildren();pyramidNode.replaceChildren();
  for(const [node,arr,zone] of [[sandNode,sand,"sand"],[pyramidNode,pyramid,"pyramid"]]){
   if(!arr.length){let e=document.createElement("div");e.className="placeholder";e.textContent=zone==="sand"?(isDiagnostic?"Запасные кирпичики использованы":"Все кирпичики перенесены"):(isDiagnostic?"Пирамида пуста":"Перенесите кирпичик сюда");node.append(e)}
@@ -77,7 +79,7 @@ function modalFor(id){const item=dataById.get(id);if(!item)return;modalOpen=true
  function onKey(e){if(e.key==="Escape"){e.preventDefault();close()}else if(e.key==="Tab"){e.preventDefault();card.focus()}}
  shade.addEventListener("pointerdown",e=>{if(e.target===shade)close()});document.addEventListener("keydown",onKey)
 }
-function moveItem(id,targetZone,index,fromDrag=false){clearButtonFeedback();const from=sand.includes(id)?sand:pyramid;const to=targetZone==="sand"?sand:pyramid;let at=from.indexOf(id);if(at<0)return;from.splice(at,1);if(to===from&&!fromDrag&&index>at)index--;index=Math.max(0,Math.min(index,to.length));to.splice(index,0,id);hintState={signature:"",level:0};persist();render();document.getElementById("saveStatus").textContent="Сборка сохранена"}
+function moveItem(id,targetZone,index,fromDrag=false){clearButtonFeedback();const from=sand.includes(id)?sand:pyramid;const to=targetZone==="sand"?sand:pyramid;let at=from.indexOf(id);if(at<0)return;from.splice(at,1);if(to===from&&!fromDrag&&index>at)index--;index=Math.max(0,Math.min(index,to.length));to.splice(index,0,id);markChecked(false);hintState={signature:"",level:0};persist();render();document.getElementById("saveStatus").textContent="Сборка сохранена"}
 function closestInsertion(node,y,ignoreId){const bricks=[...node.querySelectorAll(".brick")].filter(n=>n.dataset.id!==ignoreId);for(let i=0;i<bricks.length;i++){const r=bricks[i].getBoundingClientRect();if(y<r.top+r.height/2)return i}return bricks.length}
 function touchStart(e){
  if(modalOpen||dragging||activeTouch||e.touches.length!==1)return;
@@ -122,6 +124,7 @@ function diagnose(){const present=new Set(pyramid),missing=required.filter(id=>!
 
 document.getElementById("checkBtn").addEventListener("click",()=>{
  const d=diagnose();
+ markChecked(d.correct);
  if(d.correct){
    showReport(isDiagnostic?"Учебная последовательность восстановлена":"Порядок учебного образца собран верно",
     [game.successText, isDiagnostic?
@@ -187,14 +190,36 @@ document.getElementById("resetBtn").addEventListener("click",()=>{
  pyramid=isDiagnostic?[...START_PYRAMID]:[];
  sand=shuffled(DATA.map(x=>x.id).filter(id=>!pyramid.includes(id)));
  hintState={signature:"",level:0};
- persist();render(false);
+ markChecked(false);persist();render(false);
  showReport(isDiagnostic?"Начальная Пирамида восстановлена":"Новая сборка",
   [isDiagnostic?"Исправляйте ошибки заново. Расположение столбцов сохранено.":"Кирпичики перемешаны, Пирамида очищена."]);
 });
+
+function examSequenceNavigation(){
+ if(new URLSearchParams(window.location.search).get("sequence")!=="1")return;
+ const key="bpds-liturgics-sequence-v1";
+ let session;
+ try{session=JSON.parse(localStorage.getItem(key))}catch(e){return}
+ if(!session||session.v!==1||!Array.isArray(session.entries)||session.entries.length<1||session.entries.length>15)return;
+ const idx=session.entries.findIndex(e=>e.number===game.question&&e.case_id===game.case_id&&e.version===CASE_VERSION);
+ if(idx<0)return;
+ const safe=e=>e&&typeof e.path==="string"&&/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly|errors))\.html$/.test(e.path);
+ if(!session.entries.every(safe))return;
+ if(session.index!==idx){session.index=idx;try{localStorage.setItem(key,JSON.stringify(session))}catch(e){}}
+ const navigation=document.createElement("nav");navigation.className="exam-sequence-nav";navigation.setAttribute("aria-label","Последовательная экзаменационная тренировка");
+ const title=document.createElement("strong");title.textContent="Билет "+(idx+1)+" из "+session.entries.length;navigation.append(title);
+ function add(text,href){const link=document.createElement("a");link.href=href;link.textContent=text;navigation.append(link)}
+ if(idx>0)add("← Предыдущий","../"+session.entries[idx-1].path+"?sequence=1");
+ if(idx+1<session.entries.length)add("Следующий →","../"+session.entries[idx+1].path+"?sequence=1");
+ add(idx+1===session.entries.length?"К итогам":"К вопросам","../trainers/sequence.html");
+ report.after(navigation);
+}
+
 function shuffleVisual(){if(modalOpen||dragging||animationInProgress||sand.length<2||document.hidden)return;const i=Math.floor(Math.random()*sand.length),j=Math.floor(Math.random()*sand.length);if(i===j)return;animationInProgress=true;const before=new Map([...sandNode.querySelectorAll(".brick")].map(n=>[n.dataset.id,n.getBoundingClientRect().top]));[sand[i],sand[j]]=[sand[j],sand[i]];persist();render();if(matchMedia("(prefers-reduced-motion: reduce)").matches){animationInProgress=false;return}
  const els=[...sandNode.querySelectorAll(".brick")];els.forEach(el=>{let dy=before.get(el.dataset.id)-el.getBoundingClientRect().top;el.style.transition="none";el.style.transform="translateY("+dy+"px)"});requestAnimationFrame(()=>requestAnimationFrame(()=>{els.forEach(el=>{el.style.transition="transform 1s ease-in-out";el.style.transform="translateY(0)"})}));setTimeout(()=>animationInProgress=false,1050)}
 setInterval(shuffleVisual,4200);
 init();
+examSequenceNavigation();
 
 }
 initLiturgicsTrainer().catch(error=>{
