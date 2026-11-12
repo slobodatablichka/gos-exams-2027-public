@@ -81,7 +81,7 @@
    row.append(link,badge);items.append(row);
   });
   const continueButton=document.getElementById("continue");
-  continueButton.textContent=checks===s.entries.length?"Посмотреть результаты":"Продолжить";
+  continueButton.textContent=checks===s.entries.length?"Открыть последний билет":"Продолжить";
   continueButton.onclick=()=>{const t=currentSession();if(t)toGame(t.entries[t.index])};
  }
  fill();
