@@ -69,7 +69,7 @@ for(const q of manifest.questions){
  }
 }
 assert.equal(allCases.filter(x=>x.mode==="assembly").length,15);
-assert.equal(allCases.filter(x=>x.mode==="diagnostic").length,15);
+assert.equal(allCases.filter(x=>x.mode==="diagnostic").length,16);
 assert.equal(new Set(allCases.map(x=>x.version)).size,31,"Local progress keys must be unique");
 assert.equal(manifest.variant_slots.length,45);
 assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,15);
