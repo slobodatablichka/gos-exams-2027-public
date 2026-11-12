@@ -142,6 +142,10 @@ def main():
         ("q02-assembly.html", "lit02-sunday-indiction.json", "assembly", "Воскресное бдение", 33),
         ("q04-assembly.html", "lit04-sozont-forefeast.json", "assembly", "Предпразднство", 32),
         ("q07-assembly.html", "lit07-nicholas-temple.json", "assembly", "Храм святителя Николая", 31),
+        ("q06-assembly.html", "lit06-great-friday.json", "assembly", "Великий пяток", 36),
+        ("q08-assembly.html", "lit08-nativity-vigil.json", "assembly", "Рождество Христово", 28),
+        ("q09-assembly.html", "lit09-pentecostarion-weekday.json", "assembly", "Цветная Триодь", 26),
+        ("q10-assembly.html", "lit10-trinity-saturday.json", "assembly", "Троицкая родительская суббота", 37),
     )
     base_game = "subjects/liturgics/2027/sandbox-pyramid/"
     for file_name, case_file, mode, heading, total_items in games:
@@ -165,6 +169,8 @@ def main():
             raise ValueError("Duplicate brick IDs: " + case_file)
         if case_file == "lit01-octoechos-weekday.json" and (case.get("sourceStatus") != "verification_needed_calendar" or case.get("passport", {}).get("source_conditions_complete") is not False):
             raise ValueError("Q01 unverified calendar conditions must remain explicit")
+        if case_file == "lit09-pentecostarion-weekday.json" and (case.get("sourceStatus") != "verification_needed_merged_cells" or case.get("passport", {}).get("merged_cells_review_required") is not True):
+            raise ValueError("Q09 merged cells in teacher workbook must remain flagged")
         print("LIVE GAME PASS", path, flush=True)
 
     practice_catalog = "subjects/liturgics/2027/trainers/index.html"
@@ -175,7 +181,7 @@ def main():
     for name, _, _, _, _ in games:
         if "sandbox-pyramid/" + name not in practice_html:
             raise ValueError("Practice catalog missing published game: " + name)
-    for n in (1, 2, 4, 7, 12, 13, 14, 15):
+    for n in (1, 2, 4, 6, 7, 8, 9, 10, 12, 13, 14, 15):
         for route in ("practice", "examples"):
             page = f"subjects/liturgics/2027/{route}/q{n:02d}.html"
             content = request(page).decode("utf-8", errors="replace")
@@ -185,7 +191,7 @@ def main():
 
     practice_root = "practice/index.html"
     check_navigation(request(practice_root).decode("utf-8"), practice_root)
-    print("LIVE TRAINERS PASS: 15 exam slots, twelve real games (11 assembly + 1 diagnostic), shared JS/CSS/JSON", flush=True)
+    print("LIVE TRAINERS PASS: 15 exam slots, sixteen real games (15 assembly + 1 error correction), shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",
