@@ -1,0 +1,49 @@
+---
+---
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f6f8">
+<title>Экзаменационная тренировка · Литургика 2027</title>
+<link rel="stylesheet" href="../../../../assets/css/liturgics-sequence.css">
+</head>
+<body>
+{% include global-navigation.html %}
+<main class="exam-sequence">
+<header><h1>Экзаменационная тренировка · Литургика</h1><p>Один вопрос, выбранные вопросы или все 15. Каждая игра открывается в привычном интерфейсе. Попытки и прогресс по каждому вопросу сохраняются отдельно.</p><p><a href="index.html">Все задания</a> · <a href="../index.html">Литургика</a></p></header>
+<div class="exam-options">
+<section class="exam-panel">
+<h2>Один вопрос</h2>
+<label for="oneCase">Выберите вопрос и режим</label>
+<select id="oneCase"></select>
+<button id="startOne" type="button">Начать</button>
+</section>
+<section class="exam-panel">
+<h2>Выбранные вопросы</h2>
+<details id="questionChoices"><summary>Выбрать вопросы №1–15</summary><div id="questionList" class="exam-question-list"></div></details>
+<button id="startSelected" type="button" disabled>Начать выбранные</button>
+</section>
+<section class="exam-panel">
+<h2>Все 15 вопросов</h2>
+<p>По одному заданию на каждый номер.</p>
+<label for="mode12">Режим для №12</label>
+<select id="mode12"></select>
+<button id="startAll" type="button">Начать все 15</button>
+</section>
+</div>
+<section class="exam-session" id="session" hidden>
+<h2>Текущее прохождение</h2>
+<p id="sessionSummary" role="status" aria-live="polite"></p>
+<div id="sessionItems" class="exam-session-items"></div>
+<div class="exam-actions"><button id="continue" type="button">Продолжить</button><button id="end" type="button" class="secondary">Завершить прохождение</button></div>
+</section>
+<p class="exam-note">Это учебная проверка последовательностей, а не официальный экзаменационный допуск. Для №1 необходим полный календарный паспорт; для №9 — дополнительная сверка объединённых ячеек преподавательской таблицы.</p>
+<p id="sequenceError" role="alert" hidden></p>
+</main>
+{% include global-navigation.html %}
+<script id="liturgicsSequenceManifest" type="application/json">{{ site.data.liturgics_trainers_2027 | jsonify }}</script>
+<script src="../../../../assets/js/liturgics-sequence.js" defer></script>
+</body>
+</html>
