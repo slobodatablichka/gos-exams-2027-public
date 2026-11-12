@@ -1,0 +1,22 @@
+name: Liturgics exam browser acceptance
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tests/test-liturgics-browser.py'
+      - '.github/workflows/liturgics-exam-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-chrome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser controller (use preinstalled Chrome)
+        run: python -m pip install --quiet 'playwright>=1.55,<2'
+      - name: Exercise the deployed UI with mobile emulation
+        run: python tests/test-liturgics-browser.py
