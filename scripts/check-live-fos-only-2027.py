@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check live GitHub Pages: only official FOS 2027 is published."""
 import argparse
+import json
 import re
 import time
 from urllib.error import HTTPError, URLError
@@ -121,25 +122,52 @@ def main():
         path = f"subjects/{slug}/2027/{route}"
         check_navigation(request(path).decode("utf-8", errors="replace"), path, slug)
 
-    # Interactive Liturgics games have stable deep links and separate inline scripts.
-    # Test them explicitly; checking 450 answer pages does not cover these routes.
+    # These four games now use one browser engine and separate JSON case passports.
+    shared_js = request("assets/js/liturgics-pyramid.js").decode("utf-8")
+    shared_css = request("assets/css/liturgics-pyramid.css").decode("utf-8")
+    if "function applyLayout()" not in shared_js or "function showSuccessL3Link()" not in shared_js:
+        raise ValueError("Shared Liturgics engine or its L3 link is missing")
+    if ".swap-columns" not in shared_css or ".column.pyramid" not in shared_css:
+        raise ValueError("Shared Liturgics styles are incomplete")
     games = (
-        ("sandbox-pyramid/index.html", "Проскомидия"),
-        ("sandbox-pyramid/vozdvizhenie.html", "Воздвижение"),
-        ("sandbox-pyramid/velikiy-post.html", "Великий пост"),
-        ("sandbox-pyramid/q12-errors.html", "Найди и исправь ошибки"),
+        ("index.html", "lit11-proskomedia.json", "assembly", "Проскомидия", 11),
+        ("vozdvizhenie.html", "lit03-vozdvizhenie.json", "assembly", "Воздвижение", 18),
+        ("velikiy-post.html", "lit05-velikiy-post.json", "assembly", "Великий пост", 36),
+        ("q12-errors.html", "lit12-diagnostic.json", "diagnostic", "Найди и исправь ошибки", 19),
     )
-    for route, heading in games:
-        path = "subjects/liturgics/2027/" + route
+    base_game = "subjects/liturgics/2027/sandbox-pyramid/"
+    for file_name, case_file, mode, heading, total_items in games:
+        path = base_game + file_name
         body = request(path).decode("utf-8", errors="replace")
         check_navigation(body, path, "liturgics")
         if heading not in body or 'id="sand"' not in body or 'id="pyramid"' not in body:
-            raise ValueError("Incorrect Liturgics game or missing columns: " + path)
+            raise ValueError("Incorrect Liturgics game: " + path)
         if 'id="swapBtn"' not in body or 'class="column pyramid"' not in body:
-            raise ValueError("Swappable two-column interface missing: " + path)
-        if "function applyLayout()" not in body:
-            raise ValueError("Layout toggle code missing: " + path)
+            raise ValueError("Swappable columns missing: " + path)
+        if 'data-case="data/' + case_file + '"' not in body:
+            raise ValueError("Incorrect case reference: " + path)
+        if "assets/js/liturgics-pyramid.js" not in body or "assets/css/liturgics-pyramid.css" not in body:
+            raise ValueError("Common engine not loaded from page: " + path)
+        case = json.loads(request(base_game + "data/" + case_file).decode("utf-8"))
+        if case.get("mode") != mode or len(case.get("items", [])) != total_items:
+            raise ValueError("Incorrect case data: " + case_file)
+        if case.get("assessment") != "training_check" or not case.get("l3", "").endswith("-l3.html"):
+            raise ValueError("Incorrect case assessment / L3: " + case_file)
+        if len({item["id"] for item in case["items"]}) != total_items:
+            raise ValueError("Duplicate brick IDs: " + case_file)
         print("LIVE GAME PASS", path, flush=True)
+
+    practice_catalog = "subjects/liturgics/2027/trainers/index.html"
+    practice_html = request(practice_catalog).decode("utf-8", errors="replace")
+    check_navigation(practice_html, practice_catalog, "liturgics")
+    if practice_html.count('data-question="') != 15:
+        raise ValueError("Practice exam catalog has not exactly 15 questions")
+    for name, _, _, _, _ in games:
+        if "sandbox-pyramid/" + name not in practice_html:
+            raise ValueError("Practice catalog missing published game: " + name)
+    practice_root = "practice/index.html"
+    check_navigation(request(practice_root).decode("utf-8"), practice_root)
+    print("LIVE TRAINERS PASS: 15 exam slots, four real games, shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",
