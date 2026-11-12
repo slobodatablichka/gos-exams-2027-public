@@ -1,0 +1,10 @@
+{% assign trainer_question = site.data.liturgics_trainers_2027.questions | where: "id", include.id | first %}
+{% if trainer_question and trainer_question.cases.size > 0 %}
+<p><strong>Интерактивная практика:</strong>
+{% assign trainer_prefix = '/subjects/liturgics/2027/' %}
+{% for game in trainer_question.cases %}
+{% assign trainer_link = trainer_prefix | append: game.path %}
+<a href="{{ trainer_link | relative_url }}">{{ game.label }}</a>{% unless forloop.last %} · {% endunless %}
+{% endfor %}
+</p>
+{% endif %}

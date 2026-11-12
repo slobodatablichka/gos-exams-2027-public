@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "year": 2027,
+  "subject": "liturgics",
+  "questions": [
+    {
+      "id": "01",
+      "number": 1,
+      "title": "Седмичные и субботние службы Октоиха",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "02",
+      "number": 2,
+      "title": "Воскресное всенощное бдение",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "03",
+      "number": 3,
+      "title": "Двунадесятые и великие праздники",
+      "status": "main_ready",
+      "cases": [
+        {
+          "case_id": "lit03-vozdvizhenie",
+          "mode": "assembly",
+          "label": "Собери: Воздвижение",
+          "path": "sandbox-pyramid/vozdvizhenie.html"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "number": 4,
+      "title": "Предпразднства и попразднства",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "05",
+      "number": 5,
+      "title": "Седмичные и субботние дни Великого поста",
+      "status": "main_ready",
+      "cases": [
+        {
+          "case_id": "lit05-velikiy-post",
+          "mode": "assembly",
+          "label": "Собери: понедельник Великого поста",
+          "path": "sandbox-pyramid/velikiy-post.html"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "number": 6,
+      "title": "Страстная и Светлая седмицы",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "07",
+      "number": 7,
+      "title": "Храмовый праздник",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "08",
+      "number": 8,
+      "title": "Рождество, Богоявление, Благовещение",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "09",
+      "number": 9,
+      "title": "Седмичные и субботние дни Цветной Триоди",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "10",
+      "number": 10,
+      "title": "Заупокойные субботы",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "11",
+      "number": 11,
+      "title": "Проскомидия",
+      "status": "main_ready",
+      "cases": [
+        {
+          "case_id": "lit11-proskomedia",
+          "mode": "assembly",
+          "label": "Собери: Проскомидия",
+          "path": "sandbox-pyramid/index.html"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "number": 12,
+      "title": "Литургия оглашенных",
+      "status": "diagnostic_only",
+      "cases": [
+        {
+          "case_id": "lit12-diagnostic",
+          "mode": "diagnostic",
+          "label": "Найди и исправь ошибки",
+          "path": "sandbox-pyramid/q12-errors.html"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "number": 13,
+      "title": "Анафора",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "14",
+      "number": 14,
+      "title": "Литургия верных",
+      "status": "planned",
+      "cases": []
+    },
+    {
+      "id": "15",
+      "number": 15,
+      "title": "Литургия Преждеосвященных Даров",
+      "status": "planned",
+      "cases": []
+    }
+  ]
+}

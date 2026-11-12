@@ -9,7 +9,7 @@ title: "Литургика — новый экзамен 2027"
 
 [Методика составления служб](practice/methodology-a.html) · [Методика литургических чинов](practice/methodology-b.html)
 
-**Песочница — Пирамида (учебные задания):** [№11 · Проскомидия](sandbox-pyramid/index.html) · [№3 · Воздвижение Креста](sandbox-pyramid/vozdvizhenie.html) · [№5 · Понедельник Великого поста](sandbox-pyramid/velikiy-post.html) · [№12 · Найди и исправь ошибки](sandbox-pyramid/q12-errors.html)
+**[Экзаменационные тренажёры №1–15](trainers/index.html)** — готовые игры, преподавательские задания и практикумы.
 
 **PDF-сборники:** [L3](pdf/l3.pdf) · [L2](pdf/l2.pdf) · [L1](pdf/l1.pdf)
 
@@ -33,7 +33,9 @@ title: "Литургика — новый экзамен 2027"
 
 **[№3. Богослужение двунадесятых / великих праздников: всенощное бдение и особенности Литургии (один из праздников кроме Рождества Христова, Богоявления и Благовещения, условия совершения богослужения на выбор комиссии: день недели, глас).](q03-l3.html)**
 
-[L3](q03-l3.html) · [PDF](pdf/q03-l3.pdf) · [L2](q03-l2.html) · [PDF](pdf/q03-l2.pdf) · [L1](q03-l1.html) · [PDF](pdf/q03-l1.pdf) · [Практика](practice/q03.html) · [Упражнения](examples/q03.html) · **[Песочница — Пирамида](sandbox-pyramid/vozdvizhenie.html)**
+[L3](q03-l3.html) · [PDF](pdf/q03-l3.pdf) · [L2](q03-l2.html) · [PDF](pdf/q03-l2.pdf) · [L1](q03-l1.html) · [PDF](pdf/q03-l1.pdf) · [Практика](practice/q03.html) · [Упражнения](examples/q03.html)
+
+{% include liturgics-game-links.html id="03" %}
 
 <div id="q04"></div>
 
@@ -45,7 +47,9 @@ title: "Литургика — новый экзамен 2027"
 
 **[№5. Богослужение седмичных и субботних дней Великого поста (вседневное, «с полиелеем») (один из дней на выбор комиссии).](q05-l3.html)**
 
-[L3](q05-l3.html) · [PDF](pdf/q05-l3.pdf) · [L2](q05-l2.html) · [PDF](pdf/q05-l2.pdf) · [L1](q05-l1.html) · [PDF](pdf/q05-l1.pdf) · [Практика](practice/q05.html) · [Упражнения](examples/q05.html) · **[Песочница — Пирамида](sandbox-pyramid/velikiy-post.html)**
+[L3](q05-l3.html) · [PDF](pdf/q05-l3.pdf) · [L2](q05-l2.html) · [PDF](pdf/q05-l2.pdf) · [L1](q05-l1.html) · [PDF](pdf/q05-l1.pdf) · [Практика](practice/q05.html) · [Упражнения](examples/q05.html)
+
+{% include liturgics-game-links.html id="05" %}
 
 <div id="q06"></div>
 
@@ -81,13 +85,17 @@ title: "Литургика — новый экзамен 2027"
 
 **[№11. Проскомидия: последование, содержание молитв, толкование чина. Условия для совершения Литургии (время, место и вещества). Расскажите порядок совершения и поясните смысл, в святоотеческом толковании и историческом контексте.](q11-l3.html)**
 
-[L3](q11-l3.html) · [PDF](pdf/q11-l3.pdf) · [L2](q11-l2.html) · [PDF](pdf/q11-l2.pdf) · [L1](q11-l1.html) · [PDF](pdf/q11-l1.pdf) · [Практика](practice/q11.html) · [Упражнения](examples/q11.html) · **[Песочница — Пирамида](sandbox-pyramid/index.html)**
+[L3](q11-l3.html) · [PDF](pdf/q11-l3.pdf) · [L2](q11-l2.html) · [PDF](pdf/q11-l2.pdf) · [L1](q11-l1.html) · [PDF](pdf/q11-l1.pdf) · [Практика](practice/q11.html) · [Упражнения](examples/q11.html)
+
+{% include liturgics-game-links.html id="11" %}
 
 <div id="q12"></div>
 
 **[№12. Литургии оглашенных: последование, содержание молитв, толкование чина. Расскажите порядок совершения и поясните смысл, в святоотеческом толковании и историческом контексте.](q12-l3.html)**
 
-[L3](q12-l3.html) · [PDF](pdf/q12-l3.pdf) · [L2](q12-l2.html) · [PDF](pdf/q12-l2.pdf) · [L1](q12-l1.html) · [PDF](pdf/q12-l1.pdf) · [Практика](practice/q12.html) · [Упражнения](examples/q12.html) · **[Найди и исправь ошибки](sandbox-pyramid/q12-errors.html)**
+[L3](q12-l3.html) · [PDF](pdf/q12-l3.pdf) · [L2](q12-l2.html) · [PDF](pdf/q12-l2.pdf) · [L1](q12-l1.html) · [PDF](pdf/q12-l1.pdf) · [Практика](practice/q12.html) · [Упражнения](examples/q12.html)
+
+{% include liturgics-game-links.html id="12" %}
 
 <div id="q13"></div>
 

@@ -23,6 +23,7 @@
 <nav class="exam-global-nav" aria-label="Переходы по учебному сайту">
   <a class="exam-global-nav__link" href="{{ '/index.html' | relative_url }}">⌂ Главная</a>
   <a class="exam-global-nav__link" href="{{ '/subjects/index.html' | relative_url }}">Все предметы</a>
+  <a class="exam-global-nav__link" href="{{ '/practice/index.html' | relative_url }}">Практика</a>
   {%- if exam_subject != '' %}
     {%- capture exam_subject_route -%}/subjects/{{ exam_subject }}/2027/index.html{%- endcapture %}
     <a class="exam-global-nav__link exam-global-nav__subject" href="{{ exam_subject_route | relative_url }}">← {{ exam_name }} · вопросы №1–25</a>
