@@ -103,17 +103,23 @@ title: "Литургика — новый экзамен 2027"
 
 [L3](q13-l3.html) · [PDF](pdf/q13-l3.pdf) · [L2](q13-l2.html) · [PDF](pdf/q13-l2.pdf) · [L1](q13-l1.html) · [PDF](pdf/q13-l1.pdf) · [Практика](practice/q13.html) · [Упражнения](examples/q13.html)
 
+{% include liturgics-game-links.html id="13" %}
+
 <div id="q14"></div>
 
 **[№14. Литургия верных: последование, содержание молитв, толкование чина. Расскажите порядок совершения и поясните смысл, в святоотеческом толковании и историческом контексте.](q14-l3.html)**
 
 [L3](q14-l3.html) · [PDF](pdf/q14-l3.pdf) · [L2](q14-l2.html) · [PDF](pdf/q14-l2.pdf) · [L1](q14-l1.html) · [PDF](pdf/q14-l1.pdf) · [Практика](practice/q14.html) · [Упражнения](examples/q14.html)
 
+{% include liturgics-game-links.html id="14" %}
+
 <div id="q15"></div>
 
 **[№15. Литургия Преждеосвященных Даров: последование, содержание молитв, толкование чина. Расскажите порядок совершения и поясните смысл, в святоотеческом толковании и историческом контексте.](q15-l3.html)**
 
 [L3](q15-l3.html) · [PDF](pdf/q15-l3.pdf) · [L2](q15-l2.html) · [PDF](pdf/q15-l2.pdf) · [L1](q15-l1.html) · [PDF](pdf/q15-l1.pdf) · [Практика](practice/q15.html) · [Упражнения](examples/q15.html)
+
+{% include liturgics-game-links.html id="15" %}
 
 <div id="q16"></div>
 
