@@ -118,7 +118,7 @@ def test_mobile(context):
     page.locator("#startOne").click()
     page.wait_for_url("**/sandbox-pyramid/q15-errors-c.html?sequence=1")
     assert page.locator('#pyramid .brick[data-id="enlightened"]').count() == 0
-    assert page.locator('#sand .brick[data-id="enlightened"]').count() == 1
+    expect(page.locator('#sand .brick[data-id="enlightened"]')).to_have_count(1)
     page.locator("#hintBtn").click()
     assert "Уровень 1 из 3" in page.locator("#hintFeedback").inner_text()
     page.close()
