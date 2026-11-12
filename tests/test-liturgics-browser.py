@@ -14,7 +14,7 @@ def ensure_deployed():
             req = Request(SEQ, headers={"User-Agent": "FOS2027-Exam-Browser-Test", "Cache-Control": "no-cache"})
             with urlopen(req, timeout=20) as res:
                 content = res.read().decode("utf-8")
-            if 'id="liturgicsSequenceManifest"' in content and "lit12-diagnostic" in content:
+            if 'id="liturgicsSequenceManifest"' in content and "lit15-diagnostic-b" in content:
                 return
         except Exception:
             pass
@@ -96,6 +96,20 @@ def test_mobile(context):
     program=page.evaluate("JSON.parse(localStorage.getItem('bpds-liturgics-sequence-v1'))")
     assert len(program["entries"])==15
     assert next(e for e in program["entries"] if e["number"]==12)["mode"]=="diagnostic"
+    # Newly published diagnostic A/B/C variants use the same physical game UI.
+    page.goto(SEQ,wait_until="domcontentloaded")
+    page.locator("#oneCase option").first.wait_for(state="attached")
+    page.select_option("#oneCase","lit11-diagnostic-a")
+    page.locator("#startOne").click()
+    page.wait_for_url("**/sandbox-pyramid/q11-errors-a.html?sequence=1")
+    expect(page.locator('#pyramid .brick[data-id="fault_lamb"]')).to_have_count(1)
+    page.goto(SEQ,wait_until="domcontentloaded")
+    page.locator("#questionChoices summary").click()
+    page.locator('#questionList input[value="11"]').check()
+    page.locator('[aria-label="Режим и вариант вопроса №11"]').select_option("lit11-diagnostic-b")
+    page.locator("#startSelected").click()
+    page.wait_for_url("**/sandbox-pyramid/q11-errors-b.html?sequence=1")
+    expect(page.locator("#pyramid .brick")).to_have_count(9)
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")
 
