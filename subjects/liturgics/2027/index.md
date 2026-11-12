@@ -23,11 +23,15 @@ title: "Литургика — новый экзамен 2027"
 
 [L3](q01-l3.html) · [PDF](pdf/q01-l3.pdf) · [L2](q01-l2.html) · [PDF](pdf/q01-l2.pdf) · [L1](q01-l1.html) · [PDF](pdf/q01-l1.pdf) · [Практика](practice/q01.html) · [Упражнения](examples/q01.html)
 
+{% include liturgics-game-links.html id="01" %}
+
 <div id="q02"></div>
 
 **[№2. Воскресное богослужение: порядок всенощного бдения (условия совершения богослужения на выбор комиссии: период (Октоих/Постная Триодь/Цветная Триодь), глас, празднуемый святой, святой храма).](q02-l3.html)**
 
 [L3](q02-l3.html) · [PDF](pdf/q02-l3.pdf) · [L2](q02-l2.html) · [PDF](pdf/q02-l2.pdf) · [L1](q02-l1.html) · [PDF](pdf/q02-l1.pdf) · [Практика](practice/q02.html) · [Упражнения](examples/q02.html)
+
+{% include liturgics-game-links.html id="02" %}
 
 <div id="q03"></div>
 
@@ -42,6 +46,8 @@ title: "Литургика — новый экзамен 2027"
 **[№4. Богослужение дней предпразднств и попразднств великих двунадесятых праздников («на 6», «с великим славословием», «с полиелеем») (один из дней на выбор комиссии).](q04-l3.html)**
 
 [L3](q04-l3.html) · [PDF](pdf/q04-l3.pdf) · [L2](q04-l2.html) · [PDF](pdf/q04-l2.pdf) · [L1](q04-l1.html) · [PDF](pdf/q04-l1.pdf) · [Практика](practice/q04.html) · [Упражнения](examples/q04.html)
+
+{% include liturgics-game-links.html id="04" %}
 
 <div id="q05"></div>
 
@@ -62,6 +68,8 @@ title: "Литургика — новый экзамен 2027"
 **[№7. Богослужение храмового праздника (святой и день недели на выбор комиссии).](q07-l3.html)**
 
 [L3](q07-l3.html) · [PDF](pdf/q07-l3.pdf) · [L2](q07-l2.html) · [PDF](pdf/q07-l2.pdf) · [L1](q07-l1.html) · [PDF](pdf/q07-l1.pdf) · [Практика](practice/q07.html) · [Упражнения](examples/q07.html)
+
+{% include liturgics-game-links.html id="07" %}
 
 <div id="q08"></div>
 
