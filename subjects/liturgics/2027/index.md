@@ -63,6 +63,8 @@ title: "Литургика — новый экзамен 2027"
 
 [L3](q06-l3.html) · [PDF](pdf/q06-l3.pdf) · [L2](q06-l2.html) · [PDF](pdf/q06-l2.pdf) · [L1](q06-l1.html) · [PDF](pdf/q06-l1.pdf) · [Практика](practice/q06.html) · [Упражнения](examples/q06.html)
 
+{% include liturgics-game-links.html id="06" %}
+
 <div id="q07"></div>
 
 **[№7. Богослужение храмового праздника (святой и день недели на выбор комиссии).](q07-l3.html)**
@@ -77,17 +79,23 @@ title: "Литургика — новый экзамен 2027"
 
 [L3](q08-l3.html) · [PDF](pdf/q08-l3.pdf) · [L2](q08-l2.html) · [PDF](pdf/q08-l2.pdf) · [L1](q08-l1.html) · [PDF](pdf/q08-l1.pdf) · [Практика](practice/q08.html) · [Упражнения](examples/q08.html)
 
+{% include liturgics-game-links.html id="08" %}
+
 <div id="q09"></div>
 
 **[№9. Богослужение седмичных и субботних дней в период пения Триоди цветной (один из дней периода и память святого на выбор комиссии).](q09-l3.html)**
 
 [L3](q09-l3.html) · [PDF](pdf/q09-l3.pdf) · [L2](q09-l2.html) · [PDF](pdf/q09-l2.pdf) · [L1](q09-l1.html) · [PDF](pdf/q09-l1.pdf) · [Практика](practice/q09.html) · [Упражнения](examples/q09.html)
 
+{% include liturgics-game-links.html id="09" %}
+
 <div id="q10"></div>
 
 **[№10. Субботнее заупокойное богослужение литургического года (один из дней на выбор комиссии).](q10-l3.html)**
 
 [L3](q10-l3.html) · [PDF](pdf/q10-l3.pdf) · [L2](q10-l2.html) · [PDF](pdf/q10-l2.pdf) · [L1](q10-l1.html) · [PDF](pdf/q10-l1.pdf) · [Практика](practice/q10.html) · [Упражнения](examples/q10.html)
+
+{% include liturgics-game-links.html id="10" %}
 
 <div id="q11"></div>
 
