@@ -166,6 +166,8 @@ def main():
         ("q15-errors-a.html", "lit15-diagnostic-a.json", 27),
         ("q15-errors-b.html", "lit15-diagnostic-b.json", 26),
         ("q15-errors-c.html", "lit15-diagnostic-c.json", 7),
+    )
+    assembly_variants = (
         ("q01-assembly-a.html", "lit01-assembly-a.json", 11),
         ("q01-assembly-b.html", "lit01-assembly-b.json", 13),
         ("q01-assembly-c.html", "lit01-assembly-c.json", 12),
@@ -173,8 +175,11 @@ def main():
         ("q04-assembly-b.html", "lit04-assembly-b.json", 12),
         ("q04-assembly-c.html", "lit04-assembly-c.json", 9),
     )
-    games = games + tuple((name, case, "diagnostic", "Найди и исправь ошибки", count)
-                          for name, case, count in variant_games)
+    games = (games
+             + tuple((name, case, "diagnostic", "Найди и исправь ошибки", count)
+                     for name, case, count in variant_games)
+             + tuple((name, case, "assembly", "Составь богослужение", count)
+                     for name, case, count in assembly_variants))
     base_game = "subjects/liturgics/2027/sandbox-pyramid/"
     for file_name, case_file, mode, heading, total_items in games:
         path = base_game + file_name
