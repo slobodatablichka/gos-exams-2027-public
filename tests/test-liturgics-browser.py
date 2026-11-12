@@ -45,7 +45,7 @@ def touch_drag(page):
 def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
-    page.locator("#oneCase option").first.wait_for()
+    page.locator("#oneCase option").first.wait_for(state="attached")
     assert page.locator("#oneCase option").count() == 16
     assert page.locator("#mode12 option").count() == 2
     page.select_option("#oneCase", "lit12-diagnostic")
@@ -75,7 +75,7 @@ def test_mobile(context):
     page.locator("#resetBtn").click()
     assert page.locator("#pyramid .brick").count()>0, "Reset diagnostic case should restore initial erroneous Pyramid"
     page.goto(SEQ,wait_until="domcontentloaded")
-    page.locator("#oneCase option").first.wait_for()
+    page.locator("#oneCase option").first.wait_for(state="attached")
     page.locator('#questionList input[value="1"]').check()
     page.locator('#questionList input[value="12"]').check()
     page.select_option("#mode12","lit12-diagnostic")
