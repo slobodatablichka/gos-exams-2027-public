@@ -17,7 +17,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 .column.sandbox{background:#edf2f5}.heading{text-align:center;font-weight:750;padding:9px 4px 3px;font-size:15px}
 .count{text-align:center;color:#59707c;font-size:11px;padding-bottom:7px}
 .scroll{height:min(65dvh,640px);min-height:300px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:5px 13px 15px 5px}
-.brick{height:30px;border:1px solid #ccd8e0;border-radius:5px;background:#fff;margin:3px 0;display:flex;align-items:center;padding:0 8px;font-size:12px;line-height:1;white-space:nowrap;min-width:0;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transition:background .16s,border-color .16s;outline-offset:1px}
+.brick{height:30px;border:1px solid #ccd8e0;border-radius:5px;background:#fff;margin:3px 0;display:flex;align-items:center;padding:0 8px;font-size:12px;line-height:1;white-space:nowrap;min-width:0;cursor:grab;touch-action:pan-y;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;transition:background .16s,border-color .16s;outline-offset:1px}
 .brick span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .brick:focus-visible{outline:2px solid #226789}.brick:hover{border-color:#4180a0}
 .brick.drag-source{opacity:.32}.brick.selected{border-color:#236c8c;background:#e5f3fa}.brick.intruder{background:#fff}
@@ -78,7 +78,7 @@ const required=DATA.filter(x=>!x.extra).map(x=>x.id);
 const storageKey="bpds-sandbox-pyramid-"+CASE_VERSION;
 const sandNode=document.getElementById("sand"), pyramidNode=document.getElementById("pyramid");
 const report=document.getElementById("report"), modalHost=document.getElementById("modalHost");
-let sand=[],pyramid=[],modalOpen=false,dragging=false,hintState={signature:"",level:0},keyboardPick=null,animationInProgress=false;
+let sand=[],pyramid=[],modalOpen=false,dragging=false,hintState={signature:"",level:0},keyboardPick=null,animationInProgress=false,activeTouch=false;
 function shuffled(values){let a=[...values];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function validSaved(s){return !!s&&Array.isArray(s.sand)&&Array.isArray(s.pyramid)&&[...s.sand,...s.pyramid].length===DATA.length&&new Set([...s.sand,...s.pyramid]).size===DATA.length&&[...s.sand,...s.pyramid].every(x=>dataById.has(x))}
 function persist(){try{localStorage.setItem(storageKey,JSON.stringify({sand,pyramid}));document.getElementById("saveStatus").textContent="Сохранено на этом устройстве"}catch(e){document.getElementById("saveStatus").textContent="Сохранение недоступно"}}
@@ -88,7 +88,7 @@ function render(keepScroll=true){const leftScroll=sandNode.scrollTop,rightScroll
   if(!arr.length){let e=document.createElement("div");e.className="placeholder";e.textContent=zone==="sand"?"Все кирпичики перенесены":"Перенесите кирпичик сюда";node.append(e)}
   arr.forEach(id=>{const item=dataById.get(id),brick=document.createElement("div");brick.className="brick";brick.dataset.id=id;brick.dataset.zone=zone;brick.tabIndex=0;brick.setAttribute("role","button");brick.setAttribute("aria-label",item.name+", открыть или удержать для переноса");brick.title=item.name;
    const label=document.createElement("span");label.textContent=item.name;brick.append(label);
-   brick.addEventListener("pointerdown",pointerStart);brick.addEventListener("keydown",keyboardStart);
+   brick.addEventListener("pointerdown",pointerStart);brick.addEventListener("touchstart",touchStart,{passive:true});brick.addEventListener("keydown",keyboardStart);
    node.append(brick)
   })
  }
@@ -124,7 +124,24 @@ function modalFor(id){const item=dataById.get(id);if(!item)return;modalOpen=true
 }
 function moveItem(id,targetZone,index){clearButtonFeedback();const from=sand.includes(id)?sand:pyramid;const to=targetZone==="sand"?sand:pyramid;let at=from.indexOf(id);if(at<0)return;from.splice(at,1);if(to===from&&index>at)index--;index=Math.max(0,Math.min(index,to.length));to.splice(index,0,id);hintState={signature:"",level:0};persist();render();document.getElementById("saveStatus").textContent="Сборка сохранена"}
 function closestInsertion(node,y,ignoreId){const bricks=[...node.querySelectorAll(".brick")].filter(n=>n.dataset.id!==ignoreId);for(let i=0;i<bricks.length;i++){const r=bricks[i].getBoundingClientRect();if(y<r.top+r.height/2)return i}return bricks.length}
-function pointerStart(e){if(modalOpen||dragging||e.button!==0)return;const brick=e.currentTarget;const id=brick.dataset.id;const downX=e.clientX,downY=e.clientY;let held=false,aborted=false,ghost=null,lastX=downX,lastY=downY;let timer=window.setTimeout(()=>{if(aborted)return;held=true;dragging=true;brick.classList.add("drag-source");ghost=document.createElement("div");ghost.className="ghost";ghost.textContent=dataById.get(id).name;ghost.style.width=brick.getBoundingClientRect().width+"px";document.body.append(ghost);position(lastX,lastY);},245);
+function touchStart(e){
+ if(modalOpen||dragging||activeTouch||e.touches.length!==1)return;
+ activeTouch=true;
+ const brick=e.currentTarget,id=brick.dataset.id,first=e.touches[0],finger=first.identifier;
+ const downX=first.clientX,downY=first.clientY;
+ let held=false,aborted=false,ghost=null,lastX=downX,lastY=downY,scrollFrame=0;
+ let timer=window.setTimeout(()=>{if(aborted||!brick.isConnected)return;held=true;dragging=true;brick.classList.add("drag-source");ghost=document.createElement("div");ghost.className="ghost";ghost.textContent=dataById.get(id).name;ghost.style.width=brick.getBoundingClientRect().width+"px";document.body.append(ghost);position(lastX,lastY);scrollFrame=requestAnimationFrame(scrollNearEdge)},245);
+ function position(x,y){if(!ghost)return;ghost.style.left=(x-ghost.offsetWidth/2)+"px";ghost.style.top=(y-15)+"px"}
+ function fingerIn(list){for(let i=0;i<list.length;i++)if(list[i].identifier===finger)return list[i];return null}
+ function targetAt(x){const l=sandNode.getBoundingClientRect(),r=pyramidNode.getBoundingClientRect();if(x>=l.left&&x<=l.right)return sandNode;if(x>=r.left&&x<=r.right)return pyramidNode;return null}
+ function scrollNearEdge(){scrollFrame=0;if(!held)return;const node=targetAt(lastX);if(node){const r=node.getBoundingClientRect();if(lastY<r.top+40&&lastY>=r.top-20)node.scrollTop-=9;else if(lastY>r.bottom-40&&lastY<=r.bottom+20)node.scrollTop+=9}scrollFrame=requestAnimationFrame(scrollNearEdge)}
+ function cleanup(){window.clearTimeout(timer);if(scrollFrame)cancelAnimationFrame(scrollFrame);document.removeEventListener("touchmove",move);document.removeEventListener("touchend",end);document.removeEventListener("touchcancel",cancel);if(ghost)ghost.remove();brick.classList.remove("drag-source");dragging=false;activeTouch=false}
+ function move(ev){if(ev.touches.length!==1){cleanup();return}const t=fingerIn(ev.touches);if(!t)return;lastX=t.clientX;lastY=t.clientY;if(!held){if(Math.hypot(lastX-downX,lastY-downY)>9){aborted=true;window.clearTimeout(timer)}return}if(ev.cancelable)ev.preventDefault();position(lastX,lastY)}
+ function end(ev){const t=fingerIn(ev.changedTouches);if(!t)return;const active=held,x=t.clientX,y=t.clientY;cleanup();if(!active){if(!aborted){if(ev.cancelable)ev.preventDefault();modalFor(id)}return}if(ev.cancelable)ev.preventDefault();const node=targetAt(x);if(!node)return;moveItem(id,node===sandNode?"sand":"pyramid",closestInsertion(node,y,id))}
+ function cancel(ev){if(fingerIn(ev.changedTouches))cleanup()}
+ document.addEventListener("touchmove",move,{passive:false});document.addEventListener("touchend",end,{passive:false});document.addEventListener("touchcancel",cancel,{passive:true});
+}
+function pointerStart(e){if(e.pointerType==="touch"&&"ontouchstart" in window)return;if(modalOpen||dragging||e.button!==0)return;const brick=e.currentTarget;const id=brick.dataset.id;const downX=e.clientX,downY=e.clientY;let held=false,aborted=false,ghost=null,lastX=downX,lastY=downY;let timer=window.setTimeout(()=>{if(aborted)return;held=true;dragging=true;brick.classList.add("drag-source");ghost=document.createElement("div");ghost.className="ghost";ghost.textContent=dataById.get(id).name;ghost.style.width=brick.getBoundingClientRect().width+"px";document.body.append(ghost);position(lastX,lastY);},245);
  function position(x,y){if(!ghost)return;ghost.style.left=(x-ghost.offsetWidth/2)+"px";ghost.style.top=(y-15)+"px"}
  function cleanup(){window.clearTimeout(timer);document.removeEventListener("pointermove",move);document.removeEventListener("pointerup",end);document.removeEventListener("pointercancel",cancel);if(ghost)ghost.remove();brick.classList.remove("drag-source");dragging=false}
  function move(ev){lastX=ev.clientX;lastY=ev.clientY;if(!held&&Math.hypot(lastX-downX,lastY-downY)>9){aborted=true;clearTimeout(timer);return}if(!held)return;ev.preventDefault();position(lastX,lastY);const target=lastX>pyramidNode.getBoundingClientRect().left?"pyramid":"sand";const node=target==="sand"?sandNode:pyramidNode;if(ev.clientY<node.getBoundingClientRect().top+35)node.scrollTop-=10;if(ev.clientY>node.getBoundingClientRect().bottom-35)node.scrollTop+=10}
