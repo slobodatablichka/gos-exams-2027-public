@@ -122,7 +122,7 @@ def main():
         path = f"subjects/{slug}/2027/{route}"
         check_navigation(request(path).decode("utf-8", errors="replace"), path, slug)
 
-    # These four games now use one browser engine and separate JSON case passports.
+    # All published Liturgics games use one browser engine and separate JSON case passports.
     shared_js = request("assets/js/liturgics-pyramid.js").decode("utf-8")
     shared_css = request("assets/css/liturgics-pyramid.css").decode("utf-8")
     if "function applyLayout()" not in shared_js or "function showSuccessL3Link()" not in shared_js:
@@ -134,6 +134,10 @@ def main():
         ("vozdvizhenie.html", "lit03-vozdvizhenie.json", "assembly", "Воздвижение", 18),
         ("velikiy-post.html", "lit05-velikiy-post.json", "assembly", "Великий пост", 36),
         ("q12-errors.html", "lit12-diagnostic.json", "diagnostic", "Найди и исправь ошибки", 19),
+        ("q12-assembly.html", "lit12-assembly.json", "assembly", "Литургия оглашенных", 19),
+        ("q13-assembly.html", "lit13-anaphora.json", "assembly", "Анафора", 16),
+        ("q14-assembly.html", "lit14-faithful.json", "assembly", "Литургия верных", 25),
+        ("q15-assembly.html", "lit15-presanctified.json", "assembly", "Литургия Преждеосвященных Даров", 28),
     )
     base_game = "subjects/liturgics/2027/sandbox-pyramid/"
     for file_name, case_file, mode, heading, total_items in games:
@@ -165,9 +169,17 @@ def main():
     for name, _, _, _, _ in games:
         if "sandbox-pyramid/" + name not in practice_html:
             raise ValueError("Practice catalog missing published game: " + name)
+    for n in (12, 13, 14, 15):
+        for route in ("practice", "examples"):
+            page = f"subjects/liturgics/2027/{route}/q{n:02d}.html"
+            content = request(page).decode("utf-8", errors="replace")
+            check_navigation(content, page, "liturgics")
+            if f"sandbox-pyramid/q{n:02d}-assembly.html" not in content:
+                raise ValueError("Missing main game on teacher page: " + page)
+
     practice_root = "practice/index.html"
     check_navigation(request(practice_root).decode("utf-8"), practice_root)
-    print("LIVE TRAINERS PASS: 15 exam slots, four real games, shared JS/CSS/JSON", flush=True)
+    print("LIVE TRAINERS PASS: 15 exam slots, eight real games (7 main + 1 diagnostic), shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",
