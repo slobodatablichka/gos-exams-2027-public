@@ -9,7 +9,7 @@ title: "Литургика — новый экзамен 2027"
 
 [Методика составления служб](practice/methodology-a.html) · [Методика литургических чинов](practice/methodology-b.html)
 
-**Песочница — Пирамида (учебные задания):** [№11 · Проскомидия](sandbox-pyramid/index.html) · [№3 · Воздвижение Креста](sandbox-pyramid/vozdvizhenie.html) · [№5 · Понедельник Великого поста](sandbox-pyramid/velikiy-post.html)
+**Песочница — Пирамида (учебные задания):** [№11 · Проскомидия](sandbox-pyramid/index.html) · [№3 · Воздвижение Креста](sandbox-pyramid/vozdvizhenie.html) · [№5 · Понедельник Великого поста](sandbox-pyramid/velikiy-post.html) · [№12 · Найди и исправь ошибки](sandbox-pyramid/q12-errors.html)
 
 **PDF-сборники:** [L3](pdf/l3.pdf) · [L2](pdf/l2.pdf) · [L1](pdf/l1.pdf)
 
@@ -87,7 +87,7 @@ title: "Литургика — новый экзамен 2027"
 
 **[№12. Литургии оглашенных: последование, содержание молитв, толкование чина. Расскажите порядок совершения и поясните смысл, в святоотеческом толковании и историческом контексте.](q12-l3.html)**
 
-[L3](q12-l3.html) · [PDF](pdf/q12-l3.pdf) · [L2](q12-l2.html) · [PDF](pdf/q12-l2.pdf) · [L1](q12-l1.html) · [PDF](pdf/q12-l1.pdf) · [Практика](practice/q12.html) · [Упражнения](examples/q12.html)
+[L3](q12-l3.html) · [PDF](pdf/q12-l3.pdf) · [L2](q12-l2.html) · [PDF](pdf/q12-l2.pdf) · [L1](q12-l1.html) · [PDF](pdf/q12-l1.pdf) · [Практика](practice/q12.html) · [Упражнения](examples/q12.html) · **[Найди и исправь ошибки](sandbox-pyramid/q12-errors.html)**
 
 <div id="q13"></div>
 
