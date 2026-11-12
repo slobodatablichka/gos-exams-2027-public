@@ -21,7 +21,7 @@
       "id": "03",
       "number": 3,
       "title": "Двунадесятые и великие праздники",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit03-vozdvizhenie",
@@ -42,7 +42,7 @@
       "id": "05",
       "number": 5,
       "title": "Седмичные и субботние дни Великого поста",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit05-velikiy-post",
@@ -91,7 +91,7 @@
       "id": "11",
       "number": 11,
       "title": "Проскомидия",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit11-proskomedia",
@@ -105,7 +105,7 @@
       "id": "12",
       "number": 12,
       "title": "Литургия оглашенных",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit12-assembly",
@@ -125,7 +125,7 @@
       "id": "13",
       "number": 13,
       "title": "Анафора",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit13-anaphora",
@@ -139,7 +139,7 @@
       "id": "14",
       "number": 14,
       "title": "Литургия верных",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit14-faithful",
@@ -153,7 +153,7 @@
       "id": "15",
       "number": 15,
       "title": "Литургия Преждеосвященных Даров",
-      "status": "main_ready",
+      "status": "available",
       "cases": [
         {
           "case_id": "lit15-presanctified",
