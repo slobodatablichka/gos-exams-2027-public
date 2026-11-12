@@ -135,9 +135,9 @@ def main():
         ("velikiy-post.html", "lit05-velikiy-post.json", "assembly", "Великий пост", 36),
         ("q12-errors.html", "lit12-diagnostic.json", "diagnostic", "Найди и исправь ошибки", 19),
         ("q12-assembly.html", "lit12-assembly.json", "assembly", "Литургия оглашенных", 19),
-        ("q13-assembly.html", "lit13-anaphora.json", "assembly", "Анафора", 16),
-        ("q14-assembly.html", "lit14-faithful.json", "assembly", "Литургия верных", 25),
-        ("q15-assembly.html", "lit15-presanctified.json", "assembly", "Литургия Преждеосвященных Даров", 28),
+        ("q13-assembly.html", "lit13-anaphora.json", "assembly", "Анафора", 14),
+        ("q14-assembly.html", "lit14-faithful.json", "assembly", "Литургия верных", 24),
+        ("q15-assembly.html", "lit15-presanctified.json", "assembly", "Литургия Преждеосвященных Даров", 26),
     )
     base_game = "subjects/liturgics/2027/sandbox-pyramid/"
     for file_name, case_file, mode, heading, total_items in games:
