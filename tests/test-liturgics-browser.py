@@ -103,6 +103,7 @@ def test_mobile(context):
     page.locator("#startOne").click()
     page.wait_for_url("**/sandbox-pyramid/q11-errors-a.html?sequence=1")
     expect(page.locator('#pyramid .brick[data-id="fault_lamb"]')).to_have_count(1)
+    expect(page.locator(".exam-sequence-nav")).to_be_visible()
     page.goto(SEQ,wait_until="domcontentloaded")
     page.locator("#questionChoices summary").click()
     page.locator('#questionList input[value="11"]').check()
@@ -110,6 +111,7 @@ def test_mobile(context):
     page.locator("#startSelected").click()
     page.wait_for_url("**/sandbox-pyramid/q11-errors-b.html?sequence=1")
     expect(page.locator("#pyramid .brick")).to_have_count(9)
+    expect(page.locator(".exam-sequence-nav")).to_be_visible()
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")
 

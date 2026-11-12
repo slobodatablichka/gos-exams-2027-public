@@ -203,7 +203,7 @@ function examSequenceNavigation(){
  if(!session||session.v!==1||!Array.isArray(session.entries)||session.entries.length<1||session.entries.length>15)return;
  const idx=session.entries.findIndex(e=>e.number===game.question&&e.case_id===game.case_id&&e.version===CASE_VERSION);
  if(idx<0)return;
- const safe=e=>e&&typeof e.path==="string"&&/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly|errors))\.html$/.test(e.path);
+ const safe=e=>e&&typeof e.path==="string"&&/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly|errors(?:-[abc])?))\.html$/.test(e.path);
  if(!session.entries.every(safe))return;
  if(session.index!==idx){session.index=idx;try{localStorage.setItem(key,JSON.stringify(session))}catch(e){}}
  const navigation=document.createElement("nav");navigation.className="exam-sequence-nav";navigation.setAttribute("aria-label","Последовательная экзаменационная тренировка");
