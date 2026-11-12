@@ -59,6 +59,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 .swap-columns:hover{color:#245b78;background:#ffffffc9}
 .swap-columns:focus-visible{outline:2px solid #26799c;outline-offset:2px;background:#fff}
 @media(max-width:540px){.swap-columns{width:44px;height:30px;top:1px}.swap-columns svg{width:38px;height:24px}}
+.result-l3-link{color:#1b5f83;text-decoration:underline;font-weight:650}
 </style>
 </head>
 <body>{% include global-navigation.html %}<main class="wrap">
@@ -115,6 +116,7 @@ function showButtonFeedback(kind,title,lines){
   requestAnimationFrame(()=>target.scrollIntoView({block:"nearest",behavior:"smooth"}));
  }
 }
+function showSuccessL3Link(){const link=document.createElement("a");link.href=L3;link.textContent="Перейти к разбору L3";link.className="result-l3-link";document.getElementById("checkFeedback").append(document.createTextNode(" "),link)}
 function clearButtonFeedback(){
  for(const id of ["hintFeedback","checkFeedback"]){const node=document.getElementById(id);node.hidden=true;node.textContent="";}
 }
@@ -179,7 +181,8 @@ document.getElementById("checkBtn").addEventListener("click",()=>{
  const d=diagnose();
  if(d.correct)showReport("Учебная последовательность восстановлена",["Все 15 смысловых частей стоят в принятом учебном порядке. Неподходящие кирпичики оставлены в Песочнице.","Это учебная самопроверка, а не аттестованный автоматический экзаменационный ключ. Содержание молитв и история требуют отдельного ответа."],"good");
  else showReport("Остались нарушения: "+d.errors.length+" группы",d.errors.map(e=>e.message),"warn");
- showButtonFeedback("check",d.correct?"Учебная последовательность восстановлена":"Проверьте нарушения",d.correct?["Можно перейти к разбору L3."]:d.errors.map(e=>e.message))
+ showButtonFeedback("check",d.correct?"Учебная последовательность восстановлена":"Проверьте нарушения",d.correct?[]:d.errors.map(e=>e.message));
+ if(d.correct)showSuccessL3Link()
 });
 function hintProblem(){
  const d=diagnose();

@@ -59,6 +59,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 .swap-columns:hover{color:#245b78;background:#ffffffc9}
 .swap-columns:focus-visible{outline:2px solid #26799c;outline-offset:2px;background:#fff}
 @media(max-width:540px){.swap-columns{width:44px;height:30px;top:1px}.swap-columns svg{width:38px;height:24px}}
+.result-l3-link{color:#1b5f83;text-decoration:underline;font-weight:650}
 </style>
 </head>
 <body>{% include global-navigation.html %}<main class="wrap">
@@ -126,6 +127,7 @@ function showButtonFeedback(kind,title,lines){
   requestAnimationFrame(()=>target.scrollIntoView({block:"nearest",behavior:"smooth"}));
  }
 }
+function showSuccessL3Link(){const link=document.createElement("a");link.href=L3;link.textContent="Перейти к разбору L3";link.className="result-l3-link";document.getElementById("checkFeedback").append(document.createTextNode(" "),link)}
 function clearButtonFeedback(){
  for(const id of ["hintFeedback","checkFeedback"]){const node=document.getElementById(id);node.hidden=true;node.textContent="";}
 }
@@ -184,7 +186,7 @@ function diagnose(){const present=new Set(pyramid),missing=required.filter(id=>!
  if(missing.length)errors.push({kind:"missing",ids:missing,message:"Не хватает обязательных элементов: "+missing.length+". Они остаются в Песочнице."});
  if(misplaced.length)errors.push({kind:"order",ids:misplaced,message:"Нарушен порядок. Достаточно переставить "+misplaced.length+" "+(misplaced.length===1?"кирпичик.":"кирпичика(ов).")+" Проверьте взаимное расположение этапов."});
  return {missing,extra,misplaced,errors,correct:!missing.length&&!extra.length&&!misplaced.length}}
-document.getElementById("checkBtn").addEventListener("click",()=>{const d=diagnose();if(d.correct){showReport("Порядок учебного образца собран верно",["Все девять основных элементов расположены по принятой учебной схеме.","Это самопроверка последовательности, а не официальный допуск: объяснение молитв, уставные детали и история оцениваются отдельно."],"good")}else{const msgs=d.errors.map(x=>x.message);if(d.misplaced.length)msgs.push("Подсказка под Песочницей поможет определить направление исправления.");showReport("Обнаружены нарушения: "+d.errors.length+" групп(ы)",msgs,"warn")}const summary=d.correct?"Порядок собран верно":"Нарушения: "+d.errors.length+" групп(ы)";showButtonFeedback("check",summary,d.correct?["Основные элементы в правильном порядке."]:d.errors.map(x=>x.message));});
+document.getElementById("checkBtn").addEventListener("click",()=>{const d=diagnose();if(d.correct){showReport("Порядок учебного образца собран верно",["Все девять основных элементов расположены по принятой учебной схеме.","Это самопроверка последовательности, а не официальный допуск: объяснение молитв, уставные детали и история оцениваются отдельно."],"good")}else{const msgs=d.errors.map(x=>x.message);if(d.misplaced.length)msgs.push("Подсказка под Песочницей поможет определить направление исправления.");showReport("Обнаружены нарушения: "+d.errors.length+" групп(ы)",msgs,"warn")}const summary=d.correct?"Порядок собран верно":"Нарушения: "+d.errors.length+" групп(ы)";showButtonFeedback("check",summary,d.correct?["Основные элементы в правильном порядке."]:d.errors.map(x=>x.message));if(d.correct)showSuccessL3Link();});
 function hintProblem(){const d=diagnose();if(d.extra.length){const id=d.extra[0];return {kind:"extra",id,signature:"extra:"+id,lines:["Проверьте, все ли кирпичики в Пирамиде относятся к проскомидии.","Обратите внимание на кирпичик «"+dataById.get(id).name+"».","Этот кирпичик относится к другому этапу Литургии. Верните его в Песочницу."]}}
  if(d.missing.length){let id=d.missing[0];const inP=pyramid.filter(x=>!dataById.get(x).extra),firstIndex=required.indexOf(id),before=required.slice(0,firstIndex).reverse().find(x=>inP.includes(x)),after=required.slice(firstIndex+1).find(x=>inP.includes(x));return{kind:"missing",id,signature:"missing:"+id,lines:["Пирамида пока неполна. Проверьте недостающий этап в Песочнице.","Найдите кирпичик «"+dataById.get(id).name+"».","Он должен располагаться "+(before?"после «"+dataById.get(before).name+"»":after?"перед «"+dataById.get(after).name+"»":"в начале последовательности")+". Перенесите его самостоятельно."]}}
  if(d.misplaced.length){const id=d.misplaced[0],idx=required.indexOf(id),before=required.slice(0,idx).reverse().find(x=>pyramid.includes(x)),after=required.slice(idx+1).find(x=>pyramid.includes(x));return{kind:"order",id,signature:"order:"+pyramid.join(","),lines:["Состав близок к верному, но есть нарушение последовательности. Сравните соседние этапы.","Проверьте место кирпичика «"+dataById.get(id).name+"».","Правильная опора: "+(before?"после «"+dataById.get(before).name+"»":"в начале")+(after?" и перед «"+dataById.get(after).name+"»":"")+". Переместите кирпичик сами."]}}
