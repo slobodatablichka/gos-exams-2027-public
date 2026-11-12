@@ -52,18 +52,20 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 .board.swapped .column.sandbox{order:2}.board.swapped .column.pyramid{order:1}
 .board.diagnostic .column.pyramid{order:1}.board.diagnostic .column.sandbox{order:2}
 .board.diagnostic.swapped .column.pyramid{order:2}.board.diagnostic.swapped .column.sandbox{order:1}
-.layoutbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:7px 0 10px}
-.layoutbar button{border:1px solid #a5bac8;background:#fff;border-radius:7px;padding:7px 10px;color:#234f6c;font-size:12px;font-weight:650;cursor:pointer;touch-action:manipulation}
-.layoutbar button:focus-visible{outline:2px solid #26799c;outline-offset:2px}
-.layoutbar .layoutstate{font-size:11px;color:#566e79}
-@media(max-width:540px){.layoutbar{margin:5px 0 7px;gap:4px}.layoutbar button{font-size:11px;padding:6px 8px}.layoutbar .layoutstate{font-size:10px}}
+/* Управление прямо на границе заголовков двух колонок. */
+.board{position:relative}
+.swap-columns{position:absolute;z-index:5;top:3px;left:50%;transform:translateX(-50%);height:34px;width:58px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:6px;background:transparent;color:#657783;cursor:pointer;touch-action:manipulation}
+.swap-columns svg{width:50px;height:26px;pointer-events:none;stroke:currentColor;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.4}
+.swap-columns:hover{color:#245b78;background:#ffffffc9}
+.swap-columns:focus-visible{outline:2px solid #26799c;outline-offset:2px;background:#fff}
+@media(max-width:540px){.swap-columns{width:44px;height:30px;top:1px}.swap-columns svg{width:38px;height:24px}}
 </style>
 </head>
 <body>{% include global-navigation.html %}<main class="wrap">
 <header><h1>Песочница — Пирамида</h1><a href="../index.html">Литургика · 2027</a></header>
 <div class="sub">Вопрос №5 · Понедельник Великого поста по Триоди · Вечерня накануне, утреня, часы, изобразительны и отдельная вечерня без ЛПД. Учебный вариант преподавательской таблицы; неполные исходные данные не дополнены догадками. Одно касание — содержание; удержание и движение — перенос. Лишние кирпичики оставьте в Песочнице.</div>
-<div class="layoutbar"><button type="button" id="swapBtn" aria-pressed="false">⇄ Поменять столбцы местами</button><span id="layoutState" class="layoutstate" role="status"></span></div>
 <div class="board" id="gameBoard">
+<button type="button" id="swapBtn" class="swap-columns" aria-label="Поменять столбцы местами" title="Поменять столбцы местами" aria-pressed="false"><svg viewBox="0 0 56 26" aria-hidden="true" focusable="false"><path d="M6 8H49m-8-6 8 6-8 6M50 19H7m8-6-8 6 8 6"/></svg></button>
 <section class="column sandbox" aria-label="Песочница"><div class="heading">Песочница</div><div class="count" id="sandCount"></div><div class="scroll" id="sand"></div><div class="controls"><button type="button" id="hintBtn">Подсказка</button><div class="button-feedback" id="hintFeedback" role="status" aria-live="polite" hidden></div></div></section>
 <section class="column pyramid" aria-label="Пирамида"><div class="heading">Пирамида</div><div class="count" id="pyramidCount"></div><div class="scroll" id="pyramid"></div><div class="controls"><button type="button" id="checkBtn">Проверить</button><div class="button-feedback" id="checkFeedback" role="status" aria-live="polite" hidden></div></div></section>
 </div>
@@ -365,7 +367,7 @@ function touchStart(e){
  document.addEventListener("touchmove",move,{passive:false});document.addEventListener("touchend",end,{passive:false});document.addEventListener("touchcancel",cancel,{passive:true});
 }
 function zoneAtX(x){const a=sandNode.getBoundingClientRect(),b=pyramidNode.getBoundingClientRect();if(x>=a.left&&x<=a.right)return "sand";if(x>=b.left&&x<=b.right)return "pyramid";return null}
-function applyLayout(){const board=document.getElementById("gameBoard");board.classList.toggle("swapped",layoutSwapped);document.getElementById("swapBtn").setAttribute("aria-pressed",String(layoutSwapped));const diag=board.classList.contains("diagnostic");const first=(diag!==layoutSwapped)?"Пирамида":"Песочница";document.getElementById("layoutState").textContent="Слева: "+first+" · Справа: "+(first==="Пирамида"?"Песочница":"Пирамида")}
+function applyLayout(){document.getElementById("gameBoard").classList.toggle("swapped",layoutSwapped);document.getElementById("swapBtn").setAttribute("aria-pressed",String(layoutSwapped))}
 document.getElementById("swapBtn").addEventListener("click",()=>{layoutSwapped=!layoutSwapped;applyLayout();persist()});
 function pointerStart(e){if(e.pointerType==="touch"&&"ontouchstart" in window)return;if(modalOpen||dragging||e.button!==0)return;const brick=e.currentTarget;const id=brick.dataset.id;const downX=e.clientX,downY=e.clientY;let held=false,aborted=false,ghost=null,lastX=downX,lastY=downY;let timer=window.setTimeout(()=>{if(aborted)return;held=true;dragging=true;brick.classList.add("drag-source");ghost=document.createElement("div");ghost.className="ghost";ghost.textContent=dataById.get(id).name;ghost.style.width=brick.getBoundingClientRect().width+"px";document.body.append(ghost);position(lastX,lastY);},245);
  function position(x,y){if(!ghost)return;ghost.style.left=(x-ghost.offsetWidth/2)+"px";ghost.style.top=(y-15)+"px"}
