@@ -138,6 +138,10 @@ def main():
         ("q13-assembly.html", "lit13-anaphora.json", "assembly", "Анафора", 14),
         ("q14-assembly.html", "lit14-faithful.json", "assembly", "Литургия верных", 24),
         ("q15-assembly.html", "lit15-presanctified.json", "assembly", "Литургия Преждеосвященных Даров", 26),
+        ("q01-assembly.html", "lit01-octoechos-weekday.json", "assembly", "Октоих", 27),
+        ("q02-assembly.html", "lit02-sunday-indiction.json", "assembly", "Воскресное бдение", 33),
+        ("q04-assembly.html", "lit04-sozont-forefeast.json", "assembly", "Предпразднство", 32),
+        ("q07-assembly.html", "lit07-nicholas-temple.json", "assembly", "Храм святителя Николая", 31),
     )
     base_game = "subjects/liturgics/2027/sandbox-pyramid/"
     for file_name, case_file, mode, heading, total_items in games:
@@ -159,6 +163,8 @@ def main():
             raise ValueError("Incorrect case assessment / L3: " + case_file)
         if len({item["id"] for item in case["items"]}) != total_items:
             raise ValueError("Duplicate brick IDs: " + case_file)
+        if case_file == "lit01-octoechos-weekday.json" and (case.get("sourceStatus") != "verification_needed_calendar" or case.get("passport", {}).get("source_conditions_complete") is not False):
+            raise ValueError("Q01 unverified calendar conditions must remain explicit")
         print("LIVE GAME PASS", path, flush=True)
 
     practice_catalog = "subjects/liturgics/2027/trainers/index.html"
@@ -169,7 +175,7 @@ def main():
     for name, _, _, _, _ in games:
         if "sandbox-pyramid/" + name not in practice_html:
             raise ValueError("Practice catalog missing published game: " + name)
-    for n in (12, 13, 14, 15):
+    for n in (1, 2, 4, 7, 12, 13, 14, 15):
         for route in ("practice", "examples"):
             page = f"subjects/liturgics/2027/{route}/q{n:02d}.html"
             content = request(page).decode("utf-8", errors="replace")
@@ -179,7 +185,7 @@ def main():
 
     practice_root = "practice/index.html"
     check_navigation(request(practice_root).decode("utf-8"), practice_root)
-    print("LIVE TRAINERS PASS: 15 exam slots, eight real games (7 main + 1 diagnostic), shared JS/CSS/JSON", flush=True)
+    print("LIVE TRAINERS PASS: 15 exam slots, twelve real games (11 assembly + 1 diagnostic), shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",
