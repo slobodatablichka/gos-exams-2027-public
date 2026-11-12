@@ -9,7 +9,7 @@ title: Литургика — экзаменационные тренажёры 
 
 Практические вопросы **№1–15 нового ФОС БПДС**. Два равноправных вида заданий: **«Составь богослужение»** и **«Найди и исправь ошибки»**. Готовые задания открываются сразу; отсутствующие пополняются по мере проверки источников. Это учебная самопроверка, не аттестованная оценка экзамена.
 
-[Литургика — все 25 официальных вопросов](../index.html) · [Методика составления служб](../practice/methodology-a.html) · [Методика литургических чинов](../practice/methodology-b.html)
+[Богослужебный год — готовые учебные случаи](year.html) · [Литургика — все 25 официальных вопросов](../index.html) · [Методика составления служб](../practice/methodology-a.html) · [Методика литургических чинов](../practice/methodology-b.html)
 
 {% assign trainer_prefix = '/subjects/liturgics/2027/' %}
 {% for question in site.data.liturgics_trainers_2027.questions %}
@@ -31,3 +31,27 @@ title: Литургика — экзаменационные тренажёры 
 {% endfor %}
 
 После правильной сборки в каждой игре открывается ссылка на полный разбор L3 того же билета. Непроверенные варианты не получают автоматическую экзаменационную оценку.
+
+<details>
+<summary>Варианты А/Б/В: 45 паспортов — 14 игр доступны, 31 ожидает источникового ключа</summary>
+{% for question in site.data.liturgics_trainers_2027.questions %}
+{% if question.number <= 15 %}
+<p><strong>Вопрос №{{ question.number }}. {{ question.title }}</strong></p>
+{% for variant in site.data.liturgics_trainers_2027.variant_slots %}
+{% if variant.question == question.number %}
+<p>Вариант {{ variant.variant }} — {{ variant.condition }}.
+{% if variant.status == 'published_training' %}
+{% for game in question.cases %}{% if game.case_id == variant.case_id %}{% assign href = trainer_prefix | append: game.path %}<a href="{{ href | relative_url }}">Открыть игру</a>{% endif %}{% endfor %}
+{% elsif variant.status == 'requires_alternative_calendar_case' %}
+Требуется другой календарный случай и сверка полного ключа.
+{% else %}
+Требуются конкретные условия, уставная сверка и полный учебный ключ.
+{% endif %}</p>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+</details>
+
+Варианты с непроверенным ключом не открываются как готовые игры. Статус всех 45 паспортов хранится в общем реестре, без дублирования службы.
+

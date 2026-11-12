@@ -31,7 +31,13 @@
           "label": "Собери: воскресное бдение, индикт и Симеон",
           "path": "sandbox-pyramid/q02-assembly.html",
           "version": "lit02-sunday-indiction-v1",
-          "data_path": "sandbox-pyramid/data/lit02-sunday-indiction.json"
+          "data_path": "sandbox-pyramid/data/lit02-sunday-indiction.json",
+          "year": {
+            "group": "fixed",
+            "date": "1 сентября (церковный календарь)",
+            "label": "Воскресное бдение: индикт и преп. Симеон",
+            "qualifier": "Воскресенье и 1-й глас заданы учебным примером, год не указан"
+          }
         }
       ]
     },
@@ -47,7 +53,13 @@
           "label": "Собери: Воздвижение",
           "path": "sandbox-pyramid/vozdvizhenie.html",
           "version": "lit03-exaltation-study-v1",
-          "data_path": "sandbox-pyramid/data/lit03-vozdvizhenie.json"
+          "data_path": "sandbox-pyramid/data/lit03-vozdvizhenie.json",
+          "year": {
+            "group": "fixed",
+            "date": "14 сентября (церковный календарь)",
+            "label": "Воздвижение Креста Господня",
+            "qualifier": "Только представленный в источнике праздничный вариант"
+          }
         }
       ]
     },
@@ -63,7 +75,13 @@
           "label": "Собери: 7 сентября, Созонт",
           "path": "sandbox-pyramid/q04-assembly.html",
           "version": "lit04-sozont-forefeast-v1",
-          "data_path": "sandbox-pyramid/data/lit04-sozont-forefeast.json"
+          "data_path": "sandbox-pyramid/data/lit04-sozont-forefeast.json",
+          "year": {
+            "group": "fixed",
+            "date": "7 сентября (церковный календарь)",
+            "label": "Предпразднство Рождества Богородицы, муч. Созонт",
+            "qualifier": "Учебный невоскресный и не пятничный случай, год не указан"
+          }
         }
       ]
     },
@@ -79,7 +97,13 @@
           "label": "Собери: понедельник Великого поста",
           "path": "sandbox-pyramid/velikiy-post.html",
           "version": "lit05-lenten-monday-study-v1",
-          "data_path": "sandbox-pyramid/data/lit05-velikiy-post.json"
+          "data_path": "sandbox-pyramid/data/lit05-velikiy-post.json",
+          "year": {
+            "group": "movable",
+            "date": "Понедельник Великого поста",
+            "label": "Великопостный седмичный день",
+            "qualifier": "Учебный понедельник по уже проверенной колонке"
+          }
         }
       ]
     },
@@ -95,7 +119,13 @@
           "label": "Собери: Великий пяток",
           "path": "sandbox-pyramid/q06-assembly.html",
           "version": "lit06-great-friday-v1",
-          "data_path": "sandbox-pyramid/data/lit06-great-friday.json"
+          "data_path": "sandbox-pyramid/data/lit06-great-friday.json",
+          "year": {
+            "group": "movable",
+            "date": "Великий пяток",
+            "label": "Утреня Страстей, Царские часы, вечерня",
+            "qualifier": "Службы Великого пятка; не смешивать с утреней Великой субботы"
+          }
         }
       ]
     },
@@ -111,7 +141,13 @@
           "label": "Собери: храм святителя Николая",
           "path": "sandbox-pyramid/q07-assembly.html",
           "version": "lit07-nicholas-temple-v1",
-          "data_path": "sandbox-pyramid/data/lit07-nicholas-temple.json"
+          "data_path": "sandbox-pyramid/data/lit07-nicholas-temple.json",
+          "year": {
+            "group": "fixed",
+            "date": "6 декабря (церковный календарь)",
+            "label": "Храм святителя Николая",
+            "qualifier": "Бдение в храме святителя при условном невоскресном дне"
+          }
         }
       ]
     },
@@ -127,7 +163,13 @@
           "label": "Собери: Рождество Христово",
           "path": "sandbox-pyramid/q08-assembly.html",
           "version": "lit08-nativity-vigil-v1",
-          "data_path": "sandbox-pyramid/data/lit08-nativity-vigil.json"
+          "data_path": "sandbox-pyramid/data/lit08-nativity-vigil.json",
+          "year": {
+            "group": "fixed",
+            "date": "25 декабря (церковный календарь)",
+            "label": "Рождество Христово",
+            "qualifier": "Изготовлено рождественское бдение, год и дополнительные совпадения не рассчитаны"
+          }
         }
       ]
     },
@@ -159,7 +201,13 @@
           "label": "Собери: Троицкая суббота",
           "path": "sandbox-pyramid/q10-assembly.html",
           "version": "lit10-trinity-saturday-v1",
-          "data_path": "sandbox-pyramid/data/lit10-trinity-saturday.json"
+          "data_path": "sandbox-pyramid/data/lit10-trinity-saturday.json",
+          "year": {
+            "group": "movable",
+            "date": "Суббота перед Пятидесятницей",
+            "label": "Троицкая родительская суббота",
+            "qualifier": "Именно Троицкая, не Мясопустная или субботы Великого поста"
+          }
         }
       ]
     },
@@ -176,6 +224,36 @@
           "path": "sandbox-pyramid/index.html",
           "version": "lit11-study-v1",
           "data_path": "sandbox-pyramid/data/lit11-proskomedia.json"
+        },
+        {
+          "case_id": "lit11-diagnostic-a",
+          "mode": "diagnostic",
+          "variant": "А",
+          "source_variant_id": "lit-11-A",
+          "label": "Найди и исправь ошибки · А",
+          "path": "sandbox-pyramid/q11-errors-a.html",
+          "version": "lit11-diagnostic-a-v1",
+          "data_path": "sandbox-pyramid/data/lit11-diagnostic-a.json"
+        },
+        {
+          "case_id": "lit11-diagnostic-b",
+          "mode": "diagnostic",
+          "variant": "Б",
+          "source_variant_id": "lit-11-B",
+          "label": "Найди и исправь ошибки · Б",
+          "path": "sandbox-pyramid/q11-errors-b.html",
+          "version": "lit11-diagnostic-b-v1",
+          "data_path": "sandbox-pyramid/data/lit11-diagnostic-b.json"
+        },
+        {
+          "case_id": "lit11-diagnostic-c",
+          "mode": "diagnostic",
+          "variant": "В",
+          "source_variant_id": "lit-11-C",
+          "label": "Найди и исправь ошибки · В",
+          "path": "sandbox-pyramid/q11-errors-c.html",
+          "version": "lit11-diagnostic-c-v1",
+          "data_path": "sandbox-pyramid/data/lit11-diagnostic-c.json"
         }
       ]
     },
@@ -200,6 +278,36 @@
           "path": "sandbox-pyramid/q12-errors.html",
           "version": "lit12-diagnostic-v1",
           "data_path": "sandbox-pyramid/data/lit12-diagnostic.json"
+        },
+        {
+          "case_id": "lit12-diagnostic-a",
+          "mode": "diagnostic",
+          "variant": "А",
+          "source_variant_id": "lit-12-A",
+          "label": "Найди и исправь ошибки · А",
+          "path": "sandbox-pyramid/q12-errors-a.html",
+          "version": "lit12-diagnostic-a-v1",
+          "data_path": "sandbox-pyramid/data/lit12-diagnostic-a.json"
+        },
+        {
+          "case_id": "lit12-diagnostic-b",
+          "mode": "diagnostic",
+          "variant": "Б",
+          "source_variant_id": "lit-12-B",
+          "label": "Найди и исправь ошибки · Б",
+          "path": "sandbox-pyramid/q12-errors-b.html",
+          "version": "lit12-diagnostic-b-v1",
+          "data_path": "sandbox-pyramid/data/lit12-diagnostic-b.json"
+        },
+        {
+          "case_id": "lit12-diagnostic-c",
+          "mode": "diagnostic",
+          "variant": "В",
+          "source_variant_id": "lit-12-C",
+          "label": "Найди и исправь ошибки · В",
+          "path": "sandbox-pyramid/q12-errors-c.html",
+          "version": "lit12-diagnostic-c-v1",
+          "data_path": "sandbox-pyramid/data/lit12-diagnostic-c.json"
         }
       ]
     },
@@ -216,6 +324,36 @@
           "path": "sandbox-pyramid/q13-assembly.html",
           "version": "lit13-anaphora-v2",
           "data_path": "sandbox-pyramid/data/lit13-anaphora.json"
+        },
+        {
+          "case_id": "lit13-diagnostic-a",
+          "mode": "diagnostic",
+          "variant": "А",
+          "source_variant_id": "lit-13-A",
+          "label": "Найди и исправь ошибки · А",
+          "path": "sandbox-pyramid/q13-errors-a.html",
+          "version": "lit13-diagnostic-a-v1",
+          "data_path": "sandbox-pyramid/data/lit13-diagnostic-a.json"
+        },
+        {
+          "case_id": "lit13-diagnostic-b",
+          "mode": "diagnostic",
+          "variant": "Б",
+          "source_variant_id": "lit-13-B",
+          "label": "Найди и исправь ошибки · Б",
+          "path": "sandbox-pyramid/q13-errors-b.html",
+          "version": "lit13-diagnostic-b-v1",
+          "data_path": "sandbox-pyramid/data/lit13-diagnostic-b.json"
+        },
+        {
+          "case_id": "lit13-diagnostic-c",
+          "mode": "diagnostic",
+          "variant": "В",
+          "source_variant_id": "lit-13-C",
+          "label": "Найди и исправь ошибки · В",
+          "path": "sandbox-pyramid/q13-errors-c.html",
+          "version": "lit13-diagnostic-c-v1",
+          "data_path": "sandbox-pyramid/data/lit13-diagnostic-c.json"
         }
       ]
     },
@@ -232,6 +370,36 @@
           "path": "sandbox-pyramid/q14-assembly.html",
           "version": "lit14-faithful-v2",
           "data_path": "sandbox-pyramid/data/lit14-faithful.json"
+        },
+        {
+          "case_id": "lit14-diagnostic-a",
+          "mode": "diagnostic",
+          "variant": "А",
+          "source_variant_id": "lit-14-A",
+          "label": "Найди и исправь ошибки · А",
+          "path": "sandbox-pyramid/q14-errors-a.html",
+          "version": "lit14-diagnostic-a-v1",
+          "data_path": "sandbox-pyramid/data/lit14-diagnostic-a.json"
+        },
+        {
+          "case_id": "lit14-diagnostic-b",
+          "mode": "diagnostic",
+          "variant": "Б",
+          "source_variant_id": "lit-14-B",
+          "label": "Найди и исправь ошибки · Б",
+          "path": "sandbox-pyramid/q14-errors-b.html",
+          "version": "lit14-diagnostic-b-v1",
+          "data_path": "sandbox-pyramid/data/lit14-diagnostic-b.json"
+        },
+        {
+          "case_id": "lit14-diagnostic-c",
+          "mode": "diagnostic",
+          "variant": "В",
+          "source_variant_id": "lit-14-C",
+          "label": "Найди и исправь ошибки · В",
+          "path": "sandbox-pyramid/q14-errors-c.html",
+          "version": "lit14-diagnostic-c-v1",
+          "data_path": "sandbox-pyramid/data/lit14-diagnostic-c.json"
         }
       ]
     },
@@ -247,9 +415,789 @@
           "label": "Собери последование",
           "path": "sandbox-pyramid/q15-assembly.html",
           "version": "lit15-presanctified-v2",
-          "data_path": "sandbox-pyramid/data/lit15-presanctified.json"
+          "data_path": "sandbox-pyramid/data/lit15-presanctified.json",
+          "year": {
+            "group": "movable",
+            "date": "Среда второй седмицы Великого поста",
+            "label": "Литургия Преждеосвященных Даров",
+            "qualifier": "Без позднейшей ектении о просвещаемых; отдельные совпадения не учтены"
+          }
+        },
+        {
+          "case_id": "lit15-diagnostic-a",
+          "mode": "diagnostic",
+          "variant": "А",
+          "source_variant_id": "lit-15-A",
+          "label": "Найди и исправь ошибки · А",
+          "path": "sandbox-pyramid/q15-errors-a.html",
+          "version": "lit15-diagnostic-a-v1",
+          "data_path": "sandbox-pyramid/data/lit15-diagnostic-a.json"
+        },
+        {
+          "case_id": "lit15-diagnostic-b",
+          "mode": "diagnostic",
+          "variant": "Б",
+          "source_variant_id": "lit-15-B",
+          "label": "Найди и исправь ошибки · Б",
+          "path": "sandbox-pyramid/q15-errors-b.html",
+          "version": "lit15-diagnostic-b-v1",
+          "data_path": "sandbox-pyramid/data/lit15-diagnostic-b.json"
         }
       ]
+    }
+  ],
+  "variant_slots": [
+    {
+      "id": "lit-01-A",
+      "question": 1,
+      "variant": "А",
+      "condition": "тот же день: славословный святой",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-01-B",
+      "question": 1,
+      "variant": "Б",
+      "condition": "тот же день: полиелейный святой",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-01-C",
+      "question": 1,
+      "variant": "В",
+      "condition": "суббота того же гласа",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-02-A",
+      "question": 2,
+      "variant": "А",
+      "condition": "другая память и глас",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-02-B",
+      "question": 2,
+      "variant": "Б",
+      "condition": "воскресенье Постной Триоди",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-02-C",
+      "question": 2,
+      "variant": "В",
+      "condition": "воскресенье Цветной Триоди",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-03-A",
+      "question": 3,
+      "variant": "А",
+      "condition": "Воздвижение в воскресенье",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-03-B",
+      "question": 3,
+      "variant": "Б",
+      "condition": "другой великий Господский праздник",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-03-C",
+      "question": 3,
+      "variant": "В",
+      "condition": "великий Богородичный праздник",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-04-A",
+      "question": 4,
+      "variant": "А",
+      "condition": "славословный святой",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-04-B",
+      "question": 4,
+      "variant": "Б",
+      "condition": "полиелейный святой",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-04-C",
+      "question": 4,
+      "variant": "В",
+      "condition": "пятничный случай «на 6»",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-05-A",
+      "question": 5,
+      "variant": "А",
+      "condition": "понедельник с полиелейным святым",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-05-B",
+      "question": 5,
+      "variant": "Б",
+      "condition": "понедельник с храмовым бдением",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-05-C",
+      "question": 5,
+      "variant": "В",
+      "condition": "суббота Акафиста",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-06-A",
+      "question": 6,
+      "variant": "А",
+      "condition": "Великий четверг",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-06-B",
+      "question": 6,
+      "variant": "Б",
+      "condition": "Великая суббота",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-06-C",
+      "question": 6,
+      "variant": "В",
+      "condition": "Светлый понедельник (вместо ошибочного «первый день Светлой седмицы»)",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-07-A",
+      "question": 7,
+      "variant": "А",
+      "condition": "храмовый праздник в воскресенье",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-07-B",
+      "question": 7,
+      "variant": "Б",
+      "condition": "совпадение с великим Господским праздником",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-07-C",
+      "question": 7,
+      "variant": "В",
+      "condition": "храмовый праздник в будни поста",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-08-A",
+      "question": 8,
+      "variant": "А",
+      "condition": "Рождественский сочельник в субботу/воскресенье",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-08-B",
+      "question": 8,
+      "variant": "Б",
+      "condition": "праздник Богоявления",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-08-C",
+      "question": 8,
+      "variant": "В",
+      "condition": "Благовещение в Великом посту",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-09-A",
+      "question": 9,
+      "variant": "А",
+      "condition": "два святых без знака",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-09-B",
+      "question": 9,
+      "variant": "Б",
+      "condition": "полиелейный святой",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-09-C",
+      "question": 9,
+      "variant": "В",
+      "condition": "субботний день до отдания Пасхи",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-10-A",
+      "question": 10,
+      "variant": "А",
+      "condition": "Мясопустная суббота",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-10-B",
+      "question": 10,
+      "variant": "Б",
+      "condition": "суббота второй седмицы Великого поста",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-10-C",
+      "question": 10,
+      "variant": "В",
+      "condition": "совпадение Мясопустной субботы со Сретением или храмовой памятью",
+      "source_type": "conditional_service_composition",
+      "source_review": "conditional_review",
+      "status": "requires_full_case_key",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "fixed_calendar_case",
+        "primary_source_rubric_check",
+        "complete_solution_key"
+      ],
+      "case_id": null
+    },
+    {
+      "id": "lit-11-A",
+      "question": 11,
+      "variant": "А",
+      "condition": "пропущено прободение Агнца",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit11-diagnostic-a"
+    },
+    {
+      "id": "lit-11-B",
+      "question": 11,
+      "variant": "Б",
+      "condition": "переставлены частицы о живых и Богородицы",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit11-diagnostic-b"
+    },
+    {
+      "id": "lit-11-C",
+      "question": 11,
+      "variant": "В",
+      "condition": "проскомидия ошибочно названа освящением Даров",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit11-diagnostic-c"
+    },
+    {
+      "id": "lit-12-A",
+      "question": 12,
+      "variant": "А",
+      "condition": "песнопение «Елицы во Христа» вместо Трисвятого",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit12-diagnostic-a"
+    },
+    {
+      "id": "lit-12-B",
+      "question": 12,
+      "variant": "Б",
+      "condition": "Евангелие ошибочно поставлено перед Апостолом",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit12-diagnostic-b"
+    },
+    {
+      "id": "lit-12-C",
+      "question": 12,
+      "variant": "В",
+      "condition": "пропущены молитвы об оглашенных",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit12-diagnostic-c"
+    },
+    {
+      "id": "lit-13-A",
+      "question": 13,
+      "variant": "А",
+      "condition": "перепутаны анамнесис и эпиклезис",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit13-diagnostic-a"
+    },
+    {
+      "id": "lit-13-B",
+      "question": 13,
+      "variant": "Б",
+      "condition": "пропущены ходатайства и заключительное славословие",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit13-diagnostic-b"
+    },
+    {
+      "id": "lit-13-C",
+      "question": 13,
+      "variant": "В",
+      "condition": "анафора сведена к эпиклезису",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit13-diagnostic-c"
+    },
+    {
+      "id": "lit-14-A",
+      "question": 14,
+      "variant": "А",
+      "condition": "после Великого входа ошибочно начинается анафора",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit14-diagnostic-a"
+    },
+    {
+      "id": "lit-14-B",
+      "question": 14,
+      "variant": "Б",
+      "condition": "Причащение без молитв подготовки",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit14-diagnostic-b"
+    },
+    {
+      "id": "lit-14-C",
+      "question": 14,
+      "variant": "В",
+      "condition": "ответ заканчивается Причащением",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit14-diagnostic-c"
+    },
+    {
+      "id": "lit-15-A",
+      "question": 15,
+      "variant": "А",
+      "condition": "включены Sanctus и установительные слова",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit15-diagnostic-a"
+    },
+    {
+      "id": "lit-15-B",
+      "question": 15,
+      "variant": "Б",
+      "condition": "пропущено «Свет Христов просвещает всех»",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check"
+      ],
+      "case_id": "lit15-diagnostic-b"
+    },
+    {
+      "id": "lit-15-C",
+      "question": 15,
+      "variant": "В",
+      "condition": "опущены молитвы о просвещаемых",
+      "source_type": "diagnostic_order_or_meaning",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "requires_alternative_calendar_case",
+      "full_key_verified": false,
+      "automated_scoring_ready": false,
+      "missing": [
+        "accepted_answer_variants",
+        "prayer_text_exact_check",
+        "later_lent_calendar_case",
+        "complete_rite_with_enlightened_petitions"
+      ],
+      "case_id": null
     }
   ]
 }
