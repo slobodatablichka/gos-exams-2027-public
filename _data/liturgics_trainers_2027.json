@@ -77,8 +77,15 @@
       "id": "06",
       "number": 6,
       "title": "Страстная и Светлая седмицы",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit06-great-friday",
+          "mode": "assembly",
+          "label": "Собери: Великий пяток",
+          "path": "sandbox-pyramid/q06-assembly.html"
+        }
+      ]
     },
     {
       "id": "07",
@@ -98,22 +105,43 @@
       "id": "08",
       "number": 8,
       "title": "Рождество, Богоявление, Благовещение",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit08-nativity-vigil",
+          "mode": "assembly",
+          "label": "Собери: Рождество Христово",
+          "path": "sandbox-pyramid/q08-assembly.html"
+        }
+      ]
     },
     {
       "id": "09",
       "number": 9,
       "title": "Седмичные и субботние дни Цветной Триоди",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit09-pentecostarion-weekday",
+          "mode": "assembly",
+          "label": "Собери: Цветная Триодь",
+          "path": "sandbox-pyramid/q09-assembly.html"
+        }
+      ]
     },
     {
       "id": "10",
       "number": 10,
       "title": "Заупокойные субботы",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit10-trinity-saturday",
+          "mode": "assembly",
+          "label": "Собери: Троицкая суббота",
+          "path": "sandbox-pyramid/q10-assembly.html"
+        }
+      ]
     },
     {
       "id": "11",
