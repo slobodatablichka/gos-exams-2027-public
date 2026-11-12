@@ -22,6 +22,36 @@
             "label": "Седмичная вседневная служба без знака",
             "qualifier": "Указанный преподавателем каркас; дата не требуется"
           }
+        },
+        {
+          "case_id": "lit01-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-01-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q01-assembly-a.html",
+          "version": "lit01-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit01-assembly-a.json"
+        },
+        {
+          "case_id": "lit01-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-01-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q01-assembly-b.html",
+          "version": "lit01-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit01-assembly-b.json"
+        },
+        {
+          "case_id": "lit01-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-01-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q01-assembly-c.html",
+          "version": "lit01-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit01-assembly-c.json"
         }
       ]
     },
@@ -88,6 +118,36 @@
             "label": "Предпразднство Рождества Богородицы, муч. Созонт",
             "qualifier": "Учебный невоскресный и не пятничный случай, год не указан"
           }
+        },
+        {
+          "case_id": "lit04-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-04-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q04-assembly-a.html",
+          "version": "lit04-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit04-assembly-a.json"
+        },
+        {
+          "case_id": "lit04-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-04-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q04-assembly-b.html",
+          "version": "lit04-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit04-assembly-b.json"
+        },
+        {
+          "case_id": "lit04-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-04-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q04-assembly-c.html",
+          "version": "lit04-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit04-assembly-c.json"
         }
       ]
     },
@@ -476,13 +536,11 @@
       "condition": "тот же день: славословный святой",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit01-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Славословный разряд вместо исходного: вечерня, хвалитные, великое славословие, окончание утрени",
       "source_basis": "Сравнительная славословная колонка преподавателя",
@@ -495,13 +553,11 @@
       "condition": "тот же день: полиелейный святой",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit01-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Полиелейный разряд вместо исходного: великая вечерня, полиелей и изменения утрени",
       "source_basis": "Полиелейная колонка преподавателя",
@@ -514,13 +570,11 @@
       "condition": "суббота того же гласа",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit01-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Субботнее последование того же гласа; заменить будничные части субботними",
       "source_basis": "Субботняя сравнительная схема преподавателя",
@@ -647,13 +701,11 @@
       "condition": "славословный святой",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit04-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Славословный разряд в условиях данного предпразднства: хвалитные, канон, конец утрени",
       "source_basis": "Сравнительная колонка №4",
@@ -666,13 +718,11 @@
       "condition": "полиелейный святой",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit04-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Полиелейный разряд: великая вечерня, чтения, полиелейная утреня",
       "source_basis": "Сравнительная колонка №4",
@@ -685,13 +735,11 @@
       "condition": "пятничный случай «на 6»",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit04-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Пятничный вариант «на 6»: специальное «И ныне», не переносить будничное правило",
       "source_basis": "Пятничная оговорка преподавателя №4",

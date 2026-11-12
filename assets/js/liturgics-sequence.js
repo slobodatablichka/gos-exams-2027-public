@@ -11,7 +11,7 @@
   const raw=JSON.parse(document.getElementById(MANIFEST_ID).textContent);
   if(!raw||!Array.isArray(raw.questions)||raw.questions.length!==15)throw Error("Нет 15 вопросов");
   questions=raw.questions;
-  for(const q of questions)if(!q.cases.length||q.cases.some(c=>!c.case_id||!c.version||!/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly|errors(?:-[abc])?))\.html$/.test(c.path)))throw Error("Неправильный адрес игры №"+q.number);
+  for(const q of questions)if(!q.cases.length||q.cases.some(c=>!c.case_id||!c.version||!/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly(?:-[abc])?|errors(?:-[abc])?))\.html$/.test(c.path)))throw Error("Неправильный адрес игры №"+q.number);
  }catch(e){error("Не удалось загрузить реестр игр: "+e.message);return;}
  const questionByNumber=new Map(questions.map(q=>[q.number,q]));
  const choices=document.getElementById("questionList");
@@ -57,7 +57,7 @@
  function currentSession(){const s=readJSON(SESSION_KEY);return validSession(s)?s:null;}
  function saveSession(session){try{localStorage.setItem(SESSION_KEY,JSON.stringify(session));return true}catch(e){error("Браузер не разрешает сохранять прохождение. Проверьте настройки хранилища.");return false}}
  function toGame(entry){
-  if(!entry||!/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly|errors(?:-[abc])?))\.html$/.test(entry.path))return;
+  if(!entry||!/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly(?:-[abc])?|errors(?:-[abc])?))\.html$/.test(entry.path))return;
   window.location.href="../"+entry.path+"?sequence=1";
  }
  function launch(selected,mode){

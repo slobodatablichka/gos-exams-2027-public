@@ -14,7 +14,7 @@ def ensure_deployed():
             req = Request(SEQ, headers={"User-Agent": "FOS2027-Exam-Browser-Test", "Cache-Control": "no-cache"})
             with urlopen(req, timeout=20) as res:
                 content = res.read().decode("utf-8")
-            if 'id="liturgicsSequenceManifest"' in content and "lit15-diagnostic-c" in content:
+            if 'id="liturgicsSequenceManifest"' in content and "lit04-assembly-c" in content and "lit01-assembly-a" in content:
                 return
         except Exception:
             pass
@@ -46,7 +46,7 @@ def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
-    assert page.locator("#oneCase option").count() == 31
+    assert page.locator("#oneCase option").count() == 37
     assert page.locator("#mode12 option").count() == 5
     page.select_option("#oneCase", "lit12-diagnostic")
     page.locator("#startOne").click()
@@ -121,6 +121,15 @@ def test_mobile(context):
     expect(page.locator('#sand .brick[data-id="enlightened"]')).to_have_count(1)
     page.locator("#hintBtn").click()
     assert "Уровень 1 из 3" in page.locator("#hintFeedback").inner_text()
+    # Stage 8: all six assembly options are offered in the single-ticket menu and selected-question flow.
+    page.goto(SEQ, wait_until="domcontentloaded")
+    for case_id in ("lit01-assembly-a","lit01-assembly-b","lit01-assembly-c","lit04-assembly-a","lit04-assembly-b","lit04-assembly-c"):
+        expect(page.locator('#oneCase option[value="'+case_id+'"]')).to_have_count(1)
+    page.select_option("#oneCase","lit04-assembly-c")
+    page.locator("#startOne").click()
+    page.wait_for_url("**/sandbox-pyramid/q04-assembly-c.html?sequence=1")
+    expect(page.locator('#sand .brick[data-id="friday-dogmatikon"]')).to_have_count(1)
+    expect(page.locator(".exam-sequence-nav")).to_be_visible()
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")
 

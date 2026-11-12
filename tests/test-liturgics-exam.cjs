@@ -17,7 +17,7 @@ const savedFactory=new Function("dataById","DATA",validCode+"\nreturn validSaved
 const allCases=[];
 for(const q of manifest.questions){
  assert.ok(q.title&&q.cases.length>0,"Missing game "+q.number);
- assert.equal(q.cases.filter(c=>c.mode==="assembly").length,1,"One assembly case per ticket");
+ assert.equal(q.cases.filter(c=>c.mode==="assembly").length,[1,4].includes(q.number)?4:1,"Stage 8 provides three additional assembly variants for tickets 1 and 4");
  for(const c of q.cases){
   const page=read(base+c.path);
   const sourceMatch=page.match(/data-case="data\/([^"]+\.json)"/);
@@ -68,15 +68,17 @@ for(const q of manifest.questions){
   allCases.push({q:q.number,id:c.case_id,mode:c.mode,version:c.version,path:c.path});
  }
 }
-assert.equal(allCases.filter(x=>x.mode==="assembly").length,15);
+assert.equal(allCases.filter(x=>x.mode==="assembly").length,21);
 assert.equal(allCases.filter(x=>x.mode==="diagnostic").length,16);
-assert.equal(new Set(allCases.map(x=>x.version)).size,31,"Local progress keys must be unique");
+assert.equal(new Set(allCases.map(x=>x.version)).size,37,"Local progress keys must be unique");
 assert.equal(manifest.variant_slots.length,45);
-assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,15);
-assert.equal(manifest.variant_slots.filter(x=>x.status!=="published_training").length,30);
-assert.equal(manifest.variant_slots.filter(x=>x.status==="task_defined_key_pending").length,30);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,21);
+assert.equal(manifest.variant_slots.filter(x=>x.status!=="published_training").length,24);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="task_defined_key_pending").length,24);
 assert.equal(manifest.variant_slots.find(x=>x.id==="lit-15-C").status,"published_training");
 assert.equal(manifest.questions.flatMap(q=>q.cases).filter(c=>c.year).length,11);
+for(const q of [1,4])for(const v of ["А","Б","В"]){const slot=manifest.variant_slots.find(x=>x.question===q&&x.variant===v),game=manifest.questions.find(x=>x.number===q).cases.find(c=>c.case_id===slot.case_id);assert.equal(slot.status,"published_training");assert.equal(game.mode,"assembly");assert.ok(!game.year,"Do not infer calendars");const data=JSON.parse(read(base+game.data_path));assert.equal(data.passport.task_scope_sufficient,true);assert.equal(data.initialPyramid.length,0);assert.ok(data.items.filter(x=>!x.extra).length>=6);}
+
 const stage7=manifest.questions.find(q=>q.number===15).cases.find(c=>c.case_id==="lit15-diagnostic-c");
 assert.ok(stage7&&stage7.mode==="diagnostic"&&stage7.variant==="В","Stage 7 C must be independently published");
 const stage7Data=JSON.parse(read(base+stage7.data_path));
@@ -118,7 +120,7 @@ const localStorage={getItem:k=>store.get(k)||null,setItem:(k,v)=>{store.set(k,St
 const document={getElementById:id=>fields[id],createElement:tag=>new Elem(tag),createTextNode:text=>({textContent:text})};
 const window={location:{href:"",search:""},events:{},addEventListener(name,fn){this.events[name]=fn}};
 new Function("document","window","localStorage","confirm",runner)(document,window,localStorage,()=>true);
-assert.equal(fields.oneCase.children.length,31,"Single-question list must offer all published variants");
+assert.equal(fields.oneCase.children.length,37,"Single-question list must offer all published variants");
 assert.equal(fields.mode12.children.length,5,"Question 12 exposes assembly, diagnostic prototype and A/B/C cases");
 assert.equal(fields.questionList.querySelectorAll("input").length,15);
 fields.oneCase.value="lit12-diagnostic";fields.startOne.dispatch("click");
@@ -149,7 +151,7 @@ assert.equal(store.has("bpds-liturgics-checked-"+q1.case_id),true,"Ending progra
 // Verify game-page navigation with the exact navigation function from the shared engine.
 const navCode=section(engine,"function examSequenceNavigation(){",'\nfunction shuffleVisual()');
 const navFn=new Function("game","CASE_VERSION","window","localStorage","document","report","URLSearchParams",navCode+"\nreturn examSequenceNavigation;");
-const selection={v:1,mode:"Выбранные вопросы",index:0,entries:allCases.filter(x=>[1,9,12].includes(x.q)&&x.mode==="assembly").sort((a,b)=>a.q-b.q).map(x=>({number:x.q,case_id:x.id,version:x.version,path:x.path,mode:x.mode}))};
+const selection={v:1,mode:"Выбранные вопросы",index:0,entries:allCases.filter(x=>[1,9,12].includes(x.q)&&x.mode==="assembly"&&(x.q!==1||x.id==="lit01-octoechos-weekday")).sort((a,b)=>a.q-b.q).map(x=>({number:x.q,case_id:x.id,version:x.version,path:x.path,mode:x.mode}))};
 store.set("bpds-liturgics-sequence-v1",JSON.stringify(selection));
 window.location.search="?sequence=1";
 const report=new Elem();
@@ -168,4 +170,4 @@ const page=read(base+"trainers/sequence.html");
 assert.match(page,/site\.data\.liturgics_trainers_2027 \| jsonify/);
 assert.match(page,/global-navigation\.html/);
 assert.match(read(base+"trainers/index.md"),/sequence\.html/);
-console.log("PASS: 31 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and task-scope review.");
+console.log("PASS: 37 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and task-scope review.");
