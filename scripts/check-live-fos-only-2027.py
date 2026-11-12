@@ -150,6 +150,24 @@ def main():
         ("q09-assembly.html", "lit09-pentecostarion-weekday.json", "assembly", "Цветная Триодь", 26),
         ("q10-assembly.html", "lit10-trinity-saturday.json", "assembly", "Троицкая родительская суббота", 37),
     )
+    variant_games = (
+        ("q11-errors-a.html", "lit11-diagnostic-a.json", 12),
+        ("q11-errors-b.html", "lit11-diagnostic-b.json", 11),
+        ("q11-errors-c.html", "lit11-diagnostic-c.json", 12),
+        ("q12-errors-a.html", "lit12-diagnostic-a.json", 19),
+        ("q12-errors-b.html", "lit12-diagnostic-b.json", 19),
+        ("q12-errors-c.html", "lit12-diagnostic-c.json", 19),
+        ("q13-errors-a.html", "lit13-diagnostic-a.json", 14),
+        ("q13-errors-b.html", "lit13-diagnostic-b.json", 14),
+        ("q13-errors-c.html", "lit13-diagnostic-c.json", 15),
+        ("q14-errors-a.html", "lit14-diagnostic-a.json", 24),
+        ("q14-errors-b.html", "lit14-diagnostic-b.json", 24),
+        ("q14-errors-c.html", "lit14-diagnostic-c.json", 24),
+        ("q15-errors-a.html", "lit15-diagnostic-a.json", 27),
+        ("q15-errors-b.html", "lit15-diagnostic-b.json", 26),
+    )
+    games = games + tuple((name, case, "diagnostic", "Найди и исправь ошибки", count)
+                          for name, case, count in variant_games)
     base_game = "subjects/liturgics/2027/sandbox-pyramid/"
     for file_name, case_file, mode, heading, total_items in games:
         path = base_game + file_name
@@ -205,12 +223,29 @@ def main():
         raise ValueError("The live sequence has no rendered manifest")
     embedded = json.loads(found.group(1))
     qs = embedded.get("questions", [])
-    if len(qs) != 15 or len([c for q in qs for c in q["cases"]]) != 16:
+    if len(qs) != 15 or len([c for q in qs for c in q["cases"]]) != 30:
         raise ValueError("Rendered sequence manifest has incorrect question/case count")
-    if sum(c["mode"] == "diagnostic" for q in qs for c in q["cases"]) != 1:
+    if sum(c["mode"] == "diagnostic" for q in qs for c in q["cases"]) != 15:
         raise ValueError("Error-correction mode missing from equal-access sequence")
     if any("version" not in c or "data_path" not in c for q in qs for c in q["cases"]):
         raise ValueError("Cannot independently restore case progress")
+    slots = embedded.get("variant_slots", [])
+    if len(slots) != 45 or len([v for v in slots if v.get("status") == "published_training"]) != 14:
+        raise ValueError("45 source variant slots are not accurately audited")
+    if not any(v.get("id") == "lit-15-C" and v.get("status") == "requires_alternative_calendar_case"
+               for v in slots):
+        raise ValueError("Q15-C unresolved later-Lent condition must remain explicit")
+    year_path = "subjects/liturgics/2027/trainers/year.html"
+    year_html = request(year_path).decode("utf-8")
+    check_navigation(year_html, year_path, "liturgics")
+    calendar_cases = [c for q in qs for c in q["cases"] if c.get("year")]
+    if len(calendar_cases) != 9 or year_html.count("Собрать последование") != 9:
+        raise ValueError("Calendar catalog must contain exactly nine prepared cases")
+    for c in calendar_cases:
+        if "sandbox-pyramid/" + c["path"].split("/")[-1] not in year_html:
+            raise ValueError("Calendar case game link is missing: " + c["case_id"])
+    print("LIVE YEAR PASS: nine prepared source-grounded services; no invented universal calendar", flush=True)
+    print("LIVE VARIANTS PASS: 45 slots; 14 new diagnostic games, 31 source-blocked; no invented q15-C", flush=True)
     program_js = request("assets/js/liturgics-sequence.js").decode("utf-8")
     program_css = request("assets/css/liturgics-sequence.css").decode("utf-8")
     if not all(token in program_js for token in ("startSelected", "startAll", "bpds-liturgics-sequence-v1", "bpds-liturgics-checked-")):
@@ -225,7 +260,7 @@ def main():
     if "trainers/sequence.html" not in practice_body:
         raise ValueError("Practice landing has no exam sequence")
     print("LIVE SEQUENCE PASS: one / selected / all 15, both modes at q12, full per-case progress versions", flush=True)
-    print("LIVE TRAINERS PASS: 15 exam slots, sixteen real games (15 assembly + 1 error correction), shared JS/CSS/JSON", flush=True)
+    print("LIVE TRAINERS PASS: 15 exam slots, 30 real games (15 assembly + 15 error-correction), shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",
