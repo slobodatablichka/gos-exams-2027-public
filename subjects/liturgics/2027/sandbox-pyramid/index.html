@@ -40,16 +40,34 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 @keyframes fade{from{opacity:0}to{opacity:1}}@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:540px){.wrap{padding:9px 5px 16px}.board{gap:5px}.heading{font-size:13px}.count{font-size:10px}.scroll{height:min(66dvh,620px);padding:3px 11px 9px 3px}.brick{height:27px;padding:0 4px;font-size:10.5px;margin:2px 0}.slot{height:5px}.controls{padding:4px}.controls button{min-height:39px;font-size:13px}.detail{max-height:70dvh;border-radius:13px 13px 0 0;padding:18px 16px}.shade{align-items:flex-end;padding:0}.sub{font-size:11px}h1{font-size:19px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Обе панели одинакового размера; оформление показывает назначение панели. */
+.column.sandbox{background:#eef5fa;border-color:#b4ccdb}
+.column.pyramid{background:#f1f7ee;border-color:#bfd3bc}
+.column.sandbox .heading{background:#dfeefa;color:#204f6d}
+.column.pyramid .heading{background:#dfede0;color:#275a3c}
+.column.sandbox .count{background:#e9f3f9}.column.pyramid .count{background:#e8f3e7}
+.column.sandbox .brick{border-color:#c0d6e2}.column.pyramid .brick{border-color:#c9dbc6}
+.board .column.sandbox{order:1}.board .column.pyramid{order:2}
+.board.swapped .column.sandbox{order:2}.board.swapped .column.pyramid{order:1}
+.board.diagnostic .column.pyramid{order:1}.board.diagnostic .column.sandbox{order:2}
+.board.diagnostic.swapped .column.pyramid{order:2}.board.diagnostic.swapped .column.sandbox{order:1}
+.layoutbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:7px 0 10px}
+.layoutbar button{border:1px solid #a5bac8;background:#fff;border-radius:7px;padding:7px 10px;color:#234f6c;font-size:12px;font-weight:650;cursor:pointer;touch-action:manipulation}
+.layoutbar button:focus-visible{outline:2px solid #26799c;outline-offset:2px}
+.layoutbar .layoutstate{font-size:11px;color:#566e79}
+@media(max-width:540px){.layoutbar{margin:5px 0 7px;gap:4px}.layoutbar button{font-size:11px;padding:6px 8px}.layoutbar .layoutstate{font-size:10px}}
 </style>
 </head>
 <body>{% include global-navigation.html %}<main class="wrap">
 <header><h1>Песочница — Пирамида</h1><a href="../index.html">Литургика · 2027</a></header>
-<div class="sub">Вопрос №11 · Проскомидия · Учебная сборка по материалам БПДС. Одно касание — содержание; удержание и движение — перенос. Лишние кирпичики оставьте слева.</div>
-<div class="board">
+<div class="sub">Вопрос №11 · Проскомидия · Учебная сборка по материалам БПДС. Одно касание — содержание; удержание и движение — перенос. Лишние кирпичики оставьте в Песочнице.</div>
+<div class="layoutbar"><button type="button" id="swapBtn" aria-pressed="false">⇄ Поменять столбцы местами</button><span id="layoutState" class="layoutstate" role="status"></span></div>
+<div class="board" id="gameBoard">
 <section class="column sandbox" aria-label="Песочница"><div class="heading">Песочница</div><div class="count" id="sandCount"></div><div class="scroll" id="sand"></div><div class="controls"><button type="button" id="hintBtn">Подсказка</button><div class="button-feedback" id="hintFeedback" role="status" aria-live="polite" hidden></div></div></section>
-<section class="column" aria-label="Пирамида"><div class="heading">Пирамида</div><div class="count" id="pyramidCount"></div><div class="scroll" id="pyramid"></div><div class="controls"><button type="button" id="checkBtn">Проверить</button><div class="button-feedback" id="checkFeedback" role="status" aria-live="polite" hidden></div></div></section>
+<section class="column pyramid" aria-label="Пирамида"><div class="heading">Пирамида</div><div class="count" id="pyramidCount"></div><div class="scroll" id="pyramid"></div><div class="controls"><button type="button" id="checkBtn">Проверить</button><div class="button-feedback" id="checkFeedback" role="status" aria-live="polite" hidden></div></div></section>
 </div>
-<div id="report" class="report" role="status" aria-live="polite"><strong>Начинайте сборку</strong>Переносите кирпичики из левого столбца в правый. Вставлять можно между любыми двумя элементами. Нажмите на кирпичик, чтобы прочитать пояснение и открыть ссылку на учебный ответ.</div>
+<div id="report" class="report" role="status" aria-live="polite"><strong>Начинайте сборку</strong>Переносите кирпичики из Песочницы в Пирамиду. Вставлять можно между любыми двумя элементами. Нажмите на кирпичик, чтобы прочитать пояснение и открыть ссылку на учебный ответ.</div>
 <div style="font-size:12px;margin:9px 0"><a href="vozdvizhenie.html">Следующее задание: №3 · Воздвижение Креста →</a></div>
 <div class="footer"><button type="button" id="resetBtn">Начать заново</button><span id="saveStatus" style="font-size:11px;color:#607380">Прогресс сохраняется на этом устройстве</span><a href="../examples/q11.html">Преподавательский образец</a><a href="../q11-l3.html">Ответ L3</a></div>
 <div class="kbd">На телефоне: удерживайте кирпичик около четверти секунды, затем тяните. Для прокрутки столбца проводите пальцем по свободной полосе справа от кирпичиков. Для просмотра — коротко нажмите. При открытой карточке Песочница не перемешивается. Клавиатура: Enter — просмотр; пробел — выбрать для переноса; стрелки — выбрать место; Enter — разместить; Esc — отменить.</div>
@@ -78,11 +96,11 @@ const required=DATA.filter(x=>!x.extra).map(x=>x.id);
 const storageKey="bpds-sandbox-pyramid-"+CASE_VERSION;
 const sandNode=document.getElementById("sand"), pyramidNode=document.getElementById("pyramid");
 const report=document.getElementById("report"), modalHost=document.getElementById("modalHost");
-let sand=[],pyramid=[],modalOpen=false,dragging=false,hintState={signature:"",level:0},keyboardPick=null,animationInProgress=false,activeTouch=false;
+let sand=[],pyramid=[],modalOpen=false,dragging=false,hintState={signature:"",level:0},keyboardPick=null,animationInProgress=false,activeTouch=false,layoutSwapped=false;
 function shuffled(values){let a=[...values];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function validSaved(s){return !!s&&Array.isArray(s.sand)&&Array.isArray(s.pyramid)&&[...s.sand,...s.pyramid].length===DATA.length&&new Set([...s.sand,...s.pyramid]).size===DATA.length&&[...s.sand,...s.pyramid].every(x=>dataById.has(x))}
-function persist(){try{localStorage.setItem(storageKey,JSON.stringify({sand,pyramid}));document.getElementById("saveStatus").textContent="Сохранено на этом устройстве"}catch(e){document.getElementById("saveStatus").textContent="Сохранение недоступно"}}
-function init(){let restored;try{restored=JSON.parse(localStorage.getItem(storageKey))}catch(e){}if(validSaved(restored)){sand=restored.sand;pyramid=restored.pyramid}else{sand=shuffled(DATA.map(x=>x.id));pyramid=[];persist()}render()}
+function persist(){try{localStorage.setItem(storageKey,JSON.stringify({sand,pyramid,layoutSwapped}));document.getElementById("saveStatus").textContent="Сохранено на этом устройстве"}catch(e){document.getElementById("saveStatus").textContent="Сохранение недоступно"}}
+function init(){let restored;try{restored=JSON.parse(localStorage.getItem(storageKey))}catch(e){}if(validSaved(restored)){sand=restored.sand;pyramid=restored.pyramid;layoutSwapped=restored.layoutSwapped===true}else{sand=shuffled(DATA.map(x=>x.id));pyramid=[];persist()}applyLayout();render()}
 function render(keepScroll=true){const leftScroll=sandNode.scrollTop,rightScroll=pyramidNode.scrollTop;sandNode.replaceChildren();pyramidNode.replaceChildren();
  for(const [node,arr,zone] of [[sandNode,sand,"sand"],[pyramidNode,pyramid,"pyramid"]]){
   if(!arr.length){let e=document.createElement("div");e.className="placeholder";e.textContent=zone==="sand"?"Все кирпичики перенесены":"Перенесите кирпичик сюда";node.append(e)}
@@ -122,7 +140,7 @@ function modalFor(id){const item=dataById.get(id);if(!item)return;modalOpen=true
  function onKey(e){if(e.key==="Escape"){e.preventDefault();close()}else if(e.key==="Tab"){e.preventDefault();card.focus()}}
  shade.addEventListener("pointerdown",e=>{if(e.target===shade)close()});document.addEventListener("keydown",onKey)
 }
-function moveItem(id,targetZone,index){clearButtonFeedback();const from=sand.includes(id)?sand:pyramid;const to=targetZone==="sand"?sand:pyramid;let at=from.indexOf(id);if(at<0)return;from.splice(at,1);if(to===from&&index>at)index--;index=Math.max(0,Math.min(index,to.length));to.splice(index,0,id);hintState={signature:"",level:0};persist();render();document.getElementById("saveStatus").textContent="Сборка сохранена"}
+function moveItem(id,targetZone,index,fromDrag=false){clearButtonFeedback();const from=sand.includes(id)?sand:pyramid;const to=targetZone==="sand"?sand:pyramid;let at=from.indexOf(id);if(at<0)return;from.splice(at,1);if(to===from&&!fromDrag&&index>at)index--;index=Math.max(0,Math.min(index,to.length));to.splice(index,0,id);hintState={signature:"",level:0};persist();render();document.getElementById("saveStatus").textContent="Сборка сохранена"}
 function closestInsertion(node,y,ignoreId){const bricks=[...node.querySelectorAll(".brick")].filter(n=>n.dataset.id!==ignoreId);for(let i=0;i<bricks.length;i++){const r=bricks[i].getBoundingClientRect();if(y<r.top+r.height/2)return i}return bricks.length}
 function touchStart(e){
  if(modalOpen||dragging||activeTouch||e.touches.length!==1)return;
@@ -137,15 +155,18 @@ function touchStart(e){
  function scrollNearEdge(){scrollFrame=0;if(!held)return;const node=targetAt(lastX);if(node){const r=node.getBoundingClientRect();if(lastY<r.top+40&&lastY>=r.top-20)node.scrollTop-=9;else if(lastY>r.bottom-40&&lastY<=r.bottom+20)node.scrollTop+=9}scrollFrame=requestAnimationFrame(scrollNearEdge)}
  function cleanup(){window.clearTimeout(timer);if(scrollFrame)cancelAnimationFrame(scrollFrame);document.removeEventListener("touchmove",move);document.removeEventListener("touchend",end);document.removeEventListener("touchcancel",cancel);if(ghost)ghost.remove();brick.classList.remove("drag-source");dragging=false;activeTouch=false}
  function move(ev){if(ev.touches.length!==1){cleanup();return}const t=fingerIn(ev.touches);if(!t)return;lastX=t.clientX;lastY=t.clientY;if(!held){if(Math.hypot(lastX-downX,lastY-downY)>9){aborted=true;window.clearTimeout(timer)}return}if(ev.cancelable)ev.preventDefault();position(lastX,lastY)}
- function end(ev){const t=fingerIn(ev.changedTouches);if(!t)return;const active=held,x=t.clientX,y=t.clientY;cleanup();if(!active){if(!aborted){if(ev.cancelable)ev.preventDefault();modalFor(id)}return}if(ev.cancelable)ev.preventDefault();const node=targetAt(x);if(!node)return;moveItem(id,node===sandNode?"sand":"pyramid",closestInsertion(node,y,id))}
+ function end(ev){const t=fingerIn(ev.changedTouches);if(!t)return;const active=held,x=t.clientX,y=t.clientY;cleanup();if(!active){if(!aborted){if(ev.cancelable)ev.preventDefault();modalFor(id)}return}if(ev.cancelable)ev.preventDefault();const node=targetAt(x);if(!node)return;moveItem(id,node===sandNode?"sand":"pyramid",closestInsertion(node,y,id),true)}
  function cancel(ev){if(fingerIn(ev.changedTouches))cleanup()}
  document.addEventListener("touchmove",move,{passive:false});document.addEventListener("touchend",end,{passive:false});document.addEventListener("touchcancel",cancel,{passive:true});
 }
+function zoneAtX(x){const a=sandNode.getBoundingClientRect(),b=pyramidNode.getBoundingClientRect();if(x>=a.left&&x<=a.right)return "sand";if(x>=b.left&&x<=b.right)return "pyramid";return null}
+function applyLayout(){const board=document.getElementById("gameBoard");board.classList.toggle("swapped",layoutSwapped);document.getElementById("swapBtn").setAttribute("aria-pressed",String(layoutSwapped));const diag=board.classList.contains("diagnostic");const first=(diag!==layoutSwapped)?"Пирамида":"Песочница";document.getElementById("layoutState").textContent="Слева: "+first+" · Справа: "+(first==="Пирамида"?"Песочница":"Пирамида")}
+document.getElementById("swapBtn").addEventListener("click",()=>{layoutSwapped=!layoutSwapped;applyLayout();persist()});
 function pointerStart(e){if(e.pointerType==="touch"&&"ontouchstart" in window)return;if(modalOpen||dragging||e.button!==0)return;const brick=e.currentTarget;const id=brick.dataset.id;const downX=e.clientX,downY=e.clientY;let held=false,aborted=false,ghost=null,lastX=downX,lastY=downY;let timer=window.setTimeout(()=>{if(aborted)return;held=true;dragging=true;brick.classList.add("drag-source");ghost=document.createElement("div");ghost.className="ghost";ghost.textContent=dataById.get(id).name;ghost.style.width=brick.getBoundingClientRect().width+"px";document.body.append(ghost);position(lastX,lastY);},245);
  function position(x,y){if(!ghost)return;ghost.style.left=(x-ghost.offsetWidth/2)+"px";ghost.style.top=(y-15)+"px"}
  function cleanup(){window.clearTimeout(timer);document.removeEventListener("pointermove",move);document.removeEventListener("pointerup",end);document.removeEventListener("pointercancel",cancel);if(ghost)ghost.remove();brick.classList.remove("drag-source");dragging=false}
- function move(ev){lastX=ev.clientX;lastY=ev.clientY;if(!held&&Math.hypot(lastX-downX,lastY-downY)>9){aborted=true;clearTimeout(timer);return}if(!held)return;ev.preventDefault();position(lastX,lastY);const target=lastX>pyramidNode.getBoundingClientRect().left?"pyramid":"sand";const node=target==="sand"?sandNode:pyramidNode;if(ev.clientY<node.getBoundingClientRect().top+35)node.scrollTop-=10;if(ev.clientY>node.getBoundingClientRect().bottom-35)node.scrollTop+=10}
- function end(ev){const active=held,x=ev.clientX,y=ev.clientY;cleanup();if(!active){if(!aborted)modalFor(id);return}const l=sandNode.getBoundingClientRect(),r=pyramidNode.getBoundingClientRect();let zone=(x>r.left&&x<r.right)?"pyramid":(x>l.left&&x<l.right)?"sand":null;if(!zone)return;const node=zone==="sand"?sandNode:pyramidNode;moveItem(id,zone,closestInsertion(node,y,id))}
+ function move(ev){lastX=ev.clientX;lastY=ev.clientY;if(!held&&Math.hypot(lastX-downX,lastY-downY)>9){aborted=true;clearTimeout(timer);return}if(!held)return;ev.preventDefault();position(lastX,lastY);const target=zoneAtX(lastX);if(!target)return;const node=target==="sand"?sandNode:pyramidNode;if(ev.clientY<node.getBoundingClientRect().top+35)node.scrollTop-=10;if(ev.clientY>node.getBoundingClientRect().bottom-35)node.scrollTop+=10}
+ function end(ev){const active=held,x=ev.clientX,y=ev.clientY;cleanup();if(!active){if(!aborted)modalFor(id);return}const l=sandNode.getBoundingClientRect(),r=pyramidNode.getBoundingClientRect();let zone=(x>r.left&&x<r.right)?"pyramid":(x>l.left&&x<l.right)?"sand":null;if(!zone)return;const node=zone==="sand"?sandNode:pyramidNode;moveItem(id,zone,closestInsertion(node,y,id),true)}
  function cancel(){cleanup()}
  document.addEventListener("pointermove",move,{passive:false});document.addEventListener("pointerup",end);document.addEventListener("pointercancel",cancel);
 }
@@ -162,7 +183,7 @@ function diagnose(){const present=new Set(pyramid),missing=required.filter(id=>!
  if(misplaced.length)errors.push({kind:"order",ids:misplaced,message:"Нарушен порядок. Достаточно переставить "+misplaced.length+" "+(misplaced.length===1?"кирпичик.":"кирпичика(ов).")+" Проверьте взаимное расположение этапов."});
  return {missing,extra,misplaced,errors,correct:!missing.length&&!extra.length&&!misplaced.length}}
 document.getElementById("checkBtn").addEventListener("click",()=>{const d=diagnose();if(d.correct){showReport("Порядок учебного образца собран верно",["Все девять основных элементов расположены по принятой учебной схеме.","Это самопроверка последовательности, а не официальный допуск: объяснение молитв, уставные детали и история оцениваются отдельно."],"good")}else{const msgs=d.errors.map(x=>x.message);if(d.misplaced.length)msgs.push("Подсказка под Песочницей поможет определить направление исправления.");showReport("Обнаружены нарушения: "+d.errors.length+" групп(ы)",msgs,"warn")}const summary=d.correct?"Порядок собран верно":"Нарушения: "+d.errors.length+" групп(ы)";showButtonFeedback("check",summary,d.correct?["Основные элементы в правильном порядке."]:d.errors.map(x=>x.message));});
-function hintProblem(){const d=diagnose();if(d.extra.length){const id=d.extra[0];return {kind:"extra",id,signature:"extra:"+id,lines:["Проверьте, все ли кирпичики справа относятся к проскомидии.","Обратите внимание на кирпичик «"+dataById.get(id).name+"».","Этот кирпичик относится к другому этапу Литургии. Верните его в Песочницу."]}}
+function hintProblem(){const d=diagnose();if(d.extra.length){const id=d.extra[0];return {kind:"extra",id,signature:"extra:"+id,lines:["Проверьте, все ли кирпичики в Пирамиде относятся к проскомидии.","Обратите внимание на кирпичик «"+dataById.get(id).name+"».","Этот кирпичик относится к другому этапу Литургии. Верните его в Песочницу."]}}
  if(d.missing.length){let id=d.missing[0];const inP=pyramid.filter(x=>!dataById.get(x).extra),firstIndex=required.indexOf(id),before=required.slice(0,firstIndex).reverse().find(x=>inP.includes(x)),after=required.slice(firstIndex+1).find(x=>inP.includes(x));return{kind:"missing",id,signature:"missing:"+id,lines:["Пирамида пока неполна. Проверьте недостающий этап в Песочнице.","Найдите кирпичик «"+dataById.get(id).name+"».","Он должен располагаться "+(before?"после «"+dataById.get(before).name+"»":after?"перед «"+dataById.get(after).name+"»":"в начале последовательности")+". Перенесите его самостоятельно."]}}
  if(d.misplaced.length){const id=d.misplaced[0],idx=required.indexOf(id),before=required.slice(0,idx).reverse().find(x=>pyramid.includes(x)),after=required.slice(idx+1).find(x=>pyramid.includes(x));return{kind:"order",id,signature:"order:"+pyramid.join(","),lines:["Состав близок к верному, но есть нарушение последовательности. Сравните соседние этапы.","Проверьте место кирпичика «"+dataById.get(id).name+"».","Правильная опора: "+(before?"после «"+dataById.get(before).name+"»":"в начале")+(after?" и перед «"+dataById.get(after).name+"»":"")+". Переместите кирпичик сами."]}}
  return null}
