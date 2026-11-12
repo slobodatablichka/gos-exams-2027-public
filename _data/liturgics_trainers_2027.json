@@ -7,15 +7,29 @@
       "id": "01",
       "number": 1,
       "title": "Седмичные и субботние службы Октоиха",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit01-octoechos-weekday",
+          "mode": "assembly",
+          "label": "Собери: вседневная схема (без календарной даты)",
+          "path": "sandbox-pyramid/q01-assembly.html"
+        }
+      ]
     },
     {
       "id": "02",
       "number": 2,
       "title": "Воскресное всенощное бдение",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit02-sunday-indiction",
+          "mode": "assembly",
+          "label": "Собери: воскресное бдение, индикт и Симеон",
+          "path": "sandbox-pyramid/q02-assembly.html"
+        }
+      ]
     },
     {
       "id": "03",
@@ -35,8 +49,15 @@
       "id": "04",
       "number": 4,
       "title": "Предпразднства и попразднства",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit04-sozont-forefeast",
+          "mode": "assembly",
+          "label": "Собери: 7 сентября, Созонт",
+          "path": "sandbox-pyramid/q04-assembly.html"
+        }
+      ]
     },
     {
       "id": "05",
@@ -63,8 +84,15 @@
       "id": "07",
       "number": 7,
       "title": "Храмовый праздник",
-      "status": "planned",
-      "cases": []
+      "status": "available",
+      "cases": [
+        {
+          "case_id": "lit07-nicholas-temple",
+          "mode": "assembly",
+          "label": "Собери: храм святителя Николая",
+          "path": "sandbox-pyramid/q07-assembly.html"
+        }
+      ]
     },
     {
       "id": "08",
