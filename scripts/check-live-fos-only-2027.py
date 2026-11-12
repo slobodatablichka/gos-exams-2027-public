@@ -121,6 +121,26 @@ def main():
         path = f"subjects/{slug}/2027/{route}"
         check_navigation(request(path).decode("utf-8", errors="replace"), path, slug)
 
+    # Interactive Liturgics games have stable deep links and separate inline scripts.
+    # Test them explicitly; checking 450 answer pages does not cover these routes.
+    games = (
+        ("sandbox-pyramid/index.html", "Проскомидия"),
+        ("sandbox-pyramid/vozdvizhenie.html", "Воздвижение"),
+        ("sandbox-pyramid/velikiy-post.html", "Великий пост"),
+        ("sandbox-pyramid/q12-errors.html", "Найди и исправь ошибки"),
+    )
+    for route, heading in games:
+        path = "subjects/liturgics/2027/" + route
+        body = request(path).decode("utf-8", errors="replace")
+        check_navigation(body, path, "liturgics")
+        if heading not in body or 'id="sand"' not in body or 'id="pyramid"' not in body:
+            raise ValueError("Incorrect Liturgics game or missing columns: " + path)
+        if 'id="swapBtn"' not in body or 'class="column pyramid"' not in body:
+            raise ValueError("Swappable two-column interface missing: " + path)
+        if "function applyLayout()" not in body:
+            raise ValueError("Layout toggle code missing: " + path)
+        print("LIVE GAME PASS", path, flush=True)
+
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",
                   "sessions/01/q12-l3.html", "sessions/19/q23-dogmatics-l3.html"]
