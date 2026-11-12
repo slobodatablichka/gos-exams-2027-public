@@ -454,6 +454,16 @@
           "path": "sandbox-pyramid/q15-errors-b.html",
           "version": "lit15-diagnostic-b-v1",
           "data_path": "sandbox-pyramid/data/lit15-diagnostic-b.json"
+        },
+        {
+          "case_id": "lit15-diagnostic-c",
+          "mode": "diagnostic",
+          "variant": "В",
+          "source_variant_id": "lit-15-C",
+          "label": "Найди и исправь ошибки · В",
+          "path": "sandbox-pyramid/q15-errors-c.html",
+          "version": "lit15-diagnostic-c-v1",
+          "data_path": "sandbox-pyramid/data/lit15-diagnostic-c.json"
         }
       ]
     }
@@ -1245,14 +1255,12 @@
       "variant": "В",
       "condition": "опущены молитвы о просвещаемых",
       "source_type": "diagnostic_order_or_meaning",
-      "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "source_review": "diagnostic_key_reviewed",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit15-diagnostic-c",
       "task_scope_sufficient": true,
       "task_focus": "Восстановить молитвы о просвещаемых **там, где они положены**, и их место в чине; не требовать конкретную дату или новую полную службу",
       "source_basis": "Ключ №15: прямо указан период допустимости; существующая игра для второй седмицы не служит ключом этого варианта",

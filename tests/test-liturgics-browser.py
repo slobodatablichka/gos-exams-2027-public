@@ -14,7 +14,7 @@ def ensure_deployed():
             req = Request(SEQ, headers={"User-Agent": "FOS2027-Exam-Browser-Test", "Cache-Control": "no-cache"})
             with urlopen(req, timeout=20) as res:
                 content = res.read().decode("utf-8")
-            if 'id="liturgicsSequenceManifest"' in content and "lit15-diagnostic-b" in content:
+            if 'id="liturgicsSequenceManifest"' in content and "lit15-diagnostic-c" in content:
                 return
         except Exception:
             pass
@@ -46,7 +46,7 @@ def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
-    assert page.locator("#oneCase option").count() == 30
+    assert page.locator("#oneCase option").count() == 31
     assert page.locator("#mode12 option").count() == 5
     page.select_option("#oneCase", "lit12-diagnostic")
     page.locator("#startOne").click()
@@ -112,6 +112,15 @@ def test_mobile(context):
     page.wait_for_url("**/sandbox-pyramid/q11-errors-b.html?sequence=1")
     expect(page.locator("#pyramid .brick")).to_have_count(9)
     expect(page.locator(".exam-sequence-nav")).to_be_visible()
+    # Stage 7: independent variant В; game starts with the required prayers missing.
+    page.goto(SEQ, wait_until="domcontentloaded")
+    page.select_option("#oneCase","lit15-diagnostic-c")
+    page.locator("#startOne").click()
+    page.wait_for_url("**/sandbox-pyramid/q15-errors-c.html?sequence=1")
+    assert page.locator('#pyramid .brick[data-id="enlightened"]').count() == 0
+    assert page.locator('#sand .brick[data-id="enlightened"]').count() == 1
+    page.locator("#hintBtn").click()
+    assert "Уровень 1 из 3" in page.locator("#hintFeedback").inner_text()
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")
 
