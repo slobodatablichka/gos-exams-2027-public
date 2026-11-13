@@ -258,6 +258,36 @@
             "label": "Седмичная служба одному святому без знака",
             "qualifier": "В пределах колонки №09_04, без добавления других условий"
           }
+        },
+        {
+          "case_id": "lit09-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-09-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q09-assembly-a.html",
+          "version": "lit09-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit09-assembly-a.json"
+        },
+        {
+          "case_id": "lit09-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-09-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q09-assembly-b.html",
+          "version": "lit09-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit09-assembly-b.json"
+        },
+        {
+          "case_id": "lit09-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-09-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q09-assembly-c.html",
+          "version": "lit09-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit09-assembly-c.json"
         }
       ]
     },
@@ -280,6 +310,36 @@
             "label": "Троицкая родительская суббота",
             "qualifier": "Именно Троицкая, не Мясопустная или субботы Великого поста"
           }
+        },
+        {
+          "case_id": "lit10-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-10-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q10-assembly-a.html",
+          "version": "lit10-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit10-assembly-a.json"
+        },
+        {
+          "case_id": "lit10-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-10-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q10-assembly-b.html",
+          "version": "lit10-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit10-assembly-b.json"
+        },
+        {
+          "case_id": "lit10-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-10-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q10-assembly-c.html",
+          "version": "lit10-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit10-assembly-c.json"
         }
       ]
     },
@@ -980,13 +1040,11 @@
       "condition": "два святых без знака",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit09-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Два святых без знака: распределение стихир Минеи 3+3 вместо одного святого",
       "source_basis": "Ключ №9 и соответствующая колонка таблицы; объединённые ячейки важны только если затронуты",
@@ -999,13 +1057,11 @@
       "condition": "полиелейный святой",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit09-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Полиелейный святой: переход к указанной полиелейной колонке вечерни/утрени",
       "source_basis": "Ключ №9 и полиелейная колонка; объединённые ячейки только по нужным строкам",
@@ -1018,13 +1074,11 @@
       "condition": "субботний день до отдания Пасхи",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit09-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Суббота до отдания Пасхи: перейти с будничной на субботнюю схему №09_08",
       "source_basis": "Ключ №9 и отдельная субботняя таблица",
@@ -1037,13 +1091,11 @@
       "condition": "Мясопустная суббота",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit10-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Мясопустная вселенская суббота: отличить заупокойные песнопения от Троицкой субботы",
       "source_basis": "Ключ изменений №10; собственные тексты Мясопустной субботы",
@@ -1056,13 +1108,11 @@
       "condition": "суббота второй седмицы Великого поста",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit10-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Суббота второй седмицы Великого поста: собственный постовой заупокойный чин",
       "source_basis": "Ключ изменений №10; Постная Триодь",
@@ -1075,13 +1125,11 @@
       "condition": "совпадение Мясопустной субботы со Сретением или храмовой памятью",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit10-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Мясопустная суббота при совпадении со Сретением ИЛИ храмовой памятью: правило переноса только выбранного условия",
       "source_basis": "Ключ изменений №10; проверить рубрику нужного совпадения, без произвольного года",
