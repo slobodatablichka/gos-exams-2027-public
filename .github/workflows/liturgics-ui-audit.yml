@@ -1,0 +1,30 @@
+name: Liturgics public UI and navigation audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'subjects/liturgics/2027/**'
+      - '_includes/liturgics-*.html'
+      - '_includes/global-navigation.html'
+      - '_data/liturgics_trainers_2027.json'
+      - 'assets/js/liturgics-*.js'
+      - 'scripts/audit-liturgics-ui.py'
+      - '.github/workflows/liturgics-ui-audit.yml'
+  pull_request:
+    paths:
+      - 'subjects/liturgics/2027/**'
+      - '_includes/liturgics-*.html'
+      - '_data/liturgics_trainers_2027.json'
+      - 'assets/js/liturgics-*.js'
+      - 'scripts/audit-liturgics-ui.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate wording, 61 trainer routes, and all local Liturgics links
+        run: python scripts/audit-liturgics-ui.py
