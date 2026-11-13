@@ -114,7 +114,7 @@ for(const q of [2,3])for(const v of ["А","Б","В"]){
  assert.ok(d.items.filter(x=>!x.extra).length>=9);
 }
 const sundayExaltation=JSON.parse(read(base+"sandbox-pyramid/data/lit03-assembly-a.json"));
-assert.ok(sundayExaltation.items.some(x=>!x.extra&&x.detail.includes("воскресное утреннее Евангелие")===false&&x.name.includes("не воскресное")));
+assert.ok(sundayExaltation.items.some(x=>!x.extra&&x.name.includes("не воскресное")&&x.detail.includes("не добавляется")));
 assert.ok(sundayExaltation.items.some(x=>x.extra&&x.name.includes("воскресные стихиры")));
 const feastTheotokos=JSON.parse(read(base+"sandbox-pyramid/data/lit03-assembly-c.json"));
 assert.ok(feastTheotokos.items.some(x=>!x.extra&&x.detail.includes("соединяют")));
