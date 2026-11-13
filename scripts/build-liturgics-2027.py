@@ -84,36 +84,36 @@ def main():
         existing = index_path.read_text(encoding="utf-8")
         if "## Вопросы №1–25" in existing:
             curated_intro = existing.split("## Вопросы №1–25", 1)[0]
-            curated_intro = re.sub(r"\\A---\\n.*?\\n---\\n", "", curated_intro, flags=re.S).strip()
+            curated_intro = re.sub(r"\A---\n.*?\n---\n", "", curated_intro, flags=re.S).strip()
     if not curated_intro:
         curated_intro = (
-            "# Литургика — официальный экзамен 2027\\n\\n"
-            "**Новый перечень ФОС: 25 вопросов, 15 практических и 10 теоретических.**\\n\\n"
+            "# Литургика — официальный экзамен 2027\n\n"
+            "**Новый перечень ФОС: 25 вопросов, 15 практических и 10 теоретических.**\n\n"
             "[Богослужебный практикум — занятия №1–10](practicum/index.html) · "
             "[Каталог 61 электронного тренажёра](trainers/index.html) · "
-            "[Последовательная самопроверка](trainers/sequence.html)\\n\\n"
+            "[Последовательная самопроверка](trainers/sequence.html)\n\n"
             "[Методика составления служб](practice/methodology-a.html) · "
-            "[Методика литургических чинов](practice/methodology-b.html)\\n\\n"
+            "[Методика литургических чинов](practice/methodology-b.html)\n\n"
         )
     catalog = [
         pre("Литургика — новый экзамен 2027"), curated_intro.rstrip(),
-        "\\n\\n## Вопросы №1–25\\n{: #liturgics-fos }\\n\\n### Практические вопросы №1–15\\n\\n",
+        "\n\n## Вопросы №1–25\n{: #liturgics-fos }\n\n### Практические вопросы №1–15\n\n",
     ]
     for n in range(1, 26):
         if n == 16:
-            catalog.append("### Теоретические вопросы №16–25\\n\\n")
-        entry = f'<div id="q{n:02d}"></div>\\n\\n**[№{n}. {docs[n]["question"]}](q{n:02d}-l3.html)**\\n\\n'
+            catalog.append("### Теоретические вопросы №16–25\n\n")
+        entry = f'<div id="q{n:02d}"></div>\n\n**[№{n}. {docs[n]["question"]}](q{n:02d}-l3.html)**\n\n'
         entry += " · ".join(f"[{v.upper()}](q{n:02d}-{v}.html) · [PDF](pdf/q{n:02d}-{v}.pdf)" for v in LEVELS)
         if n <= 15:
             entry += f" · [Практика](practice/q{n:02d}.html) · [Упражнения](examples/q{n:02d}.html)"
-            entry += f'\\n\\n{{% include liturgics-game-links.html id="{n:02d}" %}}'
-        catalog.append(entry + "\\n\\n")
-    index_path.write_text("".join(catalog).rstrip() + "\\n", encoding="utf-8")
+            entry += f'\n\n{{% include liturgics-game-links.html id="{n:02d}" %}}'
+        catalog.append(entry + "\n\n")
+    index_path.write_text("".join(catalog).rstrip() + "\n", encoding="utf-8")
     (dest/"numbers.md").write_text(
         pre("Вопросы №1–25") +
-        "# Вопросы №1–25\\n\\n"
-        "**[Открыть единый перечень вопросов](index.html)**\\n\\n"
-        "На странице предмета находятся все 25 вопросов в порядке официальных номеров.\\n",
+        "# Вопросы №1–25\n\n"
+        "**[Открыть единый перечень вопросов](index.html)**\n\n"
+        "На странице предмета находятся все 25 вопросов в порядке официальных номеров.\n",
         encoding="utf-8",
     )
     # Existing PDF renderer + searchable A4 text, Cyrillic, bookmarks and TOC.
