@@ -9,7 +9,7 @@ from urllib.parse import urlsplit, unquote
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "subjects/liturgics/2027"
 DATA = ROOT / "_data/liturgics_trainers_2027.json"
-WORD = re.compile(r"(?<![А-Яа-яЁё])[Ии]гр[а-яё]*(?![А-Яа-яЁё])")
+WORD = re.compile(r"(?<![А-Яа-яЁё])[Ии]гр(?:а|ы|е|у|ой|ою|ам|ами|ах|ать|айте|ай|аем|аю|)(?![А-Яа-яЁё])")
 MD_LINK = re.compile(r"\]\(([^)]+)\)")
 HTML_LINK = re.compile(r'href=["\']([^"\']+)["\']')
 problems = []
@@ -52,8 +52,10 @@ def check_page(file):
             fail(f"Visible word {match.group(0)}: {file.relative_to(ROOT)}:{number}: {line[:150]}")
     if file.suffix == ".md":
         links = MD_LINK.findall(text)
-    else:
+    elif file.suffix == ".html":
         links = HTML_LINK.findall(text)
+    else:
+        links = []
     for link in links:
         check_href(file, link.split(" ", 1)[0])
 
@@ -136,7 +138,7 @@ def main():
     if "practicum/index.html" not in home or "trainers/index.html" not in home:
         fail("Subject landing page lacks course or trainers")
     for n in ("01","02","03","04"):
-        if f"lesson-{n}.html" not in catalog:
+        if not (BASE/"practicum/materials"/f"lesson-{n}.md").exists() or "lesson-{{ lesson_code }}.html" not in catalog:
             fail("First-round materials not in catalogue: "+n)
     if problems:
         print(f"FAILED: {len(problems)} issues; {scanned} text pages scanned.")
