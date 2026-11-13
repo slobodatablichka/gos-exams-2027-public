@@ -58,7 +58,15 @@ def main():
         for folder in ("practice","examples"):
             src=private/"materials/liturgics/2027"/folder/f"q{n:02d}.md"
             if not src.is_file():raise ValueError("Missing "+str(src))
-            write(f"{folder}/q{n:02d}.md",f"Литургика — {folder} №{n}",src.read_text(encoding="utf-8"),f"[L3](../q{n:02d}-l3.html) · [L2](../q{n:02d}-l2.html) · [L1](../q{n:02d}-l1.html)\n\n")
+            source_text = src.read_text(encoding="utf-8")
+            # Publish trainer links on every teacher-method and example page.
+            # Keep the historical include filename and all existing case IDs/URLs.
+            include = '{% include liturgics-game-links.html id="' + f"{n:02d}" + '" %}'
+            source_text, substitutions = re.subn(r"(?m)^# .+$", lambda m: m.group(0) + "\n\n" + include, source_text, count=1)
+            if substitutions != 1:
+                raise ValueError("Missing title in teacher source: " + str(src))
+            write(f"{folder}/q{n:02d}.md", f"Литургика — {folder} №{n}", source_text,
+                  f"[L3](../q{n:02d}-l3.html) · [L2](../q{n:02d}-l2.html) · [L1](../q{n:02d}-l1.html)\n\n")
     for n in range(1,11):
         src=private/"materials/liturgics/2027/examples/full"/f"q{n:02d}.md"
         if not src.is_file():raise ValueError("Missing "+str(src))
@@ -67,19 +75,47 @@ def main():
         src=private/"materials/liturgics/2027/practice"/name
         if not src.is_file():raise ValueError("Missing "+str(src))
         write(f"practice/methodology-{s}.md",f"Литургика — методика {s}",src.read_text(encoding="utf-8"))
-    top="# Литургика — официальный экзамен 2027\n\n**Новый перечень: 25 вопросов, 15 практических и 10 теоретических.** Экзамен — 18 мая 2027 года. [Старый перечень и ранее опубликованные ответы](../index.html) сохранены.\n\n"
-    top+="[По номерам](numbers.html) · [Методика составления служб](practice/methodology-a.html) · [Методика литургических чинов](practice/methodology-b.html)\n\n**PDF-сборники:** "+ " · ".join(f"[{v.upper()}](pdf/{v}.pdf)" for v in LEVELS)+"\n\n"
-    catalog=[top];numbers=["# Литургика — официальные билеты 2027 по номерам\n\n[По смысловым разделам](index.html)\n\n"]
-    for ident,title,ns in GRPS:
-        catalog.append(f"## {title}\n\n")
-        for n in ns:
-            entry=f'<div id="q{n:02d}"></div>\n\n**[№{n}. {docs[n]["question"]}](q{n:02d}-l3.html)**\n\n'
-            entry+=" · ".join(f"[{v.upper()}](q{n:02d}-{v}.html) · [PDF](pdf/q{n:02d}-{v}.pdf)" for v in LEVELS)
-            if n<=15:entry+=f" · [Практика](practice/q{n:02d}.html) · [Упражнения](examples/q{n:02d}.html)"
-            catalog.append(entry+"\n\n");numbers.append(entry+"\n\n")
-    dest=ROOT/BASE
-    (dest/"index.md").write_text(pre("Литургика — новый экзамен 2027")+"".join(catalog),encoding="utf-8")
-    (dest/"numbers.md").write_text(pre("Литургика — 25 билетов 2027")+"".join(numbers),encoding="utf-8")
+    # Canonical official FOS list, keeping the curated course/trainer introduction.
+    # A future source release must not overwrite the approved learning navigation.
+    dest = ROOT / BASE
+    index_path = dest / "index.md"
+    curated_intro = ""
+    if index_path.exists():
+        existing = index_path.read_text(encoding="utf-8")
+        if "## Вопросы №1–25" in existing:
+            curated_intro = existing.split("## Вопросы №1–25", 1)[0]
+            curated_intro = re.sub(r"\\A---\\n.*?\\n---\\n", "", curated_intro, flags=re.S).strip()
+    if not curated_intro:
+        curated_intro = (
+            "# Литургика — официальный экзамен 2027\\n\\n"
+            "**Новый перечень ФОС: 25 вопросов, 15 практических и 10 теоретических.**\\n\\n"
+            "[Богослужебный практикум — занятия №1–10](practicum/index.html) · "
+            "[Каталог 61 электронного тренажёра](trainers/index.html) · "
+            "[Последовательная самопроверка](trainers/sequence.html)\\n\\n"
+            "[Методика составления служб](practice/methodology-a.html) · "
+            "[Методика литургических чинов](practice/methodology-b.html)\\n\\n"
+        )
+    catalog = [
+        pre("Литургика — новый экзамен 2027"), curated_intro.rstrip(),
+        "\\n\\n## Вопросы №1–25\\n{: #liturgics-fos }\\n\\n### Практические вопросы №1–15\\n\\n",
+    ]
+    for n in range(1, 26):
+        if n == 16:
+            catalog.append("### Теоретические вопросы №16–25\\n\\n")
+        entry = f'<div id="q{n:02d}"></div>\\n\\n**[№{n}. {docs[n]["question"]}](q{n:02d}-l3.html)**\\n\\n'
+        entry += " · ".join(f"[{v.upper()}](q{n:02d}-{v}.html) · [PDF](pdf/q{n:02d}-{v}.pdf)" for v in LEVELS)
+        if n <= 15:
+            entry += f" · [Практика](practice/q{n:02d}.html) · [Упражнения](examples/q{n:02d}.html)"
+            entry += f'\\n\\n{{% include liturgics-game-links.html id="{n:02d}" %}}'
+        catalog.append(entry + "\\n\\n")
+    index_path.write_text("".join(catalog).rstrip() + "\\n", encoding="utf-8")
+    (dest/"numbers.md").write_text(
+        pre("Вопросы №1–25") +
+        "# Вопросы №1–25\\n\\n"
+        "**[Открыть единый перечень вопросов](index.html)**\\n\\n"
+        "На странице предмета находятся все 25 вопросов в порядке официальных номеров.\\n",
+        encoding="utf-8",
+    )
     # Existing PDF renderer + searchable A4 text, Cyrillic, bookmarks and TOC.
     subject_pdf._external_article_link=lambda r,l,slug:f"https://slobodatablichka.github.io/gos-exams-2027-public/subjects/liturgics/2027/q{r['official_number']:02d}-{l}.html"
     manifest={"source_sha":a.source_sha,"pdfs":[]}
