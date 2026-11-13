@@ -55,3 +55,7 @@ header a{color:#235c7c;text-decoration:none;font-size:13px}h1{font-size:clamp(18
 /* Only visible while a user runs an exam sequence. */
 .exam-sequence-nav{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:11px 0;padding:11px 12px;border:1px solid #cddde7;border-radius:9px;background:#eef5f9;font-size:13px}
 .exam-sequence-nav strong{margin-right:auto;color:#244f6a}.exam-sequence-nav a{color:#235d80;text-decoration:underline;white-space:nowrap}
+
+/* Контекстный маршрут для каждого электронного тренажёра (добавлено после ревизии выдачи). */
+.liturgics-trainer-nav{margin:10px 0 14px;padding:12px 14px;border:1px solid #bdd1dc;border-radius:11px;background:#eef5f9;font-size:13px;color:#203e52;line-height:1.45}
+.liturgics-trainer-nav p{margin:5px 0 9px}.liturgics-trainer-nav a{color:#155c87;text-decoration:underline}.liturgics-trainer-nav__current{border-bottom:1px solid #d0e0e8;padding-bottom:7px}.liturgics-trainer-nav__adjacent{display:flex;gap:10px;flex-wrap:wrap}.liturgics-trainer-nav__adjacent a{display:inline-block;padding:6px 10px;border:1px solid #9bbcca;border-radius:7px;background:white;font-weight:650}.liturgics-trainer-nav__note{font-size:12px;color:#49697a}

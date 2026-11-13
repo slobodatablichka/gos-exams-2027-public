@@ -1,0 +1,72 @@
+{% comment %}Стабильная контекстная навигация 61 электронного тренажёра. Внешние пути и case_id не меняются.{% endcomment %}
+{% assign nav_question = nil %}{% assign nav_case = nil %}
+{% for nav_q in site.data.liturgics_trainers_2027.questions %}
+  {% for nav_c in nav_q.cases %}
+    {% if nav_c.path == include.case_path %}
+      {% assign nav_question = nav_q %}{% assign nav_case = nav_c %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+{% if nav_question and nav_case %}
+{% assign nav_lesson = '01' %}
+{% if nav_question.id == '03' or nav_question.id == '04' or nav_question.id == '07' or nav_question.id == '08' %}{% assign nav_lesson = '02' %}{% endif %}
+{% if nav_question.id == '05' or nav_question.id == '06' or nav_question.id == '09' or nav_question.id == '15' %}{% assign nav_lesson = '03' %}{% endif %}
+{% if nav_question.id == '11' or nav_question.id == '12' or nav_question.id == '13' or nav_question.id == '14' %}{% assign nav_lesson = '04' %}{% endif %}
+{% assign nav_prefix = '/subjects/liturgics/2027/' %}
+{% assign nav_next_id = '' %}{% assign nav_prev_id = '' %}
+{% case nav_question.id %}
+{% when '01' %}{% assign nav_next_id = '02' %}
+{% when '02' %}{% assign nav_next_id = '10' %}{% assign nav_prev_id = '01' %}
+{% when '10' %}{% assign nav_next_id = '03' %}{% assign nav_prev_id = '02' %}
+{% when '03' %}{% assign nav_next_id = '04' %}{% assign nav_prev_id = '10' %}
+{% when '04' %}{% assign nav_next_id = '07' %}{% assign nav_prev_id = '03' %}
+{% when '07' %}{% assign nav_next_id = '08' %}{% assign nav_prev_id = '04' %}
+{% when '08' %}{% assign nav_next_id = '05' %}{% assign nav_prev_id = '07' %}
+{% when '05' %}{% assign nav_next_id = '06' %}{% assign nav_prev_id = '08' %}
+{% when '06' %}{% assign nav_next_id = '09' %}{% assign nav_prev_id = '05' %}
+{% when '09' %}{% assign nav_next_id = '15' %}{% assign nav_prev_id = '06' %}
+{% when '15' %}{% assign nav_next_id = '11' %}{% assign nav_prev_id = '09' %}
+{% when '11' %}{% assign nav_next_id = '12' %}{% assign nav_prev_id = '15' %}
+{% when '12' %}{% assign nav_next_id = '13' %}{% assign nav_prev_id = '11' %}
+{% when '13' %}{% assign nav_next_id = '14' %}{% assign nav_prev_id = '12' %}
+{% when '14' %}{% assign nav_prev_id = '13' %}
+{% endcase %}
+{% assign nav_next_question = site.data.liturgics_trainers_2027.questions | where: 'id', nav_next_id | first %}
+{% assign nav_prev_question = site.data.liturgics_trainers_2027.questions | where: 'id', nav_prev_id | first %}
+{% assign nav_next_case = nil %}{% assign nav_prev_case = nil %}
+{% if nav_case.variant == 'Б' %}
+  {% assign nav_next_case = nav_question.cases | where: 'variant', 'В' | first %}
+  {% assign nav_prev_case = nav_question.cases | where: 'variant', 'А' | first %}
+{% elsif nav_case.variant == 'В' %}
+  {% assign nav_prev_case = nav_question.cases | where: 'variant', 'Б' | first %}
+{% elsif nav_case.variant == 'А' %}
+  {% if nav_next_question %}{% assign nav_next_case = nav_next_question.cases | first %}{% endif %}
+  {% assign nav_prev_case = nav_question.cases | first %}
+{% elsif nav_case.mode == 'diagnostic' %}
+  {% assign nav_prev_case = nav_question.cases | first %}
+{% else %}
+  {% assign nav_next_case = nav_question.cases | where: 'variant', 'А' | first %}
+  {% if nav_prev_question %}{% assign nav_prev_case = nav_prev_question.cases | where: 'variant', 'А' | first %}{% endif %}
+{% endif %}
+<nav class="liturgics-trainer-nav" aria-label="Учебный маршрут тренажёра">
+ <p><strong>Занятие №{{ nav_lesson }} · ФОС №{{ nav_question.number }}. {{ nav_question.title }}</strong></p>
+ <p class="liturgics-trainer-nav__current">
+  Сейчас: {% if nav_case.variant %}<strong>вариант {{ nav_case.variant }}</strong>{% elsif nav_case.mode == 'diagnostic' %}<strong>дополнительная диагностика</strong>{% else %}<strong>основной тренажёр</strong>{% endif %}
+  · {% if nav_case.mode == 'diagnostic' %}Проверка и исправление последования{% else %}Составление богослужебного последования{% endif %}
+ </p>
+ <p><a href="{{ nav_prefix | append: 'practicum/lessons/' | append: nav_lesson | append: '.html' | relative_url }}">Материалы занятия №{{ nav_lesson }}</a> · <a href="{{ nav_prefix | append: 'trainers/index.html#fos-' | append: nav_question.id | relative_url }}">Все задания ФОС №{{ nav_question.number }}</a> · <a href="{{ nav_prefix | append: 'q' | append: nav_question.id | append: '-l3.html' | relative_url }}">Ответ L3</a> · <a href="{{ nav_prefix | append: 'examples/q' | append: nav_question.id | append: '.html' | relative_url }}">Разбор преподавателя</a></p>
+ <p><strong>Варианты этого вопроса:</strong>
+ {% for nav_option in nav_question.cases %}
+  {% assign nav_option_url = nav_prefix | append: nav_option.path %}
+  {% if nav_option.variant %}{% assign nav_option_label = nav_option.variant %}{% elsif nav_option.mode == 'diagnostic' %}{% assign nav_option_label = 'Доп. диагностика' %}{% else %}{% assign nav_option_label = 'Основной' %}{% endif %}
+  {% if nav_option.path == include.case_path %}<strong aria-current="page">{{ nav_option_label }} (сейчас)</strong>{% else %}<a href="{{ nav_option_url | relative_url }}">{{ nav_option_label }}</a>{% endif %}{% unless forloop.last %} · {% endunless %}
+ {% endfor %}
+ </p>
+ <p class="liturgics-trainer-nav__adjacent">
+ {% if nav_prev_case %}{% assign nav_prev_url = nav_prefix | append: nav_prev_case.path %}<a href="{{ nav_prev_url | relative_url }}">← Предыдущее задание</a>{% endif %}
+ {% if nav_next_case %}{% assign nav_next_url = nav_prefix | append: nav_next_case.path %}<a href="{{ nav_next_url | relative_url }}">Следующее задание →</a>{% endif %}
+ </p>
+ <p><a href="{{ nav_prefix | append: 'practicum/index.html' | relative_url }}">Все десять занятий</a> · <a href="{{ nav_prefix | append: 'trainers/index.html' | relative_url }}">Каталог 61 тренажёра</a> · <a href="{{ nav_prefix | append: 'trainers/sequence.html' | relative_url }}">Последовательная самопроверка</a></p>
+ <p class="liturgics-trainer-nav__note">Первый круг: основной и вариант А. Варианты Б и В уже доступны для самостоятельной работы, но программа занятий №5–10 уточняется только после итогов первого круга.</p>
+</nav>
+{% endif %}

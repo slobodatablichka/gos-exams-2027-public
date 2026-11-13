@@ -11,8 +11,8 @@
   const raw=JSON.parse(document.getElementById(MANIFEST_ID).textContent);
   if(!raw||!Array.isArray(raw.questions)||raw.questions.length!==15)throw Error("Нет 15 вопросов");
   questions=raw.questions;
-  for(const q of questions)if(!q.cases.length||q.cases.some(c=>!c.case_id||!c.version||!/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly(?:-[abc])?|errors(?:-[abc])?))\.html$/.test(c.path)))throw Error("Неправильный адрес игры №"+q.number);
- }catch(e){error("Не удалось загрузить реестр игр: "+e.message);return;}
+  for(const q of questions)if(!q.cases.length||q.cases.some(c=>!c.case_id||!c.version||!/^sandbox-pyramid\/(?:index|vozdvizhenie|velikiy-post|q\d\d-(?:assembly(?:-[abc])?|errors(?:-[abc])?))\.html$/.test(c.path)))throw Error("Неправильный адрес тренажёра №"+q.number);
+ }catch(e){error("Не удалось загрузить реестр тренажёров: "+e.message);return;}
  const questionByNumber=new Map(questions.map(q=>[q.number,q]));
  const choices=document.getElementById("questionList");
  const one=document.getElementById("oneCase");
@@ -102,7 +102,7 @@
  });
  document.getElementById("startAll").addEventListener("click",()=>launch(questions.map(q=>({q,c:pickCase(q)})),"Все 15 вопросов"));
  document.getElementById("end").addEventListener("click",()=>{
-  if(!confirm("Завершить текущее прохождение? Результаты отдельных игр останутся сохранёнными."))return;
+  if(!confirm("Завершить текущее прохождение? Результаты отдельных тренажёров останутся сохранёнными."))return;
   try{localStorage.removeItem(SESSION_KEY)}catch(e){}renderSession();
  });
  window.addEventListener("pageshow",renderSession);

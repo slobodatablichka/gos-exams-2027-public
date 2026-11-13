@@ -27,6 +27,10 @@
   {%- if exam_subject != '' %}
     {%- capture exam_subject_route -%}/subjects/{{ exam_subject }}/2027/index.html{%- endcapture %}
     <a class="exam-global-nav__link exam-global-nav__subject" href="{{ exam_subject_route | relative_url }}">← {{ exam_name }} · вопросы №1–25</a>
+    {%- if exam_subject == 'liturgics' %}
+      <a class="exam-global-nav__link" href="{{ '/subjects/liturgics/2027/practicum/index.html' | relative_url }}">Занятия</a>
+      <a class="exam-global-nav__link" href="{{ '/subjects/liturgics/2027/trainers/index.html' | relative_url }}">Тренажёры</a>
+    {%- endif %}
   {%- elsif exam_url contains '/materials/' %}
     <a class="exam-global-nav__link" href="{{ '/materials/index.html' | relative_url }}">Учебные материалы</a>
   {%- endif %}
