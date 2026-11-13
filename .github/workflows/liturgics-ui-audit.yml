@@ -26,5 +26,7 @@ jobs:
     timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
+      - name: Validate Liturgics source generator syntax
+        run: python -m py_compile scripts/build-liturgics-2027.py
       - name: Validate wording, 61 trainer routes, and all local Liturgics links
         run: python scripts/audit-liturgics-ui.py
