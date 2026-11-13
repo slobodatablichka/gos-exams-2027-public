@@ -6,19 +6,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f6f8">
-<title>Песочница — Пирамида · Предпразднство и мученик Созонт №4 · Госэкзамены 2027</title>
+<title>Электронный тренажёр · Предпразднство и мученик Созонт №4 · Госэкзамены 2027</title>
 <link rel="stylesheet" href="../../../../assets/css/liturgics-pyramid.css">
 </head>
 <body>{% include global-navigation.html %}<main class="wrap" data-case="data/lit04-sozont-forefeast.json">
-<header><h1>Песочница — Пирамида</h1><a href="../index.html">Литургика · 2027</a></header>
+<header><h1>Электронный тренажёр</h1><a href="../index.html">Литургика · 2027</a></header>
 <div class="sub">Вопрос №4 · 7 сентября по церковному календарю: предпразднство Рождества Богородицы и мученик Созонт «на 6», учебный седмичный день НЕ пятница (вторник–четверг). Год не задан. Не переносите сюда пятничный, славословный или полиелейный варианты. Соберите последовательность, лишнее оставьте в Песочнице.</div>
+{% include liturgics-trainer-nav.html case_path="sandbox-pyramid/q04-assembly.html" %}
 <div class="board" id="gameBoard">
 <button type="button" id="swapBtn" class="swap-columns" aria-label="Поменять столбцы местами" title="Поменять столбцы местами" aria-pressed="false"><svg viewBox="0 0 56 26" aria-hidden="true" focusable="false"><path d="M6 8H49m-8-6 8 6-8 6M50 19H7m8-6-8 6 8 6"/></svg></button>
 <section class="column sandbox" aria-label="Песочница"><div class="heading">Песочница</div><div class="count" id="sandCount"></div><div class="scroll" id="sand"></div><div class="controls"><button type="button" id="hintBtn">Подсказка</button><div class="button-feedback" id="hintFeedback" role="status" aria-live="polite" hidden></div></div></section>
 <section class="column pyramid" aria-label="Пирамида"><div class="heading">Пирамида</div><div class="count" id="pyramidCount"></div><div class="scroll" id="pyramid"></div><div class="controls"><button type="button" id="checkBtn">Проверить</button><div class="button-feedback" id="checkFeedback" role="status" aria-live="polite" hidden></div></div></section>
 </div>
 <div id="report" class="report" role="status" aria-live="polite"><strong>Начинайте сборку</strong>Переносите кирпичики из Песочницы в Пирамиду. Вставлять можно между любыми двумя элементами. Нажмите на кирпичик, чтобы прочитать пояснение и открыть ссылку на учебный ответ.</div>
-<div style="font-size:12px;margin:9px 0"><a href="../trainers/index.html">Все задания №1–15</a> · <a href="../practice/q04.html">Практикум №4</a> · <a href="../examples/q04.html">Задания преподавателя</a></div>
 <div class="footer"><button type="button" id="resetBtn">Начать заново</button><span id="saveStatus" style="font-size:11px;color:#607380">Прогресс сохраняется на этом устройстве</span><a href="../examples/q04.html">Задания преподавателя</a><a href="../q04-l3.html">Ответ L3</a></div>
 <div class="kbd">На телефоне: удерживайте кирпичик около четверти секунды, затем тяните. Для прокрутки проводите пальцем по самим кирпичикам до удержания. Для просмотра — коротко нажмите. При открытой карточке Песочница не перемешивается. Клавиатура: Enter — просмотр; пробел — выбрать для переноса; стрелки — выбрать место; Enter — разместить; Esc — отменить.</div>
 <div id="modalHost"></div>
