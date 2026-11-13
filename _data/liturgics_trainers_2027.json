@@ -334,6 +334,36 @@
             "label": "Храм святителя Николая",
             "qualifier": "Бдение в храме святителя при условном невоскресном дне"
           }
+        },
+        {
+          "case_id": "lit07-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-07-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q07-assembly-a.html",
+          "version": "lit07-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit07-assembly-a.json"
+        },
+        {
+          "case_id": "lit07-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-07-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q07-assembly-b.html",
+          "version": "lit07-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit07-assembly-b.json"
+        },
+        {
+          "case_id": "lit07-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-07-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q07-assembly-c.html",
+          "version": "lit07-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit07-assembly-c.json"
         }
       ]
     },
@@ -356,6 +386,36 @@
             "label": "Рождество Христово",
             "qualifier": "Изготовлено рождественское бдение, год и дополнительные совпадения не рассчитаны"
           }
+        },
+        {
+          "case_id": "lit08-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-08-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q08-assembly-a.html",
+          "version": "lit08-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit08-assembly-a.json"
+        },
+        {
+          "case_id": "lit08-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-08-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q08-assembly-b.html",
+          "version": "lit08-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit08-assembly-b.json"
+        },
+        {
+          "case_id": "lit08-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-08-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q08-assembly-c.html",
+          "version": "lit08-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit08-assembly-c.json"
         }
       ]
     },
@@ -1022,13 +1082,11 @@
       "condition": "храмовый праздник в воскресенье",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit07-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Храмовый праздник при воскресном совпадении: уставное соединение по храмовой главе",
       "source_basis": "Типикон, храмовая глава 3, сравнительный ключ №7",
@@ -1041,13 +1099,11 @@
       "condition": "совпадение с великим Господским праздником",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit07-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Храмовый праздник и великий Господский праздник: порядок приоритетов из указанного совпадения",
       "source_basis": "Храмовые главы Типикона и ключ изменений №7; конкретный праздник не придумывать",
@@ -1060,13 +1116,11 @@
       "condition": "храмовый праздник в будни поста",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit07-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Храмовая память в будний день поста: соответствующий постовой строй и храмовые особенности",
       "source_basis": "Храмовые главы Типикона и ключ изменений №7",
@@ -1079,13 +1133,11 @@
       "condition": "Рождественский сочельник в субботу/воскресенье",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit08-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Рождественский сочельник при субботе/воскресенье: только соответствующие отличия сочельника",
       "source_basis": "Ключ изменений №8; уставные различия субботы/воскресенья в границах задания",
@@ -1098,13 +1150,11 @@
       "condition": "праздник Богоявления",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit08-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Богоявление как самостоятельная праздничная служба; не переносить Рождественский источник",
       "source_basis": "Ключ изменений №8; в рождественской преподавательской колонке Богоявления нет — проверить собственную службу, а не дату",
@@ -1117,13 +1167,11 @@
       "condition": "Благовещение в Великом посту",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit08-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Благовещение в Великом посту: соединение служб только по сформулированному условию",
       "source_basis": "Ключ изменений №8; отдельная Благовещенская колонка, особые рубрики при заданном совпадении",

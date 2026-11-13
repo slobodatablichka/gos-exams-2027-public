@@ -14,7 +14,7 @@ def ensure_deployed():
             req = Request(SEQ, headers={"User-Agent": "FOS2027-Exam-Browser-Test", "Cache-Control": "no-cache"})
             with urlopen(req, timeout=20) as res:
                 content = res.read().decode("utf-8")
-            if 'id="liturgicsSequenceManifest"' in content and "lit06-assembly-c" in content and "lit05-assembly-b" in content:
+            if 'id="liturgicsSequenceManifest"' in content and "lit08-assembly-c" in content and "lit07-assembly-b" in content:
                 return
         except Exception:
             pass
@@ -46,7 +46,7 @@ def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
-    assert page.locator("#oneCase option").count() == 55
+    assert page.locator("#oneCase option").count() == 61
     assert page.locator("#mode12 option").count() == 5
     page.select_option("#oneCase", "lit12-diagnostic")
     page.locator("#startOne").click()
@@ -156,6 +156,15 @@ def test_mobile(context):
     page.locator("#startOne").click()
     page.wait_for_url("**/sandbox-pyramid/q06-assembly-c.html?sequence=1")
     expect(page.locator('#sand .brick[data-id="day"]')).to_have_count(1)
+    expect(page.locator(".exam-sequence-nav")).to_be_visible()
+    # Stage 12: Q7/Q8 options appear and Q8-A can be opened on a mobile viewport.
+    page.goto(SEQ,wait_until="domcontentloaded")
+    for case_id in ("lit07-assembly-a","lit07-assembly-b","lit07-assembly-c","lit08-assembly-a","lit08-assembly-b","lit08-assembly-c"):
+        expect(page.locator('#oneCase option[value="'+case_id+'"]')).to_have_count(1)
+    page.select_option("#oneCase","lit08-assembly-a")
+    page.locator("#startOne").click()
+    page.wait_for_url("**/sandbox-pyramid/q08-assembly-a.html?sequence=1")
+    expect(page.locator('#sand .brick[data-id="friday-hours"]')).to_have_count(1)
     expect(page.locator(".exam-sequence-nav")).to_be_visible()
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")
