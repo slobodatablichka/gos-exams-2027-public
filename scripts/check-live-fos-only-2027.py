@@ -180,6 +180,12 @@ def main():
         ("q10-assembly-a.html", "lit10-assembly-a.json", 13),
         ("q10-assembly-b.html", "lit10-assembly-b.json", 11),
         ("q10-assembly-c.html", "lit10-assembly-c.json", 10),
+        ("q02-assembly-a.html", "lit02-assembly-a.json", 13),
+        ("q02-assembly-b.html", "lit02-assembly-b.json", 12),
+        ("q02-assembly-c.html", "lit02-assembly-c.json", 12),
+        ("q03-assembly-a.html", "lit03-assembly-a.json", 13),
+        ("q03-assembly-b.html", "lit03-assembly-b.json", 13),
+        ("q03-assembly-c.html", "lit03-assembly-c.json", 13),
     )
     games = (games
              + tuple((name, case, "diagnostic", "Найди и исправь ошибки", count)
@@ -241,17 +247,17 @@ def main():
         raise ValueError("The live sequence has no rendered manifest")
     embedded = json.loads(found.group(1))
     qs = embedded.get("questions", [])
-    if len(qs) != 15 or len([c for q in qs for c in q["cases"]]) != 43:
+    if len(qs) != 15 or len([c for q in qs for c in q["cases"]]) != 49:
         raise ValueError("Rendered sequence manifest has incorrect question/case count")
     if sum(c["mode"] == "diagnostic" for q in qs for c in q["cases"]) != 16:
         raise ValueError("Error-correction mode missing from equal-access sequence")
     if any("version" not in c or "data_path" not in c for q in qs for c in q["cases"]):
         raise ValueError("Cannot independently restore case progress")
     slots = embedded.get("variant_slots", [])
-    if len(slots) != 45 or len([v for v in slots if v.get("status") == "published_training"]) != 27:
+    if len(slots) != 45 or len([v for v in slots if v.get("status") == "published_training"]) != 33:
         raise ValueError("45 source variant slots are not accurately audited")
-    if len([v for v in slots if v.get("status") == "task_defined_key_pending" and v.get("task_scope_sufficient")]) != 18:
-        raise ValueError("All 18 pending tasks must have sufficient task-defined conditions")
+    if len([v for v in slots if v.get("status") == "task_defined_key_pending" and v.get("task_scope_sufficient")]) != 12:
+        raise ValueError("All 12 pending tasks must have sufficient task-defined conditions")
     if not any(v.get("id") == "lit-15-C" and v.get("status") == "published_training" and v.get("case_id") == "lit15-diagnostic-c"
                for v in slots):
         raise ValueError("Q15-C must be published without invented calendar details")
@@ -265,7 +271,7 @@ def main():
         if "sandbox-pyramid/" + c["path"].split("/")[-1] not in year_html:
             raise ValueError("Calendar case game link is missing: " + c["case_id"])
     print("LIVE YEAR PASS: eleven source-grounded cases and teaching schemes; no invented calendar", flush=True)
-    print("LIVE VARIANTS PASS: 45 slots; 27 published variants, 18 task-defined pending games; no calendar blocker", flush=True)
+    print("LIVE VARIANTS PASS: 45 slots; 33 published variants, 12 task-defined pending games; no calendar blocker", flush=True)
     program_js = request("assets/js/liturgics-sequence.js").decode("utf-8")
     program_css = request("assets/css/liturgics-sequence.css").decode("utf-8")
     if not all(token in program_js for token in ("startSelected", "startAll", "bpds-liturgics-sequence-v1", "bpds-liturgics-checked-")):
@@ -280,7 +286,7 @@ def main():
     if "trainers/sequence.html" not in practice_body:
         raise ValueError("Practice landing has no exam sequence")
     print("LIVE SEQUENCE PASS: one / selected / all 15, both modes at q12, full per-case progress versions", flush=True)
-    print("LIVE TRAINERS PASS: 15 exam slots, 43 real games (27 assembly + 16 error-correction), shared JS/CSS/JSON", flush=True)
+    print("LIVE TRAINERS PASS: 15 exam slots, 49 real games (33 assembly + 16 error-correction), shared JS/CSS/JSON", flush=True)
 
     old_routes = ["schedule.html", "assignments.html",
                   "subjects/navigation-manifest.json", "subjects/expansion-navigation-manifest.json",

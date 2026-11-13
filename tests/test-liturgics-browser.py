@@ -14,7 +14,7 @@ def ensure_deployed():
             req = Request(SEQ, headers={"User-Agent": "FOS2027-Exam-Browser-Test", "Cache-Control": "no-cache"})
             with urlopen(req, timeout=20) as res:
                 content = res.read().decode("utf-8")
-            if 'id="liturgicsSequenceManifest"' in content and "lit10-assembly-c" in content and "lit09-assembly-b" in content:
+            if 'id="liturgicsSequenceManifest"' in content and "lit03-assembly-c" in content and "lit02-assembly-b" in content:
                 return
         except Exception:
             pass
@@ -46,7 +46,7 @@ def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
-    assert page.locator("#oneCase option").count() == 43
+    assert page.locator("#oneCase option").count() == 49
     assert page.locator("#mode12 option").count() == 5
     page.select_option("#oneCase", "lit12-diagnostic")
     page.locator("#startOne").click()
@@ -138,6 +138,15 @@ def test_mobile(context):
     page.locator("#startOne").click()
     page.wait_for_url("**/sandbox-pyramid/q10-assembly-c.html?sequence=1")
     expect(page.locator('#sand .brick[data-id="thursday"]')).to_have_count(1)
+    expect(page.locator(".exam-sequence-nav")).to_be_visible()
+    # Stage 10: all Q2/Q3 alternatives present and Q3-A opens on mobile.
+    page.goto(SEQ,wait_until="domcontentloaded")
+    for case_id in ("lit02-assembly-a","lit02-assembly-b","lit02-assembly-c","lit03-assembly-a","lit03-assembly-b","lit03-assembly-c"):
+        expect(page.locator('#oneCase option[value="'+case_id+'"]')).to_have_count(1)
+    page.select_option("#oneCase","lit03-assembly-a")
+    page.locator("#startOne").click()
+    page.wait_for_url("**/sandbox-pyramid/q03-assembly-a.html?sequence=1")
+    expect(page.locator('#sand .brick[data-id="gospel"]')).to_have_count(1)
     expect(page.locator(".exam-sequence-nav")).to_be_visible()
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")

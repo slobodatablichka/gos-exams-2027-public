@@ -74,6 +74,36 @@
             "label": "Воскресное бдение: индикт и преп. Симеон",
             "qualifier": "Воскресенье и 1-й глас заданы учебным примером, год не указан"
           }
+        },
+        {
+          "case_id": "lit02-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-02-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q02-assembly-a.html",
+          "version": "lit02-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit02-assembly-a.json"
+        },
+        {
+          "case_id": "lit02-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-02-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q02-assembly-b.html",
+          "version": "lit02-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit02-assembly-b.json"
+        },
+        {
+          "case_id": "lit02-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-02-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q02-assembly-c.html",
+          "version": "lit02-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit02-assembly-c.json"
         }
       ]
     },
@@ -96,6 +126,36 @@
             "label": "Воздвижение Креста Господня",
             "qualifier": "Только представленный в источнике праздничный вариант"
           }
+        },
+        {
+          "case_id": "lit03-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-03-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q03-assembly-a.html",
+          "version": "lit03-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit03-assembly-a.json"
+        },
+        {
+          "case_id": "lit03-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-03-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q03-assembly-b.html",
+          "version": "lit03-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit03-assembly-b.json"
+        },
+        {
+          "case_id": "lit03-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-03-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q03-assembly-c.html",
+          "version": "lit03-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit03-assembly-c.json"
         }
       ]
     },
@@ -647,13 +707,11 @@
       "condition": "другая память и глас",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit02-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Заменить воскресные изменяемые элементы по ДРУГОЙ памяти и гласу, не выбирать их конкретные значения",
       "source_basis": "Ключ изменений в карточке №2",
@@ -666,13 +724,11 @@
       "condition": "воскресенье Постной Триоди",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit02-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Отличить воскресенье Постной Триоди от исходного воскресного бдения; заменить предусмотренные заданием части",
       "source_basis": "Ключ изменений №2 и L3",
@@ -685,13 +741,11 @@
       "condition": "воскресенье Цветной Триоди",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit02-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Отличить воскресенье Цветной Триоди, не переносить индикт и Симеона",
       "source_basis": "Ключ изменений №2 и L3",
@@ -704,13 +758,11 @@
       "condition": "Воздвижение в воскресенье",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit03-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Применить уставное правило Воздвижения при воскресном совпадении, без автоматического добавления воскресных частей",
       "source_basis": "Типикон в эталоне №3",
@@ -723,13 +775,11 @@
       "condition": "другой великий Господский праздник",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit03-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Показать, что меняется при ином великом Господском празднике; не придумывать конкретный праздник",
       "source_basis": "Сравнительный ключ №3; собственные тексты иного праздника нужны лишь если названы заданием",
@@ -742,13 +792,11 @@
       "condition": "великий Богородичный праздник",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit03-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Отличить великий Богородичный праздник от Господского; не подставлять произвольную память",
       "source_basis": "Сравнительный ключ №3",
