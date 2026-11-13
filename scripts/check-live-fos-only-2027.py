@@ -246,6 +246,35 @@ def main():
             if f"sandbox-pyramid/q{n:02d}-assembly.html" not in content:
                 raise ValueError("Missing main game on teacher page: " + page)
 
+    # The ten-session Bogosluzhebny practicum is a real public section, not
+    # a repository-only proposal. All lesson pages must be reachable over HTTPS.
+    course_root = "subjects/liturgics/2027/practicum/"
+    course_index = request(course_root + "index.html").decode("utf-8", errors="replace")
+    check_navigation(course_index, course_root + "index.html", "liturgics")
+    if "Богослужебный практикум" not in course_index or "61" not in course_index:
+        raise ValueError("Course plan is missing or not deployed")
+    if "practicum/index.html" not in request("subjects/liturgics/2027/index.html").decode("utf-8"):
+        raise ValueError("Official Liturgics catalog must link to the ten-session course")
+    if "practicum/index.html" not in request("practice/index.html").decode("utf-8"):
+        raise ValueError("Practice entry must link to the ten-session course")
+    first_round = ((1,2,10),(3,4,7,8),(5,6,9,15),(11,12,13,14))
+    for n in range(1, 11):
+        relative = f"lessons/{n:02d}.html"
+        if relative not in course_index:
+            raise ValueError("Course table missing lesson " + relative)
+        lesson_path = course_root + relative
+        lesson = request(lesson_path).decode("utf-8", errors="replace")
+        check_navigation(lesson, lesson_path, "liturgics")
+        if f"Занятие №{n}" not in lesson:
+            raise ValueError("Incorrect or missing lesson page: " + lesson_path)
+        if n <= 8:
+            for q in first_round[(n - 1) % 4]:
+                if f"q{q:02d}-l3.html" not in lesson:
+                    raise ValueError(f"Lesson {n}: missing theoretical/practical L3 for {q}")
+        elif "trainers/sequence.html" not in lesson:
+            raise ValueError("Control lesson lacks existing practical entry")
+    print("LIVE COURSE PASS: 10 lesson pages, all first-/second-round L3 references, and course navigation", flush=True)
+
     # Sequential practice reuses the actual game URLs and must come from the same case registry.
     seq_path = "subjects/liturgics/2027/trainers/sequence.html"
     seq_html = request(seq_path).decode("utf-8")
