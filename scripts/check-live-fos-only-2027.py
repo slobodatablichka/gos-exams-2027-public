@@ -209,6 +209,8 @@ def main():
         path = base_game + file_name
         body = request(path).decode("utf-8", errors="replace")
         check_navigation(body, path, "liturgics")
+        if 'class="liturgics-trainer-nav"' not in body or "Все задания ФОС №" not in body:
+            raise ValueError("Contextual learning navigation missing on rendered Liturgics trainer: " + path)
         if heading not in body or 'id="sand"' not in body or 'id="pyramid"' not in body:
             raise ValueError("Incorrect Liturgics game: " + path)
         if 'id="swapBtn"' not in body or 'class="column pyramid"' not in body:
