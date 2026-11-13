@@ -230,6 +230,36 @@
             "label": "Великопостный седмичный день",
             "qualifier": "Учебный понедельник по уже проверенной колонке"
           }
+        },
+        {
+          "case_id": "lit05-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-05-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q05-assembly-a.html",
+          "version": "lit05-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit05-assembly-a.json"
+        },
+        {
+          "case_id": "lit05-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-05-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q05-assembly-b.html",
+          "version": "lit05-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit05-assembly-b.json"
+        },
+        {
+          "case_id": "lit05-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-05-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q05-assembly-c.html",
+          "version": "lit05-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit05-assembly-c.json"
         }
       ]
     },
@@ -252,6 +282,36 @@
             "label": "Утреня Страстей, Царские часы, вечерня",
             "qualifier": "Службы Великого пятка; не смешивать с утреней Великой субботы"
           }
+        },
+        {
+          "case_id": "lit06-assembly-a",
+          "mode": "assembly",
+          "variant": "А",
+          "source_variant_id": "lit-06-A",
+          "label": "Составь богослужение · А",
+          "path": "sandbox-pyramid/q06-assembly-a.html",
+          "version": "lit06-assembly-a-v1",
+          "data_path": "sandbox-pyramid/data/lit06-assembly-a.json"
+        },
+        {
+          "case_id": "lit06-assembly-b",
+          "mode": "assembly",
+          "variant": "Б",
+          "source_variant_id": "lit-06-B",
+          "label": "Составь богослужение · Б",
+          "path": "sandbox-pyramid/q06-assembly-b.html",
+          "version": "lit06-assembly-b-v1",
+          "data_path": "sandbox-pyramid/data/lit06-assembly-b.json"
+        },
+        {
+          "case_id": "lit06-assembly-c",
+          "mode": "assembly",
+          "variant": "В",
+          "source_variant_id": "lit-06-C",
+          "label": "Составь богослужение · В",
+          "path": "sandbox-pyramid/q06-assembly-c.html",
+          "version": "lit06-assembly-c-v1",
+          "data_path": "sandbox-pyramid/data/lit06-assembly-c.json"
         }
       ]
     },
@@ -860,13 +920,11 @@
       "condition": "понедельник с полиелейным святым",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit05-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Великопостный понедельник с полиелейным святым: изменения только указанного сочетания",
       "source_basis": "Ключ изменений №5; полиелейная колонка преподавательского источника",
@@ -879,13 +937,11 @@
       "condition": "понедельник с храмовым бдением",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit05-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Великопостный понедельник с храмовым бдением: только относящиеся к нему отличия",
       "source_basis": "Ключ изменений №5; храмовые рубрики проверять в пределах задания",
@@ -898,13 +954,11 @@
       "condition": "суббота Акафиста",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit05-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Суббота Акафиста: собственные части празднования, не понедельничная служба",
       "source_basis": "Ключ изменений №5; Постная Триодь",
@@ -917,13 +971,11 @@
       "condition": "Великий четверг",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit06-assembly-a",
       "task_scope_sufficient": true,
       "task_focus": "Великий четверг: собственный порядок служб, не переносить Великий пяток",
       "source_basis": "Ключ изменений №6; соответствующий чин Страстной седмицы",
@@ -936,13 +988,11 @@
       "condition": "Великая суббота",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit06-assembly-b",
       "task_scope_sufficient": true,
       "task_focus": "Великая суббота: собственный порядок, отличить от вечерни Великого пятка",
       "source_basis": "Ключ изменений №6; соответствующий чин Страстной седмицы",
@@ -955,13 +1005,11 @@
       "condition": "Светлый понедельник (вместо ошибочного «первый день Светлой седмицы»)",
       "source_type": "conditional_service_composition",
       "source_review": "task_scope_reviewed",
-      "status": "task_defined_key_pending",
+      "status": "published_training",
       "full_key_verified": false,
       "automated_scoring_ready": false,
-      "missing": [
-        "bounded_training_game_not_implemented"
-      ],
-      "case_id": null,
+      "missing": [],
+      "case_id": "lit06-assembly-c",
       "task_scope_sufficient": true,
       "task_focus": "Светлый понедельник: пасхальное последование, не называть его первым днём Светлой седмицы",
       "source_basis": "Ключ изменений №6; Цветная Триодь",

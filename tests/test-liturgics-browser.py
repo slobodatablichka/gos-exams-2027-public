@@ -14,7 +14,7 @@ def ensure_deployed():
             req = Request(SEQ, headers={"User-Agent": "FOS2027-Exam-Browser-Test", "Cache-Control": "no-cache"})
             with urlopen(req, timeout=20) as res:
                 content = res.read().decode("utf-8")
-            if 'id="liturgicsSequenceManifest"' in content and "lit03-assembly-c" in content and "lit02-assembly-b" in content:
+            if 'id="liturgicsSequenceManifest"' in content and "lit06-assembly-c" in content and "lit05-assembly-b" in content:
                 return
         except Exception:
             pass
@@ -46,7 +46,7 @@ def test_mobile(context):
     page = context.new_page()
     page.goto(SEQ, wait_until="domcontentloaded")
     page.locator("#oneCase option").first.wait_for(state="attached")
-    assert page.locator("#oneCase option").count() == 49
+    assert page.locator("#oneCase option").count() == 55
     assert page.locator("#mode12 option").count() == 5
     page.select_option("#oneCase", "lit12-diagnostic")
     page.locator("#startOne").click()
@@ -147,6 +147,15 @@ def test_mobile(context):
     page.locator("#startOne").click()
     page.wait_for_url("**/sandbox-pyramid/q03-assembly-a.html?sequence=1")
     expect(page.locator('#sand .brick[data-id="gospel"]')).to_have_count(1)
+    expect(page.locator(".exam-sequence-nav")).to_be_visible()
+    # Stage 11: Q5/Q6 variants and a real mobile navigation to the bright Monday case.
+    page.goto(SEQ,wait_until="domcontentloaded")
+    for case_id in ("lit05-assembly-a","lit05-assembly-b","lit05-assembly-c","lit06-assembly-a","lit06-assembly-b","lit06-assembly-c"):
+        expect(page.locator('#oneCase option[value="'+case_id+'"]')).to_have_count(1)
+    page.select_option("#oneCase","lit06-assembly-c")
+    page.locator("#startOne").click()
+    page.wait_for_url("**/sandbox-pyramid/q06-assembly-c.html?sequence=1")
+    expect(page.locator('#sand .brick[data-id="day"]')).to_have_count(1)
     expect(page.locator(".exam-sequence-nav")).to_be_visible()
     page.close()
     print("BROWSER MOBILE PASS: both columns, touch/tap, drag/hold, swap, 3 hints, reset, one/selected/all, alternate q12, next/previous.")

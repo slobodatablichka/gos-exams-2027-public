@@ -17,7 +17,7 @@ const savedFactory=new Function("dataById","DATA",validCode+"\nreturn validSaved
 const allCases=[];
 for(const q of manifest.questions){
  assert.ok(q.title&&q.cases.length>0,"Missing game "+q.number);
- assert.equal(q.cases.filter(c=>c.mode==="assembly").length,[1,2,3,4,9,10].includes(q.number)?4:1,"Stages 8–10 provide three additional assembly variants to tickets 1–4, 9 and 10");
+ assert.equal(q.cases.filter(c=>c.mode==="assembly").length,[1,2,3,4,5,6,9,10].includes(q.number)?4:1,"Stages 8–11 provide three additional assembly variants to tickets 1–6, 9 and 10");
  for(const c of q.cases){
   const page=read(base+c.path);
   const sourceMatch=page.match(/data-case="data\/([^"]+\.json)"/);
@@ -68,13 +68,13 @@ for(const q of manifest.questions){
   allCases.push({q:q.number,id:c.case_id,mode:c.mode,version:c.version,path:c.path});
  }
 }
-assert.equal(allCases.filter(x=>x.mode==="assembly").length,33);
+assert.equal(allCases.filter(x=>x.mode==="assembly").length,39);
 assert.equal(allCases.filter(x=>x.mode==="diagnostic").length,16);
-assert.equal(new Set(allCases.map(x=>x.version)).size,49,"Local progress keys must be unique");
+assert.equal(new Set(allCases.map(x=>x.version)).size,55,"Local progress keys must be unique");
 assert.equal(manifest.variant_slots.length,45);
-assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,33);
-assert.equal(manifest.variant_slots.filter(x=>x.status!=="published_training").length,12);
-assert.equal(manifest.variant_slots.filter(x=>x.status==="task_defined_key_pending").length,12);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="published_training").length,39);
+assert.equal(manifest.variant_slots.filter(x=>x.status!=="published_training").length,6);
+assert.equal(manifest.variant_slots.filter(x=>x.status==="task_defined_key_pending").length,6);
 assert.equal(manifest.variant_slots.find(x=>x.id==="lit-15-C").status,"published_training");
 assert.equal(manifest.questions.flatMap(q=>q.cases).filter(c=>c.year).length,11);
 for(const q of [1,4])for(const v of ["А","Б","В"]){const slot=manifest.variant_slots.find(x=>x.question===q&&x.variant===v),game=manifest.questions.find(x=>x.number===q).cases.find(c=>c.case_id===slot.case_id);assert.equal(slot.status,"published_training");assert.equal(game.mode,"assembly");assert.ok(!game.year,"Do not infer calendars");const data=JSON.parse(read(base+game.data_path));assert.equal(data.passport.task_scope_sufficient,true);assert.equal(data.initialPyramid.length,0);assert.ok(data.items.filter(x=>!x.extra).length>=6);}
@@ -119,6 +119,33 @@ assert.ok(sundayExaltation.items.some(x=>x.extra&&x.name.includes("воскре�
 const feastTheotokos=JSON.parse(read(base+"sandbox-pyramid/data/lit03-assembly-c.json"));
 assert.ok(feastTheotokos.items.some(x=>!x.extra&&x.detail.includes("соединяют")));
 
+// Stage 11 — six source-scoped variants; source-grounded distinct keys.
+for(const q of [5,6])for(const variant of ["А","Б","В"]){
+ const slot=manifest.variant_slots.find(x=>x.question===q&&x.variant===variant);
+ const c=manifest.questions.find(x=>x.number===q).cases.find(x=>x.case_id===slot.case_id);
+ assert.equal(slot.status,"published_training");
+ assert.equal(c.mode,"assembly");
+ assert.ok(!c.year,"Stage 11 must not invent a date");
+ const d=JSON.parse(read(base+c.data_path));
+ assert.equal(d.assessment,"training_check");
+ assert.equal(d.passport.task_scope_sufficient,true);
+ assert.deepEqual(d.initialPyramid,[]);
+ assert.ok(d.items.filter(x=>!x.extra).length>=8);
+ assert.ok(d.items.filter(x=>x.extra).length>=3);
+}
+const lit5a=JSON.parse(read(base+"sandbox-pyramid/data/lit05-assembly-a.json"));
+const lit5b=JSON.parse(read(base+"sandbox-pyramid/data/lit05-assembly-b.json"));
+const lit5c=JSON.parse(read(base+"sandbox-pyramid/data/lit05-assembly-c.json"));
+assert.ok(lit5a.items.some(x=>!x.extra&&x.detail.includes("ЛПД")));
+assert.ok(lit5b.items.some(x=>!x.extra&&x.name.includes("храма 5")));
+assert.ok(lit5c.sources[0].includes("05_15")&&lit5c.items.filter(x=>!x.extra&&x.name.includes("Акафиста")).length>=3);
+const lit6a=JSON.parse(read(base+"sandbox-pyramid/data/lit06-assembly-a.json"));
+const lit6b=JSON.parse(read(base+"sandbox-pyramid/data/lit06-assembly-b.json"));
+const lit6c=JSON.parse(read(base+"sandbox-pyramid/data/lit06-assembly-c.json"));
+assert.ok(lit6a.items.some(x=>!x.extra&&x.name.includes("Василия")));
+assert.ok(lit6b.items.some(x=>!x.extra&&x.name.includes("Пятнадцать")));
+assert.ok(lit6c.items.some(x=>!x.extra&&x.name.includes("второй день")));
+
 const stage7=manifest.questions.find(q=>q.number===15).cases.find(c=>c.case_id==="lit15-diagnostic-c");
 assert.ok(stage7&&stage7.mode==="diagnostic"&&stage7.variant==="В","Stage 7 C must be independently published");
 const stage7Data=JSON.parse(read(base+stage7.data_path));
@@ -160,7 +187,7 @@ const localStorage={getItem:k=>store.get(k)||null,setItem:(k,v)=>{store.set(k,St
 const document={getElementById:id=>fields[id],createElement:tag=>new Elem(tag),createTextNode:text=>({textContent:text})};
 const window={location:{href:"",search:""},events:{},addEventListener(name,fn){this.events[name]=fn}};
 new Function("document","window","localStorage","confirm",runner)(document,window,localStorage,()=>true);
-assert.equal(fields.oneCase.children.length,49,"Single-question list must offer all published variants");
+assert.equal(fields.oneCase.children.length,55,"Single-question list must offer all published variants");
 assert.equal(fields.mode12.children.length,5,"Question 12 exposes assembly, diagnostic prototype and A/B/C cases");
 assert.equal(fields.questionList.querySelectorAll("input").length,15);
 fields.oneCase.value="lit12-diagnostic";fields.startOne.dispatch("click");
@@ -210,4 +237,4 @@ const page=read(base+"trainers/sequence.html");
 assert.match(page,/site\.data\.liturgics_trainers_2027 \| jsonify/);
 assert.match(page,/global-navigation\.html/);
 assert.match(read(base+"trainers/index.md"),/sequence\.html/);
-console.log("PASS: 49 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and task-scope review.");
+console.log("PASS: 55 real keys and 45 audited slots; correct/missing/extra/order; three-stage hint; saved state; 15-select and q12 alternate; 1/selected/all; per-question checked progress; 3-ticket navigation; L3 links and task-scope review.");
