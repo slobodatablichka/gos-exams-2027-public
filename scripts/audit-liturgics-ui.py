@@ -19,7 +19,7 @@ def fail(message):
     problems.append(message)
 
 def check_href(file, href):
-    if not href or href.startswith("#") or "{{" in href or "{%" in href":
+    if not href or href.startswith("#") or "{{" in href or "{%" in href:
         return
     u = urlsplit(href)
     if u.scheme or u.netloc or href.startswith("//"):
