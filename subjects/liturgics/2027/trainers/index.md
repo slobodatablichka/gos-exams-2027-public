@@ -40,7 +40,7 @@ title: "Литургика — 61 электронный тренажёр · Ф�
 {% if selected_ids contains question.id %}
  {% assign main_case = question.cases | first %}
  {% assign variant_a = question.cases | where: 'variant', 'А' | first %}
- <tr id="fos-{{ question.id }}">
+ <tr id="fos-{{ question.id }}" data-question="{{ question.id }}">
  <td><strong>№{{ question.number }}. {{ question.title }}</strong></td>
  <td><a href="{{ trainer_prefix | append: main_case.path | relative_url }}">{{ main_case.label }}</a></td>
  <td>{% if variant_a %}<a href="{{ trainer_prefix | append: variant_a.path | relative_url }}">{{ variant_a.label }}</a>{% else %}—{% endif %}
