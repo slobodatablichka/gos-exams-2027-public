@@ -49,7 +49,7 @@ async function generate(){
  ui=ui.replace(key,key+`
   const caseName=caseData.kind==="official"?"П"+caseData.practical_no+" / №"+caseData.fos_no
      :"Учебное П"+caseData.practical_no+"-"+caseData.variant+" / №"+caseData.fos_no;`);
- ui=ui.replaceAll("— П3 / №18", '— " + caseName');
+ ui=ui.replaceAll("— П3 / №18", '— " + caseName').replaceAll('caseName";','caseName;');
  const labelOld='$("source-label").textContent = "Официальное практическое №" + caseData.practical_no + " · ФОС №" + caseData.fos_no;';
  assert.ok(ui.includes(labelOld));
  ui=ui.replace(labelOld,'$("source-label").textContent = (caseData.kind==="official"?"Официальное практическое №":"Учебный вариант "+caseData.variant+" · практическое №")+caseData.practical_no+" · ФОС №"+caseData.fos_no;');
