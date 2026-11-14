@@ -29,7 +29,10 @@ async function test(){
    assert.ok(html.includes("href=\"../q"+n+"-l3.html\""));
    for(const id of [...new Set([json.case_id.replace(/(?:official|training)-/,"")])])assert.ok(id);
    await page.goto(pathToFileURL(path.join(ROOT,dir,file)).href);
-   await page.waitForFunction(()=>window.StageFivePreview&&window.StageFivePreview.getState().stage===1);
+   await page.waitForFunction(()=>window.StageFivePreview&&window.StageFivePreview.getState().stage===1,{timeout:10000}).catch(async e=>{
+    const runtime=await page.evaluate(()=>({url:location.href,script:document.querySelector('script[src]')?.src,hasStageOne:!!window.StageOneCore,hasStageTwo:!!window.StageTwoCore,hasStageThree:!!window.StageThreeCore,hasPreview:!!window.StageFivePreview}));
+    throw Error("Browser bootstrap failed "+file+": "+JSON.stringify(runtime)+"; page errors "+JSON.stringify(errors)+"; "+e.message);
+   });
    assert.equal((await state()).sourceText,json.source.original_text);
    assert.ok((await page.title()).includes("№"+json.fos_no));
    assert.equal(await page.locator(".trainer-nav a").count()>=6,true);
