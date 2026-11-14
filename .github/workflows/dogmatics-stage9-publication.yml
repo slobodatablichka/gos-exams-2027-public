@@ -41,6 +41,7 @@ jobs:
         run: |
           node public/scripts/build-dogmatics-trainers-2027.mjs --private-root ../private --write
           node public/scripts/build-dogmatics-trainers-2027.mjs --private-root ../private --check
+          node --check public/assets/js/dogmatics-trainer.js
       - name: Install real Chromium browser
         working-directory: public
         run: |
