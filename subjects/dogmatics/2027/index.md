@@ -7,6 +7,10 @@ title: "Догматика — экзамен 2027"
 
 **15 теоретических вопросов и 10 практических заданий.**
 
+<!-- dogmatics-2027-trainers:start -->
+**[40 электронных тренажёров Догматики](trainers/index.html)** — официальные тексты ФОС №16–25 и три тренировочных варианта к каждому.
+<!-- dogmatics-2027-trainers:end -->
+
 [Методика](practice/methodology.html) · [Таблица ересей](practice/heresy-comparison.html)
 
 **PDF-сборники:** [L3](pdf/l3.pdf) · [L2](pdf/l2.pdf) · [L1](pdf/l1.pdf)
