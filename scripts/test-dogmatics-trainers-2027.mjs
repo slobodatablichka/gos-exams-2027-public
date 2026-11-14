@@ -35,7 +35,8 @@ async function test(){
    });
    assert.equal((await state()).sourceText,json.source.original_text);
    assert.ok((await page.title()).includes("№"+json.fos_no));
-   assert.equal(await page.locator(".trainer-nav a").count()>=6,true);
+   assert.equal(await page.locator(".exam-global-nav").count(),2,"Global Jekyll navigation must exist at top and bottom");
+   assert.equal(await page.locator(".trainer-nav a").count()>=7,true);
    const wrong=json.sentence_groups.flatMap(g=>g.draggables).filter(x=>x.judgment==="heresy");
    for(const u of wrong){
     await page.locator('[data-origin="source"][data-unit-id="'+u.id+'"]').focus();
@@ -82,7 +83,7 @@ async function test(){
    await mobile.waitForFunction(()=>window.StageFivePreview&&window.StageFivePreview.getState().stage===1);
    const overflow=await mobile.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2);
    assert.equal(overflow,false,"Mobile horizontal overflow "+id);
-   assert.ok(await mobile.locator(".trainer-nav a").count()>=6);
+   assert.equal(await mobile.locator(".exam-global-nav").count(),2);
    const x=mobile.locator('[data-origin="source"][data-unit-id]').first();
    await x.tap();
    assert.equal((await mobile.evaluate(()=>window.StageFivePreview.getState())).selectedIds.length,1);
