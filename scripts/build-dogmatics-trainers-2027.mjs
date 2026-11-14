@@ -65,10 +65,11 @@ async function generate(){
   assert.ok(cases.every(Boolean));
   const links=cases.map(c=>({id:c.case_id,label:c.kind==="official"?"Официальный ФОС":"Учебный "+c.variant}));
   rows.push({practical,fos,links});
-  const nav=`<nav class="trainer-nav" aria-label="Навигация по учебному сайту">
+  const nav=`<nav class="exam-global-nav trainer-nav" aria-label="Навигация по учебному сайту">
    <a href="../../../../index.html">Главная</a>
+   <a href="../../../../subjects/index.html">Все предметы</a>
    <a href="../../../../practice/index.html">Практика</a>
-   <a href="../index.html">Догматика №1–25</a>
+   <a href="../../../../subjects/dogmatics/2027/index.html">Догматика №1–25</a>
    <a href="index.html">Все 40 тренажёров</a>
    <a href="../practice/practicum-${n}.html">Практикум №${practical}</a>
    <a href="../practice/methodology.html">Методика</a>
@@ -90,6 +91,7 @@ async function generate(){
      .replace(/<style>\s*<!-- STYLE_GOES_HERE -->\s*<\/style>/,'<link rel="stylesheet" href="../../../../assets/css/dogmatics-trainer.css">')
      .replaceAll("Сверить устный ответ с L3 по вопросу №18","Сверить устный ответ с L3 по вопросу №"+fos)
      .replace('<main class="shell">',nav+panel+'<main class="shell">\n'+flag)
+     .replace('</body>',nav.replace('aria-label="Навигация по учебному сайту"','aria-label="Повтор навигации по учебному сайту"')+'</body>')
      .replace("Опытный тренажёр · Этап I","Электронный тренажёр · Этап I")
      .replace("Исходная формулировка ФОС сохраняется неизменной. Это учебный прототип, а не официальный экзамен; все три этапа работают в опытном режиме; результаты не являются официальной экзаменационной оценкой.",
        "Исходная формулировка задания сохраняется неизменной. Это учебный тренажёр, а не официальный экзамен; результат самопроверки не является оценкой комиссии.");
