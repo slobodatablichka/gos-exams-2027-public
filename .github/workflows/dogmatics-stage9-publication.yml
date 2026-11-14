@@ -1,0 +1,78 @@
+name: Dogmatics Stage 9 publish and verify 40 trainers
+on:
+  push:
+    paths:
+      - 'scripts/build-dogmatics-trainers-2027.mjs'
+      - 'scripts/test-dogmatics-trainers-2027.mjs'
+      - '.github/workflows/dogmatics-stage9-publication.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: dogmatics-stage9-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: public
+          token: ${{ secrets.PUBLICATION_PR_TOKEN }}
+          persist-credentials: true
+      - uses: actions/checkout@v4
+        with:
+          repository: slobodatablichka/gos-exams-2027
+          ref: main
+          path: private
+          token: ${{ secrets.PUBLICATION_SOURCE_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check scripts and immutable source contract
+        run: |
+          node --check public/scripts/build-dogmatics-trainers-2027.mjs
+          node --check public/scripts/test-dogmatics-trainers-2027.mjs
+          node private/scripts/validate-dogmatics-trainer.mjs --self-test
+          node private/scripts/test-dogmatics-stage8-core.mjs
+      - name: Render all 40 public pages and one shared engine
+        run: |
+          node public/scripts/build-dogmatics-trainers-2027.mjs --private-root ../private --write
+          node public/scripts/build-dogmatics-trainers-2027.mjs --private-root ../private --check
+      - name: Install real Chromium browser
+        working-directory: public
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test all 40 public pages and mobile presentation
+        working-directory: public
+        run: node scripts/test-dogmatics-trainers-2027.mjs
+      - name: Ensure only intended public files are changed
+        working-directory: public
+        run: |
+          git add scripts/build-dogmatics-trainers-2027.mjs scripts/test-dogmatics-trainers-2027.mjs
+          git add assets/js/dogmatics-trainer.js assets/css/dogmatics-trainer.css
+          git add subjects/dogmatics/2027/trainers subjects/dogmatics/2027/index.md subjects/dogmatics/2027/q??-l?.md subjects/dogmatics/2027/practice/practicum-??.md
+          git add practice/index.md _includes/global-navigation.html
+          git diff --cached --check
+          git diff --cached --stat
+      - name: Commit and publish verified site files
+        working-directory: public
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish all 40 Dogmatics trainers with shared engine and navigable sources"
+            git push origin HEAD:main
+          fi
+      - name: Keep complete public trainer bundle as CI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dogmatics-stage9-public-pages
+          path: |
+            public/subjects/dogmatics/2027/trainers/
+            public/assets/js/dogmatics-trainer.js
+            public/assets/css/dogmatics-trainer.css
+          retention-days: 30
