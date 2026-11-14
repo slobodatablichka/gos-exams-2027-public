@@ -1,0 +1,21 @@
+name: Dogmatics Stage 9 live HTTPS acceptance
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'subjects/dogmatics/2027/trainers/**'
+      - 'assets/js/dogmatics-trainer.js'
+      - 'assets/css/dogmatics-trainer.css'
+      - 'scripts/check-dogmatics-stage9-https.py'
+      - '.github/workflows/dogmatics-stage9-https.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-https:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify 64 live HTTPS routes and literal case markers after Pages deploy
+        run: python scripts/check-dogmatics-stage9-https.py
