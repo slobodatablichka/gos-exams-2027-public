@@ -506,12 +506,93 @@ return {createSession};
         "aria-label":"Раздел «"+cat.label+"»"});
       const heading=element("div",{class:"category-heading"});
       heading.append(element("span",{class:"category-title"},cat.label));
-      heading.append(element("span",{class:"category-count","aria-hidden":"true"},"0"));
+      const tools=element("div",{class:"taxonomy-heading-tools"});
+      tools.append(element("span",{class:"category-count","aria-hidden":"true"},"0"));
+      const toggle=element("button",{type:"button",class:"taxonomy-toggle",
+        "data-taxonomy-toggle":cat.id,"aria-controls":"taxonomy-claims-"+cat.id,
+        "aria-expanded":"false",hidden:""},"Показать положения");
+      tools.append(toggle);heading.append(tools);
       area.append(heading,element("ol",{class:"category-claims","data-category-list":cat.id,
-        "aria-label":"Отнесённые положения: "+cat.label}));
+        id:"taxonomy-claims-"+cat.id,"aria-label":"Отнесённые положения: "+cat.label}));
       taxonomyGrid.append(area);
     }
   }
+  // Stage III is a read-only, contextual view of the SAME verified classification.
+  // Keep every original li node and its exact standalone text: nothing is reconstructed or truncated.
+  const targetCategories=caseData.taxonomy.categories.filter(cat=>cat.role==="target");
+  const targetIds=new Set(targetCategories.map(cat=>cat.id));
+  function showTaxonomyClaims(area,expanded){
+    const list=area.querySelector(".category-claims"),toggle=area.querySelector("[data-taxonomy-toggle]");
+    list.hidden=!expanded;
+    toggle.setAttribute("aria-expanded",String(expanded));
+    toggle.textContent=expanded?"Свернуть положения":"Показать положения";
+  }
+  function reviewTaxonomy(categoryId){
+    if(stage!==3)return;
+    for(const area of taxonomyGrid.querySelectorAll(".category-drop")){
+      if(area.hidden)continue;
+      const active=area.dataset.categoryId===categoryId;
+      area.classList.toggle("taxonomy-active",active);
+      if(active)area.setAttribute("aria-current","step");
+      else area.removeAttribute("aria-current");
+      // A user may independently open another doctrine; never close that group on same-doctrine steps.
+      if(active || !area.dataset.reviewSeen)showTaxonomyClaims(area,active);
+      area.dataset.reviewSeen="true";
+    }
+  }
+  function enterTaxonomyReview(){
+    taxonomyPanel.dataset.mode="apology";
+    taxonomyPanel.querySelector(".window-head p").textContent=
+      "Выявленные учения и полные тексты всех отнесённых к ним положений.";
+    for(const area of taxonomyGrid.querySelectorAll(".category-drop")){
+      const id=area.dataset.categoryId;
+      const assigned=[...area.querySelectorAll('[data-stage2-item="true"]')];
+      area.hidden=!targetIds.has(id);
+      if(!area.hidden && assigned.length===0)throw Error("Accepted target category has no propositions: "+id);
+      const toggle=area.querySelector("[data-taxonomy-toggle]");
+      toggle.hidden=area.hidden;
+      delete area.dataset.reviewSeen;
+      for(const li of assigned){
+        li.setAttribute("role","listitem");
+        li.removeAttribute("tabindex");
+        li.setAttribute("aria-label","Отнесённое положение: "+session.lookup(li.dataset.unitId).unit.standalone);
+        const select=li.querySelector("[data-assign-select]");
+        if(select)select.disabled=true;
+      }
+    }
+    $("stage3-context-links").hidden=false;
+  }
+  function exitTaxonomyReview(){
+    delete taxonomyPanel.dataset.mode;
+    taxonomyPanel.querySelector(".window-head p").textContent=
+      "Названий больше, чем необходимо. Перенесите все положения в подходящие разделы.";
+    $("stage3-context-links").hidden=true;
+    for(const area of taxonomyGrid.querySelectorAll(".category-drop")){
+      area.hidden=false;
+      area.classList.remove("taxonomy-active");
+      area.removeAttribute("aria-current");
+      delete area.dataset.reviewSeen;
+      const toggle=area.querySelector("[data-taxonomy-toggle]");
+      toggle.hidden=true;
+      showTaxonomyClaims(area,true);
+      for(const li of area.querySelectorAll('[data-stage2-item="true"]')){
+        li.setAttribute("role","group");
+        li.setAttribute("tabindex","0");
+        li.setAttribute("aria-label","Перемещаемое положение. Нажмите Enter для выбора ереси или перетащите в раздел.");
+        const select=li.querySelector("[data-assign-select]");
+        if(select)select.disabled=false;
+      }
+    }
+  }
+  taxonomyGrid.addEventListener("click",event=>{
+    if(stage!==3||transitionBusy)return;
+    const toggle=event.target.closest("[data-taxonomy-toggle]");
+    if(!toggle)return;
+    const area=toggle.closest(".category-drop");
+    if(area.classList.contains("taxonomy-active"))return;
+    showTaxonomyClaims(area,toggle.getAttribute("aria-expanded")!=="true");
+    area.dataset.reviewSeen="true";
+  });
   function prepareClaims(){
     const items=Array.from(listEl.children).filter(x=>x.dataset.unitId);
     for(const li of items){
@@ -659,7 +740,7 @@ return {createSession};
   $("next-button").addEventListener("click",advance);
   $("restart-button").addEventListener("click",()=>{
     if((stage!==2&&stage!==3)||transitionBusy)return;
-    if(stage===3){apologyPanel.hidden=true;heresyPanel.hidden=false;taxonomyPanel.hidden=false;}
+    if(stage===3){exitTaxonomyReview();apologyPanel.hidden=true;heresyPanel.hidden=false;taxonomyPanel.hidden=false;}
     apologySession=null;
     taxonomySession.reset();stage=1;
     taxonomyPanel.hidden=true;scripturePanel.hidden=false;
@@ -710,14 +791,20 @@ return {createSession};
     const block=apologySession.currentBlock(),index=apologySession.currentIndex();
     const selection=new Set(apologySession.selection());
     const checked=apologySession.currentResult();
-    $("apology-position").textContent="Блок "+(index+1)+" из "+apologySession.blockCount();
-    $("apology-category").textContent=block.categoryLabel;
+    const doctrineIndex=targetCategories.findIndex(cat=>cat.id===block.categoryId);
+    if(doctrineIndex<0)throw Error("Apology doctrine not in accepted taxonomy: "+block.categoryId);
+    const questionIndex=["history","theology","rebuttal"].indexOf(block.type)+1;
+    $("apology-position").textContent="Учение "+(doctrineIndex+1)+" из "+targetCategories.length+
+      " · задание "+questionIndex+" из 3";
+    $("apology-category").textContent="Разбираемое учение: "+block.categoryLabel;
     $("apology-type").textContent=labels[block.type];
     $("apology-question").textContent=block.prompt;
+    reviewTaxonomy(block.categoryId);
     const flags=apologySession.progress();
     $("apology-progress").replaceChildren(...flags.map((x,i)=>{
       const span=element("span",{class:"apology-step"+(i===index?" active":"")+(x.passed?" passed":""),
-        "aria-label":"Блок "+(i+1)+(x.passed?" пройден":" ещё не пройден")},String(i+1));
+        "aria-label":caseData.taxonomy.categories.find(c=>c.id===x.categoryId).label+", "+labels[x.type]+
+          (x.passed?" — пройдено":" — ещё не пройдено")},String(i+1));
       return span;
     }));
     const list=doc.createDocumentFragment();
@@ -735,8 +822,8 @@ return {createSession};
       apologyFeedback.hidden=false;
       apologyFeedback.dataset.kind=checked.correct?"pass":"fail";
       apologyFeedback.append(element("p",{class:"apology-result"},
-        checked.correct?"Блок пройден: выбран полный набор обоснованных положений.":
-        "Проверка завершена: пропущено верных — "+checked.missing+
+        checked.correct?block.categoryLabel+" · "+labels[block.type]+": задание выполнено.":
+        block.categoryLabel+" · "+labels[block.type]+": пропущено верных — "+checked.missing+
         ", отмечено лишних — "+checked.extra+". Исправьте ответ и повторите проверку."));
       const detail=apologySession.feedback();
       const relevant=checked.correct?detail.filter(o=>o.correct):
@@ -754,7 +841,7 @@ return {createSession};
     $("apology-check").hidden=apologySession.completed()&&index===apologySession.blockCount()-1;
     $("apology-prev").disabled=index===0;
     $("apology-next").hidden=!checked?.correct||index===apologySession.blockCount()-1;
-    $("apology-next").textContent="Следующий блок";
+    $("apology-next").textContent="Следующий вопрос";
     $("apology-current").hidden=false;
     const oral=apologySession.oralTask();
     $("oral-panel").hidden=!oral;
@@ -779,16 +866,18 @@ return {createSession};
     if(stage!==3||transitionBusy)return;
     const result=apologySession.checkCurrent();
     renderApology();
-    announce(result.correct?"Блок Апологии пройден.":"Блок проверен; показаны пояснения к ошибкам и ссылки на источники.");
+    const current=apologySession.currentBlock();
+    announce(result.correct?current.categoryLabel+" · "+labels[current.type]+": ответ верный.":
+      current.categoryLabel+" · "+labels[current.type]+": показаны ошибки и ссылки на источники.");
     apologyFeedback.scrollIntoView({block:"nearest",behavior:"auto"});
   });
   $("apology-prev").addEventListener("click",()=>{
     if(stage!==3||transitionBusy)return;
-    if(apologySession.previous())renderApology();
+    if(apologySession.previous()){renderApology();$("apology-question").focus({preventScroll:true});}
   });
   $("apology-next").addEventListener("click",()=>{
     if(stage!==3||transitionBusy)return;
-    if(apologySession.next())renderApology();
+    if(apologySession.next()){renderApology();$("apology-question").focus({preventScroll:true});}
   });
   async function advanceToApology(){
     if(stage!==2||transitionBusy||taxonomySession?.currentResult()?.correct!==true)return;
@@ -805,8 +894,8 @@ return {createSession};
     }
     heresyPanel.hidden=true;
     apologyPanel.hidden=false;
+    enterTaxonomyReview();
     const after=taxonomyPanel.getBoundingClientRect();
-    for(const select of taxonomyPanel.querySelectorAll("[data-assign-select]"))select.disabled=true;
     if(!reduced()){
       const dx=before.left-after.left,dy=before.top-after.top;
       await Promise.all([
@@ -819,16 +908,16 @@ return {createSession};
     stage=3;transitionBusy=false;
     clearFeedback();
     $("stage-notice").textContent="Этап III из III · Апология";
-    $("stage-hint").textContent="Для каждого учения последовательно выполните историю, оценку и православное опровержение.";
+    $("stage-hint").textContent="Слева — полные выявленные положения; справа — вопрос по выделенному учению.";
     $("stage-description").textContent="Опытный тренажёр · Этап III · «Таксономия → Апология»";
-    $("control-hint").textContent="Отметьте все подходящие утверждения в каждом блоке. Проверяйте по окончании выбора; после проверки доступны объяснения и ссылки.";
+    $("control-hint").textContent="Отвечайте по выделенному слева учению. После проверки доступны объяснения и ссылки. Другие учения слева можно просматривать.";
     $("check-button").hidden=true;
     $("reset-button").textContent="Очистить Апологию";
     $("back-taxonomy").hidden=false;
     $("restart-button").hidden=false;
     doc.title="Таксономия → Апология — " + caseName;
     renderApology();
-    announce("«Ересь» свернулась, «Таксономия» перешла влево, «Апология» раскрылась справа. Существующая классификация сохранена.");
+    announce("Таксономия слева показывает только обнаруженные учения и полные положения; справа открылся связанный вопрос Апологии.");
   }
   $("next-apology-button").addEventListener("click",advanceToApology);
   $("back-taxonomy").addEventListener("click",async()=>{
@@ -836,6 +925,7 @@ return {createSession};
     transitionBusy=true;
     const before=taxonomyPanel.getBoundingClientRect();
     apologyPanel.hidden=true;heresyPanel.hidden=false;
+    exitTaxonomyReview();
     const after=taxonomyPanel.getBoundingClientRect();
     if(!reduced()){
       const dx=before.left-after.left,dy=before.top-after.top;
@@ -846,7 +936,6 @@ return {createSession};
           {duration:340,easing:"ease-out"}).finished.catch(()=>{})
       ]);
     }
-    for(const select of taxonomyPanel.querySelectorAll("[data-assign-select]"))select.disabled=false;
     apologySession=null;stage=2;transitionBusy=false;clearFeedback();
     $("stage-notice").textContent="Этап II из III · Таксономия";
     $("stage-hint").textContent="Определите, к какой ереси относится каждое положение. Лишние названия не используйте.";
@@ -873,6 +962,8 @@ return {createSession};
       stage3Index:apologySession?apologySession.currentIndex():null,
       stage3Completed:apologySession?.completed()||false,
       transitionStageIIIAnimated,
+      taxonomyView:taxonomyPanel.dataset.mode||"classify",
+      activeDoctrine:taxonomyGrid.querySelector(".taxonomy-active")?.dataset.categoryId||null,
       sourceOriginal:caseData.source.original_text,sourceText:sourceEl.textContent}),
     sourcePanel:scripturePanel,heresyPanel,taxonomyPanel
   };

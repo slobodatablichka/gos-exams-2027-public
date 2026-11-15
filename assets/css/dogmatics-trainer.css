@@ -64,6 +64,29 @@
 @media(max-width:780px){.apology-body{padding:13px}.apology-option-text{font-size:15px}.apology-controls{gap:6px}}
 @media(prefers-reduced-motion:reduce){.apology-option{transition:none}}
 
+/* Step 3: read-only, complete-text taxonomy context linked to one Apology question. */
+#taxonomy-panel[data-mode="apology"] .category-drop{min-height:0}
+#taxonomy-panel[data-mode="apology"] .category-drop.taxonomy-active{border:2px solid #527b65;background:#f1f7ef}
+#taxonomy-panel[data-mode="apology"] .selected-item.assigned{cursor:default;user-select:text;touch-action:auto;padding:10px 12px}
+#taxonomy-panel[data-mode="apology"] .selected-item p{margin:0;white-space:normal;overflow-wrap:anywhere}
+#taxonomy-panel[data-mode="apology"] .selected-item .item-footer,
+#taxonomy-panel[data-mode="apology"] .claim-select-label{display:none}
+#taxonomy-panel[data-mode="apology"] .category-count{background:#e1e9e0}
+.taxonomy-heading-tools{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.taxonomy-toggle{font:inherit;font-size:12px;line-height:1.3;border:1px solid #a5b9aa;border-radius:7px;background:#fff;color:#2b6149;padding:6px 9px;cursor:pointer}
+.taxonomy-toggle:focus-visible{outline:3px solid #235c89;outline-offset:2px}
+.category-drop.taxonomy-active .taxonomy-toggle{display:none}
+.stage3-context-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.stage3-context-links a{font-size:13px;color:#286352;border:1px solid #b7c8b9;border-radius:7px;padding:6px 10px;text-decoration:underline}
+.stage3-context-links a:focus-visible{outline:3px solid #235c89;outline-offset:2px}
+#apology-panel #apology-position{white-space:normal;text-align:right;max-width:175px;line-height:1.4}
+.apology-section-label{font-size:11px;font-weight:750;letter-spacing:.07em;color:#667669;text-transform:uppercase;margin:12px 0 4px}
+#apology-panel .apology-category{text-transform:none;letter-spacing:normal;font-size:15px;font-weight:750;color:#2b5a43}
+#apology-panel .apology-type{font-size:16px;font-weight:700;color:#335844;margin:0 0 10px}
+#apology-panel #apology-question{font-size:19px;line-height:1.42;margin:0 0 10px}
+#apology-panel #apology-question:focus{outline:2px solid #527b65;outline-offset:4px}
+@media(max-width:780px){.stage3-context-links a{flex:1;text-align:center}.taxonomy-body{gap:9px}#apology-panel #apology-position{max-width:155px}}
+
 /* Dogmatics publication: standalone browser UI, independent of Jekyll Cayman CSS. */
 .trainer-nav,.trainer-links{max-width:1280px;margin:auto;padding:12px 28px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .trainer-nav a,.trainer-links .variant-links a{display:inline-block;padding:7px 12px;background:#fffcf7;border:1px solid #b7cbbf;border-radius:9px;text-decoration:none;color:#214b3a;font-weight:650}
