@@ -52,8 +52,30 @@ async function test(){
    await page.locator("#next-apology-button").click();
    await page.waitForFunction(()=>window.StageFivePreview.getState().stage===3);
    assert.equal(await page.locator("#apology-progress .apology-step").count(),json.apology.blocks.length);
+   const used=json.taxonomy.categories.filter(c=>c.role==="target");
+   assert.equal(await page.locator("#taxonomy-panel .category-drop:visible").count(),used.length,
+     "Stage III must hide all unused headings in "+file);
+   assert.equal(await page.locator("#taxonomy-panel [data-assign-select]:visible").count(),0,
+     "Stage III classification selectors must be hidden in "+file);
+   for(const category of used){
+    const area=page.locator('[data-category-id="'+category.id+'"]');
+    const actual=(await area.locator('[data-stage2-item="true"] > p').allTextContents()).sort();
+    const expected=wrong.filter(u=>u.heresies.includes(category.id)).map(u=>u.standalone).sort();
+    assert.deepEqual(actual,expected,"Full standalone positions lost in "+file+"/"+category.id);
+    assert.ok(await area.locator('[data-stage2-item="true"]').count()>0);
+   }
+   assert.equal((await state()).taxonomyView,"apology");
+   assert.equal(await page.locator("#apology-guidance").innerText(),
+     "Выберите все верные утверждения. Правильных ответов может быть несколько.");
    for(let i=0;i<json.apology.blocks.length;i++){
     const b=json.apology.blocks[i];
+    assert.equal((await state()).activeDoctrine,b.category_id,
+      "Left taxonomy must follow right question in "+file+" / "+i);
+    assert.equal(await page.locator('[data-category-id="'+b.category_id+'"]').getAttribute("aria-current"),"step");
+    assert.equal(await page.locator("#apology-question").innerText(),b.prompt);
+    assert.ok(b.prompt.endsWith("?")&&!b.prompt.includes("Тезис из данного текста:"));
+    assert.equal(await page.locator("#apology-category").innerText(),
+      "Разбираемое учение: "+used.find(c=>c.id===b.category_id).label);
     for(const o of b.options.filter(x=>x.correct))
      await page.locator('[data-apology-id="'+o.id+'"]').check();
     await page.locator("#apology-check").click();
@@ -72,6 +94,10 @@ async function test(){
    if(json.practical_no===8)assert.equal(await page.locator("#p8-note").isVisible(),true);
    await page.locator("#back-taxonomy").click();
    await page.waitForFunction(()=>window.StageFivePreview.getState().stage===2);
+   assert.equal(await page.locator("#taxonomy-panel .category-drop:visible").count(),used.length+4,
+     "Stage II must restore the four distractors on return from III");
+   assert.equal(await page.locator("#taxonomy-panel [data-assign-select]:visible").count(),wrong.length,
+     "Stage II must restore editable selectors");
    await page.locator("#restart-button").click();
    assert.equal((await state()).sourceText,json.source.original_text);
    done++;
