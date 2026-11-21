@@ -1,0 +1,70 @@
+name: Verify liturgics vespers and matins table (live)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'subjects/liturgics/2027/vespers-matins.md'
+      - 'assets/liturgics/vespers-matins-viewer.js'
+      - 'assets/liturgics/vespers-matins-viewer.css'
+      - 'assets/liturgics/vespers-matins-image/**'
+      - 'assets/liturgics/service-signs/**'
+      - '.github/workflows/verify-vespers-matins-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Verify deployed page and all source fragments
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, time, urllib.request, zlib
+          root="https://slobodatablichka.github.io/gos-exams-2027-public"
+          paths=[
+            "/subjects/liturgics/2027/vespers-matins.html",
+            "/assets/liturgics/vespers-matins-viewer.js",
+            "/assets/liturgics/vespers-matins-viewer.css",
+            "/assets/liturgics/service-signs/shesterichnaya.svg",
+            "/assets/liturgics/service-signs/slavoslovnaya.svg",
+            "/assets/liturgics/service-signs/polieleynaya.svg",
+            "/assets/liturgics/service-signs/bdennaya-srednego-svyatogo.svg",
+            "/assets/liturgics/service-signs/bdennaya-velikogo-svyatogo.svg",
+            "/assets/liturgics/service-signs/gospodskiy-prazdnik.svg",
+            "/assets/liturgics/service-signs/bogorodichnyy-dvunadesyatyy.svg",
+          ]
+          paths += [f"/assets/liturgics/vespers-matins-image/part-{i:02}.txt" for i in range(1,8)]
+          responses={}
+          for attempt in range(8):
+            try:
+              for path in paths:
+                with urllib.request.urlopen(urllib.request.Request(root+path, headers={"User-Agent":"gos-exams-2027-live-check"}),timeout=25) as r:
+                  assert r.status==200,(path,r.status)
+                  responses[path]=r.read()
+              break
+            except Exception as e:
+              if attempt==7: raise
+              print(f"Attempt {attempt+1}: {type(e).__name__}: {e}; trying again",flush=True)
+              time.sleep(12)
+          page=responses[paths[0]].decode("utf-8")
+          assert 'id="liturgics-table-app"' in page
+          assert 'id="lit-full"' in page
+          assert 'id="lit-mobile"' in page
+          assert 'id="lit-compare"' in page
+          js=responses[paths[1]].decode("utf-8")
+          assert 'DecompressionStream("deflate")' in js
+          assert 'shesterichnaya.svg' in js
+          parts=[responses[f"/assets/liturgics/vespers-matins-image/part-{i:02}.txt"].decode("ascii").strip() for i in range(1,8)]
+          compressed=base64.b64decode("".join(parts),validate=True)
+          expected="de25a752b3c3376078a36e214ab1f2af82bf757010866b4244f6d1b96c197138"
+          assert hashlib.sha256(compressed).hexdigest()==expected
+          image=zlib.decompress(compressed)
+          assert len(image)==91*1046, len(image)
+          for path in paths[3:10]:
+            assert b"<svg" in responses[path][:200],path
+          print("LIVE PASS: page, three viewports, seven SVGs, JS/CSS, seven image parts and lossless image checksum")
+          PY
