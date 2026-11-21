@@ -1,0 +1,25 @@
+name: Verify digital vespers and matins table
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/liturgics/vespers-matins-data.deflate.b64'
+      - 'assets/liturgics/vespers-matins-digital.js'
+      - 'assets/liturgics/service-signs/**'
+      - 'subjects/liturgics/2027/vespers-matins.md'
+      - 'subjects/liturgics/2027/vespers-matins-scan.md'
+      - 'tests/verify-vespers-matins-digital.py'
+      - '.github/workflows/verify-vespers-matins-digital.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check JSON, SVG and page
+        run: python tests/verify-vespers-matins-digital.py
+      - name: Check JavaScript syntax
+        run: node --check assets/liturgics/vespers-matins-digital.js
