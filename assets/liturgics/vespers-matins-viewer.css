@@ -1,0 +1,26 @@
+#liturgics-table-app{max-width:100%;--lt-border:#cfd9df;--lt-ink:#153747}
+#liturgics-table-app [hidden]{display:none!important}
+#liturgics-table-app .lit-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:end;padding:12px 0}
+#liturgics-table-app .lit-controls label{display:flex;flex-direction:column;gap:5px;font-size:.93rem;font-weight:600}
+#liturgics-table-app select{max-width:min(94vw,510px);border:1px solid #9baeb7;border-radius:7px;background:#fff;padding:9px;color:#132b36;font-size:1rem}
+#liturgics-table-app .lit-switch{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 3px}
+#liturgics-table-app .lit-switch button{border:1px solid #9baeb7;border-radius:7px;background:#fff;color:#194259;padding:9px 13px;font-weight:600;cursor:pointer}
+#liturgics-table-app .lit-switch button[aria-pressed="true"]{background:#205468;border-color:#205468;color:#fff}
+#liturgics-table-app .lit-switch button:focus-visible,#liturgics-table-app select:focus-visible{outline:3px solid #d58d39;outline-offset:2px}
+#liturgics-table-app .lit-view{margin-top:12px}
+#liturgics-table-app .lit-scroll{overflow:auto;max-width:100%;max-height:78vh;border:1px solid var(--lt-border);background:white;overscroll-behavior-x:contain}
+#liturgics-table-app canvas{display:block;image-rendering:auto}
+#liturgics-table-app #lit-full{max-width:none}
+#liturgics-table-app #lit-mobile{height:auto;width:100%;max-width:490px;border:1px solid var(--lt-border)}
+#liturgics-table-app .lit-service-heading{display:flex;align-items:center;gap:9px;margin:13px 0;font-size:1.05rem}
+#liturgics-table-app .lit-sign{width:30px;height:30px;object-fit:contain;flex:none}
+#liturgics-table-app .lit-compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr));gap:12px}
+#liturgics-table-app .lit-compare-item{padding:9px;border:1px solid var(--lt-border);border-radius:8px;background:white;min-width:0}
+#liturgics-table-app .lit-compare-label{font-size:.88rem;min-height:64px;display:flex;align-items:center;gap:7px;line-height:1.3;margin:0 0 10px}
+#liturgics-table-app .lit-compare-cell{width:100%;height:auto;max-width:180px;min-height:32px}
+#liturgics-table-app .lit-status{min-height:1.5rem;font-size:.9rem;color:#485d68;margin-top:6px}
+#liturgics-table-app .lit-guides{font-size:.88rem;line-height:1.5;margin:8px 0 14px;color:#465b64}
+#liturgics-table-app .lit-signs{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:14px 0}
+#liturgics-table-app .lit-signs span{display:flex;gap:6px;align-items:center;font-size:.88rem}
+#liturgics-table-app .lit-signs img{width:24px;height:24px}
+@media(max-width:600px){#liturgics-table-app .lit-scroll{max-height:68vh}#liturgics-table-app .lit-switch button{flex:1;font-size:.87rem;padding:10px 6px}#liturgics-table-app .lit-controls{display:grid;grid-template-columns:1fr}#liturgics-table-app select{width:100%;max-width:100%}}
