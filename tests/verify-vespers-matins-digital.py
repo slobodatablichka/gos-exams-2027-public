@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 """Integrity check for the digital vespers/matins teaching table."""
-import base64
 import json
 import pathlib
 import re
-import zlib
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 assets = ROOT / "assets" / "liturgics"
-compressed = base64.b64decode((assets / "vespers-matins-data.deflate.b64").read_text(encoding="utf-8").strip(), validate=True)
-data = json.loads(zlib.decompress(compressed).decode("utf-8"))
+data = json.loads((assets / "vespers-matins-data.json").read_text(encoding="utf-8"))
 assert len(data["columns"]) == 17
 assert len(data["rows"]) == 23
 columns = [c["id"] for c in data["columns"]]
@@ -28,8 +25,8 @@ mid = (assets / "service-signs" / "bdennaya-srednego-svyatogo.svg").read_text(en
 assert 'M12 32 A20 20 0 0 0 52 32' in mid, "Expected exact lower semicircle"
 js = (assets / "vespers-matins-digital.js").read_text(encoding="utf-8")
 page = (ROOT / "subjects/liturgics/2027/vespers-matins.md").read_text(encoding="utf-8")
-assert "DecompressionStream" in js
-assert "vespers-matins-data.deflate.b64" in page
+assert "res.json()" in js
+assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
 assert (ROOT / "subjects/liturgics/2027/vespers-matins-scan.md").is_file()
 print("PASS: 17 columns, 23 rows, 391 text cells, SVG signs, proper semicircle, links")
