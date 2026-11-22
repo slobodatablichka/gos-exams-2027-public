@@ -64,7 +64,7 @@ assert 'cell.kind==="span"' in js
 assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
 assert (ROOT / "subjects/liturgics/2027/vespers-matins-scan.md").is_file()
-assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,22)]
+assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,24)]
 assert all(c.get("verified_from_source") is True for r in data["rows"][:8] for c in r["cells"])
 assert all(c.get("kind") in {"empty","symbol","text"} for r in data["rows"][:8] for c in r["cells"])
 assert data["rows"][3]["cells"][8]["text"] == "←"
@@ -98,4 +98,16 @@ assert data["rows"][20]["source_bands"][1]["texts"][9] == ""
 assert data["rows"][20]["source_bands"][1]["cell_parts"]["c02"] == ["2 св.","4 прил."]
 assert data["rows"][17]["cells"][2]["text"].startswith("Свет. Октоиха")
 assert data["rows"][18]["cells"][16]["text"].startswith("Окт.-4")
-print("PASS: 17 columns, 23 logical rows, 29 bands, 60 merges, 357 verified cells, SVG and links")
+assert all(c.get("verified_from_source") is True for r in data["rows"][21:23] for c in r["cells"])
+assert [b["row_id"] for b in layout["body_bands"][27:29]] == ["r22","r23"]
+assert data["source_layout"]["reviewed_stage_6"]["logical_cells"] == 34
+assert data["source_layout"]["reviewed_stage_6"]["source_bands"] == [27,28]
+assert data["rows"][21]["cells"][0]["text"] == "Свят. 1"
+assert data["rows"][21]["cells"][1]["text"] == "Оба тр."
+assert data["rows"][21]["cells"][13]["text"].startswith("1, 6 — воскр.")
+assert data["rows"][22]["cells"][1]["text"] == "Перемен."
+assert data["rows"][22]["cells"][11]["text"] == "← →"
+assert data["rows"][22]["cells"][11]["kind"] == "symbol"
+assert data["rows"][22]["cells"][12]["text"] == "1, 6 — св.\\n3, 9 — воскр."
+assert data["rows"][22]["cells"][13]["text"] == "1, 6 — пр.\\n3, 9 — воскр."
+print("PASS: 17 columns, 23 logical rows, 29 bands, 60 merges, 391 source-reviewed cells, SVG and links")
