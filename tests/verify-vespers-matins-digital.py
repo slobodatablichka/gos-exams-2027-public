@@ -120,7 +120,7 @@ assert {tuple(m[k] for k in ("row_start","rowspan","col_start","colspan")) for m
 assert len(data["source_layout"]["body_bands"]) == 29
 assert len([x for row in data["rows"] for x in row["cells"]]) == 391
 assert all(c.get("verified_from_source") for r in data["rows"] for c in r["cells"])
-assert data["rows"][1]["source_label"] == "Слава:\\nи ныне:"
+assert data["rows"][1]["source_label"] == "Слава:\nи ныне:"
 assert data["rows"][2]["source_label"] == ""
 assert data["rows"][15]["source_label"].startswith("Чтения по:")
 assert all(data["rows"][i]["source_label"] == "" for i in [16,17])
