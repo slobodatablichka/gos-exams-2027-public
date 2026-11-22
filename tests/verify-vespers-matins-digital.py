@@ -24,7 +24,7 @@ assert [band["row_id"] for band in layout["body_bands"]] == [
     "r15","r16","r17","r18","r19","r20","r20","r21","r21",
     "r22","r23"
 ]
-assert len(layout["merged_regions"]) == 60
+assert len(layout["merged_regions"]) == 62
 coverage = set()
 for region in layout["merged_regions"]:
     rs, cs = region["row_start"], region["col_start"]
@@ -36,7 +36,7 @@ for region in layout["merged_regions"]:
         for cc in range(cs, cs+region["colspan"]):
             assert (rr, cc) not in coverage, "Overlapping merged region"
             coverage.add((rr, cc))
-assert len(coverage) == 130, len(coverage)
+assert len(coverage) == 134, len(coverage)
 
 columns = [c["id"] for c in data["columns"]]
 assert len(set(columns)) == 17
@@ -110,4 +110,13 @@ assert data["rows"][22]["cells"][11]["text"] == "← →"
 assert data["rows"][22]["cells"][11]["kind"] == "symbol"
 assert data["rows"][22]["cells"][12]["text"] == "1, 6 — св.\n3, 9 — воскр."
 assert data["rows"][22]["cells"][13]["text"] == "1, 6 — пр.\n3, 9 — воскр."
-print("PASS: 17 columns, 23 logical rows, 29 bands, 60 merges, 391 source-reviewed cells, SVG and links")
+assert [b["source_band"] for b in data["rows"][4]["source_bands"]] == [4,5]
+assert all(len(b["texts"]) == 17 for b in data["rows"][4]["source_bands"])
+assert data["rows"][4]["source_bands"][0]["texts"][12] == "Минея"
+assert data["rows"][4]["source_bands"][1]["texts"][12] == "1 прил. по гл. сл."
+assert data["rows"][4]["cells"][12]["text"] == "\\n".join(["Минея","1 прил. по гл. сл."])
+assert {tuple(m[k] for k in ("row_start","rowspan","col_start","colspan")) for m in layout["merged_regions"]} >= {(4,2,0,1),(4,2,8,1),(4,2,15,1)}
+assert len(data["source_layout"]["body_bands"]) == 29
+assert len([x for row in data["rows"] for x in row["cells"]]) == 391
+assert all(c.get("verified_from_source") for r in data["rows"] for c in r["cells"])
+print("PASS: 17 columns, 23 logical rows, 29 bands, 62 merges, 391 source-reviewed cells, SVG and links")
