@@ -692,6 +692,54 @@
           "kind": "empty",
           "verified_from_source": true
         }
+      ],
+      "source_bands": [
+        {
+          "source_band": 4,
+          "label": "Слава: и ныне:",
+          "texts": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Минея на ряду",
+            "",
+            "Храма или 1 прил.",
+            "←",
+            "←",
+            "Минея",
+            "Мин. пр. стиховн. Утрени",
+            "Праздничная минея",
+            "",
+            ""
+          ]
+        },
+        {
+          "source_band": 5,
+          "label": "",
+          "texts": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "1 прил. по гл. сл.",
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
       ]
     },
     {
@@ -3198,12 +3246,6 @@
       },
       {
         "row_start": 3,
-        "rowspan": 2,
-        "col_start": 15,
-        "colspan": 1
-      },
-      {
-        "row_start": 3,
         "rowspan": 3,
         "col_start": 16,
         "colspan": 1
@@ -3217,6 +3259,18 @@
       {
         "row_start": 4,
         "rowspan": 2,
+        "col_start": 0,
+        "colspan": 1
+      },
+      {
+        "row_start": 4,
+        "rowspan": 2,
+        "col_start": 8,
+        "colspan": 1
+      },
+      {
+        "row_start": 4,
+        "rowspan": 2,
         "col_start": 10,
         "colspan": 1
       },
@@ -3224,6 +3278,12 @@
         "row_start": 4,
         "rowspan": 2,
         "col_start": 14,
+        "colspan": 1
+      },
+      {
+        "row_start": 4,
+        "rowspan": 2,
+        "col_start": 15,
         "colspan": 1
       },
       {
@@ -3613,6 +3673,29 @@
         "column_id": "c12",
         "text": "← →"
       }
+    },
+    "acceptance_review": {
+      "issue": "Unsplit physical litia source bands and incorrect col-15 merge",
+      "fixed_source_bands": [
+        4,
+        5
+      ],
+      "repaired_merge": {
+        "from": {
+          "row_start": 3,
+          "rowspan": 2,
+          "col_start": 15
+        },
+        "to": {
+          "row_start": 4,
+          "rowspan": 2,
+          "col_start": 15
+        }
+      },
+      "tested_source_pixels_at_y": [
+        486,
+        507
+      ]
     }
   }
 }
