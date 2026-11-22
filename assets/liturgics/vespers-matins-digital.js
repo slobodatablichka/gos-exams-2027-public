@@ -12,54 +12,60 @@ function drawFull(){
   const layout=data.source_layout;
   const h=el("thead"),groups=el("tr"),titles=el("tr");
   const first=el("th","Элемент последования","vm-sticky");first.scope="col";first.rowSpan=2;groups.append(first);
-  for(const g of layout.column_groups){
-    const th=el("th",g.title);th.scope="colgroup";th.colSpan=g.colspan;th.className="vm-group";groups.append(th);
-  }
+  for(const g of layout.column_groups){const th=el("th",g.title);th.scope="colgroup";th.colSpan=g.colspan;th.className="vm-group";groups.append(th)}
   for(const c of data.columns){const th=el("th");th.scope="col";th.append(hdr(c));titles.append(th)}
   h.append(groups,titles);table.append(h);
-  const body=el("tbody"),byId=new Map(data.rows.map((r,i)=>[r.id,i]));
-  const bandCount=new Map();
-  for(const b of layout.body_bands)bandCount.set(b.row_id,(bandCount.get(b.row_id)||0)+1);
-  const origins=new Map(),covered=new Set();
-  const cellKey=(r,c)=>r+":"+c;
-  for(const m of layout.merged_regions){
-    const ids=[...new Set(layout.body_bands.slice(m.row_start,m.row_start+m.rowspan).map(b=>b.row_id))];
-    // Apply a source merge when it covers every physical band of each logical row.
-    // Partial-band merges remain recorded in JSON until that row is subdivided.
-    const regionBands=layout.body_bands.slice(m.row_start,m.row_start+m.rowspan);
-    if(ids.some(id=>regionBands.filter(b=>b.row_id===id).length!==bandCount.get(id)))continue;
-    const rowIndices=ids.map(id=>byId.get(id));
-    if(rowIndices.some(i=>i===undefined))continue;
-    const top=Math.min(...rowIndices),height=Math.max(...rowIndices)-top+1;
-    if(height!==rowIndices.length)continue;
-    const col=m.col_start;
-    const firstKey=cellKey(top,col);
-    if(origins.has(firstKey))continue;
-    const items=[];
-    for(const r of rowIndices){
-      for(let c=col;c<col+m.colspan;c++)items.push(cellKey(r,c));
-    }
-    if(items.some(k=>covered.has(k)))continue;
-    origins.set(firstKey,{rowspan:height,colspan:m.colspan,rows:rowIndices});
-    for(const k of items)if(k!==firstKey)covered.add(k);
+  const sourceById=new Map();
+  for(let i=0;i<layout.body_bands.length;i++){const id=layout.body_bands[i].row_id;if(!sourceById.has(id))sourceById.set(id,[]);sourceById.get(id).push(i)}
+  const displayed=[];
+  for(const rr of data.rows){
+    if(rr.source_bands?.length){
+      for(const band of rr.source_bands)displayed.push({row:rr,source:[band.source_band],label:band.label,
+        texts:band.texts,parts:band.cell_parts||{}});
+    }else displayed.push({row:rr,source:sourceById.get(rr.id)||[],label:rr.section+" — "+rr.label,
+      texts:rr.cells.map(c=>c.text),parts:{}});
   }
-  data.rows.forEach((rr,r)=>{
+  const key=(r,c)=>r+":"+c,origins=new Map(),covered=new Set();
+  for(const m of layout.merged_regions){
+    const bandSet=new Set(Array.from({length:m.rowspan},(_,i)=>m.row_start+i));
+    const eligible=[];
+    for(let r=0;r<displayed.length;r++){
+      const source=displayed[r].source;
+      if(source.some(i=>bandSet.has(i))){if(!source.every(i=>bandSet.has(i))){eligible.length=0;break}eligible.push(r)}
+    }
+    if(!eligible.length||eligible.some((v,i)=>i&&v!==eligible[i-1]+1))continue;
+    const sum=eligible.reduce((n,r)=>n+displayed[r].source.length,0);
+    if(sum!==m.rowspan)continue;
+    const r0=eligible[0],c0=m.col_start,items=[];
+    for(const r of eligible)for(let c=c0;c<c0+m.colspan;c++)items.push(key(r,c));
+    if(items.some(k=>covered.has(k)))continue;
+    origins.set(key(r0,c0),{rows:eligible,colspan:m.colspan});
+    for(const k of items)if(k!==key(r0,c0))covered.add(k);
+  }
+  const body=el("tbody");
+  displayed.forEach((rr,r)=>{
     const tr=el("tr");
     for(let c=0;c<=data.columns.length;c++){
-      const key=cellKey(r,c);if(covered.has(key))continue;
-      const merge=origins.get(key);
-      const node=c===0?el("th",null,"vm-sticky"):el("td");
+      if(covered.has(key(r,c)))continue;
+      const m=origins.get(key(r,c));
+      const node=c===0?el("th",undefined,"vm-sticky"):el("td");
       if(c===0)node.scope="row";
-      if(merge){node.rowSpan=merge.rowspan;node.colSpan=merge.colspan}
-      let parts=[];
-      for(const ri of merge?.rows||[r]){
-        const rowObj=data.rows[ri];
-        if(c===0){parts.push(rowObj.section+" — "+rowObj.label)}
-        else for(let ci=c;ci<c+(merge?.colspan||1);ci++)parts.push(val(rowObj,data.columns[ci]));
+      if(m){node.rowSpan=m.rows.length;node.colSpan=m.colspan}
+      const rows=m?.rows||[r],width=m?.colspan||1,values=[];
+      for(const ix of rows){
+        const d=displayed[ix];
+        if(c===0){if(d.label)values.push(d.label)}
+        else for(let col=c;col<c+width;col++){
+          const parts=d.parts[data.columns[col-1].id];
+          if(parts?.length){
+            const container=el("div",undefined,"vm-parts");
+            parts.forEach(part=>container.append(el("div",part,"vm-inner-line")));
+            node.append(container);
+          } else if(d.texts[col-1])values.push(d.texts[col-1]);
+        }
       }
-      parts=parts.filter(Boolean);
-      const dedup=[...new Set(parts)];
-      node.textContent=dedup.join(" ");
+      const unique=[...new Set(values)];
+      if(unique.length){const value=el("span",unique.join(" "));node.prepend(value)}
       tr.append(node);
     }
     body.append(tr);
