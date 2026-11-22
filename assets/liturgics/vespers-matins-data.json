@@ -1134,71 +1134,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Минея св. 2-длы"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Минея 1- му сш. 2. Аы"
+          "text": "Минея 1-му св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Минея св. 2-длы"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Минея пр. 2-ды"
+          "text": "Минея пр. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Минея св. 2-ды"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Микся св. 2-ды"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея св. 2-ды"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея с8. 2-Длы"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минея св. 2.ды"
+          "text": "Минея св. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Октоихк воскр. - 2. ды"
+          "text": "Октоих воскр. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Окт.-1, мим. Св.-1"
+          "text": "Окт.-1, мин. св.-1",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Октоих ды"
+          "text": "Октоих воскр. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Октоих ды"
+          "text": "Октоих воскр. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Октоих ды"
+          "text": "Октоих воскр. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "тр. прээдн. * 2-ды"
+          "text": "Тр. праздн. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "*р. праздн. + 2-дьы"
+          "text": "Тр. праздн. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Октоих воскр. - 2 ды"
+          "text": "Октоих воскр. 2-ды",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -1209,71 +1243,153 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "4 прил. по гл. тр."
+          "text": "4 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "2с8. -1р 4 прил."
+          "text": "2 св. — 1 р.\n4 прил.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "3 прил, по гл. тр."
+          "text": "3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Се. -1р праздм."
+          "text": "Св. — 1 р.\nпраздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "4 прил,"
+          "text": "4 прил.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "3 прил. по гл. тр."
+          "text": "3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "3 прил, по гл. тр."
+          "text": "3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "3$ прил. по гл. тр."
+          "text": "3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "3 прил. по гл. тр."
+          "text": "3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Минея 1 3 прил. о гл, гаАъльа"
+          "text": "Минея 1\n3 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "2-млу са, -1 З арил, по гп. сплавы"
+          "text": "2-му св. — 1\n3 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Минея 1 З прил. о гп. ГАъЪПьЬЕ"
+          "text": "Минея 1\n3 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Минея З арил. по гп. ПЗ ЬЕ"
+          "text": "Минея 1\n3 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Минея 1 праздн. в мин."
+          "text": "Минея 1\nпраздн. в мин.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Праздм.-1"
+          "text": "Праздн.-1",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Праздм, -1"
+          "text": "Праздн.-1",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Праздн."
+          "text": "Праздн.",
+          "kind": "text",
+          "verified_from_source": true
+        }
+      ],
+      "source_bands": [
+        {
+          "source_band": 12,
+          "label": "Слава: и ныне:",
+          "texts": [
+            "",
+            "2 св. — 1 р.",
+            "",
+            "Св. — 1 р.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Минея 1",
+            "2-му св. — 1",
+            "Минея 1",
+            "Минея 1",
+            "Минея 1",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "source_band": 13,
+          "label": "",
+          "texts": [
+            "4 прил. по гл. тр.",
+            "4 прил.",
+            "3 прил. по гл. тр.",
+            "праздн.",
+            "4 прил.",
+            "3 прил. по гл. тр.",
+            "3 прил. по гл. тр.",
+            "3 прил. по гл. тр.",
+            "3 прил. по гл. тр.",
+            "3 прил. по гл. славы",
+            "3 прил. по гл. славы",
+            "3 прил. по гл. славы",
+            "3 прил. по гл. славы",
+            "праздн. в мин.",
+            "Праздн.-1",
+            "Праздн.-1",
+            "Праздн."
+          ]
         }
       ]
     },
@@ -1284,71 +1400,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Октоихк"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Минея-пр."
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Минея св."
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "св."
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "св."
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минося св."
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Октоих"
+          "text": "Октоих",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "по."
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "во."
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "воскр гп"
+          "text": "Октоих воскр. гл.",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -1359,71 +1509,107 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минои р."
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": ""
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": ""
+          "text": "Минея св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Окто"
+          "text": "Октоих ипакои гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "их наскои"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c10"
         },
         {
           "column_id": "c12",
-          "text": "паса"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c10"
         },
         {
           "column_id": "c13",
-          "text": "ипзкон ИТТ:"
+          "text": "ипакои воскр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": ""
+          "text": "ипакои воскр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": ""
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": ""
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "ипаком Гы ть в"
+          "text": "ипакои воскр.",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -1434,71 +1620,110 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Воскр. 4"
+          "text": "Воскр. 4-го гласа «От юности моея»",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "го гласа \"4 моя”"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c07"
         },
         {
           "column_id": "c09",
-          "text": "г юности"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c07"
         },
         {
           "column_id": "c10",
-          "text": ""
+          "text": "Октоих гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Ктоих ГЛАС"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c10"
         },
         {
           "column_id": "c12",
-          "text": ""
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c10"
         },
         {
           "column_id": "c13",
-          "text": "Октоих глас"
+          "text": "Октоих гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Октоих гласа"
+          "text": "Октоих гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "4 го гл юмост"
+          "text": "4-го гласа «От юности моея»",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "са “От ‚ мося”"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c15"
         },
         {
           "column_id": "c17",
-          "text": "Октоих ггэса"
+          "text": "Октоих гласа",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -1509,71 +1734,111 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "пу"
+          "text": "Празднику — мин.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "эзднику +1"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c07"
         },
         {
           "column_id": "c09",
-          "text": "им."
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c07"
         },
         {
           "column_id": "c10",
-          "text": "Вс"
+          "text": "Воскресн. гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "‚кресн. гл"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c10"
         },
         {
           "column_id": "c12",
-          "text": "са"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c10"
         },
         {
           "column_id": "c13",
-          "text": "Воскр. гласа"
+          "text": "Воскр. гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Воскр. гласа"
+          "text": "Воскр. гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": ""
+          "text": "Празднику",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Праздмик)"
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c15"
         },
         {
           "column_id": "c17",
-          "text": ""
+          "text": "",
+          "kind": "span",
+          "verified_from_source": true,
+          "span_anchor": "c15"
         }
       ]
     },
@@ -1584,71 +1849,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Окт.-2 Минм.-1 54-4"
+          "text": "Окт.-2, Мин.-1\n6-4-4",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Окт.-1 Мин.-2 64-4"
+          "text": "Окт.-1, Мин.-2\n6-4-4",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "См. тип, 11-12 гл. 64-4"
+          "text": "См. тип. 11–12 гл.\n6-4-4",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Мин.-пр. и свят,"
+          "text": "Мин.-пр. и свят.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Окт.-2 Мим.-1 44-6"
+          "text": "Окт.-2, Мин.-1\n4-4-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Окт.-2 Мин.-1 4-4-6"
+          "text": "Окт.-2, Мин.-1\n4-4-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Боеор. окт. или мин, -и сшят. 6+8"
+          "text": "Богор. окт. или мин. и свят. 6+8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Бехор. окт. или мин. -и свят. 6+8"
+          "text": "Богор. окт. или мин. и свят. 6+8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Саятому мим,-2"
+          "text": "Святому мин.-2",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Окт.-3 Мим,-1"
+          "text": "Окт.-3, Мин.-1",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Окт.-2 (восжр. гор) сэ.-"
+          "text": "Окт.-2 (воскр. богор.) св.-2",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Окт. 3 Мин,-1"
+          "text": "Окт.-3, Мин.-1",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Ожкт.-2 (воскр. богор} Мим.- Чыиымы"
+          "text": "Окт.-2 (воскр. богор.) Мин.-1 или 2",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Окт.-2 Мин.-2 пр. и св."
+          "text": "Окт.-2, Мин.-2 пр. и св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Минея- пр,"
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Минея. пр."
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Окт.-2 Мин, пр. 2"
+          "text": "Окт.-2, Мин. пр.-2",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -2826,7 +3125,37 @@
       "r05",
       "r06",
       "r07",
-      "r08"
-    ]
+      "r08",
+      "r09",
+      "r10",
+      "r11",
+      "r12",
+      "r13",
+      "r14",
+      "r15"
+    ],
+    "reviewed_stage_4": {
+      "rows": [
+        "r09",
+        "r10",
+        "r11",
+        "r12",
+        "r13",
+        "r14",
+        "r15"
+      ],
+      "logical_cells": 119,
+      "source_bands": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "source_sha256": "f60e36751fea7f29ab3a983f32ea2cd67ea7db1380896d126be702bfd1c52cc4"
+    }
   }
 }
