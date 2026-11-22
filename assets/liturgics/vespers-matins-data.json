@@ -7,119 +7,145 @@
       "short": "1 святой",
       "group": "Вседневная служба",
       "context": "При одном святом",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 3 гл., Октоих"
     },
     {
       "id": "c02",
       "short": "2 святых",
       "group": "Вседневная служба",
       "context": "При двух святых",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 48 гл., Октоих"
     },
     {
       "id": "c03",
       "short": "Суббота",
       "group": "Вседневная служба",
       "context": "В субботу",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 12 гл., Октоих"
     },
     {
       "id": "c04",
       "short": "Пред/попраздн.",
       "group": "Вседневная служба",
       "context": "В предпразднство или попразднство",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 48 гл., Октоих"
     },
     {
       "id": "c05",
       "short": "Шестеричная",
-      "group": "Вседневная служба",
+      "group": "Шестеричная служба",
       "context": "В седмичный день",
-      "icon": "shesterichnaya.svg"
+      "icon": "shesterichnaya.svg",
+      "typikon": "Тип. 48 гл., Октоих"
     },
     {
       "id": "c06",
       "short": "Славословная",
-      "group": "Вседневная служба",
+      "group": "Славословная служба",
       "context": "В седмичный день",
-      "icon": "slavoslovnaya.svg"
+      "icon": "slavoslovnaya.svg",
+      "typikon": "Тип. 48 гл. и 52 гл."
     },
     {
       "id": "c07",
       "short": "Полиелейная",
-      "group": "Вседневная служба",
+      "group": "Полиелейная служба",
       "context": "В седмичный день",
-      "icon": "polieleynaya.svg"
+      "icon": "polieleynaya.svg",
+      "typikon": "Тип. 48 гл. и 52 гл."
     },
     {
       "id": "c08",
       "short": "Бденная ср. праздн.",
-      "group": "Вседневная служба",
+      "group": "Бденная служба",
       "context": "В седмичный день",
-      "icon": "bdennaya-srednego-svyatogo.svg"
+      "icon": "bdennaya-srednego-svyatogo.svg",
+      "typikon": "Тип. 48 гл."
     },
     {
       "id": "c09",
       "short": "Бденная вел. свят.",
-      "group": "Вседневная служба",
+      "group": "Бденная служба",
       "context": "В седмичный день",
-      "icon": "bdennaya-velikogo-svyatogo.svg"
+      "icon": "bdennaya-velikogo-svyatogo.svg",
+      "typikon": "Тип. 48 гл."
     },
     {
       "id": "c10",
       "short": "1 святой без знака",
       "group": "Воскресное бдение",
       "context": "При 1-м святом без знака",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 2 гл., Октоих"
     },
     {
       "id": "c11",
       "short": "2 святых без знака",
       "group": "Воскресное бдение",
       "context": "При 2-х святых без знака",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 48 гл., Октоих"
     },
     {
       "id": "c12",
-      "short": "Святой имеет малый знак",
+      "short": "Святой со знаком шестеричной или славословной",
       "group": "Воскресное бдение",
       "context": "Святой со знаком шестеричной или славословной службы",
-      "icon": "slavoslovnaya.svg"
+      "icon": null,
+      "typikon": "Тип. 5 гл., Октоих",
+      "icons": [
+        "shesterichnaya.svg",
+        "slavoslovnaya.svg"
+      ]
     },
     {
       "id": "c13",
-      "short": "Святой имеет старший знак",
+      "short": "Святой со знаком полиелейной или бденной",
       "group": "Воскресное бдение",
       "context": "Святой с полиелейным или бденным знаком",
-      "icon": "polieleynaya.svg"
+      "icon": null,
+      "typikon": "Тип. 4, 3 и 48 гл.",
+      "icons": [
+        "polieleynaya.svg",
+        "bdennaya-srednego-svyatogo.svg",
+        "bdennaya-velikogo-svyatogo.svg"
+      ]
     },
     {
       "id": "c14",
       "short": "Без знака + пред/попр.",
       "group": "Воскресное бдение",
       "context": "Святой без знака + предпразднство или попразднство",
-      "icon": null
+      "icon": null,
+      "typikon": "Тип. 48 гл."
     },
     {
       "id": "c15",
       "short": "Господский праздн.",
-      "group": "Праздники",
+      "group": "Господский праздник",
       "context": "В любой день",
-      "icon": "gospodskiy-prazdnik.svg"
+      "icon": "gospodskiy-prazdnik.svg",
+      "typikon": "Тип. 48 гл."
     },
     {
       "id": "c16",
       "short": "Богородичный двунадесятый",
-      "group": "Праздники",
+      "group": "Богородичный двунадесятый праздник",
       "context": "В седмичный день",
-      "icon": "bogorodichnyy-dvunadesyatyy.svg"
+      "icon": "bogorodichnyy-dvunadesyatyy.svg",
+      "typikon": "Тип. 48 гл."
     },
     {
       "id": "c17",
       "short": "Богородичный двунадесятый",
-      "group": "Праздники",
+      "group": "Богородичный двунадесятый праздник",
       "context": "В неделю",
-      "icon": "bogorodichnyy-dvunadesyatyy.svg"
+      "icon": "bogorodichnyy-dvunadesyatyy.svg",
+      "typikon": "Тип. 48 гл."
     }
   ],
   "rows": [
