@@ -25,6 +25,10 @@ title: "Вечерня и утреня — цифровая таблица сл�
 .vm-tool .vm-card{border:1px solid #cbd7db;border-radius:8px;background:#fff;padding:12px 15px;margin:.5rem 0}
 .vm-tool .vm-card h3,.vm-tool .vm-card h4{font-size:1rem;margin:0 0 .4rem}
 .vm-tool .vm-entry{white-space:pre-wrap;overflow-wrap:anywhere}
+.vm-tool .vm-parts{display:grid;gap:0;margin:-9px}
+.vm-tool .vm-inner-line{padding:7px 9px;white-space:pre-wrap}
+.vm-tool .vm-inner-line + .vm-inner-line{border-top:1px solid #bdc9ce}
+.vm-tool .vm-group{text-align:center;font-weight:700;background:#dcebed}
 .vm-tool .vm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
 .vm-tool [hidden]{display:none!important}
 .vm-tool .vm-zoom{margin-left:auto;display:flex;gap:.4rem;align-items:center}
