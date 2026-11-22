@@ -365,7 +365,8 @@
           "kind": "text",
           "verified_from_source": true
         }
-      ]
+      ],
+      "source_label": "Слава:\nи ныне:"
     },
     {
       "id": "r03",
@@ -474,7 +475,8 @@
           "kind": "empty",
           "verified_from_source": true
         }
-      ]
+      ],
+      "source_label": ""
     },
     {
       "id": "r04",
@@ -2106,7 +2108,8 @@
           "kind": "text",
           "verified_from_source": true
         }
-      ]
+      ],
+      "source_label": "Чтения по:\n3* песни\n6* песни\n9* песни"
     },
     {
       "id": "r17",
@@ -2215,7 +2218,8 @@
           "kind": "text",
           "verified_from_source": true
         }
-      ]
+      ],
+      "source_label": ""
     },
     {
       "id": "r18",
@@ -2324,7 +2328,8 @@
           "kind": "text",
           "verified_from_source": true
         }
-      ]
+      ],
+      "source_label": ""
     },
     {
       "id": "r19",
@@ -2472,25 +2477,25 @@
         },
         {
           "column_id": "c06",
-          "text": "Минея на ряду\nили 2 прил.",
+          "text": "Минея на ряду или 2 прил.",
           "kind": "text",
           "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея на ряду\nили 2 прил.",
+          "text": "Минея на ряду или 2 прил.",
           "kind": "text",
           "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея на ряду\nили 2 прил.",
+          "text": "Минея на ряду или 2 прил.",
           "kind": "text",
           "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минея на ряду\nили 2 прил.",
+          "text": "Минея на ряду или 2 прил.",
           "kind": "text",
           "verified_from_source": true
         },
@@ -2553,10 +2558,10 @@
             "Октоих",
             "Минея праздн.",
             "Минея на ряду",
-            "Минея на ряду",
-            "Минея на ряду",
-            "Минея на ряду",
-            "Минея на ряду",
+            "Минея на ряду или 2 прил.",
+            "Минея на ряду или 2 прил.",
+            "Минея на ряду или 2 прил.",
+            "Минея на ряду или 2 прил.",
             "Окт.: стихира еванг.",
             "Окт.: стихира еванг.",
             "Стихира еванг.",
@@ -2576,10 +2581,10 @@
             "",
             "",
             "2 прил. по гл. сл.",
-            "или 2 прил.",
-            "или 2 прил.",
-            "или 2 прил.",
-            "или 2 прил.",
+            "",
+            "",
+            "",
+            "",
             "«Преблагосл. еси»",
             "«Преблагосл. еси»",
             "«Преблагосл. еси»",
@@ -3313,6 +3318,12 @@
       {
         "row_start": 7,
         "rowspan": 2,
+        "col_start": 4,
+        "colspan": 1
+      },
+      {
+        "row_start": 7,
+        "rowspan": 2,
         "col_start": 10,
         "colspan": 1
       },
@@ -3380,6 +3391,12 @@
         "row_start": 9,
         "rowspan": 2,
         "col_start": 17,
+        "colspan": 1
+      },
+      {
+        "row_start": 12,
+        "rowspan": 2,
+        "col_start": 0,
         "colspan": 1
       },
       {
@@ -3511,6 +3528,12 @@
       {
         "row_start": 23,
         "rowspan": 2,
+        "col_start": 3,
+        "colspan": 1
+      },
+      {
+        "row_start": 23,
+        "rowspan": 2,
         "col_start": 4,
         "colspan": 1
       },
@@ -3536,6 +3559,18 @@
         "row_start": 23,
         "rowspan": 2,
         "col_start": 9,
+        "colspan": 1
+      },
+      {
+        "row_start": 23,
+        "rowspan": 2,
+        "col_start": 15,
+        "colspan": 1
+      },
+      {
+        "row_start": 23,
+        "rowspan": 2,
+        "col_start": 16,
         "colspan": 1
       },
       {
@@ -3695,6 +3730,15 @@
       "tested_source_pixels_at_y": [
         486,
         507
+      ],
+      "confirmed_merge_count": 67,
+      "confirmed_source_bands": 29,
+      "source_label_overrides": [
+        "r02",
+        "r03",
+        "r16",
+        "r17",
+        "r18"
       ]
     }
   }
