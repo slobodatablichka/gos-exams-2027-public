@@ -19,8 +19,10 @@ for row in data["rows"]:
 for sign in (assets / "service-signs").glob("*.svg"):
     ET.parse(sign)
 for c in data["columns"]:
-    if c.get("icon"):
-        assert (assets / "service-signs" / c["icon"]).is_file(), c["icon"]
+    assert isinstance(c.get("typikon"), str) and c["typikon"].strip(), c["id"]
+    signs = c.get("icons") or ([c["icon"]] if c.get("icon") else [])
+    for sign in signs:
+        assert (assets / "service-signs" / sign).is_file(), sign
 mid = (assets / "service-signs" / "bdennaya-srednego-svyatogo.svg").read_text(encoding="utf-8")
 assert 'M12 32 A20 20 0 0 0 52 32' in mid, "Expected exact lower semicircle"
 js = (assets / "vespers-matins-digital.js").read_text(encoding="utf-8")
