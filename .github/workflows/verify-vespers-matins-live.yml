@@ -4,67 +4,65 @@ on:
     branches: [main]
     paths:
       - 'subjects/liturgics/2027/vespers-matins.md'
-      - 'assets/liturgics/vespers-matins-viewer.js'
-      - 'assets/liturgics/vespers-matins-viewer.css'
-      - 'assets/liturgics/vespers-matins-image/**'
+      - 'assets/liturgics/vespers-matins-data.json'
+      - 'assets/liturgics/vespers-matins-digital.js'
       - 'assets/liturgics/service-signs/**'
       - '.github/workflows/verify-vespers-matins-live.yml'
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
-  verify:
+  https:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 14
     steps:
-      - name: Verify deployed page and all source fragments
+      - uses: actions/checkout@v4
+      - name: Verify deployed HTML, digital data, JS, and seven service icons
         shell: bash
         run: |
           python3 - <<'PY'
-          import base64, hashlib, time, urllib.request, zlib
-          root="https://slobodatablichka.github.io/gos-exams-2027-public"
-          paths=[
-            "/subjects/liturgics/2027/vespers-matins.html",
-            "/assets/liturgics/vespers-matins-viewer.js",
-            "/assets/liturgics/vespers-matins-viewer.css",
-            "/assets/liturgics/service-signs/shesterichnaya.svg",
-            "/assets/liturgics/service-signs/slavoslovnaya.svg",
-            "/assets/liturgics/service-signs/polieleynaya.svg",
-            "/assets/liturgics/service-signs/bdennaya-srednego-svyatogo.svg",
-            "/assets/liturgics/service-signs/bdennaya-velikogo-svyatogo.svg",
-            "/assets/liturgics/service-signs/gospodskiy-prazdnik.svg",
-            "/assets/liturgics/service-signs/bogorodichnyy-dvunadesyatyy.svg",
-          ]
-          paths += [f"/assets/liturgics/vespers-matins-image/part-{i:02}.txt" for i in range(1,8)]
-          responses={}
-          for attempt in range(8):
+          import hashlib, json, pathlib, time, urllib.request
+          root = pathlib.Path(".")
+          base = "https://slobodatablichka.github.io/gos-exams-2027-public"
+          relative = {
+            "/subjects/liturgics/2027/vespers-matins.html": None,
+            "/assets/liturgics/vespers-matins-data.json": root / "assets/liturgics/vespers-matins-data.json",
+            "/assets/liturgics/vespers-matins-digital.js": root / "assets/liturgics/vespers-matins-digital.js",
+          }
+          for name in [
+            "shesterichnaya.svg", "slavoslovnaya.svg", "polieleynaya.svg",
+            "bdennaya-srednego-svyatogo.svg", "bdennaya-velikogo-svyatogo.svg",
+            "gospodskiy-prazdnik.svg", "bogorodichnyy-dvunadesyatyy.svg",
+          ]:
+            path = "/assets/liturgics/service-signs/" + name
+            relative[path] = root / ("assets/liturgics/service-signs/" + name)
+          last_error = None
+          for attempt in range(32):
             try:
-              for path in paths:
-                with urllib.request.urlopen(urllib.request.Request(root+path, headers={"User-Agent":"gos-exams-2027-live-check"}),timeout=25) as r:
-                  assert r.status==200,(path,r.status)
-                  responses[path]=r.read()
+              responses = {}
+              for url, local in relative.items():
+                request = urllib.request.Request(base + url + "?ci=" + str(attempt), headers={"User-Agent":"gos-exams-liturgics-2027-check", "Cache-Control":"no-cache"})
+                with urllib.request.urlopen(request, timeout=25) as response:
+                  assert response.status == 200, (url, response.status)
+                  remote = response.read()
+                if local:
+                  assert hashlib.sha256(remote).digest() == hashlib.sha256(local.read_bytes()).digest(), ("stale deployment", url)
+                responses[url] = remote
+              page = responses["/subjects/liturgics/2027/vespers-matins.html"].decode("utf-8")
+              assert 'id="vm-digital"' in page and 'id="vm-table"' in page
+              assert 'id="vm-one"' in page and 'id="vm-compare"' in page
+              assert 'vespers-matins-data.json' in page
+              data = json.loads(responses["/assets/liturgics/vespers-matins-data.json"])
+              assert len(data["columns"]) == 17 and len(data["rows"]) == 23
+              assert len(data["source_layout"]["body_bands"]) == 29
+              assert len(data["source_layout"]["merged_regions"]) == 62
+              for url, source in responses.items():
+                if url.endswith(".svg"): assert b"<svg" in source[:220], url
+              print("LIVE PASS: correct released HTML, latest JSON/JS/SVG, 29 source bands and 62 merges")
               break
-            except Exception as e:
-              if attempt==7: raise
-              print(f"Attempt {attempt+1}: {type(e).__name__}: {e}; trying again",flush=True)
-              time.sleep(12)
-          page=responses[paths[0]].decode("utf-8")
-          assert 'id="liturgics-table-app"' in page
-          assert 'id="lit-full"' in page
-          assert 'id="lit-mobile"' in page
-          assert 'id="lit-compare"' in page
-          js=responses[paths[1]].decode("utf-8")
-          assert 'DecompressionStream("deflate")' in js
-          assert 'shesterichnaya.svg' in js
-          parts=[responses[f"/assets/liturgics/vespers-matins-image/part-{i:02}.txt"].decode("ascii").strip() for i in range(1,8)]
-          compressed=base64.b64decode("".join(parts),validate=True)
-          expected="de25a752b3c3376078a36e214ab1f2af82bf757010866b4244f6d1b96c197138"
-          assert hashlib.sha256(compressed).hexdigest()==expected
-          image=zlib.decompress(compressed)
-          assert len(image)==91*1046, len(image)
-          for path in paths[3:10]:
-            assert b"<svg" in responses[path][:200],path
-          print("LIVE PASS: page, three viewports, seven SVGs, JS/CSS, seven image parts and lossless image checksum")
+            except Exception as exc:
+              last_error = str(exc)
+              if attempt == 31: raise AssertionError(last_error)
+              print("Waiting for GitHub Pages (attempt %d/32): %s" % (attempt+1, last_error),flush=True)
+              time.sleep(15)
           PY
