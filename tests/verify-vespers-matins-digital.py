@@ -24,7 +24,7 @@ assert [band["row_id"] for band in layout["body_bands"]] == [
     "r15","r16","r17","r18","r19","r20","r20","r21","r21",
     "r22","r23"
 ]
-assert len(layout["merged_regions"]) == 62
+assert len(layout["merged_regions"]) == 67
 coverage = set()
 for region in layout["merged_regions"]:
     rs, cs = region["row_start"], region["col_start"]
@@ -36,7 +36,7 @@ for region in layout["merged_regions"]:
         for cc in range(cs, cs+region["colspan"]):
             assert (rr, cc) not in coverage, "Overlapping merged region"
             coverage.add((rr, cc))
-assert len(coverage) == 134, len(coverage)
+assert len(coverage) == 144, len(coverage)
 
 columns = [c["id"] for c in data["columns"]]
 assert len(set(columns)) == 17
@@ -60,6 +60,7 @@ assert "layout.merged_regions" in js
 assert "node.colSpan=m.colspan" in js
 assert "rr.source_bands?.length" in js
 assert "vm-inner-line" in js
+assert "rr.source_label!==undefined" in js
 assert 'cell.kind==="span"' in js
 assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
@@ -119,4 +120,10 @@ assert {tuple(m[k] for k in ("row_start","rowspan","col_start","colspan")) for m
 assert len(data["source_layout"]["body_bands"]) == 29
 assert len([x for row in data["rows"] for x in row["cells"]]) == 391
 assert all(c.get("verified_from_source") for r in data["rows"] for c in r["cells"])
-print("PASS: 17 columns, 23 logical rows, 29 bands, 62 merges, 391 source-reviewed cells, SVG and links")
+assert data["rows"][1]["source_label"] == "Слава:\\nи ныне:"
+assert data["rows"][2]["source_label"] == ""
+assert data["rows"][15]["source_label"].startswith("Чтения по:")
+assert all(data["rows"][i]["source_label"] == "" for i in [16,17])
+assert all(data["rows"][19]["source_bands"][0]["texts"][i] == "Минея на ряду или 2 прил." for i in range(5,9))
+assert all(data["rows"][19]["source_bands"][1]["texts"][i] == "" for i in range(5,9))
+print("PASS: 17 columns, 23 logical rows, 29 bands, 67 merges, 391 source-reviewed cells, SVG and links")
