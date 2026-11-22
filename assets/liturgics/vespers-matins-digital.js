@@ -3,8 +3,8 @@
 const by=id=>document.getElementById(id),service=by("vm-service"),row=by("vm-row"),table=by("vm-table"),one=by("vm-one"),compare=by("vm-compare"),status=by("vm-status");
 let data,mode="full";const iconBase=root.dataset.icons;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined&&text!==null)n.textContent=String(text);if(cls)n.className=cls;return n};
-function ico(parent,col){if(col.icon){const im=el("img",undefined,"vm-icon");im.src=iconBase+encodeURIComponent(col.icon);im.alt="";parent.append(im)}}
-function hdr(col){const n=el("div");ico(n,col);n.append(el("strong",col.short));n.append(el("div",col.context,"vm-sub"));return n}
+function ico(parent,col){for(const icon of (col.icons?.length?col.icons:(col.icon?[col.icon]:[]))){const im=el("img",undefined,"vm-icon");im.src=iconBase+encodeURIComponent(icon);im.alt="";parent.append(im)}}
+function hdr(col){const n=el("div");ico(n,col);n.append(el("strong",col.short));n.append(el("div",col.context,"vm-sub"));if(col.typikon)n.append(el("div",col.typikon,"vm-sub"));return n}
 function val(r,c){return r.cells.find(x=>x.column_id===c.id)?.text??""}
 function opt(sel,v,t){const n=el("option",t);n.value=v;sel.add(n)}
 function drawFull(){table.replaceChildren();const h=el("thead"),r=el("tr"),first=el("th","Элемент последования","vm-sticky");first.scope="col";r.append(first);for(const c of data.columns){const th=el("th");th.scope="col";th.append(hdr(c));r.append(th)}h.append(r);table.append(h);const body=el("tbody");for(const rr of data.rows){const tr=el("tr"),hd=el("th",rr.section+" — "+rr.label,"vm-sticky");hd.scope="row";tr.append(hd);for(const c of data.columns)tr.append(el("td",val(rr,c)));body.append(tr)}table.append(body)}
