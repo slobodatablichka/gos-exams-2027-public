@@ -64,7 +64,7 @@ assert 'cell.kind==="span"' in js
 assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
 assert (ROOT / "subjects/liturgics/2027/vespers-matins-scan.md").is_file()
-assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,16)]
+assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,22)]
 assert all(c.get("verified_from_source") is True for r in data["rows"][:8] for c in r["cells"])
 assert all(c.get("kind") in {"empty","symbol","text"} for r in data["rows"][:8] for c in r["cells"])
 assert data["rows"][3]["cells"][8]["text"] == "←"
@@ -85,4 +85,17 @@ assert data["rows"][13]["cells"][16]["span_anchor"] == "c15"
 assert data["rows"][14]["cells"][0]["text"].startswith("Окт.-2, Мин.-1")
 assert data["source_layout"]["reviewed_stage_4"]["logical_cells"] == 119
 assert len([c for r in data["rows"][8:15] for c in r["cells"]]) == 119
-print("PASS: 17 columns, 23 logical rows, 29 source bands, 60 merged regions, 255 verified cells (Vespers 136 + Matins I 119), SVG and links")
+assert all(c.get("verified_from_source") is True for r in data["rows"][15:21] for c in r["cells"])
+assert all(c.get("kind") in {"text","empty"} for r in data["rows"][15:21] for c in r["cells"])
+assert data["source_layout"]["reviewed_stage_5"]["logical_cells"] == 102
+assert data["source_layout"]["reviewed_stage_5"]["source_bands"] == list(range(19,27))
+assert [b["source_band"] for b in data["rows"][19]["source_bands"]] == [23,24]
+assert [b["source_band"] for b in data["rows"][20]["source_bands"]] == [25,26]
+assert all(len(b["texts"]) == 17 for r in data["rows"][19:21] for b in r["source_bands"])
+assert data["rows"][19]["source_bands"][1]["texts"][9] == "«Преблагосл. еси»"
+assert data["rows"][20]["source_bands"][0]["texts"][9].startswith("Окт. гл.")
+assert data["rows"][20]["source_bands"][1]["texts"][9] == ""
+assert data["rows"][20]["source_bands"][1]["cell_parts"]["c02"] == ["2 св.","4 прил."]
+assert data["rows"][17]["cells"][2]["text"].startswith("Свет. Октоиха")
+assert data["rows"][18]["cells"][16]["text"].startswith("Окт.-4")
+print("PASS: 17 columns, 23 logical rows, 29 bands, 60 merges, 357 verified cells, SVG and links")
