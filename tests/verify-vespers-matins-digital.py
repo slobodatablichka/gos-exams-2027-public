@@ -108,6 +108,6 @@ assert data["rows"][21]["cells"][13]["text"].startswith("1, 6 — воскр.")
 assert data["rows"][22]["cells"][1]["text"] == "Перемен."
 assert data["rows"][22]["cells"][11]["text"] == "← →"
 assert data["rows"][22]["cells"][11]["kind"] == "symbol"
-assert data["rows"][22]["cells"][12]["text"] == "1, 6 — св.\\n3, 9 — воскр."
-assert data["rows"][22]["cells"][13]["text"] == "1, 6 — пр.\\n3, 9 — воскр."
+assert data["rows"][22]["cells"][12]["text"] == "1, 6 — св.\n3, 9 — воскр."
+assert data["rows"][22]["cells"][13]["text"] == "1, 6 — пр.\n3, 9 — воскр."
 print("PASS: 17 columns, 23 logical rows, 29 bands, 60 merges, 391 source-reviewed cells, SVG and links")
