@@ -57,12 +57,21 @@ js = (assets / "vespers-matins-digital.js").read_text(encoding="utf-8")
 page = (ROOT / "subjects/liturgics/2027/vespers-matins.md").read_text(encoding="utf-8")
 assert "res.json()" in js
 assert "layout.merged_regions" in js
-assert "node.colSpan=merge.colspan" in js
+assert "node.colSpan=m.colspan" in js
+assert "rr.source_bands?.length" in js
+assert "vm-inner-line" in js
 assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
 assert (ROOT / "subjects/liturgics/2027/vespers-matins-scan.md").is_file()
-assert data["source_layout"]["reviewed_rows"] == ["r01","r02","r03","r04","r05"]
-assert all(c.get("verified_from_source") is True for r in data["rows"][:5] for c in r["cells"])
-assert all(c.get("kind") in {"empty","symbol","text"} for r in data["rows"][:5] for c in r["cells"])
+assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,9)]
+assert all(c.get("verified_from_source") is True for r in data["rows"][:8] for c in r["cells"])
+assert all(c.get("kind") in {"empty","symbol","text"} for r in data["rows"][:8] for c in r["cells"])
 assert data["rows"][3]["cells"][8]["text"] == "←"
-print("PASS: 17 columns, 23 logical rows, 29 source bands, 54 merged regions, 85 Vespers I cells, SVG and links")
+assert [b["source_band"] for b in data["rows"][6]["source_bands"]] == [7,8]
+assert [b["source_band"] for b in data["rows"][7]["source_bands"]] == [9,10]
+assert all(len(b["texts"]) == 17 for r in data["rows"][6:8] for b in r["source_bands"])
+assert data["rows"][6]["source_bands"][0]["texts"][4] == "Минея аще есть"
+assert data["rows"][6]["source_bands"][1]["texts"][4] == "2 прил. или на ряду"
+assert data["rows"][7]["source_bands"][1]["texts"][12].startswith("Минея св., аще полиел.")
+assert len(data["rows"][7]["source_bands"][1]["cell_parts"]["c13"]) == 2
+print("PASS: 17 columns, 23 logical rows, 29 source bands, 54 merged regions, 136 verified Vespers cells (85 + 51), SVG and links")
