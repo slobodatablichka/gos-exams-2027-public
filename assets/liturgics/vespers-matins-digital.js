@@ -30,7 +30,7 @@ function drawFull(){
     if(rr.source_bands?.length){
       for(const band of rr.source_bands)displayed.push({row:rr,source:[band.source_band],label:band.label,
         texts:band.texts,parts:band.cell_parts||{}});
-    }else displayed.push({row:rr,source:sourceById.get(rr.id)||[],label:rr.section+" — "+rr.label,
+    }else displayed.push({row:rr,source:sourceById.get(rr.id)||[],label:rr.source_label!==undefined?rr.source_label:rr.section+" — "+rr.label,
       texts:rr.cells.map(c=>c.text),parts:{}});
   }
   const key=(r,c)=>r+":"+c,origins=new Map(),covered=new Set();
