@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Browser acceptance: original table layout, all three digital views and mobile widths."""
+"""Browser acceptance: original table and four digital views, including multiselect and persistence."""
 import contextlib
 import functools
 import http.server
@@ -75,10 +75,38 @@ with tempfile.TemporaryDirectory() as directory:
                     pg.locator("#vm-row").select_option("r23")
                     assert pg.locator("#vm-compare .vm-card").count() == 17
                     assert "← →" in pg.locator("#vm-compare").inner_text()
+                    # New selective comparison: any service subset, order, arrows and local persistence.
+                    pg.locator('[data-vm-view="selected"]').click()
+                    assert pg.locator("#vm-selected").is_visible()
+                    assert pg.locator("#vm-selected-count").inner_text() == "3"
+                    assert pg.locator("#vm-selected-table thead th").count() == 4
+                    assert pg.locator("#vm-selected-table tbody tr").count() == 26
+                    pg.locator('#vm-selected-options input[value="c17"]').check()
+                    assert pg.locator("#vm-selected-count").inner_text() == "4"
+                    assert pg.locator("#vm-selected-table thead th").count() == 5
+                    pg.get_by_role("button", name="Переместить влево: Богородичный двунадесятый").click()
+                    assert "Богородичный" in pg.locator("#vm-selected-table thead th").nth(3).inner_text()
+                    pg.locator("#vm-selected-part").select_option("Часы")
+                    assert pg.locator("#vm-selected-table tbody tr").count() == 3
+                    assert "воскр. и праздн." in pg.locator("#vm-selected-table tbody").inner_text()
+                    pg.reload(wait_until="networkidle")
+                    pg.wait_for_function("document.querySelectorAll('#vm-service option').length === 17")
+                    pg.locator('[data-vm-view="selected"]').click()
+                    assert pg.locator("#vm-selected-count").inner_text() == "4"
+                    assert pg.locator("#vm-selected-part").input_value() == "Часы"
+                    assert "Богородичный" in pg.locator("#vm-selected-table thead th").nth(3).inner_text()
+                    pg.locator('#vm-selected-table .vm-remove-col[aria-label="Убрать службу: Богородичный двунадесятый"]').click()
+                    assert pg.locator("#vm-selected-count").inner_text() == "3"
+                    pg.locator("#vm-select-none").click()
+                    assert pg.locator("#vm-selected-empty").is_visible()
+                    pg.locator("#vm-select-all").click()
+                    assert pg.locator("#vm-selected-count").inner_text() == "17"
+                    assert pg.locator("#vm-selected-table thead th").count() == 18
+                    # Original four views and exact data remain unchanged after selecting and clearing.
                     pg.locator('[data-vm-view="full"]').click()
                     assert pg.locator("#vm-full").is_visible()
                     assert pg.locator("#vm-table tbody tr").count() == 29
-                    print(f"PASS: {width}px, 29 bands, {merged} merged regions, 17 variants, all three modes", flush=True)
+                    print(f"PASS: {width}px, 29 bands, {merged} merged regions, 17 variants, all four modes and persisted selection", flush=True)
                     pg.close()
             finally:
                 browser.close()
