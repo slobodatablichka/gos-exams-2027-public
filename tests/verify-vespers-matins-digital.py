@@ -24,7 +24,7 @@ assert [band["row_id"] for band in layout["body_bands"]] == [
     "r15","r16","r17","r18","r19","r20","r20","r21","r21",
     "r22","r23"
 ]
-assert len(layout["merged_regions"]) == 52
+assert len(layout["merged_regions"]) == 54
 coverage = set()
 for region in layout["merged_regions"]:
     rs, cs = region["row_start"], region["col_start"]
@@ -36,7 +36,7 @@ for region in layout["merged_regions"]:
         for cc in range(cs, cs+region["colspan"]):
             assert (rr, cc) not in coverage, "Overlapping merged region"
             coverage.add((rr, cc))
-assert len(coverage) == 112, len(coverage)
+assert len(coverage) == 118, len(coverage)
 
 columns = [c["id"] for c in data["columns"]]
 assert len(set(columns)) == 17
@@ -61,4 +61,8 @@ assert "node.colSpan=merge.colspan" in js
 assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
 assert (ROOT / "subjects/liturgics/2027/vespers-matins-scan.md").is_file()
-print("PASS: 17 columns, 23 logical rows, 29 source bands, 52 original merged regions, SVG and links")
+assert data["source_layout"]["reviewed_rows"] == ["r01","r02","r03","r04","r05"]
+assert all(c.get("verified_from_source") is True for r in data["rows"][:5] for c in r["cells"])
+assert all(c.get("kind") in {"empty","symbol","text"} for r in data["rows"][:5] for c in r["cells"])
+assert data["rows"][3]["cells"][8]["text"] == "←"
+print("PASS: 17 columns, 23 logical rows, 29 source bands, 54 merged regions, 85 Vespers I cells, SVG and links")
