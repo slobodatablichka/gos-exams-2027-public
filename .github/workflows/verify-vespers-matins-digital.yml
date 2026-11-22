@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'assets/liturgics/vespers-matins-data.deflate.b64'
+      - 'assets/liturgics/vespers-matins-data.json'
       - 'assets/liturgics/vespers-matins-digital.js'
       - 'assets/liturgics/service-signs/**'
       - 'subjects/liturgics/2027/vespers-matins.md'
