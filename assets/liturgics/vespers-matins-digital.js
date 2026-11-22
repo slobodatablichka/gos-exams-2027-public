@@ -24,8 +24,10 @@ function drawFull(){
   const cellKey=(r,c)=>r+":"+c;
   for(const m of layout.merged_regions){
     const ids=[...new Set(layout.body_bands.slice(m.row_start,m.row_start+m.rowspan).map(b=>b.row_id))];
-    if(ids.length===1&&m.rowspan>1)continue;
-    if(ids.some(id=>bandCount.get(id)!==1))continue;
+    // Apply a source merge when it covers every physical band of each logical row.
+    // Partial-band merges remain recorded in JSON until that row is subdivided.
+    const regionBands=layout.body_bands.slice(m.row_start,m.row_start+m.rowspan);
+    if(ids.some(id=>regionBands.filter(b=>b.row_id===id).length!==bandCount.get(id)))continue;
     const rowIndices=ids.map(id=>byId.get(id));
     if(rowIndices.some(i=>i===undefined))continue;
     const top=Math.min(...rowIndices),height=Math.max(...rowIndices)-top+1;
