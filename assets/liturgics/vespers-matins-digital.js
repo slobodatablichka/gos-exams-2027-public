@@ -5,7 +5,15 @@ let data,mode="full";const iconBase=root.dataset.icons;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined&&text!==null)n.textContent=String(text);if(cls)n.className=cls;return n};
 function ico(parent,col){for(const icon of (col.icons?.length?col.icons:(col.icon?[col.icon]:[]))){const im=el("img",undefined,"vm-icon");im.src=iconBase+encodeURIComponent(icon);im.alt="";parent.append(im)}}
 function hdr(col){const n=el("div");ico(n,col);n.append(el("strong",col.short));n.append(el("div",col.context,"vm-sub"));if(col.typikon)n.append(el("div",col.typikon,"vm-sub"));return n}
-function val(r,c){return r.cells.find(x=>x.column_id===c.id)?.text??""}
+function val(r,c){
+  const cell=r.cells.find(x=>x.column_id===c.id);
+  if(!cell)return "";
+  if(cell.kind==="span"&&cell.span_anchor){
+    const origin=r.cells.find(x=>x.column_id===cell.span_anchor);
+    return origin?.text??"";
+  }
+  return cell.text??"";
+}
 function opt(sel,v,t){const n=el("option",t);n.value=v;sel.add(n)}
 function drawFull(){
   table.replaceChildren();
