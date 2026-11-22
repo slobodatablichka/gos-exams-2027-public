@@ -15,7 +15,7 @@ root.querySelectorAll("[data-vm-view]").forEach(b=>b.addEventListener("click",()
 service.addEventListener("change",()=>{if(mode==="service")drawOne()});
 row.addEventListener("change",()=>{if(mode==="compare")drawCompare()});
 by("vm-scale").addEventListener("change",e=>{table.style.fontSize=e.target.value+"px"});
-async function load(){const res=await fetch(root.dataset.source);if(!res.ok)throw Error("HTTP "+res.status);const b64=(await res.text()).trim();const raw=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));const stream=new Blob([raw]).stream().pipeThrough(new DecompressionStream("deflate"));const json=new TextDecoder("utf-8").decode(await new Response(stream).arrayBuffer());data=JSON.parse(json);
+async function load(){const res=await fetch(root.dataset.source);if(!res.ok)throw Error("HTTP "+res.status);data=await res.json();
 if(data.columns?.length!==17||data.rows?.length!==23||data.rows.some(r=>r.cells.length!==17))throw Error("Неверная структура таблицы");
 for(const c of data.columns)opt(service,c.id,c.group+" — "+c.short+" — "+c.context);
 for(const r of data.rows)opt(row,r.id,r.section+" — "+r.label);
