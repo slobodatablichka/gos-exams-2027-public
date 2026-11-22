@@ -156,71 +156,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Окт.-3; Минея-3"
+          "text": "Окт.-3\nМинея-3",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Минея-3-3"
+          "text": "Минея-3-3",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Минея-6"
+          "text": "Минея-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Минея: 3 пр. — 3 св."
+          "text": "Минея 3 пр. - 3 св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Минея-6"
+          "text": "Минея-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Минея-6"
+          "text": "Минея-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея-6 или 8"
+          "text": "Минея-6 или 8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея-8"
+          "text": "Минея-8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минея-8"
+          "text": "Минея-8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Окт.-7; Минея-3"
+          "text": "Окт.-7\nМинея-3",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Окт.-4; Минея-6"
+          "text": "Окт.-4\nМинея-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Окт.-6; Минея-4"
+          "text": "Окт.-6\nМинея-4",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Окт.-4; Минея-6"
+          "text": "Окт.-4\nМинея-6",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Окт.-4; Минея: 3 пр. — 3 св."
+          "text": "Окт.-4\nМинея - 3 пр.-3 св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Минея-8"
+          "text": "Минея-8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Минея-8"
+          "text": "Минея-8",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Окт.-4; Минея-пр. 6"
+          "text": "Окт.-4\nМинея-пр. 6",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -231,146 +265,214 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Минея аще есть"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Минея аще есть"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Минея аще есть"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Святому аще есть"
+          "text": "Святому аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Минея аще ость"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Минея аще есть"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Минхя аще есть"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Минея аще есть"
+          "text": "Минея аще есть",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Минея"
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Минея"
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Минея"
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
     {
       "id": "r03",
       "section": "Вечерня",
-      "label": "И ныне:",
+      "label": "и ныне:",
       "cells": [
         {
           "column_id": "c01",
-          "text": "2 прил. или на ряду"
+          "text": "2 прил. или на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "2 прил. или на ряду"
+          "text": "2 прил. или на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "1 прил. текущ. гл."
+          "text": "1 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "прадн. минеи"
+          "text": "праздн. минеи",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "2 прил. или на ряду"
+          "text": "2 прил. или на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "1 прил. по гл. славы"
+          "text": "1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "1 прил. по гл. славы"
+          "text": "1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "1 прил. по гл. славы"
+          "text": "1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "1 прил. по гл. славы"
+          "text": "1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "1 прил. текущ. гл."
+          "text": "1 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "1 прил. текущ гл."
+          "text": "1 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "1 прил. текущ. гл,"
+          "text": "1 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "1 прил. текущ. гл,"
+          "text": "1 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "1 прил. текущ, гл."
+          "text": "1 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "праздн."
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "праздн."
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "праздн."
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         }
       ]
     },
@@ -381,71 +483,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "ПО"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Ч ЧБ ЧЕ"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "И"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "ПИ"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "о"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Храма и звланы га"
+          "text": "Храма и мин. св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": ""
+          "text": "←",
+          "kind": "symbol",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Храма"
+          "text": "Храма",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Храма и"
+          "text": "Храма и мин. св.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Мих. пр. тытспы"
+          "text": "Мин. пр. стиховн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Минея ярРатяы"
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": ""
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": ""
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -456,71 +592,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "а ---------"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "—"
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": ""
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея на ряду"
+          "text": "Минея на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "="
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Храма или 1 понл"
+          "text": "Храма или 1 прил.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "К."
+          "text": "←",
+          "kind": "symbol",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "="
+          "text": "←",
+          "kind": "symbol",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Минея 1 прил Готы ов У №"
+          "text": "Минея\n1 прил. по гл. сл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Мин, пр. стихойм. Утрени"
+          "text": "Мин. пр. стиховн. Утрени",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Празд- мичная минея"
+          "text": "Праздничная минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "ААА Ла праздм."
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Аль д праздм."
+          "text": "",
+          "kind": "empty",
+          "verified_from_source": true
         }
       ]
     },
@@ -2146,6 +2316,24 @@
         "colspan": 1
       },
       {
+        "row_start": 3,
+        "rowspan": 2,
+        "col_start": 15,
+        "colspan": 1
+      },
+      {
+        "row_start": 3,
+        "rowspan": 3,
+        "col_start": 16,
+        "colspan": 1
+      },
+      {
+        "row_start": 3,
+        "rowspan": 3,
+        "col_start": 17,
+        "colspan": 1
+      },
+      {
         "row_start": 4,
         "rowspan": 2,
         "col_start": 10,
@@ -2155,12 +2343,6 @@
         "row_start": 4,
         "rowspan": 2,
         "col_start": 14,
-        "colspan": 1
-      },
-      {
-        "row_start": 4,
-        "rowspan": 2,
-        "col_start": 15,
         "colspan": 1
       },
       {
@@ -2427,6 +2609,13 @@
         "col_start": 17,
         "colspan": 1
       }
+    ],
+    "reviewed_rows": [
+      "r01",
+      "r02",
+      "r03",
+      "r04",
+      "r05"
     ]
   }
 }
