@@ -701,71 +701,105 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Октоих, гл."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Октоих, гл."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Окт.- муч из Го."
+          "text": "Окт. — муч. из Г. В.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Минея.пр."
+          "text": "Минея-пр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Октоих, гл."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": ""
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея"
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": ""
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": ""
+          "text": "Минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Октоих, гл."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Октоих, гп."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Октоих, гл."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Октоих, гл."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Октоих, гп."
+          "text": "Октоих, гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Минея праздн."
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Минея праздм."
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Октоих воскр."
+          "text": "Октоих воскр.",
+          "kind": "text",
+          "verified_from_source": true
         }
       ]
     },
@@ -776,146 +810,320 @@
       "cells": [
         {
           "column_id": "c01",
-          "text": "Октоих на ряду"
+          "text": "Октоих на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Октоих на ряду"
+          "text": "Октоих на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Октоих на ряду"
+          "text": "Октоих на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Пр.-минея"
+          "text": "Пр.-минея",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Минея зе ость 2 прил. или ма плапьы"
+          "text": "Минея аще есть\n2 прил. или на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Мнкен 2 прил. или нз лая"
+          "text": "Минея\n2 прил. или на ряду",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея 1 прил. по гл, гАъзльЕ"
+          "text": "Минея\n1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея 1 прил. во гл, гл. тр."
+          "text": "Минея\n1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минсх 1 прил. поет, Ре т. №1"
+          "text": "Минея\n1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "Октоих тфк. гласа"
+          "text": "Октоих тек. гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "Октоих тек. глзса"
+          "text": "Октоих тек. гласа",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "Минея зе ость 1 прил. о гл, гАзльЕ"
+          "text": "Минея аще есть\n1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "Минея 1 прил. по гл, Ре им"
+          "text": "Минея\n1 прил. по гл. славы",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "Микся праздн."
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Минея праздн."
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Минея праздм,"
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Минея праздм,"
+          "text": "Минея праздн.",
+          "kind": "text",
+          "verified_from_source": true
+        }
+      ],
+      "source_bands": [
+        {
+          "source_band": 7,
+          "label": "Слава: и ныне:",
+          "texts": [
+            "Октоих на ряду",
+            "Октоих на ряду",
+            "Октоих на ряду",
+            "Пр.-минея",
+            "Минея аще есть",
+            "Минея",
+            "Минея",
+            "Минея",
+            "Минея",
+            "Октоих тек. гласа",
+            "Октоих тек. гласа",
+            "Минея аще есть",
+            "Минея",
+            "Минея праздн.",
+            "Минея праздн.",
+            "Минея праздн.",
+            "Минея праздн."
+          ]
+        },
+        {
+          "source_band": 8,
+          "label": "",
+          "texts": [
+            "",
+            "",
+            "",
+            "",
+            "2 прил. или на ряду",
+            "2 прил. или на ряду",
+            "1 прил. по гл. славы",
+            "1 прил. по гл. славы",
+            "1 прил. по гл. славы",
+            "",
+            "",
+            "1 прил. по гл. славы",
+            "1 прил. по гл. славы",
+            "",
+            "",
+            "",
+            ""
+          ]
         }
       ]
     },
     {
       "id": "r08",
       "section": "Вечерня",
-      "label": "Тропари отпустительные / Слава: и ныне:",
+      "label": "Тропари отпустительные",
       "cells": [
         {
           "column_id": "c01",
-          "text": "Минея 1 св. 4 прил по гл. тр."
+          "text": "Минея 1 св.\n4 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c02",
-          "text": "Минея 1 св. 2-му св. 4 прил. по гл, тр,"
+          "text": "Минея 1 св.\n2-му св.\n4 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c03",
-          "text": "Минея 1 св. 3 прий текущ. гл."
+          "text": "Минея 1 св.\n3 прил. текущ. гл.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c04",
-          "text": "Минея 1 св. праздн."
+          "text": "Минея 1 св.\nпраздн.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c05",
-          "text": "Минея 1 св. 4 прил, по гл. тр."
+          "text": "Минея 1 св.\n4 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c06",
-          "text": "Минея 1 св. 3 прил. по гл. тр."
+          "text": "Минея 1 св.\n3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c07",
-          "text": "Минея 1 св. 3 прил. по гп. тр."
+          "text": "Минея 1 св.\n3 прил. по гл. тр.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c08",
-          "text": "Минея св. 2р “Бого- родичо Дево” 1р"
+          "text": "Минея св. 2 р.\n«Богородице Дево» 1 р.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c09",
-          "text": "Минея св. 2р \"Бого- родице Дево” 1р"
+          "text": "Минея св. 2 р.\n«Богородице Дево» 1 р.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c10",
-          "text": "\"бого- роднче Дево\" Зр"
+          "text": "«Богородице Дево» 3 р.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c11",
-          "text": "\"Бого- родице Дозо” Зр"
+          "text": "«Богородице Дево» 3 р.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c12",
-          "text": "\"бого- родице Дево” Зр"
+          "text": "«Богородице Дево» 3 р.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c13",
-          "text": "\"Богород имо Дево” 2р Минея св. аще период, _ \"Богород Ию Депо” Зр"
+          "text": "«Богородице Дево» 2 р.\nМинея св., аще полиел.\n«Богородице Дево» 3 р.",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c14",
-          "text": "\"Богород ице Деео“ 2Р Минеи праздм. 1"
+          "text": "«Богородице Дево» 2 р.\nМинея праздн. 1",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c15",
-          "text": "Тропарь пр. Зды"
+          "text": "Тропарь пр. 3 ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c16",
-          "text": "Тропарь пр. Зды"
+          "text": "Тропарь пр. 3 ды",
+          "kind": "text",
+          "verified_from_source": true
         },
         {
           "column_id": "c17",
-          "text": "Тропарь пр. Зды"
+          "text": "Тропарь пр. 3 ды",
+          "kind": "text",
+          "verified_from_source": true
+        }
+      ],
+      "source_bands": [
+        {
+          "source_band": 9,
+          "label": "Тропари отпустительные",
+          "texts": [
+            "Минея 1 св.",
+            "Минея 1 св.",
+            "Минея 1 св.",
+            "Минея 1 св.",
+            "Минея 1 св.",
+            "Минея 1 св.",
+            "Минея 1 св.",
+            "Минея св. 2 р.",
+            "Минея св. 2 р.",
+            "«Богородице Дево» 3 р.",
+            "«Богородице Дево» 3 р.",
+            "«Богородице Дево» 3 р.",
+            "«Богородице Дево» 2 р.",
+            "«Богородице Дево» 2 р.",
+            "Тропарь пр. 3 ды",
+            "Тропарь пр. 3 ды",
+            "Тропарь пр. 3 ды"
+          ]
+        },
+        {
+          "source_band": 10,
+          "label": "Слава: и ныне:",
+          "texts": [
+            "4 прил. по гл. тр.",
+            "2-му св.\n4 прил. по гл. тр.",
+            "3 прил. текущ. гл.",
+            "праздн.",
+            "4 прил. по гл. тр.",
+            "3 прил. по гл. тр.",
+            "3 прил. по гл. тр.",
+            "«Богородице Дево» 1 р.",
+            "«Богородице Дево» 1 р.",
+            "",
+            "",
+            "",
+            "Минея св., аще полиел.\n«Богородице Дево» 3 р.",
+            "Минея праздн. 1",
+            "",
+            "",
+            ""
+          ],
+          "cell_parts": {
+            "c02": [
+              "2-му св.",
+              "4 прил. по гл. тр."
+            ],
+            "c13": [
+              "Минея св., аще полиел.",
+              "«Богородице Дево» 3 р."
+            ]
+          }
         }
       ]
     },
@@ -2615,7 +2823,10 @@
       "r02",
       "r03",
       "r04",
-      "r05"
+      "r05",
+      "r06",
+      "r07",
+      "r08"
     ]
   }
 }
