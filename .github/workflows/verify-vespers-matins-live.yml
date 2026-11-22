@@ -55,10 +55,10 @@ jobs:
               data = json.loads(responses["/assets/liturgics/vespers-matins-data.json"])
               assert len(data["columns"]) == 17 and len(data["rows"]) == 23
               assert len(data["source_layout"]["body_bands"]) == 29
-              assert len(data["source_layout"]["merged_regions"]) == 62
+              assert len(data["source_layout"]["merged_regions"]) == 67
               for url, source in responses.items():
                 if url.endswith(".svg"): assert b"<svg" in source[:220], url
-              print("LIVE PASS: correct released HTML, latest JSON/JS/SVG, 29 source bands and 62 merges")
+              print("LIVE PASS: correct released HTML, latest JSON/JS/SVG, 29 source bands and 67 merges")
               break
             except Exception as exc:
               last_error = str(exc)
