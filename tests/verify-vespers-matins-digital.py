@@ -24,7 +24,7 @@ assert [band["row_id"] for band in layout["body_bands"]] == [
     "r15","r16","r17","r18","r19","r20","r20","r21","r21",
     "r22","r23"
 ]
-assert len(layout["merged_regions"]) == 54
+assert len(layout["merged_regions"]) == 60
 coverage = set()
 for region in layout["merged_regions"]:
     rs, cs = region["row_start"], region["col_start"]
@@ -36,7 +36,7 @@ for region in layout["merged_regions"]:
         for cc in range(cs, cs+region["colspan"]):
             assert (rr, cc) not in coverage, "Overlapping merged region"
             coverage.add((rr, cc))
-assert len(coverage) == 118, len(coverage)
+assert len(coverage) == 130, len(coverage)
 
 columns = [c["id"] for c in data["columns"]]
 assert len(set(columns)) == 17
@@ -60,10 +60,11 @@ assert "layout.merged_regions" in js
 assert "node.colSpan=m.colspan" in js
 assert "rr.source_bands?.length" in js
 assert "vm-inner-line" in js
+assert 'cell.kind==="span"' in js
 assert "vespers-matins-data.json" in page
 assert "vespers-matins-digital.js" in page
 assert (ROOT / "subjects/liturgics/2027/vespers-matins-scan.md").is_file()
-assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,9)]
+assert data["source_layout"]["reviewed_rows"] == [f"r{i:02d}" for i in range(1,16)]
 assert all(c.get("verified_from_source") is True for r in data["rows"][:8] for c in r["cells"])
 assert all(c.get("kind") in {"empty","symbol","text"} for r in data["rows"][:8] for c in r["cells"])
 assert data["rows"][3]["cells"][8]["text"] == "←"
@@ -74,4 +75,14 @@ assert data["rows"][6]["source_bands"][0]["texts"][4] == "Минея аще ес
 assert data["rows"][6]["source_bands"][1]["texts"][4] == "2 прил. или на ряду"
 assert data["rows"][7]["source_bands"][1]["texts"][12].startswith("Минея св., аще полиел.")
 assert len(data["rows"][7]["source_bands"][1]["cell_parts"]["c13"]) == 2
-print("PASS: 17 columns, 23 logical rows, 29 source bands, 54 merged regions, 136 verified Vespers cells (85 + 51), SVG and links")
+assert all(c.get("verified_from_source") is True for r in data["rows"][:15] for c in r["cells"])
+assert all(c.get("kind") in {"empty","symbol","text","span"} for r in data["rows"][:15] for c in r["cells"])
+assert [b["source_band"] for b in data["rows"][9]["source_bands"]] == [12,13]
+assert all(len(b["texts"]) == 17 for b in data["rows"][9]["source_bands"])
+assert data["rows"][11]["cells"][10]["span_anchor"] == "c10"
+assert data["rows"][12]["cells"][8]["span_anchor"] == "c07"
+assert data["rows"][13]["cells"][16]["span_anchor"] == "c15"
+assert data["rows"][14]["cells"][0]["text"].startswith("Окт.-2, Мин.-1")
+assert data["source_layout"]["reviewed_stage_4"]["logical_cells"] == 119
+assert len([c for r in data["rows"][8:15] for c in r["cells"]]) == 119
+print("PASS: 17 columns, 23 logical rows, 29 source bands, 60 merged regions, 255 verified cells (Vespers 136 + Matins I 119), SVG and links")
