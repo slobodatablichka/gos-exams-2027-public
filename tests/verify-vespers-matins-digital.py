@@ -114,7 +114,7 @@ assert [b["source_band"] for b in data["rows"][4]["source_bands"]] == [4,5]
 assert all(len(b["texts"]) == 17 for b in data["rows"][4]["source_bands"])
 assert data["rows"][4]["source_bands"][0]["texts"][12] == "Минея"
 assert data["rows"][4]["source_bands"][1]["texts"][12] == "1 прил. по гл. сл."
-assert data["rows"][4]["cells"][12]["text"] == "\\n".join(["Минея","1 прил. по гл. сл."])
+assert data["rows"][4]["cells"][12]["text"] == "\n".join(["Минея","1 прил. по гл. сл."])
 assert {tuple(m[k] for k in ("row_start","rowspan","col_start","colspan")) for m in layout["merged_regions"]} >= {(4,2,0,1),(4,2,8,1),(4,2,15,1)}
 assert len(data["source_layout"]["body_bands"]) == 29
 assert len([x for row in data["rows"] for x in row["cells"]]) == 391
