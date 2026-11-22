@@ -1,0 +1,29 @@
+name: Verify digital vespers and matins in Chromium
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/liturgics/vespers-matins-data.json'
+      - 'assets/liturgics/vespers-matins-digital.js'
+      - 'assets/liturgics/service-signs/**'
+      - 'subjects/liturgics/2027/vespers-matins.md'
+      - 'tests/test-vespers-matins-browser.py'
+      - '.github/workflows/verify-vespers-matins-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Playwright controller
+        run: python -m pip install --quiet 'playwright>=1.55,<2'
+      - name: Ensure Chromium available
+        run: |
+          if ! command -v google-chrome && ! command -v chromium; then
+            python -m playwright install --with-deps chromium
+          fi
+      - name: Run desktop and mobile UI acceptance
+        run: python tests/test-vespers-matins-browser.py
