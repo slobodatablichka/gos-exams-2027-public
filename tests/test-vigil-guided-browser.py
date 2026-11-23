@@ -27,7 +27,7 @@ assert all(sum(pair[1] for pair in lesson["blocks"])==150 for lesson in DATA["le
 assert not re.search(r"<audio|<video",TEXT,re.I)
 assert 'vigil-guided-data.json' in TEXT and 'vigil-guided.js' in TEXT
 assert "localStorage" in JS and "data.steps" in JS and "Что дальше" in TEXT
-assert all('"'+id+'"' in JS for id in ["vg-show-answer","vg-show-next","vg-training","vg-course","vg-back","vg-forward"])
+assert all("#"+id in JS for id in ["vg-show-answer","vg-show-next","vg-training","vg-course","vg-back","vg-forward"])
 assert "vigil-guided.html" in (ROOT/"subjects/liturgics/2027/index.md").read_text(encoding="utf-8")
 assert "vigil-guided.html" in (ROOT/"subjects/liturgics/2027/practicum/index.md").read_text(encoding="utf-8")
 
