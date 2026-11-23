@@ -90,7 +90,7 @@ function render(){
   nodes.link.textContent="Открыть сравнительную таблицу: "+step.title;
  }
  const labels={E:"Вечерня",M:"Утреня",H:"Первый час"};
- nodes.source.textContent="Источник определения: "+step.source+". Последовательность: преподавательский эталон № 2; первый час — по Аверкию.";
+ const source=data.sources.find(x=>x.code===step.source);nodes.source.textContent="Источник определения: "+(source?.name||"").trim()+". Последовательность: преподавательский эталон № 2; первый час — по Аверкию.";
  nodes.previous.disabled=index===0;nodes.next.disabled=index===data.steps.length-1;
  nodes.next.textContent=next?"Следующий элемент":"Последование завершено";
  renderSections();
