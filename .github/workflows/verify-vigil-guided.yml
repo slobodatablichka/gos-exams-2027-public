@@ -1,0 +1,32 @@
+name: Guided vigil study — source and browser acceptance
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/liturgics/vigil-guided-data.json'
+      - 'assets/liturgics/vigil-guided.js'
+      - 'subjects/liturgics/2027/vigil-guided.md'
+      - 'subjects/liturgics/2027/index.md'
+      - 'subjects/liturgics/2027/practicum/index.md'
+      - 'tests/test-vigil-guided-browser.py'
+      - '.github/workflows/verify-vigil-guided.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  accept:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser controller
+        run: python -m pip install --quiet 'playwright>=1.55,<2'
+      - name: Ensure Chromium available
+        run: |
+          if ! command -v google-chrome && ! command -v chromium; then
+            python -m playwright install --with-deps chromium
+          fi
+      - name: Check JavaScript syntax
+        run: node --check assets/liturgics/vigil-guided.js
+      - name: Test explanations, questions, source links, progression, mobile
+        run: python tests/test-vigil-guided-browser.py
