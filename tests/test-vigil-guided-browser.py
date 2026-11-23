@@ -85,6 +85,7 @@ with tempfile.TemporaryDirectory() as temp:
                     assert page.locator("#vg-counter").inner_text()=="64 / 72"
                     assert page.locator("#vg-cue").inner_text().startswith("«Приидите")
                     page.locator("#vg-map").evaluate("(el)=>el.open=true")
+                    page.wait_for_function("document.querySelectorAll(\'#vg-menu button\').length === 72",timeout=10000)
                     assert page.locator("#vg-menu button").count()==72
                     page.locator("#vg-menu button").last.click()
                     assert page.locator("#vg-counter").inner_text()=="72 / 72"
