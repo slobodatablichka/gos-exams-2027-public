@@ -20,12 +20,13 @@ assert [s["section"] for s in DATA["steps"]].count("Утреня")==34
 assert [s["section"] for s in DATA["steps"]].count("Первый час")==9
 assert len({s["id"] for s in DATA["steps"]})==72
 assert all(s["title"] and s["cue"] and s["definition"] and s["question"] and s["answer"] and s["source"] for s in DATA["steps"])
-assert all(s["source"].startswith("Аверкий (Таушев)") for s in DATA["steps"])
+assert all(s["source"] in {"E","M","H"} for s in DATA["steps"])
+assert all(src["name"].startswith("Аверкий (Таушев)") for src in DATA["sources"][:3])
 assert len(DATA["lessons"])==2
 assert all(sum(pair[1] for pair in lesson["blocks"])==150 for lesson in DATA["lessons"])
 assert not re.search(r"<audio|<video",TEXT,re.I)
 assert 'vigil-guided-data.json' in TEXT and 'vigil-guided.js' in TEXT
-assert all(word in JS for word in ["localStorage","data.steps","What","draw"]) is False or "Что дальше" in TEXT
+assert "localStorage" in JS and "data.steps" in JS and "Что дальше" in TEXT
 assert all('"'+id+'"' in JS for id in ["vg-show-answer","vg-show-next","vg-training","vg-course","vg-back","vg-forward"])
 assert "vigil-guided.html" in (ROOT/"subjects/liturgics/2027/index.md").read_text(encoding="utf-8")
 assert "vigil-guided.html" in (ROOT/"subjects/liturgics/2027/practicum/index.md").read_text(encoding="utf-8")
