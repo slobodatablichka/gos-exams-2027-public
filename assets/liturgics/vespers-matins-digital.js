@@ -198,5 +198,8 @@ async function load(){const res=await fetch(root.dataset.source);if(!res.ok)thro
 if(data.columns?.length!==17||data.rows?.length!==23||data.rows.some(r=>r.cells.length!==17))throw Error("Неверная структура таблицы");
 for(const c of data.columns)opt(service,c.id,c.group+" — "+c.short+" — "+c.context);
 for(const r of data.rows)opt(row,r.id,r.section+" — "+r.label);
-restoreSelected();drawFull();drawOne();drawCompare();drawSelected();view("full");status.textContent=""}
+restoreSelected();drawFull();drawOne();drawCompare();drawSelected();view("full");
+const requestedRow=new URLSearchParams(window.location.search).get("row");
+if(data.rows.some(r=>r.id===requestedRow)){row.value=requestedRow;view("compare")}
+status.textContent=""}
 load().catch(e=>{status.textContent="Не удалось загрузить таблицу.";console.error(e)})})();
