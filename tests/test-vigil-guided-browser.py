@@ -24,6 +24,15 @@ assert all(s["source"] in {"E","M","H"} for s in DATA["steps"])
 assert all(src["name"].startswith("Аверкий (Таушев)") for src in DATA["sources"][:3])
 assert len(DATA["lessons"])==2
 assert all(sum(pair[1] for pair in lesson["blocks"])==150 for lesson in DATA["lessons"])
+assert [s["id"] for s in DATA["steps"]]==[f"s{i:02d}" for i in range(1,73)]
+assert all(s.get("nextStepId")==(DATA["steps"][i+1]["id"] if i<71 else None) for i,s in enumerate(DATA["steps"]))
+assert all(isinstance(s.get("subelements"),list) and isinstance(s.get("conditions"),list) for s in DATA["steps"])
+assert sum(bool(s["conditions"]) for s in DATA["steps"])>=50
+assert sum(bool(s["subelements"]) for s in DATA["steps"])>=50
+assert DATA["steps"][52]["id"]=="s53" and "Честнейшую" in DATA["steps"][52]["cue"]
+assert DATA["steps"][-1]["title"]=="Окончание первого часа и отпуст"
+assert "vg-detail-elements" in TEXT and "vg-conditions" in TEXT
+
 assert not re.search(r"<audio|<video",TEXT,re.I)
 assert 'vigil-guided-data.json' in TEXT and 'vigil-guided.js' in TEXT
 assert "localStorage" in JS and "data.steps" in JS and "Что дальше" in TEXT
@@ -62,6 +71,11 @@ with tempfile.TemporaryDirectory() as temp:
                     assert page.locator("#vg-counter").inner_text()=="1 / 72"
                     assert "Восстаните" in page.locator("#vg-cue").inner_text()
                     assert page.locator("#vg-explanation").is_hidden()
+                    # The added semantic subelements and conditional Typikon notes must be interactive.
+                    assert page.locator("#vg-detail-elements").is_visible()
+                    page.locator("#vg-detail-elements summary").click()
+                    assert page.locator("#vg-detail-list li").count()>=1
+                    assert page.locator("#vg-conditions").is_hidden()
                     page.locator("#vg-show-explanation").click()
                     assert page.locator("#vg-explanation").is_visible()
                     assert "Аверкий" in page.locator("#vg-source").inner_text()
@@ -81,6 +95,16 @@ with tempfile.TemporaryDirectory() as temp:
                     assert page.locator("#vg-counter").inner_text()=="2 / 72"
                     assert page.locator("#vg-training").is_checked()
                     assert page.locator("#vg-title").is_hidden()
+                    page.goto(url+"#step-7",wait_until="networkidle")
+                    assert page.locator("#vg-counter").inner_text()=="7 / 72"
+                    assert page.locator("#vg-conditions").is_visible()
+                    page.locator("#vg-conditions summary").click()
+                    assert "Блажен муж" in page.locator("#vg-conditions-list").inner_text()
+                    page.goto(url+"#step-53",wait_until="networkidle")
+                    assert "Честнейшую" in page.locator("#vg-cue").inner_text()
+                    assert page.locator("#vg-conditions").is_visible()
+                    page.locator("#vg-conditions summary").click()
+                    assert "припев" in page.locator("#vg-conditions-list").inner_text().lower()
                     page.locator("#vg-section button").nth(2).click()
                     assert page.locator("#vg-counter").inner_text()=="64 / 72"
                     assert page.locator("#vg-cue").inner_text().startswith("«Приидите")
