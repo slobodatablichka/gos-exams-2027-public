@@ -34,6 +34,8 @@ assert DATA["steps"][-1]["title"]=="Окончание первого часа �
 assert "vg-detail-elements" in TEXT and "vg-conditions" in TEXT
 
 assert not re.search(r"<audio|<video",TEXT,re.I)
+assert not re.search(r"знакомые с детства|знакомые нам с детства|с детских лет",TEXT,re.I)
+assert "Учимся узнавать молитвословия и песнопения" in TEXT
 assert 'vigil-guided-data.json' in TEXT and 'vigil-guided.js' in TEXT
 assert "localStorage" in JS and "data.steps" in JS and "Что дальше" in TEXT
 assert all("#"+id in JS for id in ["vg-show-answer","vg-show-next","vg-training","vg-course","vg-back","vg-forward"])
