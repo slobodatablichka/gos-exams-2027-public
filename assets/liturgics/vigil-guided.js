@@ -16,7 +16,9 @@ next:root.querySelector("#vg-forward"),previous:root.querySelector("#vg-back"),
 showname:root.querySelector("#vg-show-name"),showexplanation:root.querySelector("#vg-show-explanation"),
 showanswer:root.querySelector("#vg-show-answer"),shownext:root.querySelector("#vg-show-next"),
 training:root.querySelector("#vg-training"),fullmap:root.querySelector("#vg-map"),
-course:root.querySelector("#vg-course")
+course:root.querySelector("#vg-course"),
+parts:root.querySelector("#vg-detail-elements"),partsList:root.querySelector("#vg-detail-list"),
+conditions:root.querySelector("#vg-conditions"),conditionsList:root.querySelector("#vg-conditions-list")
 };
 const storageKey="gos-exams-vigil-guided-2027-v1";
 let data,index=0,training=false,visibleName=false,visibleExplanation=false,visibleAnswer=false,visibleNext=false;
@@ -74,6 +76,23 @@ function render(){
  nodes.title.textContent=step.title;nodes.title.hidden=training&&!visibleName;
  nodes.showname.hidden=!training||visibleName;
  nodes.definition.textContent=step.definition;
+ if(nodes.parts&&nodes.partsList){
+  nodes.parts.hidden=!Array.isArray(step.subelements)||!step.subelements.length;
+  nodes.partsList.replaceChildren();
+  for(const item of step.subelements||[])nodes.partsList.append(el("li",item));
+  nodes.parts.open=false;
+ }
+ if(nodes.conditions&&nodes.conditionsList){
+  const rules=Array.isArray(step.conditions)?step.conditions:[];
+  nodes.conditions.hidden=!rules.length;
+  nodes.conditionsList.replaceChildren();
+  for(const rule of rules){
+   const item=el("li"),condition=el("strong",rule.condition+": ");
+   item.append(condition,document.createTextNode(rule.text));
+   nodes.conditionsList.append(item);
+  }
+  nodes.conditions.open=false;
+ }
  nodes.question.textContent=step.question;
  nodes.answer.textContent=step.answer;
  nodes.nextanswer.textContent=next?next.title:"Всенощное бдение завершено.";
@@ -90,7 +109,9 @@ function render(){
   nodes.link.textContent="Открыть сравнительную таблицу: "+step.title;
  }
  const labels={E:"Вечерня",M:"Утреня",H:"Первый час"};
- const source=data.sources.find(x=>x.code===step.source);nodes.source.textContent="Источник определения: "+(source?.name||"").trim()+". Последовательность: преподавательский эталон № 2; первый час — по Аверкию.";
+ const source=data.sources.find(x=>x.code===step.source);
+ const pages=Array.isArray(step.examplePages)&&step.examplePages.length?" Пример Колобанова: стр. "+step.examplePages.join("–")+".":"";
+ nodes.source.textContent="Объяснение: "+(source?.name||"учебник Аверкия (Таушева)")+". Последовательность: полный пример бдения Колобанова и воскресный пример игумена Кронида; выбор изменяемых частей — по Типикону."+pages;
  nodes.previous.disabled=index===0;nodes.next.disabled=index===data.steps.length-1;
  nodes.next.textContent=next?"Следующий элемент":"Последование завершено";
  renderSections();
