@@ -54,7 +54,7 @@ title: "Вечерня и утреня — цифровая таблица сл�
 
 # Вечерня и утреня. Состав службы
 
-[← Литургика](index.html) · [Исправить текст таблицы в GitHub](https://github.com/slobodatablichka/gos-exams-2027-public/edit/main/assets/liturgics/vespers-matins-data.json) · [Знаки служб](service-signs.html) · [Исходная таблица](vespers-matins-scan.html) · [Разбор вопросов №1–6](practicum/materials/evening-matins-comparison-2026-11-22.html)
+[← Литургика](index.html) · [Полное всенощное бдение с пояснениями](vigil-guided.html) · [Исправить текст таблицы в GitHub](https://github.com/slobodatablichka/gos-exams-2027-public/edit/main/assets/liturgics/vespers-matins-data.json) · [Знаки служб](service-signs.html) · [Исходная таблица](vespers-matins-scan.html) · [Разбор вопросов №1–6](practicum/materials/evening-matins-comparison-2026-11-22.html)
 
 <div class="vm-tool" id="vm-digital"
  data-source="{{ '/assets/liturgics/vespers-matins-data.json' | relative_url }}"
