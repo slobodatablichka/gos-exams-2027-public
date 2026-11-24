@@ -14,6 +14,8 @@ title: "Всенощное бдение — последование"
 .vg-root button:focus-visible,.vg-root summary:focus-visible{outline:3px solid #c39a45;outline-offset:2px}
 .vg-root .vg-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0;color:#59717a;font-size:.86rem}
 .vg-root progress{width:100%;accent-color:#176776;height:9px;display:block;margin:7px 0 19px}
+.vg-root .vg-step-picker{font-size:.87rem;margin:0 0 15px;color:#506a73}
+.vg-root .vg-step-picker summary{cursor:pointer}
 .vg-root .vg-stream{display:flex;flex-direction:column;gap:13px}
 .vg-root .vg-step{border:1px solid #d1dfe2;border-radius:12px;padding:14px 17px;background:#fff;scroll-margin-top:15px}
 .vg-root .vg-step.vg-current{border:2px solid #5b9ca5;background:#fbfefe}
@@ -78,13 +80,13 @@ title: "Всенощное бдение — последование"
    <span id="vg-counter">1 / 72</span>
   </div>
   <progress id="vg-progress" value="1" max="72" aria-label="Продвижение по последованию"></progress>
+  <details id="vg-map" class="vg-step-picker">
+   <summary>Перейти к нужному шагу (1–72)</summary>
+   <div id="vg-menu" class="vg-map"></div>
+  </details>
   <div id="vg-stream" class="vg-stream" aria-label="Последование всенощного бдения"></div>
   <button id="vg-jump" class="vg-jump" type="button" hidden aria-label="Долистать вниз до текущего шага">↓ К концу ленты</button>
   <div class="vg-tools">
-   <details id="vg-map">
-    <summary>Все 72 шага · перейти к нужному месту</summary>
-    <div id="vg-menu" class="vg-map"></div>
-   </details>
    <details>
     <summary>План двух занятий</summary>
     <div id="vg-course" class="vg-lessons"></div>
