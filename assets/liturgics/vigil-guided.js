@@ -80,6 +80,25 @@ function scrollToCard(i,behavior="smooth"){
  positionCard(by("vg-step-"+(i+1)),behavior);
  updateJump();
 }
+// The next-question options must be completely visible after they unfold.
+// Unlike incoming cards, align the *bottom* of this question with the viewport.
+function showWholeQuestion(question){
+ if(!question)return;
+ const rect=question.getBoundingClientRect(),margin=24;
+ const available=window.innerHeight-2*margin;
+ let offset=0;
+ if(rect.height<=available){
+  if(rect.bottom>window.innerHeight-margin)offset=rect.bottom-(window.innerHeight-margin);
+  else if(rect.top<margin)offset=rect.top-margin;
+ }else{
+  // Very small screens: the question cannot physically fit. Show its title
+  // and first choices; the remaining choices can be reached by normal scrolling.
+  offset=rect.top-margin;
+ }
+ if(Math.abs(offset)<12)return;
+ const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ window.scrollTo({top:Math.max(0,window.scrollY+offset),behavior:reduceMotion?"instant":"smooth"});
+}
 function updateHeader(){
  nodes.counter.textContent=(frontier+1)+" / "+data.steps.length;
  nodes.progress.value=frontier+1;nodes.progress.max=data.steps.length;
@@ -198,7 +217,7 @@ function chooseName(i,selected){
    quizShown.add(s.id);store();renderStream(i);
    if(follow&&!browsingHistory&&scrollRevision===revision){
     const nextQuestion=by("vg-quiz-"+(i+1));
-    if(nextQuestion)nextQuestion.scrollIntoView({behavior:"smooth",block:"nearest"})
+    showWholeQuestion(nextQuestion)
    }
   },1200);
   quizTimers.add(timer);
