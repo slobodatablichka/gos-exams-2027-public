@@ -27,7 +27,10 @@ title: "Всенощное бдение — последование"
 .vg-root .vg-name h2{font-size:1.17rem;margin:8px 0 4px}
 .vg-root .vg-name p{color:#506872;margin:0 0 11px}
 .vg-root .vg-quiz{border-top:1px solid #e3ebed;padding-top:11px;margin-top:12px}
-.vg-root .vg-quiz h3{font-size:1.03rem;margin:0 0 9px}
+.vg-root .vg-quiz h3,.vg-root .vg-name-quiz h3{font-size:1.03rem;margin:0 0 9px}
+.vg-root .vg-name-quiz{margin-top:10px}
+.vg-root .vg-name{margin-top:10px}
+.vg-root .vg-name .vg-good,.vg-root .vg-name .vg-error{margin:0 0 4px}
 .vg-root .vg-choices{display:grid;gap:7px}
 .vg-root .vg-choice{text-align:left;line-height:1.45;min-height:45px;white-space:normal}
 .vg-root .vg-choice.is-correct{background:#e4f4eb;border:2px solid #3d8b64;color:#145639;opacity:1}
@@ -99,7 +102,7 @@ title: "Всенощное бдение — последование"
 
 ## Порядок работы
 
-Начальные слова → **«Как это называется?»** → название и определение → автоматическое открытие вопроса **«Что следует дальше?»** с тремя вариантами → проверка ответа → появление следующего шага ниже.
+Начальные слова → **«Как это называется?»** (от двух до пяти близких названий) → проверка и краткое определение → автоматическое открытие вопроса **«Что следует дальше?»** (три варианта) → проверка ответа → появление следующего шага ниже.
 
 Всё пройденное остаётся на одной странице. Прокручивайте ленту вверх для повторения; стрелка **«↓ К концу ленты»** возвращает к текущему шагу. После последней карточки появляются итоги прохождения. При необходимости раскройте «Подробнее» у любого шага.
 
