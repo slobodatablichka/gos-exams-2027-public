@@ -6,6 +6,7 @@ title: "Всенощное бдение — узнаём и понимаем п�
 <style>
 .vg-root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;color:#20343c;max-width:900px}
 .vg-root *{box-sizing:border-box}
+.vg-root [hidden]{display:none!important}
 .vg-root button,.vg-root summary{font:inherit}
 .vg-root button{cursor:pointer;border:1px solid #c6d5d9;background:#fff;border-radius:10px;color:#174f5d;padding:10px 15px;min-height:43px}
 .vg-root button:disabled{opacity:.5;cursor:default}
@@ -101,8 +102,8 @@ title: "Всенощное бдение — узнаём и понимаем п�
      <div id="vg-feedback" class="vg-feedback" role="status" aria-live="polite"></div>
     </section>
     <section id="vg-complete" class="vg-complete" hidden aria-label="Завершение прохождения">
-     <h3>Всенощное бдение пройдено</h3>
-     <button id="vg-finish" type="button">Показать результаты</button>
+     <h3>Последний элемент последования</h3>
+     <button id="vg-finish" type="button">Подвести итоги</button>
     </section>
     <div id="vg-summary" class="vg-summary" hidden aria-label="Статистика прохождения"></div>
     <button id="vg-new-run" type="button" hidden>Новое прохождение</button>
