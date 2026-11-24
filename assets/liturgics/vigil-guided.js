@@ -9,7 +9,7 @@ const nodes={
  title:by("vg-title"),role:by("vg-role"),cue:by("vg-cue"),definition:by("vg-definition"),
  showname:by("vg-show-name"),quiz:by("vg-quiz"),choices:by("vg-choices"),feedback:by("vg-feedback"),
  next:by("vg-forward"),previous:by("vg-back"),training:by("vg-training"),reset:by("vg-reset"),
- ribbon:by("vg-ribbon"),ribbonCount:by("vg-ribbon-count"),ribbonToggle:by("vg-ribbon-toggle"),
+ ribbon:by("vg-ribbon"),ribbonCount:by("vg-ribbon-count"),
  more:by("vg-more"),question:by("vg-question"),answer:by("vg-answer"),
  parts:by("vg-detail-elements"),partsList:by("vg-detail-list"),
  conditions:by("vg-conditions"),conditionsList:by("vg-conditions-list"),
