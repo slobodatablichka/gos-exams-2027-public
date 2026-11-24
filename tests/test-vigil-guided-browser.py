@@ -114,7 +114,9 @@ with tempfile.TemporaryDirectory() as temp:
                     stats=page.locator("#vg-summary").inner_text()
                     assert "Ошибок" in stats and "Пропуск" not in stats
                     assert "Без ответа" in stats and "Точность" in stats and "Время" in stats
-                    assert "1" in stats
+                    assert page.locator("#vg-summary .vg-stat").nth(0).locator("strong").inner_text()=="1"  # correct
+                    assert page.locator("#vg-summary .vg-stat").nth(1).locator("strong").inner_text()=="1"  # wrong
+                    assert page.locator("#vg-summary .vg-stat").nth(2).locator("strong").inner_text()=="69" # unanswered
                     page.reload(wait_until="networkidle")
                     page.wait_for_selector("#vg-loaded:not([hidden])")
                     assert page.locator("#vg-summary").is_visible()
