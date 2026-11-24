@@ -9,7 +9,7 @@ const sectionKeys=["Великая вечерня","Утреня","Первый 
 const nodes={status:by("vg-status"),loaded:by("vg-loaded"),stream:by("vg-stream"),jump:by("vg-jump"),counter:by("vg-counter"),progress:by("vg-progress"),course:by("vg-course"),map:by("vg-map"),menu:by("vg-menu"),reset:by("vg-reset")};
 const button=(label,fn,cls)=>{const b=el("button",label,cls);b.type="button";b.addEventListener("click",fn);return b};
 let data,frontier=0,answers={},nameAnswers={},revealed=new Set(),quizShown=new Set(),elapsedMs=0,completed=false,tickStart=null;
-let quizTimer=null,advanceTimer=null;
+let quizTimers=new Set(),advanceTimer=null,runVersion=0;
 let scrollRevision=0,lastScrollY=window.scrollY,browsingHistory=false;
 function readSaved(){try{return JSON.parse(localStorage.getItem(storageKey)||"null")}catch(_){return null}}
 function store(){try{localStorage.setItem(storageKey,JSON.stringify({index:frontier,frontier,seen:Array.from({length:frontier+1},(_,i)=>i),answers,nameAnswers,revealed:[...revealed],quizShown:[...quizShown],elapsedMs,completed}))}catch(_){}}
@@ -38,6 +38,7 @@ function restore(){
   }
   revealed=new Set(Object.keys(nameAnswers));
   if(Array.isArray(save.quizShown))quizShown=new Set(save.quizShown.filter(x=>revealed.has(x)));
+  for(const id of Object.keys(nameAnswers))if(id!==data.steps[frontier]?.id)quizShown.add(id);
   for(const id of Object.keys(answers))if(revealed.has(id))quizShown.add(id);
  }
  const hash=(location.hash||"").match(/^#step-(\d+)$/);
@@ -167,7 +168,7 @@ function renderCourse(){
   block.append(ol);list.append(block)
  }
 }
-function clearTimers(){if(quizTimer!==null)clearTimeout(quizTimer);if(advanceTimer!==null)clearTimeout(advanceTimer);quizTimer=null;advanceTimer=null}
+function clearTimers(){for(const timer of quizTimers)clearTimeout(timer);quizTimers.clear();if(advanceTimer!==null)clearTimeout(advanceTimer);advanceTimer=null}
 function chooseName(i,selected){
  const s=data.steps[i];
  if(!s?.nameQuiz||nameAnswers[s.id]||completed)return;
@@ -177,14 +178,17 @@ function chooseName(i,selected){
  renderStream(i);
  if(i===data.steps.length-1){finish();return}
  if(!quizShown.has(s.id)){
-  if(quizTimer!==null)clearTimeout(quizTimer);
-  quizTimer=setTimeout(()=>{
-   quizTimer=null;quizShown.add(s.id);store();renderStream(i);
+  const version=runVersion;
+  const timer=setTimeout(()=>{
+   quizTimers.delete(timer);
+   if(runVersion!==version||!nameAnswers[s.id])return;
+   quizShown.add(s.id);store();renderStream(i);
    if(follow&&!browsingHistory&&scrollRevision===revision){
     const nextQuestion=by("vg-quiz-"+(i+1));
     if(nextQuestion)nextQuestion.scrollIntoView({behavior:"smooth",block:"nearest"})
    }
-  },1200)
+  },1200);
+  quizTimers.add(timer);
  }
 }
 function answer(i,chosen){
@@ -247,7 +251,7 @@ function finish(){
 }
 function newRun(){
  if(!confirm("Начать заново? Ответы и время будут сброшены."))return;
- clearTimers();frontier=0;answers={};nameAnswers={};revealed=new Set();quizShown=new Set();elapsedMs=0;completed=false;tickStart=null;
+ clearTimers();runVersion++;frontier=0;answers={};nameAnswers={};revealed=new Set();quizShown=new Set();elapsedMs=0;completed=false;tickStart=null;
  store();nodes.stream.replaceChildren();renderStream();resume();scrollToCard(0)
 }
 function wire(){
@@ -275,8 +279,11 @@ async function load(){
  nodes.status.hidden=true;nodes.loaded.hidden=false;resume();
  // Resume a pending question/transition across reload without inserting fabricated answers.
  const s=data.steps[frontier];
- if(nameAnswers[s.id]&&!quizShown.has(s.id)&&s.quiz){quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream(frontier)},1200)}
- else if(s.quiz&&answers[s.id]){advanceTimer=setTimeout(()=>{advanceTimer=null;advance(frontier,false,scrollRevision)},1500)}
+ if(nameAnswers[s.id]&&!quizShown.has(s.id)&&s.quiz){
+  const i=frontier,version=runVersion;
+  const timer=setTimeout(()=>{quizTimers.delete(timer);if(runVersion!==version)return;quizShown.add(s.id);store();renderStream(i)},1200);
+  quizTimers.add(timer)
+ }else if(s.quiz&&answers[s.id]){const i=frontier;advanceTimer=setTimeout(()=>{advanceTimer=null;advance(i,false,scrollRevision)},1500)}
  if(frontier>0){if(completed)scrollToEnd("instant");else scrollToCard(frontier,"instant")}
 }
 load().catch(err=>{nodes.status.textContent="Не удалось открыть последование. Обновите страницу.";console.error(err)});
