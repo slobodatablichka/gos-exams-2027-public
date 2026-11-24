@@ -99,7 +99,7 @@ function makeCard(i){
  card.append(el("div",step.cue,"vg-cue"));
  const nameQuiz=el("section",undefined,"vg-name-quiz");nameQuiz.id="vg-name-quiz-"+(i+1);
  nameQuiz.append(el("h3","Как это называется?"));
- const nameOptions=el("div",undefined,"vg-name-choices"),nameSaved=nameAnswers[step.id];
+ const nameOptions=el("div",undefined,"vg-choices vg-name-choices"),nameSaved=nameAnswers[step.id];
  for(const [j,c] of step.nameQuiz.choices.entries()){
   const b=button((j+1)+". "+c.label,()=>chooseName(i,c.stepId),"vg-choice");
   if(nameSaved){
