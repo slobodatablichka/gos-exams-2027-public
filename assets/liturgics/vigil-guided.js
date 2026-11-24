@@ -10,6 +10,7 @@ const nodes={status:by("vg-status"),loaded:by("vg-loaded"),stream:by("vg-stream"
 const button=(label,fn,cls)=>{const b=el("button",label,cls);b.type="button";b.addEventListener("click",fn);return b};
 let data,frontier=0,answers={},revealed=new Set(),quizShown=new Set(),elapsedMs=0,completed=false,tickStart=null;
 let quizTimer=null,advanceTimer=null;
+let scrollRevision=0,lastScrollY=window.scrollY,browsingHistory=false;
 function readSaved(){try{return JSON.parse(localStorage.getItem(storageKey)||"null")}catch(_){return null}}
 function store(){try{localStorage.setItem(storageKey,JSON.stringify({index:frontier,frontier,seen:Array.from({length:frontier+1},(_,i)=>i),answers,revealed:[...revealed],quizShown:[...quizShown],elapsedMs,completed}))}catch(_){}}
 function tick(){if(tickStart!==null&&!completed){elapsedMs+=Math.max(0,performance.now()-tickStart);tickStart=performance.now()}}
@@ -50,11 +51,11 @@ function updateJump(){
  const card=currentCard();if(!card)return;
  const r=card.getBoundingClientRect();
  // Visible only when the latest card lies below the viewport (after looking back up).
- nodes.jump.hidden=!(r.top>window.innerHeight-110);
+ nodes.jump.hidden=!(r.top>window.innerHeight-110||(browsingHistory&&r.top>120));
 }
 function scrollToCard(i,behavior="smooth"){
  const n=by("vg-step-"+(i+1));if(!n)return;
- n.scrollIntoView({behavior,block:"start"});updateJump()
+ browsingHistory=false;n.scrollIntoView({behavior,block:"start"});updateJump()
 }
 function updateHeader(){
  nodes.counter.textContent=(frontier+1)+" / "+data.steps.length;
@@ -151,16 +152,16 @@ function answer(i,chosen){
  const step=data.steps[i];
  if(!step?.quiz||answers[step.id]||!quizShown.has(step.id)||completed)return;
  tick();answers[step.id]={selected:chosen,correct:chosen===step.quiz.correctStepId};
- store();const follow=(i===frontier&&nearLatest());renderStream();
+ store();const follow=(i===frontier&&nearLatest()&&!browsingHistory),revision=scrollRevision;renderStream();
  if(i===frontier){
   if(advanceTimer!==null)clearTimeout(advanceTimer);
-  advanceTimer=setTimeout(()=>{advanceTimer=null;advance(i,follow)},1500)
+  advanceTimer=setTimeout(()=>{advanceTimer=null;advance(i,follow,revision)},1500)
  }
 }
-function advance(i,follow){
+function advance(i,follow,revision){
  if(frontier!==i||completed)return;
  // Check before appending: the newly created card is naturally below the viewport.
- const stayedAtLatest=nearLatest();
+ const stayedAtLatest=nearLatest()&&!browsingHistory&&scrollRevision===revision;
  frontier=Math.min(frontier+1,data.steps.length-1);store();renderStream();
  if(follow&&stayedAtLatest)scrollToCard(frontier);
  else updateJump();
@@ -199,7 +200,12 @@ function wire(){
  nodes.jump.addEventListener("click",()=>scrollToCard(frontier));
  nodes.map.addEventListener("toggle",renderMap);
  nodes.reset.addEventListener("click",newRun);
- window.addEventListener("scroll",updateJump,{passive:true});
+ window.addEventListener("scroll",()=>{
+  const y=window.scrollY;
+  if(y<lastScrollY-4){scrollRevision++;browsingHistory=true}
+  else if(y>lastScrollY+4&&nearLatest())browsingHistory=false;
+  lastScrollY=y;updateJump();
+ },{passive:true});
  window.addEventListener("resize",updateJump);
  document.addEventListener("visibilitychange",()=>{if(document.hidden)pause();else resume()});
  window.addEventListener("pagehide",pause);
@@ -214,7 +220,7 @@ async function load(){
  // Resume a pending question/transition across reload without inserting fabricated answers.
  const s=data.steps[frontier];
  if(revealed.has(s.id)&&!quizShown.has(s.id)&&s.quiz){quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream()},1200)}
- else if(s.quiz&&answers[s.id]){advanceTimer=setTimeout(()=>{advanceTimer=null;advance(frontier,false)},1500)}
+ else if(s.quiz&&answers[s.id]){advanceTimer=setTimeout(()=>{advanceTimer=null;advance(frontier,false,scrollRevision)},1500)}
  if(frontier>0)scrollToCard(frontier,"instant");
 }
 load().catch(err=>{nodes.status.textContent="Не удалось открыть последование. Обновите страницу.";console.error(err)});
