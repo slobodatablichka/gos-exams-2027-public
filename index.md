@@ -11,6 +11,8 @@ title: Госэкзамены — 2027
 
 [**Практика: экзаменационные тренажёры**](practice/index.html)
 
+[**Литургика — все викторины по последованиям**](subjects/liturgics/2027/quiz/index.html) · [**Всенощное бдение**](subjects/liturgics/2027/vigil-guided.html)
+
 [Богослужебный год: учебные случаи](subjects/liturgics/2027/trainers/year.html)
 
 ## Дисциплины
