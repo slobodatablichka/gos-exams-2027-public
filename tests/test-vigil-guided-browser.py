@@ -35,6 +35,7 @@ assert not re.search(r"знакомые с детства|Как устроен�
 assert 'id="vg-stream"' in TEXT and 'id="vg-jump"' in TEXT and 'id="vg-ribbon"' not in TEXT
 assert "Как это называется?" in JS and "Что следует дальше?" in JS
 assert "nameAnswers" in JS and "143-arr.length" in JS and "scrollRevision===revision" in JS
+assert "showWholeQuestion(nextQuestion)" in JS
 assert "positionCard(latestTarget(),behavior)" in JS and "window.innerHeight*0.54" in JS
 
 style=re.search(r"<style>[\s\S]*?</style>",TEXT)
@@ -84,6 +85,19 @@ with tempfile.TemporaryDirectory() as temp:
                     assert page.locator("#vg-step-1 .vg-name").is_visible()
                     assert "Правильный ответ" in page.locator("#vg-step-1 .vg-name").inner_text()
                     page.wait_for_selector("#vg-quiz-1:not([hidden])",timeout=5000)
+                    page.wait_for_timeout(850)
+                    visible_question=page.locator("#vg-quiz-1").evaluate("""(q)=>{
+                       const box=q.getBoundingClientRect();
+                       const last=q.querySelector('.vg-choice:last-child').getBoundingClientRect();
+                       return {height:box.height, viewport:innerHeight, top:box.top, bottom:last.bottom};
+                    }""")
+                    if visible_question["height"] <= visible_question["viewport"]-48:
+                        assert visible_question["bottom"] <= visible_question["viewport"]-10, (
+                            f"Last next-question answer clipped at {width}px: {visible_question}"
+                        )
+                        assert visible_question["top"] >= -10, (
+                            f"Next-question heading pushed too high at {width}px: {visible_question}"
+                        )
                     answer(page,1,"quiz",False)
                     page.wait_for_selector("#vg-step-2",timeout=5000)
                     assert page.locator("#vg-step-1 .vg-name").is_visible()
