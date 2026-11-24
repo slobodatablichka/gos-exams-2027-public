@@ -119,11 +119,17 @@ function makeCard(i){
  }
  card.append(cardDetails(step));return card
 }
-function renderStream(){
- nodes.stream.replaceChildren();
- for(let i=0;i<=frontier;i++)nodes.stream.append(makeCard(i));
+function renderStream(changedIndex=null){
+ // Preserve all earlier card DOM, open reference notes and page scroll position.
+ for(let i=0;i<=frontier;i++){
+  const old=by("vg-step-"+(i+1));
+  if(!old)nodes.stream.append(makeCard(i));
+  else if(i===changedIndex)old.replaceWith(makeCard(i));
+  const card=by("vg-step-"+(i+1));
+  card.classList.toggle("vg-current",i===frontier);
+ }
  updateHeader();renderMap();updateJump();
- if(completed)renderSummary()
+ if(completed)renderSummary();
 }
 function renderMap(){
  if(!nodes.map.open)return;
@@ -141,18 +147,18 @@ function renderCourse(){
 function clearTimers(){if(quizTimer!==null)clearTimeout(quizTimer);if(advanceTimer!==null)clearTimeout(advanceTimer);quizTimer=null;advanceTimer=null}
 function showName(i){
  const s=data.steps[i];if(!s)return;
- revealed.add(s.id);store();renderStream();
+ revealed.add(s.id);store();renderStream(i);
  if(i===data.steps.length-1){finish();return}
  if(!quizShown.has(s.id)&&!answers[s.id]){
   if(quizTimer!==null)clearTimeout(quizTimer);
-  quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream()},1200)
+  quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream(i)},1200)
  }
 }
 function answer(i,chosen){
  const step=data.steps[i];
  if(!step?.quiz||answers[step.id]||!quizShown.has(step.id)||completed)return;
  tick();answers[step.id]={selected:chosen,correct:chosen===step.quiz.correctStepId};
- store();const follow=(i===frontier&&nearLatest()&&!browsingHistory),revision=scrollRevision;renderStream();
+ store();const follow=(i===frontier&&nearLatest()&&!browsingHistory),revision=scrollRevision;renderStream(i);
  if(i===frontier){
   if(advanceTimer!==null)clearTimeout(advanceTimer);
   advanceTimer=setTimeout(()=>{advanceTimer=null;advance(i,follow,revision)},1500)
@@ -194,7 +200,7 @@ function finish(){
 function newRun(){
  if(!confirm("Начать заново? Ответы и время будут сброшены."))return;
  clearTimers();frontier=0;answers={};revealed=new Set();quizShown=new Set();elapsedMs=0;completed=false;tickStart=null;
- store();renderStream();resume();scrollToCard(0)
+ store();nodes.stream.replaceChildren();renderStream();resume();scrollToCard(0)
 }
 function wire(){
  nodes.jump.addEventListener("click",()=>scrollToCard(frontier));
@@ -219,7 +225,7 @@ async function load(){
  nodes.status.hidden=true;nodes.loaded.hidden=false;resume();
  // Resume a pending question/transition across reload without inserting fabricated answers.
  const s=data.steps[frontier];
- if(revealed.has(s.id)&&!quizShown.has(s.id)&&s.quiz){quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream()},1200)}
+ if(revealed.has(s.id)&&!quizShown.has(s.id)&&s.quiz){quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream(frontier)},1200)}
  else if(s.quiz&&answers[s.id]){advanceTimer=setTimeout(()=>{advanceTimer=null;advance(frontier,false,scrollRevision)},1500)}
  if(frontier>0)scrollToCard(frontier,"instant");
 }
