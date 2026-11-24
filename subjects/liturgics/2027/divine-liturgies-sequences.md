@@ -10,7 +10,7 @@ main td:first-child, main th:first-child, .main-content td:first-child, .main-co
 @media (max-width: 680px) { main table, .main-content table { font-size: .84rem; } }
 </style>
 
-[Литургика — 2027](index.html) · [Все викторины Литургики](quiz/index.html) · [Бдение](vigil-guided.html) · [Викторина Златоуста](divine-liturgy-chrysostom.html) · [Викторина Василия Великого](divine-liturgy-basil.html)
+[Литургика — 2027](index.html) · [Изучение последований](quiz/index.html) · [Бдение](vigil-guided.html) · [Самопроверка: Златоуст](divine-liturgy-chrysostom.html) · [Самопроверка: Василий Великий](divine-liturgy-basil.html)
 
 # Два последования Божественной литургии
 
