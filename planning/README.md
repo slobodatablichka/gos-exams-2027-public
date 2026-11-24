@@ -1,12 +1,16 @@
-# Управление публичным учебным сайтом
+# Управление публичным учебным сайтом «Госэкзамены — 2027»
 
-**Актуальные правила и этапы работ находятся в закрытом репозитории**:
+**Публичный репозиторий хранит страницы, данные, генераторы и проверки. Единственные действующие проектные инструкции — в закрытом репозитории.** Не создавать здесь второй независимый регламент.
 
-- [Навигатор действующих документов](https://github.com/slobodatablichka/gos-exams-2027/blob/main/planning/README.md)
-- [Устройство сайта и линковка](https://github.com/slobodatablichka/gos-exams-2027/blob/main/planning/SITE-REORGANIZATION-2027-PLAN.md)
-- [Чистка страниц и Ясное слово](https://github.com/slobodatablichka/gos-exams-2027/blob/main/planning/PAGE-CLEANUP-2027.md)
-- [Практика, «Песочница — Пирамида», тестирование](https://github.com/slobodatablichka/gos-exams-2027/blob/main/planning/PRACTICE-TRAINERS-2027.md)
+- [Начало работы — START.md](https://github.com/slobodatablichka/gos-exams-2027/blob/main/START.md)
+- [Обязательные правила качества — AGENTS.md](https://github.com/slobodatablichka/gos-exams-2027/blob/main/AGENTS.md)
+- [Действующие решения — DECISIONS.md](https://github.com/slobodatablichka/gos-exams-2027/blob/main/DECISIONS.md)
+- [Единый указатель планов, ТЗ и текущих направлений — planning/README.md](https://github.com/slobodatablichka/gos-exams-2027/blob/main/planning/README.md)
+- [Редактура студенческих материалов](https://github.com/slobodatablichka/gos-exams-2027/blob/main/planning/PAGE-CLEANUP-2027.md)
+- [Литургика: изучение богослужебных последований и самопроверка](https://github.com/slobodatablichka/gos-exams-2027/blob/main/research/liturgics/2027/interactive-sequences/README.md)
 
-Старые регламенты выпуска и протоколы: [архив](archive/2026-11-10/INDEX.md). Они не управляют новой реорганизацией.
+**Публичный каталог изучения богослужебных последований:** [открыть](../subjects/liturgics/2027/quiz/index.html). Названия и навигация соответствуют [утверждённому канону](https://github.com/slobodatablichka/gos-exams-2027/blob/main/research/liturgics/2027/interactive-sequences/04-terminology-and-navigation-canon.md); исторический путь `quiz/` не переименовывать.
 
-**Важно:** workflows, данные Jekyll, PDF и генераторы оставлены без изменения. Оперативная ссылка на закрытый GitHub открывается только участникам с доступом.
+Архив прежних публичных регламентов: [INDEX](archive/2026-11-10/INDEX.md). Исторические протоколы **не управляют** новой архитектурой. Рабочие инструкции закрытого GitHub доступны только пользователям с соответствующими правами.
+
+**Границы ревизии:** работающие JSON/JS-данные, URL, PDF, генераторы и workflows не менялись. Новые результаты публикации подтверждать отдельно через CI, GitHub Pages и доступность по HTTPS.
