@@ -158,7 +158,14 @@ function showName(i){
  if(i===data.steps.length-1){finish();return}
  if(!quizShown.has(s.id)&&!answers[s.id]){
   if(quizTimer!==null)clearTimeout(quizTimer);
-  quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream(i)},1200)
+  const followQuestion=i===frontier&&nearLatest()&&!browsingHistory,revision=scrollRevision;
+  quizTimer=setTimeout(()=>{
+   quizTimer=null;quizShown.add(s.id);store();renderStream(i);
+   if(followQuestion&&!browsingHistory&&scrollRevision===revision){
+    const question=by("vg-quiz-"+(i+1));
+    if(question)question.scrollIntoView({behavior:"smooth",block:"nearest"})
+   }
+  },1200)
  }
 }
 function answer(i,chosen){
