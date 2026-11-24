@@ -35,6 +35,7 @@ assert not re.search(r"знакомые с детства|Как устроен�
 assert 'id="vg-stream"' in TEXT and 'id="vg-jump"' in TEXT and 'id="vg-ribbon"' not in TEXT
 assert "Как это называется?" in JS and "Что следует дальше?" in JS
 assert "nameAnswers" in JS and "143-arr.length" in JS and "scrollRevision===revision" in JS
+assert "positionCard(latestTarget(),behavior)" in JS and "window.innerHeight*0.54" in JS
 
 style=re.search(r"<style>[\s\S]*?</style>",TEXT)
 start=TEXT.index('<div class="vg-root"')
@@ -99,8 +100,10 @@ with tempfile.TemporaryDirectory() as temp:
                     assert page.evaluate("window.scrollY")<200,"Upward reading was interrupted"
                     assert page.locator("#vg-jump").is_visible()
                     page.locator("#vg-jump").click()
-                    page.wait_for_timeout(550)
-                    assert page.locator("#vg-step-4").evaluate("(e)=>e.getBoundingClientRect().top<window.innerHeight")
+                    page.wait_for_timeout(1000)
+                    relative=page.locator("#vg-step-4").evaluate("(e)=>e.getBoundingClientRect().top/window.innerHeight")
+                    assert 0.28<=relative<=0.72, f"Jump-to-current overshot the latest card: {relative:.2f} viewport heights"
+                    assert page.locator("#vg-step-3").evaluate("(e)=>e.getBoundingClientRect().bottom>0"), "Previous answered card must remain visible above the new one"
                     page.reload(wait_until="networkidle")
                     page.wait_for_selector("#vg-loaded:not([hidden])")
                     assert page.locator(".vg-step").count()==4
