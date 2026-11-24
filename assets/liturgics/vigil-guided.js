@@ -159,15 +159,11 @@ function answer(i,chosen){
 }
 function advance(i,follow){
  if(frontier!==i||completed)return;
+ // Check before appending: the newly created card is naturally below the viewport.
+ const stayedAtLatest=nearLatest();
  frontier=Math.min(frontier+1,data.steps.length-1);store();renderStream();
- if(follow&&nearLatestAfterAppend())scrollToCard(frontier)
- else updateJump()
-}
-function nearLatestAfterAppend(){
- const prev=by("vg-step-"+frontier);
- if(!prev)return true;
- const r=prev.getBoundingClientRect();
- return r.top<window.innerHeight-60;
+ if(follow&&stayedAtLatest)scrollToCard(frontier);
+ else updateJump();
 }
 function openStep(i){
  if(i>frontier){frontier=i;store();renderStream()}
