@@ -59,13 +59,26 @@ function updateJump(){
  // Visible only when the latest card lies below the viewport (after looking back up).
  nodes.jump.hidden=!(r.top>window.innerHeight-110||(browsingHistory&&r.top>120));
 }
+// Leave the preceding answer visible above the new card instead of pinning its top
+// to the top edge of a tall desktop viewport.
+function positionCard(node,behavior="smooth"){
+ if(!node)return;
+ const top=node.getBoundingClientRect().top;
+ const targetTop=Math.round(window.innerHeight*0.54);
+ const delta=top-targetTop;
+ // A tiny scroll correction creates needless motion; do not oscillate.
+ if(Math.abs(delta)<16)return;
+ browsingHistory=false;
+ const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ window.scrollTo({top:Math.max(0,window.scrollY+delta),behavior:reduceMotion?"instant":behavior});
+}
 function scrollToEnd(behavior="smooth"){
- const n=latestTarget();if(!n)return;
- browsingHistory=false;n.scrollIntoView({behavior,block:"start"});updateJump();
+ positionCard(latestTarget(),behavior);
+ updateJump();
 }
 function scrollToCard(i,behavior="smooth"){
- const n=by("vg-step-"+(i+1));if(!n)return;
- browsingHistory=false;n.scrollIntoView({behavior,block:"start"});updateJump()
+ positionCard(by("vg-step-"+(i+1)),behavior);
+ updateJump();
 }
 function updateHeader(){
  nodes.counter.textContent=(frontier+1)+" / "+data.steps.length;
