@@ -1,183 +1,225 @@
 "use strict";
 (()=>{
 const root=document.querySelector("#vigil-guide");if(!root)return;
-const el=(tag,content,cls)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(content!==undefined&&content!==null)n.textContent=String(content);return n};
 const by=id=>root.querySelector("#"+id);
-const nodes={
- status:by("vg-status"),loaded:by("vg-loaded"),menu:by("vg-menu"),map:by("vg-map"),
- section:by("vg-section"),counter:by("vg-counter"),progress:by("vg-progress"),
- title:by("vg-title"),role:by("vg-role"),cue:by("vg-cue"),definition:by("vg-definition"),
- showname:by("vg-show-name"),quiz:by("vg-quiz"),choices:by("vg-choices"),feedback:by("vg-feedback"),
- next:by("vg-forward"),previous:by("vg-back"),training:by("vg-training"),reset:by("vg-reset"),
- ribbon:by("vg-ribbon"),ribbonCount:by("vg-ribbon-count"),
- more:by("vg-more"),question:by("vg-question"),answer:by("vg-answer"),
- parts:by("vg-detail-elements"),partsList:by("vg-detail-list"),
- conditions:by("vg-conditions"),conditionsList:by("vg-conditions-list"),
- link:by("vg-table-link"),source:by("vg-source"),course:by("vg-course"),
- completion:by("vg-complete"),summary:by("vg-summary"),finish:by("vg-finish"),newRun:by("vg-new-run")
-};
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined&&text!==null)n.textContent=String(text);return n};
+const dataUrl=root.dataset.source,compareUrl=root.dataset.compare;
 const storageKey="gos-exams-vigil-guided-2027-v1";
 const sectionKeys=["Великая вечерня","Утреня","Первый час"];
-let data,index=0,training=true,seen=new Set([0]),answers={},elapsedMs=0,completed=false,visibleName=false;
-let tickerStart=null,lastIndex=null;
-function safeLoad(){try{return JSON.parse(localStorage.getItem(storageKey)||"null")}catch(_){return null}}
-function persist(){try{localStorage.setItem(storageKey,JSON.stringify({index,training,seen:[...seen],answers,elapsedMs,completed}))}catch(_){}}
-function elapsedTick(){
- if(tickerStart!==null&&!completed){elapsedMs+=Math.max(0,performance.now()-tickerStart);tickerStart=performance.now()}
-}
-function stopClock(){elapsedTick();tickerStart=null;persist()}
-function startClock(){if(!document.hidden&&!completed&&tickerStart===null)tickerStart=performance.now()}
-function formatTime(ms){const sec=Math.floor(ms/1000),h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h?String(h)+" ч "+String(m).padStart(2,"0")+" мин":String(m)+" мин "+String(s).padStart(2,"0")+" с"}
+const nodes={status:by("vg-status"),loaded:by("vg-loaded"),stream:by("vg-stream"),jump:by("vg-jump"),counter:by("vg-counter"),progress:by("vg-progress"),course:by("vg-course"),map:by("vg-map"),menu:by("vg-menu"),reset:by("vg-reset")};
+const button=(label,fn,cls)=>{const b=el("button",label,cls);b.type="button";b.addEventListener("click",fn);return b};
+let data,frontier=0,answers={},revealed=new Set(),quizShown=new Set(),elapsedMs=0,completed=false,tickStart=null;
+let quizTimer=null,advanceTimer=null;
+function readSaved(){try{return JSON.parse(localStorage.getItem(storageKey)||"null")}catch(_){return null}}
+function store(){try{localStorage.setItem(storageKey,JSON.stringify({index:frontier,frontier,seen:Array.from({length:frontier+1},(_,i)=>i),answers,revealed:[...revealed],quizShown:[...quizShown],elapsedMs,completed}))}catch(_){}}
+function tick(){if(tickStart!==null&&!completed){elapsedMs+=Math.max(0,performance.now()-tickStart);tickStart=performance.now()}}
+function pause(){tick();tickStart=null;store()}
+function resume(){if(!document.hidden&&!completed&&tickStart===null)tickStart=performance.now()}
+function prettyTime(ms){const sec=Math.floor(ms/1000),h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h?h+" ч "+String(m).padStart(2,"0")+" мин":m+" мин "+String(s).padStart(2,"0")+" с"}
 function restore(){
- const saved=safeLoad();
- if(saved&&Number.isInteger(saved.index)&&saved.index>=0&&saved.index<data.steps.length)index=saved.index;
- if(saved&&typeof saved.training==="boolean")training=saved.training;
- if(saved&&Array.isArray(saved.seen)){seen=new Set(saved.seen.filter(i=>Number.isInteger(i)&&i>=0&&i<data.steps.length))}
- else if(saved&&Number.isInteger(saved.index)){seen=new Set(Array.from({length:index+1},(_,i)=>i))}
- if(saved&&saved.answers&&typeof saved.answers==="object"){
-  answers={};
-  for(const [key,value] of Object.entries(saved.answers)){
-   const n=data.steps.findIndex(s=>s.id===key);
-   if(n<0||n>=data.steps.length-1||!value||typeof value.selected!=="string")continue;
-   const quiz=data.steps[n].quiz;
-   if(quiz&&quiz.choices.some(c=>c.stepId===value.selected))answers[key]={selected:value.selected,correct:value.selected===quiz.correctStepId};
+ const save=readSaved();
+ if(save){
+  const n=Number.isInteger(save.frontier)?save.frontier:Number.isInteger(save.index)?save.index:0;
+  frontier=Math.min(data.steps.length-1,Math.max(0,n));
+  if(Array.isArray(save.seen))for(const i of save.seen)if(Number.isInteger(i)&&i>=0&&i<data.steps.length)frontier=Math.max(frontier,i);
+  elapsedMs=Number.isFinite(save.elapsedMs)&&save.elapsedMs>=0?save.elapsedMs:0;
+  completed=save.completed===true;
+  for(const [id,value] of Object.entries(save.answers||{})){
+   const s=data.steps.find(step=>step.id===id);
+   if(s?.quiz&&s.quiz.choices.some(c=>c.stepId===value?.selected))
+    answers[id]={selected:value.selected,correct:value.selected===s.quiz.correctStepId};
+  }
+  if(Array.isArray(save.revealed))revealed=new Set(save.revealed.filter(x=>data.steps.some(s=>s.id===x)));
+  if(Array.isArray(save.quizShown))quizShown=new Set(save.quizShown.filter(x=>data.steps.some(s=>s.id===x)));
+  // Carry forward previous single-card progress without manufacturing quiz results.
+  if(!Array.isArray(save.revealed)){
+   for(let i=0;i<frontier;i++){revealed.add(data.steps[i].id);quizShown.add(data.steps[i].id)}
   }
  }
- elapsedMs=Number.isFinite(saved?.elapsedMs)&&saved.elapsedMs>=0?saved.elapsedMs:0;
- completed=saved?.completed===true;
  const hash=(location.hash||"").match(/^#step-(\d+)$/);
- if(hash){const target=Number(hash[1])-1;if(target>=0&&target<data.steps.length)index=target}
- seen.add(index);visibleName=!training;nodes.training.checked=training;
+ if(hash){const i=Number(hash[1])-1;if(i>=0&&i<data.steps.length)frontier=Math.max(frontier,i)}
+ for(const id of Object.keys(answers)){revealed.add(id);quizShown.add(id)}
 }
-function setStep(n){
- if(n<0||n>=data.steps.length)return;
- elapsedTick();index=n;seen.add(n);visibleName=!training;lastIndex=n;
- nodes.more.open=false;persist();render();
- try{history.replaceState(null,"","#step-"+(index+1))}catch(_){}
+function currentCard(){return by("vg-step-"+(frontier+1))}
+function nearLatest(){
+ const card=currentCard();if(!card)return true;
+ const bounds=card.getBoundingClientRect();
+ return bounds.top<window.innerHeight-80&&bounds.bottom>50;
 }
-function button(text,fn,cls){const b=el("button",text,cls);b.type="button";b.addEventListener("click",fn);return b}
-function resetRun(){
- if(!window.confirm("Начать заново? Ответы и время текущего прохождения будут сброшены."))return;
- stopClock();index=0;training=nodes.training.checked;seen=new Set([0]);answers={};elapsedMs=0;completed=false;visibleName=!training;
- nodes.more.open=false;persist();startClock();setStep(0);
+function updateJump(){
+ const card=currentCard();if(!card)return;
+ const r=card.getBoundingClientRect();
+ // Visible only when the latest card lies below the viewport (after looking back up).
+ nodes.jump.hidden=!(r.top>window.innerHeight-110);
 }
-function renderSections(){
- nodes.section.replaceChildren();
- for(const section of sectionKeys){
-  const n=data.steps.findIndex(s=>s.section===section),b=button(section,()=>setStep(n),"vg-section-button");
-  b.setAttribute("aria-pressed",String(data.steps[index].section===section));nodes.section.append(b)
+function scrollToCard(i,behavior="smooth"){
+ const n=by("vg-step-"+(i+1));if(!n)return;
+ n.scrollIntoView({behavior,block:"start"});updateJump()
+}
+function updateHeader(){
+ nodes.counter.textContent=(frontier+1)+" / "+data.steps.length;
+ nodes.progress.value=frontier+1;nodes.progress.max=data.steps.length;
+}
+function cardDetails(step){
+ const d=el("details",undefined,"vg-details"),summary=el("summary","Подробнее");d.append(summary);
+ d.append(el("p",step.question,"vg-more-question"),el("p",step.answer));
+ if(step.subelements?.length){
+  const block=el("details"),sum=el("summary","Состав последования"),ul=el("ul");
+  for(const x of step.subelements)ul.append(el("li",x));block.append(sum,ul);d.append(block)
  }
+ if(step.conditions?.length){
+  const block=el("details"),sum=el("summary","Уставные варианты"),ul=el("ul");
+  for(const x of step.conditions){const li=el("li");li.append(el("strong",x.condition+": "),document.createTextNode(x.text));ul.append(li)}
+  block.append(sum,ul);d.append(block)
+ }
+ if(step.compare){
+  const a=el("a","Сравнить службы","vg-source-link");
+  a.href=compareUrl+"?row="+encodeURIComponent(step.compare);d.append(a)
+ }
+ const source=data.sources.find(s=>s.code===step.source);
+ d.append(el("p","Источник: "+(source?.name||"Архиеп. Аверкий (Таушев)")+". Уставные варианты — по Типикону.","vg-source"));
+ return d;
+}
+function makeCard(i){
+ const step=data.steps[i],card=el("article",undefined,"vg-step");card.id="vg-step-"+(i+1);card.dataset.step=step.id;
+ if(i===frontier)card.classList.add("vg-current");
+ if(i===0||step.section!==data.steps[i-1].section)card.append(el("div",step.section,"vg-section-label"));
+ const head=el("div",undefined,"vg-step-head");
+ head.append(el("span","Шаг "+(i+1)+" / 72"),el("span",step.actor));card.append(head);
+ card.append(el("div",step.cue,"vg-cue"));
+ const name=el("div",undefined,"vg-name");name.id="vg-name-"+(i+1);
+ name.append(el("h2",step.title),el("p",step.definition));
+ name.hidden=!revealed.has(step.id);card.append(name);
+ const reveal=button("Как это называется?",()=>showName(i),"vg-reveal");reveal.hidden=revealed.has(step.id);card.append(reveal);
+ if(i===data.steps.length-1){
+  const terminal=el("div","Последование всенощного бдения завершено.","vg-terminal");
+  terminal.hidden=!revealed.has(step.id);card.append(terminal)
+ }else{
+  const quiz=el("section",undefined,"vg-quiz");quiz.id="vg-quiz-"+(i+1);
+  quiz.append(el("h3","Что следует дальше?"));
+  const options=el("div",undefined,"vg-choices");
+  for(const [j,c] of step.quiz.choices.entries()){
+   const b=button((j+1)+". "+c.label,()=>answer(i,c.stepId),"vg-choice");
+   const saved=answers[step.id];
+   if(saved){
+    b.disabled=true;
+    if(c.stepId===step.quiz.correctStepId)b.classList.add("is-correct");
+    else if(c.stepId===saved.selected)b.classList.add("is-wrong")
+   }
+   options.append(b)
+  }
+  quiz.append(options);
+  const result=el("div",undefined,"vg-feedback");result.setAttribute("role","status");
+  const chosen=answers[step.id];
+  if(chosen){
+   result.append(el("p",chosen.correct?"Верно.":"Неверно. Правильный ответ: "+data.steps[i+1].title+".",chosen.correct?"vg-good":"vg-error"))
+  }
+  quiz.append(result);quiz.hidden=!quizShown.has(step.id);card.append(quiz)
+ }
+ card.append(cardDetails(step));return card
+}
+function renderStream(){
+ nodes.stream.replaceChildren();
+ for(let i=0;i<=frontier;i++)nodes.stream.append(makeCard(i));
+ updateHeader();renderMap();updateJump();
+ if(completed)renderSummary()
 }
 function renderMap(){
+ if(!nodes.map.open)return;
  nodes.menu.replaceChildren();
- data.steps.forEach((s,i)=>{const b=button((i+1)+". "+s.title,()=>{setStep(i);nodes.map.open=false},"vg-map-item");if(i===index)b.setAttribute("aria-current","step");nodes.menu.append(b)})
-}
-function renderRibbon(){
- nodes.ribbon.replaceChildren();
- const visited=[...seen].sort((a,b)=>a-b);nodes.ribbonCount.textContent=visited.length+" / "+data.steps.length;
- let prev="";
- for(const i of visited){
-  const s=data.steps[i];
-  if(prev!==s.section){nodes.ribbon.append(el("div",s.section,"vg-ribbon-section"));prev=s.section}
-  const b=button((i+1)+". "+s.title,()=>setStep(i),"vg-ribbon-item");
-  if(i===index)b.setAttribute("aria-current","step");
-  if(answers[s.id]?.correct)b.classList.add("is-correct");
-  else if(answers[s.id]&&!answers[s.id].correct)b.classList.add("is-wrong");
-  nodes.ribbon.append(b)
- }
- if(lastIndex!==null){
-  const current=nodes.ribbon.querySelector('[aria-current="step"]');
-  if(current)nodes.ribbon.scrollTop=Math.max(0,current.offsetTop-nodes.ribbon.offsetTop-nodes.ribbon.clientHeight/2);
-  lastIndex=null;
- }
+ for(const [i,s] of data.steps.entries())nodes.menu.append(button((i+1)+". "+s.title,()=>{nodes.map.open=false;openStep(i)},"vg-map-item"))
 }
 function renderCourse(){
- nodes.course.replaceChildren();
+ const list=nodes.course;list.replaceChildren();
  for(const l of data.lessons){
-  const pane=el("section",undefined,"vg-lesson");pane.append(el("h3",l.title),el("p",l.focus),el("p",l.duration,"vg-muted"));
-  const list=el("ol");for(const [name,min] of l.blocks)list.append(el("li",name+" — "+min+" мин"));
-  pane.append(list);nodes.course.append(pane)
+  const block=el("section",undefined,"vg-lesson");block.append(el("h3",l.title),el("p",l.focus),el("p",l.duration));
+  const ol=el("ol");for(const [title,mins] of l.blocks)ol.append(el("li",title+" — "+mins+" мин"));
+  block.append(ol);list.append(block)
  }
 }
-function renderDetails(s){
- nodes.question.textContent=s.question;nodes.answer.textContent=s.answer;
- nodes.parts.hidden=!s.subelements?.length;nodes.partsList.replaceChildren();
- for(const x of s.subelements||[])nodes.partsList.append(el("li",x));
- nodes.conditions.hidden=!s.conditions?.length;nodes.conditionsList.replaceChildren();
- for(const x of s.conditions||[]){const li=el("li");li.append(el("strong",x.condition+": "),document.createTextNode(x.text));nodes.conditionsList.append(li)}
- nodes.link.hidden=!s.compare;
- if(s.compare)nodes.link.href=root.dataset.compare+"?row="+encodeURIComponent(s.compare);
- const source=data.sources.find(x=>x.code===s.source);
- nodes.source.textContent="Источник: "+(source?.name||"Архиеп. Аверкий (Таушев)")+"; примеры Колобанова и игум. Кронида; уставные варианты — по Типикону.";
-}
-function renderChoices(s){
- nodes.choices.replaceChildren();nodes.feedback.replaceChildren();
- const quiz=s.quiz,answered=answers[s.id];
- quiz.choices.forEach((item,i)=>{
-  const b=button((i+1)+". "+item.label,()=>chooseAnswer(s.id,item.stepId),"vg-choice");
-  if(answered){
-   b.disabled=true;
-   if(item.stepId===quiz.correctStepId)b.classList.add("is-correct");
-   else if(item.stepId===answered.selected)b.classList.add("is-wrong");
-  }
-  nodes.choices.append(b)
- });
- if(answered){
-  const text=answered.correct?"Верно.":"Правильный ответ: "+data.steps[index+1].title+".";
-  nodes.feedback.append(el("p",text,answered.correct?"vg-good":"vg-error"));
-  if(!answered.correct)nodes.feedback.append(el("p","Следующий учебный шаг — "+data.steps[index+1].title+".","vg-muted"));
+function clearTimers(){if(quizTimer!==null)clearTimeout(quizTimer);if(advanceTimer!==null)clearTimeout(advanceTimer);quizTimer=null;advanceTimer=null}
+function showName(i){
+ const s=data.steps[i];if(!s)return;
+ revealed.add(s.id);store();renderStream();
+ if(i===data.steps.length-1){finish();return}
+ if(!quizShown.has(s.id)&&!answers[s.id]){
+  if(quizTimer!==null)clearTimeout(quizTimer);
+  quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream()},1200)
  }
 }
-function chooseAnswer(id,selected){
- if(answers[id]||completed)return;
- const s=data.steps[index];if(s.id!==id||!s.quiz)return;
- elapsedTick();answers[id]={selected,correct:selected===s.quiz.correctStepId};persist();render();
+function answer(i,chosen){
+ const step=data.steps[i];
+ if(!step?.quiz||answers[step.id]||!quizShown.has(step.id)||completed)return;
+ tick();answers[step.id]={selected:chosen,correct:chosen===step.quiz.correctStepId};
+ store();const follow=(i===frontier&&nearLatest());renderStream();
+ if(i===frontier){
+  if(advanceTimer!==null)clearTimeout(advanceTimer);
+  advanceTimer=setTimeout(()=>{advanceTimer=null;advance(i,follow)},1500)
+ }
+}
+function advance(i,follow){
+ if(frontier!==i||completed)return;
+ frontier=Math.min(frontier+1,data.steps.length-1);store();renderStream();
+ if(follow&&nearLatestAfterAppend())scrollToCard(frontier)
+ else updateJump()
+}
+function nearLatestAfterAppend(){
+ const prev=by("vg-step-"+frontier);
+ if(!prev)return true;
+ const r=prev.getBoundingClientRect();
+ return r.top<window.innerHeight-60;
+}
+function openStep(i){
+ if(i>frontier){frontier=i;store();renderStream()}
+ scrollToCard(i);try{history.replaceState(null,"","#step-"+(i+1))}catch(_){}
 }
 function renderSummary(){
- const entries=Object.values(answers),right=entries.filter(x=>x.correct).length,wrong=entries.length-right;
- const total=data.steps.length-1,missed=total-entries.length,rate=entries.length?Math.round(right/entries.length*100):0;
- nodes.summary.replaceChildren();
- for(const [title,value] of [["Правильных",right],["Ошибок",wrong],["Без ответа",missed],["Точность",rate+"%"],["Время",formatTime(elapsedMs)]]){
-  const p=el("div",undefined,"vg-stat");p.append(el("span",title),el("strong",value));nodes.summary.append(p)
+ let block=by("vg-results");
+ if(!block){block=el("section",undefined,"vg-results");block.id="vg-results";nodes.stream.append(block)}
+ block.replaceChildren();block.append(el("h2","Итоги прохождения"));
+ const arr=Object.values(answers),correct=arr.filter(x=>x.correct).length,wrong=arr.length-correct;
+ const stats=el("div",undefined,"vg-stats");
+ for(const [label,value] of [["Верно",correct],["Ошибок",wrong],["Без ответа",71-arr.length],["Точность",arr.length?Math.round(correct/arr.length*100)+"%":"—"],["Время",prettyTime(elapsedMs)]]){
+  const item=el("div",undefined,"vg-stat");item.append(el("span",label),el("strong",value));stats.append(item)
  }
- const missedSteps=data.steps.slice(0,-1).filter(s=>answers[s.id]&&!answers[s.id].correct);
- if(missedSteps.length){
-  const p=el("p","Где были ошибки: "+missedSteps.map(s=>s.id.slice(1)+" — "+s.title).join("; "),"vg-muted");nodes.summary.append(p)
+ block.append(stats);
+ const wrongSteps=data.steps.slice(0,-1).filter(s=>answers[s.id]&&!answers[s.id].correct);
+ if(wrongSteps.length){
+  const d=el("details"),sum=el("summary","Повторить ошибки ("+wrongSteps.length+")");d.append(sum);
+  for(const s of wrongSteps){const i=data.steps.indexOf(s);d.append(button((i+1)+". "+s.title,()=>scrollToCard(i),"vg-review"))}
+  block.append(d)
  }
 }
-function finishRun(){
- if(!seen.has(data.steps.length-1))return;
- elapsedTick();completed=true;tickerStart=null;persist();render();
+function finish(){
+ if(frontier!==71||!revealed.has(data.steps[71].id)||completed)return;
+ tick();completed=true;tickStart=null;store();renderStream();
 }
-function render(){
- const s=data.steps[index],last=index===data.steps.length-1,show=visibleName||!training;
- nodes.counter.textContent=(index+1)+" / "+data.steps.length;nodes.progress.max=data.steps.length;nodes.progress.value=index+1;
- nodes.role.textContent=s.actor;nodes.cue.textContent=s.cue;nodes.title.textContent=s.title;nodes.title.hidden=!show;
- nodes.definition.textContent=s.definition;nodes.definition.hidden=!show;nodes.showname.hidden=show;
- nodes.quiz.hidden=!show||last;nodes.completion.hidden=!last;nodes.finish.hidden=!last||completed;nodes.summary.hidden=!completed;
- nodes.newRun.hidden=!completed;
- if(show&&!last)renderChoices(s);
- if(completed)renderSummary();
- renderDetails(s);
- nodes.previous.disabled=index===0;nodes.next.disabled=last;nodes.next.textContent=last?"Последование завершено":"Далее →";
- renderSections();renderRibbon();if(nodes.map.open)renderMap();
+function newRun(){
+ if(!confirm("Начать заново? Ответы и время будут сброшены."))return;
+ clearTimers();frontier=0;answers={};revealed=new Set();quizShown=new Set();elapsedMs=0;completed=false;tickStart=null;
+ store();renderStream();resume();scrollToCard(0)
 }
-nodes.next.addEventListener("click",()=>setStep(index+1));
-nodes.previous.addEventListener("click",()=>setStep(index-1));
-nodes.showname.addEventListener("click",()=>{visibleName=true;render()});
-nodes.training.addEventListener("change",()=>{training=nodes.training.checked;visibleName=!training;persist();render()});
-nodes.reset.addEventListener("click",resetRun);
-nodes.finish.addEventListener("click",finishRun);
-nodes.newRun.addEventListener("click",resetRun);
-nodes.map.addEventListener("toggle",()=>{if(nodes.map.open)renderMap()});
-document.addEventListener("visibilitychange",()=>{if(document.hidden)stopClock();else startClock()});
-window.addEventListener("pagehide",stopClock);
-setInterval(()=>{if(!document.hidden&&!completed){elapsedTick();persist()}},5000);
+function wire(){
+ nodes.jump.addEventListener("click",()=>scrollToCard(frontier));
+ nodes.map.addEventListener("toggle",renderMap);
+ nodes.reset.addEventListener("click",newRun);
+ window.addEventListener("scroll",updateJump,{passive:true});
+ window.addEventListener("resize",updateJump);
+ document.addEventListener("visibilitychange",()=>{if(document.hidden)pause();else resume()});
+ window.addEventListener("pagehide",pause);
+ setInterval(()=>{if(!document.hidden&&!completed){tick();store()}},5000)
+}
 async function load(){
- const response=await fetch(root.dataset.source);if(!response.ok)throw Error("HTTP "+response.status);
+ const response=await fetch(dataUrl);if(!response.ok)throw Error("HTTP "+response.status);
  data=await response.json();
- if(data.steps.length!==72||!data.steps.slice(0,-1).every((s,i)=>s.quiz?.correctStepId===data.steps[i+1].id&&s.quiz.choices.length===3))throw Error("Неполное последование викторины");
- restore();renderCourse();render();nodes.status.hidden=true;nodes.loaded.hidden=false;startClock();
+ if(data.steps.length!==72||!data.steps.slice(0,-1).every((s,i)=>s.quiz?.correctStepId===data.steps[i+1].id&&s.quiz.choices.length===3))throw Error("Неполное последование");
+ restore();renderCourse();wire();renderStream();
+ nodes.status.hidden=true;nodes.loaded.hidden=false;resume();
+ // Resume a pending question/transition across reload without inserting fabricated answers.
+ const s=data.steps[frontier];
+ if(revealed.has(s.id)&&!quizShown.has(s.id)&&s.quiz){quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream()},1200)}
+ else if(s.quiz&&answers[s.id]){advanceTimer=setTimeout(()=>{advanceTimer=null;advance(frontier,false)},1500)}
+ if(frontier>0)scrollToCard(frontier,"instant");
 }
 load().catch(err=>{nodes.status.textContent="Не удалось открыть последование. Обновите страницу.";console.error(err)});
 })();
