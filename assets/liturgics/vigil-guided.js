@@ -40,6 +40,7 @@ function restore(){
  const hash=(location.hash||"").match(/^#step-(\d+)$/);
  if(hash){const i=Number(hash[1])-1;if(i>=0&&i<data.steps.length)frontier=Math.max(frontier,i)}
  for(const id of Object.keys(answers)){revealed.add(id);quizShown.add(id)}
+ if(completed)revealed.add(data.steps[data.steps.length-1].id);
 }
 function currentCard(){return by("vg-step-"+(frontier+1))}
 function latestTarget(){return completed&&by("vg-results")?by("vg-results"):currentCard()}
