@@ -42,16 +42,22 @@ function restore(){
  for(const id of Object.keys(answers)){revealed.add(id);quizShown.add(id)}
 }
 function currentCard(){return by("vg-step-"+(frontier+1))}
+function latestTarget(){return completed&&by("vg-results")?by("vg-results"):currentCard()}
+function setHash(i){try{history.replaceState(null,"","#step-"+(i+1))}catch(_){}}
 function nearLatest(){
  const card=currentCard();if(!card)return true;
  const bounds=card.getBoundingClientRect();
  return bounds.top<window.innerHeight-80&&bounds.bottom>50;
 }
 function updateJump(){
- const card=currentCard();if(!card)return;
+ const card=latestTarget();if(!card)return;
  const r=card.getBoundingClientRect();
  // Visible only when the latest card lies below the viewport (after looking back up).
  nodes.jump.hidden=!(r.top>window.innerHeight-110||(browsingHistory&&r.top>120));
+}
+function scrollToEnd(behavior="smooth"){
+ const n=latestTarget();if(!n)return;
+ browsingHistory=false;n.scrollIntoView({behavior,block:"start"});updateJump();
 }
 function scrollToCard(i,behavior="smooth"){
  const n=by("vg-step-"+(i+1));if(!n)return;
@@ -168,13 +174,13 @@ function advance(i,follow,revision){
  if(frontier!==i||completed)return;
  // Check before appending: the newly created card is naturally below the viewport.
  const stayedAtLatest=nearLatest()&&!browsingHistory&&scrollRevision===revision;
- frontier=Math.min(frontier+1,data.steps.length-1);store();renderStream();
+ frontier=Math.min(frontier+1,data.steps.length-1);store();setHash(frontier);renderStream();
  if(follow&&stayedAtLatest)scrollToCard(frontier);
  else updateJump();
 }
 function openStep(i){
  if(i>frontier){frontier=i;store();renderStream()}
- scrollToCard(i);try{history.replaceState(null,"","#step-"+(i+1))}catch(_){}
+ scrollToCard(i);setHash(i)
 }
 function renderSummary(){
  let block=by("vg-results");
@@ -195,7 +201,9 @@ function renderSummary(){
 }
 function finish(){
  if(frontier!==71||!revealed.has(data.steps[71].id)||completed)return;
+ const shouldFollow=nearLatest()&&!browsingHistory;
  tick();completed=true;tickStart=null;store();renderStream();
+ if(shouldFollow)scrollToEnd();
 }
 function newRun(){
  if(!confirm("Начать заново? Ответы и время будут сброшены."))return;
@@ -203,7 +211,7 @@ function newRun(){
  store();nodes.stream.replaceChildren();renderStream();resume();scrollToCard(0)
 }
 function wire(){
- nodes.jump.addEventListener("click",()=>scrollToCard(frontier));
+ nodes.jump.addEventListener("click",()=>scrollToEnd());
  nodes.map.addEventListener("toggle",renderMap);
  nodes.reset.addEventListener("click",newRun);
  window.addEventListener("scroll",()=>{
@@ -227,7 +235,7 @@ async function load(){
  const s=data.steps[frontier];
  if(revealed.has(s.id)&&!quizShown.has(s.id)&&s.quiz){quizTimer=setTimeout(()=>{quizTimer=null;quizShown.add(s.id);store();renderStream(frontier)},1200)}
  else if(s.quiz&&answers[s.id]){advanceTimer=setTimeout(()=>{advanceTimer=null;advance(frontier,false,scrollRevision)},1500)}
- if(frontier>0)scrollToCard(frontier,"instant");
+ if(frontier>0){if(completed)scrollToEnd("instant");else scrollToCard(frontier,"instant")}
 }
 load().catch(err=>{nodes.status.textContent="Не удалось открыть последование. Обновите страницу.";console.error(err)});
 })();
