@@ -149,11 +149,12 @@ function makeCard(i){
  name.append(el("h2",step.title),el("p",step.definition));
  name.hidden=!nameSaved;card.append(name);
  if(i===data.steps.length-1){
-  const terminal=el("div","Последование Божественной литургии завершено.","vg-terminal");
+  const terminal=el("div",root.dataset.rite==="presanctified"?"Последование Литургии Преждеосвященных Даров завершено.":"Последование Божественной литургии завершено.","vg-terminal");
   terminal.hidden=!revealed.has(step.id);card.append(terminal)
  }else{
   const quiz=el("section",undefined,"vg-quiz");quiz.id="vg-quiz-"+(i+1);
   quiz.append(el("h3","Что следует дальше?"));
+  if(step.quiz.context)quiz.append(el("p",step.quiz.context,"vg-source"));
   const options=el("div",undefined,"vg-choices");
   for(const [j,c] of step.quiz.choices.entries()){
    const b=button((j+1)+". "+c.label,()=>answer(i,c.stepId),"vg-choice");
@@ -173,7 +174,7 @@ function makeCard(i){
   }
   quiz.append(result);quiz.hidden=!quizShown.has(step.id);card.append(quiz)
  }
- card.append(cardDetails(step));return card
+ const details=cardDetails(step);if(root.dataset.rite==="presanctified")details.hidden=!nameSaved;card.append(details);return card
 }
 function renderStream(changedIndex=null){
  // Preserve all earlier card DOM, open reference notes and page scroll position.
@@ -304,7 +305,7 @@ function wire(){
 async function load(){
  const response=await fetch(dataUrl);if(!response.ok)throw Error("HTTP "+response.status);
  data=await response.json();
- if(data.steps.length!==44||
+ if(data.steps.length!==Number(root.dataset.count||44)||
   !data.steps.every(s=>s.nameQuiz?.correctStepId===s.id&&s.nameQuiz.choices.length>=2&&s.nameQuiz.choices.length<=5&&new Set(s.nameQuiz.choices.map(c=>c.stepId)).size===s.nameQuiz.choices.length&&s.nameQuiz.choices.filter(c=>c.stepId===s.id).length===1)||
   !data.steps.slice(0,-1).every((s,i)=>s.quiz?.correctStepId===data.steps[i+1].id&&s.quiz.choices.length===3))throw Error("Неполное последование");
  restore();renderCourse();wire();renderStream();
